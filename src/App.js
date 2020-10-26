@@ -5,10 +5,14 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import WritePage from './pages/WritePage';
 import PostPage from './pages/PostPage';
+import { Helmet } from 'react-helmet-async';
 
 const App = () => {
   return (
     <>
+      <Helmet>
+        <title>PRODUCE-O-MATIC</title>
+      </Helmet>
       <Route component={PostsListPage} path={['/@:username', '/']} exact />
       <Route component={LoginPage} path="/login" />
       <Route component={SignupPage} path="/signup" />
