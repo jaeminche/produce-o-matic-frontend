@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import Button from './Button';
 
-const HeaderBlock = styled.div`
+const FirstAvnHeaderBlock = styled.div`
   position: fixed;
   width: 100%;
   background: white;
@@ -42,12 +42,12 @@ const UserInfo = styled.div`
   margin-right: 1rem;
 `;
 
-const Header = ({ user, onLogout }) => {
+const FirstAvnHeader = ({ user, onLogout }) => {
   return (
     <>
-      <HeaderBlock>
+      <FirstAvnHeaderBlock>
         <Wrapper>
-          <Link to="/" className="logo">
+          <Link to="/firstavenue" className="logo">
             ADMIN PAGE
           </Link>
           {user ? (
@@ -57,14 +57,14 @@ const Header = ({ user, onLogout }) => {
             </div>
           ) : (
             <div className="right">
-              <Button to="/login">LOGIN</Button>
+              <Button to="/firstavenue/login">LOGIN</Button>
             </div>
           )}
         </Wrapper>
-      </HeaderBlock>
+      </FirstAvnHeaderBlock>
       <Spacer />
     </>
   );
 };
 
-export default Header;
+export default FirstAvnHeader;

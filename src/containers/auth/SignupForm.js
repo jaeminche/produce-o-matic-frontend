@@ -71,7 +71,7 @@ const SignupForm = ({ history }) => {
   // Check user
   useEffect(() => {
     if (user) {
-      history.push('/');
+      history.push('/firstavenue');
       try {
         sessionStorage.setItem('user', JSON.stringify(user));
       } catch (e) {
