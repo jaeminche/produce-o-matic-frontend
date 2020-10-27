@@ -14,16 +14,16 @@ const App = () => {
       <Helmet>
         <title>PRODUCE-O-MATIC</title>
       </Helmet>
-      <Route component={MainPage} path="/" />
       <Route
         component={PostsListPage}
-        path={['/firstavenue/@:username', '/firstavenue/']}
+        path={['/firstavenue/@:username', '/firstavenue']}
         exact
       />
       <Route component={LoginPage} path="/firstavenue/login" />
       <Route component={SignupPage} path="/firstavenue/signup" />
       <Route component={WritePage} path="/firstavenue/write" />
       <Route component={PostPage} path="/firstavenue/@:username/:postId" />
+      <Route component={MainPage} path="/" />
     </>
   );
 };

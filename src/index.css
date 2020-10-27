@@ -28,6 +28,10 @@ a {
   box-sizing: inherit;
 }
 
+.slick-slide img {
+  margin: auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
