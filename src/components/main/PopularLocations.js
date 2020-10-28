@@ -14,23 +14,6 @@ const Wrapper = styled(Responsive)`
   padding: 0;
 `;
 
-const ImgBlock = styled.div`
-  img {
-    width: 1200px;
-    height: 400px;
-    object-fit: cover;
-    margin: 0 auto;
-  }
-`;
-
-const ImagesBlock = ({ img }) => {
-  return (
-    <ImgBlock>
-      <img src={img} alt="이미지" />
-    </ImgBlock>
-  );
-};
-
 function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -53,16 +36,54 @@ function PrevArrow(props) {
   );
 }
 
-const CustomSlide = () => {
-  const { index, ...props } = this.props;
+const ImgBlock = styled.div`
+  position: relative;
+  img {
+    width: 1200px;
+    height: 400px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  div {
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 30%;
+  }
+  p {
+    color: white;
+  }
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .subtitle {
+    font-size: 24px;
+  }
+`;
+
+const ImagesBlock = (props) => {
+  const { title, imgpath, subtitle } = props;
   return (
-    <div {...props}>
-      <h3>{index}</h3>
+    <ImgBlock>
+      <img src={imgpath} alt="click to watch Youtube" />
+      <div>
+        <p className="title">{title}</p>
+        <p className="subtitle">{subtitle}</p>
+      </div>
+    </ImgBlock>
+  );
+};
+
+const CustomSlide = (props) => {
+  return (
+    <div>
+      <ImagesBlock {...props} />
     </div>
   );
 };
 
-const PopularLocations = ({ imgs }) => {
+const PopularLocations = ({ items }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -91,8 +112,12 @@ const PopularLocations = ({ imgs }) => {
     <PopularLocationsBlock>
       <Wrapper>
         <Slider {...settings}>
-          {imgs.map((img) => (
-            <ImagesBlock img={img} />
+          {items.map((item) => (
+            <CustomSlide
+              imgpath={item.imgpath}
+              title={item.title}
+              subtitle={item.subtitle}
+            />
           ))}
         </Slider>
       </Wrapper>
