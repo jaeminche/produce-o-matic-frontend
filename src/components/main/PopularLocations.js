@@ -7,52 +7,74 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const PopularLocationsBlock = styled.div`
-  position: relative;
-  height: 461px;
-  background: rgba(17, 17, 17, 0.4);
-  z-index: -1;
+  height: auto;
 `;
 
-const Image = styled.img`
-  position: absolute;
-  top: -3rem;
-  left: 0;
-  width: 100%;
-  background: rgba(17, 17, 17, 0.4);
-  z-index: -1;
+const Wrapper = styled(Responsive)`
+  padding: 0;
 `;
 
-// const Image = (props) => {
-//   console.log(props);
-//   return <Image src="" alt="이미지" />;
-// };
+const ImgBlock = styled.div`
+  img {
+    width: 1200px;
+    height: 400px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+`;
+
+const ImagesBlock = ({ img }) => {
+  return (
+    <ImgBlock>
+      <img src={img} alt="이미지" />
+    </ImgBlock>
+  );
+};
+
+function NextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, zIndex: '5', display: 'block', right: '10px' }}
+      onClick={onClick}
+    />
+  );
+}
+
+function PrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, zIndex: '5', display: 'block', left: '10px' }}
+      onClick={onClick}
+    />
+  );
+}
 
 const PopularLocations = ({ imgs }) => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
     pauseOnHover: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
   return (
     <PopularLocationsBlock>
-      <Slider {...settings}>
-        <div>
-          <img style={{ width: '100%', height: 'auto' }} src={imgs[0]} />
-        </div>
-        <div>
-          <img style={{ width: '100%', height: 'auto' }} src={imgs[1]} />
-        </div>
-        {/* {imgs.map((image) => (
-          <div>
-            <img src={image} alt="이미지" />
-          </div>
-        ))} */}
-      </Slider>
+      <Wrapper>
+        <Slider {...settings}>
+          {imgs.map((img) => (
+            <ImagesBlock img={img} />
+          ))}
+        </Slider>
+      </Wrapper>
     </PopularLocationsBlock>
   );
 };
