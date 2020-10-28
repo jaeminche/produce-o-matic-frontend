@@ -1,4 +1,6 @@
+const SEARCH = require('./search.svg');
 const GYEONGBOKGUNG = require('./gyeongbokgung.jpg');
 const GYEONGBOKGUNG02 = require('./gyeongbokgung02.jpg');
+const HANOKMAEUL = require('./hanokmaeul.jpg');
 
-export { GYEONGBOKGUNG, GYEONGBOKGUNG02 };
+export { SEARCH, GYEONGBOKGUNG, GYEONGBOKGUNG02, HANOKMAEUL };

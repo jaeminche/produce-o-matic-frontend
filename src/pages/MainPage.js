@@ -19,6 +19,7 @@ const MainPage = () => {
       {/* possible props: Spacer, reverse-color */}
       <HeaderContainer />
       <PopularLocationsContainer />
+      <PopularLocationsContainer />
       <div>next</div>
     </MainPageBlock>
   );

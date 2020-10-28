@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import Button from './Button';
+import { SEARCH } from '../../assets';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -28,9 +29,13 @@ const Wrapper = styled(Responsive)`
   align-items: center;
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
   .logo {
-    font-size: 1.125rem;
+    font-size: 25px;
     font-weight: 800;
     letter-spacing: 2px;
+  }
+  .menuitem {
+    font-size: 16px;
+    margin-right: 15px;
   }
   .right {
     display: flex;
@@ -50,10 +55,27 @@ const Header = ({ user, onLogout }) => {
     <>
       <HeaderBlock>
         <Wrapper>
-          <Link to="/" className="logo">
-            Produce-O-Matic
-          </Link>
-          <div className="right">Search</div>
+          <div>
+            <Link to="/" className="logo">
+              Produce-O-Matic
+            </Link>
+            <span style={{ marginLeft: '25px' }}>
+              <Link to="/" className="menuitem">
+                Produce-In-Korea
+              </Link>
+              <Link to="/" className="menuitem">
+                Produce-O-Manual
+              </Link>
+              <Link to="/" className="menuitem">
+                Produce-O-Matic
+              </Link>
+              <Link to="/" className="menuitem">
+                Produce-O-People
+              </Link>
+            </span>
+          </div>
+
+          <img className="right" src={SEARCH} alt="search icon" />
         </Wrapper>
       </HeaderBlock>
       {/* <Spacer /> */}
