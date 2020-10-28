@@ -28,6 +28,10 @@ a {
   box-sizing: inherit;
 }
 
+.slick-dots li button:before {
+  color: white !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

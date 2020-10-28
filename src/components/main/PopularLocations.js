@@ -53,6 +53,15 @@ function PrevArrow(props) {
   );
 }
 
+const CustomSlide = () => {
+  const { index, ...props } = this.props;
+  return (
+    <div {...props}>
+      <h3>{index}</h3>
+    </div>
+  );
+};
+
 const PopularLocations = ({ imgs }) => {
   const settings = {
     dots: true,
@@ -63,6 +72,18 @@ const PopularLocations = ({ imgs }) => {
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
+    swipeToSlide: true,
+    appendDots: (dots) => (
+      <div
+        style={{
+          background:
+            'linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%)',
+          bottom: '-10px',
+        }}
+      >
+        <ul> {dots} </ul>
+      </div>
+    ),
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };

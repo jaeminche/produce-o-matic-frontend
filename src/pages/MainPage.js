@@ -4,9 +4,10 @@ import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import PopularLocationsContainer from '../containers/main/PopularLocationsContainer';
 import styled from 'styled-components';
+import palette from '../lib/styles/palette';
 
 const MainPageBlock = styled.div`
-  background: black;
+  background: ${palette.gray[9]};
 `;
 
 const MainPage = () => {
