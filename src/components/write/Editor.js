@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.bubble.css';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 

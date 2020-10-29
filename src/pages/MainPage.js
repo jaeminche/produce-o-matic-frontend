@@ -3,11 +3,13 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import LocationsContainer from '../containers/main/LocationsContainer';
-import styled from 'styled-components';
+import IntroTextContainer from '../containers/main/IntroTextContainer';
+import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
 const MainPageBlock = styled.div`
   background: ${palette.gray[9]};
+  color: white;
 `;
 
 const MainPage = () => {
@@ -20,7 +22,7 @@ const MainPage = () => {
       <HeaderContainer />
       <LocationsContainer type="youtube" />
       <LocationsContainer type="blog" />
-      <div>next</div>
+      <IntroTextContainer />
     </MainPageBlock>
   );
 };

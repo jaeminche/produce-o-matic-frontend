@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 import Slider from 'react-slick';
