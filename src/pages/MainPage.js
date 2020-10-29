@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import LocationsContainer from '../containers/main/LocationsContainer';
 import IntroTextContainer from '../containers/main/IntroTextContainer';
+import ThumbnailsContainer from '../containers/main/ThumbnailsContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
@@ -23,6 +24,7 @@ const MainPage = () => {
       <LocationsContainer type="youtube" />
       <LocationsContainer type="blog" />
       <IntroTextContainer />
+      <ThumbnailsContainer />
     </MainPageBlock>
   );
 };

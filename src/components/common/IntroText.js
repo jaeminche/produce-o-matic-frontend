@@ -29,7 +29,7 @@ const IntroText = ({ text }) => {
         <>
           {ReactHtmlParser(text)}
           <Link to="/" className="viewmore">
-            View More >
+            {'View More >'}
           </Link>
         </>
       </Wrapper>
