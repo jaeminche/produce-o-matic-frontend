@@ -2,7 +2,7 @@ import React from 'react';
 // import Responsive from '../components/common/Responsive';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
-import PopularLocationsContainer from '../containers/main/PopularLocationsContainer';
+import LocationsContainer from '../containers/main/LocationsContainer';
 import styled from 'styled-components';
 import palette from '../lib/styles/palette';
 
@@ -18,8 +18,8 @@ const MainPage = () => {
       </Helmet>
       {/* possible props: Spacer, reverse-color */}
       <HeaderContainer />
-      <PopularLocationsContainer />
-      <PopularLocationsContainer />
+      <LocationsContainer type="youtube" />
+      <LocationsContainer type="blog" />
       <div>next</div>
     </MainPageBlock>
   );

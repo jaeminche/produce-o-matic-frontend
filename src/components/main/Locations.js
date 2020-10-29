@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const PopularLocationsBlock = styled.div`
+const LocationsBlock = styled.div`
   height: auto;
 `;
 
@@ -38,12 +38,17 @@ function PrevArrow(props) {
 
 const ImgBlock = styled.div`
   position: relative;
+  &:hover {
+    filter: brightness(0.5);
+  }
   img {
     width: 1200px;
     height: 400px;
     object-fit: cover;
     margin: 0 auto;
   }
+  /* img:hover {
+  } */
   div {
     position: absolute;
     transform: translateX(-50%);
@@ -83,15 +88,16 @@ const CustomSlide = (props) => {
   );
 };
 
-const PopularLocations = ({ items }) => {
+const Locations = ({ items }) => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 300,
+    fade: true,
+    speed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
     pauseOnHover: true,
     swipeToSlide: true,
     appendDots: (dots) => (
@@ -109,7 +115,7 @@ const PopularLocations = ({ items }) => {
     prevArrow: <PrevArrow />,
   };
   return (
-    <PopularLocationsBlock>
+    <LocationsBlock>
       <Wrapper>
         <Slider {...settings}>
           {items.map((item) => (
@@ -121,8 +127,8 @@ const PopularLocations = ({ items }) => {
           ))}
         </Slider>
       </Wrapper>
-    </PopularLocationsBlock>
+    </LocationsBlock>
   );
 };
 
-export default PopularLocations;
+export default Locations;
