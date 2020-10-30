@@ -21,9 +21,7 @@ const Wrapper = styled(Responsive)`
 const ImgLinkBlock = styled(Link)`
   position: relative;
   width: 49.5%;
-  &:hover {
-    filter: brightness(0.5);
-  }
+
   img {
     width: 100%;
     /* TODO */
@@ -31,19 +29,19 @@ const ImgLinkBlock = styled(Link)`
     /* height: calc(); */
     object-fit: cover;
     margin: 0 auto;
+    &:hover {
+      filter: brightness(0.5);
+    }
   }
-  div {
+  .textbox {
     position: absolute;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
     left: 50%;
-    top: 30%;
-  }
-  p {
+    top: 50%;
     color: white;
   }
   .title {
-    font-size: 40px;
-    font-weight: bold;
+    font-size: 50px;
   }
   /* @media (max-width: 1500px) {
     img {
@@ -62,8 +60,8 @@ const ImageBlock = ({ data }) => {
   return (
     <ImgLinkBlock to={to}>
       <img src={imgpath} alt="click to go to the page" />
-      <div>
-        <p className="title">{title}</p>
+      <div className="textbox">
+        <div className="title">{title}</div>
       </div>
     </ImgLinkBlock>
   );
