@@ -8,22 +8,27 @@ const ThumbnailsBlock = styled.div`
   height: auto;
 `;
 
+// flex parent
 const Wrapper = styled(Responsive)`
   /* padding: 0; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
-const ImgLink = styled(Link)`
+// flex child
+const ImgLinkBlock = styled(Link)`
   position: relative;
+  width: 49.5%;
   &:hover {
     filter: brightness(0.5);
   }
   img {
-    width: 1200px;
+    width: 100%;
+    /* TODO */
     height: 400px;
+    /* height: calc(); */
     object-fit: cover;
     margin: 0 auto;
   }
@@ -40,18 +45,27 @@ const ImgLink = styled(Link)`
     font-size: 40px;
     font-weight: bold;
   }
+  /* @media (max-width: 1500px) {
+    img {
+        height: 550px;
+
+    }
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  } */
 `;
 
 const ImageBlock = ({ data }) => {
   const { title, imgpath, to } = data;
   console.log('props', data);
   return (
-    <ImgLink to={to}>
+    <ImgLinkBlock to={to}>
       <img src={imgpath} alt="click to go to the page" />
       <div>
         <p className="title">{title}</p>
       </div>
-    </ImgLink>
+    </ImgLinkBlock>
   );
 };
 
