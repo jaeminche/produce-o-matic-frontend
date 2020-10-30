@@ -42,13 +42,12 @@ const ImgBlock = styled.div`
     filter: brightness(0.5);
   }
   img {
-    width: 1200px;
+    width: 100%;
+    max-width: 1200px;
     height: 400px;
     object-fit: cover;
     margin: 0 auto;
   }
-  /* img:hover {
-  } */
   div {
     position: absolute;
     transform: translateX(-50%);
@@ -59,7 +58,7 @@ const ImgBlock = styled.div`
     color: white;
   }
   .title {
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
   }
   .subtitle {

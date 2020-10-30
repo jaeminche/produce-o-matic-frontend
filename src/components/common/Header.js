@@ -15,7 +15,7 @@ const HeaderBlock = styled.div`
   /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08); */
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.6) 30%,
     rgba(0, 0, 0, 0) 100%
   );
 `;
@@ -29,7 +29,7 @@ const Wrapper = styled(Responsive)`
   align-items: center;
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
   .logo {
-    font-size: 25px;
+    font-size: 32px;
     font-weight: 800;
     letter-spacing: 2px;
   }
