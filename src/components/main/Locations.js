@@ -38,28 +38,28 @@ function PrevArrow(props) {
 
 const ImgBlock = styled.div`
   position: relative;
-  &:hover {
-    filter: brightness(0.5);
-  }
+
   img {
     width: 100%;
     max-width: 1200px;
     height: 400px;
     object-fit: cover;
     margin: 0 auto;
+
+    &:hover {
+      filter: brightness(0.5);
+    }
   }
-  div {
+  .textbox {
     position: absolute;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
     left: 50%;
-    top: 30%;
-  }
-  p {
+    top: 50%;
     color: white;
+    text-align: center;
   }
   .title {
     font-size: 60px;
-    font-weight: bold;
   }
   .subtitle {
     font-size: 24px;
@@ -71,9 +71,9 @@ const ImagesBlock = (props) => {
   return (
     <ImgBlock>
       <img src={imgpath} alt="click to watch Youtube" />
-      <div>
-        <p className="title">{title}</p>
-        <p className="subtitle">{subtitle}</p>
+      <div className="textbox">
+        <div className="title">{title}</div>
+        <div className="subtitle">{subtitle}</div>
       </div>
     </ImgBlock>
   );
