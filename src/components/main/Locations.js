@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
-import palette from '../../lib/styles/palette';
+import { mq } from '../../lib/util/device';
 import Responsive from '../common/Responsive';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -59,10 +59,14 @@ const ImgBlock = styled.div`
     text-align: center;
   }
   .title {
-    font-size: 60px;
+    ${mq({
+      fontSize: ['28px', '34px', , '46px', , '60px', ,],
+    })}
   }
   .subtitle {
-    font-size: 24px;
+    ${mq({
+      fontSize: ['12px', '14px', , '18px', , '24px', ,],
+    })}
   }
 `;
 

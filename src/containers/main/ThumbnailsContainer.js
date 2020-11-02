@@ -17,19 +17,19 @@ const ThumbnailsContainer = () => {
     { id: 1, title: 'General Knowledge', to: '/', imgpath: THUMB1_GENERAL },
     {
       id: 2,
-      title: 'Produce O Matic Summary',
+      title: 'Produce-O-Matic Summary',
       to: '/',
       imgpath: THUMB2_OMATIC,
     },
     {
       id: 3,
-      title: 'Produce O Manual Summary',
+      title: 'Produce-O-Manual Summary',
       to: '/',
       imgpath: THUMB3_OMANUAL,
     },
     {
       id: 4,
-      title: ' Produce O People Summary',
+      title: ' Produce-O-People Summary',
       to: '/',
       imgpath: THUMB4_OPEOPLE,
     },

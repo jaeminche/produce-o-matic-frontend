@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
-import palette from '../../lib/styles/palette';
+import { mq } from '../../lib/util/device';
 import Responsive from '../common/Responsive';
 import { Link } from 'react-router-dom';
 
@@ -20,15 +20,18 @@ const Wrapper = styled(Responsive)`
 // flex child
 const ImgLinkBlock = styled(Link)`
   position: relative;
-  width: 49.5%;
+  ${mq({
+    width: ['100%', , '49.5%', , , , ,],
+  })}
 
   img {
     width: 100%;
-    /* TODO */
-    height: 400px;
-    /* height: calc(); */
+    ${mq({
+      height: ['320px', '360px', , '380px', , '400px', '640px'],
+    })}
     object-fit: cover;
     margin: 0 auto;
+
     &:hover {
       filter: brightness(0.5);
     }
@@ -39,19 +42,18 @@ const ImgLinkBlock = styled(Link)`
     left: 50%;
     top: 50%;
     color: white;
+    text-align: center;
   }
   .title {
-    font-size: 50px;
+    ${mq({
+      fontSize: ['26px', '32px', , '40px', , '50px', ,],
+    })}
   }
-  /* @media (max-width: 1500px) {
-    img {
-        height: 550px;
-
-    }
+  .subtitle {
+    ${mq({
+      fontSize: ['10px', '12px', , '18px', , '24px', ,],
+    })}
   }
-  @media (max-width: 768px) {
-    width: 100%;
-  } */
 `;
 
 const ImageBlock = ({ data }) => {

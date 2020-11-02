@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import palette from '../../lib/styles/palette';
+import { mq } from '../../lib/util/device';
 import Responsive from '../common/Responsive';
 import ReactHtmlParser from 'react-html-parser';
 
@@ -14,8 +14,7 @@ const Wrapper = styled(Responsive)`
   text-align: center;
   margin-top: 80px;
   margin-bottom: 80px;
-  font-size: 24px;
-
+  ${mq({ fontSize: ['16px', , , '24px', , , ,] })}
   .viewmore {
     color: rgba(37, 168, 209, 1);
   }

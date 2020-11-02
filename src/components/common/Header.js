@@ -1,9 +1,10 @@
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components/macro';
+import { mq } from '../../lib/util/device';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
-import Button from './Button';
-import { SEARCH } from '../../assets';
+import { LOGO, SEARCH } from '../../assets';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -29,13 +30,23 @@ const Wrapper = styled(Responsive)`
   align-items: center;
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
   .logo {
-    font-size: 32px;
+    /* ${mq({
+      fontSize: ['26px', , , , , '32px', ,],
+    })}
     font-weight: 800;
-    letter-spacing: 2px;
+    letter-spacing: 2px; */
+    img {
+      ${mq({ height: ['20px', , , '24px', , , ,] })}
+      border-radius: 10px;
+    }
   }
   .menuitem {
     font-size: 16px;
     margin-right: 15px;
+  }
+  .smalltext {
+    font-size: 0.8em;
+    /* font-style: italic; */
   }
   .right {
     display: flex;
@@ -51,31 +62,37 @@ const Spacer = styled.div`
 `;
 
 const Header = ({ user, onLogout }) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
   return (
     <>
       <HeaderBlock>
         <Wrapper>
-          <div>
+          <div style={{ margin: isMobile ? '0 auto' : 'none' }}>
             <Link to="/" className="logo">
-              Produce-O-Matic
+              <img src={LOGO} alt="로고" />
             </Link>
-            <span style={{ marginLeft: '25px' }}>
-              <Link to="/" className="menuitem">
-                Produce-In-Korea
-              </Link>
-              <Link to="/" className="menuitem">
-                Produce-O-Manual
-              </Link>
-              <Link to="/" className="menuitem">
-                Produce-O-Matic
-              </Link>
-              <Link to="/" className="menuitem">
-                Produce-O-People
-              </Link>
-            </span>
+            {!isMobile && (
+              <span style={{ marginLeft: '25px' }}>
+                <Link to="/" className="menuitem">
+                  <span className="smalltext">Produce-</span>In-Korea
+                </Link>
+                <Link to="/" className="menuitem">
+                  <span className="smalltext">Produce-</span>O-Manual
+                </Link>
+                <Link to="/" className="menuitem">
+                  <span className="smalltext">Produce-</span>O-Matic
+                </Link>
+                <Link to="/" className="menuitem">
+                  <span className="smalltext">Produce-</span>O-People
+                </Link>
+              </span>
+            )}
           </div>
 
-          <img className="right" src={SEARCH} alt="search icon" />
+          {!isMobile && (
+            <img className="right" src={SEARCH} alt="search icon" />
+          )}
         </Wrapper>
       </HeaderBlock>
       {/* <Spacer /> */}

@@ -1,3 +1,4 @@
+const LOGO = require('./templogo.png');
 const SEARCH = require('./search.svg');
 const GYEONGBOKGUNG = require('./gyeongbokgung.jpg');
 const GYEONGBOKGUNG02 = require('./gyeongbokgung02.jpg');
@@ -9,6 +10,7 @@ const THUMB3_OMANUAL = require('./thumb3_omanual.jpg');
 const THUMB4_OPEOPLE = require('./thumb4_opeople.jpg');
 
 export {
+  LOGO,
   SEARCH,
   GYEONGBOKGUNG,
   GYEONGBOKGUNG02,
