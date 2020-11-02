@@ -28,6 +28,7 @@ const Wrapper = styled(Responsive)`
   height: 68px;
   display: flex;
   align-items: center;
+  color: rgba(193, 193, 193, 1);
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
   .logo {
     /* ${mq({

@@ -2,6 +2,7 @@ import React from 'react';
 // import Responsive from '../components/common/Responsive';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
+import FooterContainer from '../containers/common/FooterContainer';
 import LocationsContainer from '../containers/main/LocationsContainer';
 import IntroTextContainer from '../containers/main/IntroTextContainer';
 import ThumbnailsContainer from '../containers/main/ThumbnailsContainer';
@@ -25,6 +26,7 @@ const MainPage = () => {
       <LocationsContainer type="blog" />
       <IntroTextContainer />
       <ThumbnailsContainer />
+      <FooterContainer />
     </MainPageBlock>
   );
 };
