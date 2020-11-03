@@ -62,8 +62,12 @@ const Spacer = styled.div`
   height: 68px;
 `;
 
-const Header = ({ user, onLogout }) => {
+const Header = ({ menus /*, user, onLogout*/ }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
+  function takeOutPrefix(word, prefix) {
+    return word.replace(prefix, '');
+  }
 
   return (
     <>
@@ -75,18 +79,12 @@ const Header = ({ user, onLogout }) => {
             </Link>
             {!isMobile && (
               <span style={{ marginLeft: '25px' }}>
-                <Link to="/" className="menuitem">
-                  <span className="smalltext">Produce-</span>In-Korea
-                </Link>
-                <Link to="/" className="menuitem">
-                  <span className="smalltext">Produce-</span>O-Manual
-                </Link>
-                <Link to="/" className="menuitem">
-                  <span className="smalltext">Produce-</span>O-Matic
-                </Link>
-                <Link to="/" className="menuitem">
-                  <span className="smalltext">Produce-</span>O-People
-                </Link>
+                {menus.map((menu, key) => (
+                  <Link to={menu.path} className="menuitem">
+                    <span className="smalltext">Produce-</span>
+                    {takeOutPrefix(menu.text, 'Produce-')}
+                  </Link>
+                ))}
               </span>
             )}
           </div>
