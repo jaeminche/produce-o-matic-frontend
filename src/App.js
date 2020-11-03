@@ -1,11 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import MainPage from './pages/MainPage';
 import PostsListPage from './pages/PostsListPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import WritePage from './pages/WritePage';
 import PostPage from './pages/PostPage';
+
+import MainPage from './pages/MainPage';
+import SummaryInKoreaPage from './pages/SummaryInKoreaPage';
+import SummaryOManualPage from './pages/SummaryOManualPage';
+import SummaryOMaticPage from './pages/SummaryOMaticPage';
+import SummaryOPeoplePage from './pages/SummaryOPeoplePage';
+
 import PopularLocationsPage from './pages/PopularLocationsPage';
 import LocationsWithBenefitsPage from './pages/LocationsWithBenefitsPage';
 import GeneralKnowledgePage from './pages/GeneralKnowledgePage';
@@ -30,6 +36,7 @@ const App = () => {
       <Helmet>
         <title>PRODUCE-O-MATIC</title>
       </Helmet>
+      {/* ----- Admin Pages starts ----- */}
       <Route
         component={PostsListPage}
         path={['/firstavenue/@:username', '/firstavenue']}
@@ -39,7 +46,13 @@ const App = () => {
       <Route component={SignupPage} path="/firstavenue/signup" />
       <Route component={WritePage} path="/firstavenue/write" />
       <Route component={PostPage} path="/firstavenue/@:username/:postId" />
+      {/* ----- Admin Pages ends ----- */}
+
       <Route component={MainPage} exact path="/" />
+      <Route component={SummaryInKoreaPage} path="/summary-produce-in-korea" />
+      <Route component={SummaryOManualPage} path="/summary-produce-o-manual" />
+      <Route component={SummaryOMaticPage} path="/summary-produce-o-matic" />
+      <Route component={SummaryOPeoplePage} path="/summary-produce-o-people" />
       <Route component={PopularLocationsPage} path="/popular-locations" />
       <Route
         component={LocationsWithBenefitsPage}
