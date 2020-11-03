@@ -4,14 +4,8 @@ import styled from 'styled-components/macro';
 import { mq } from '../../lib/util/device';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
-import {
-  LOGO,
-  SEARCH,
-  FACEBOOK_ICON,
-  INSTAGRAM_ICON,
-  YOUTUBE_ICON,
-  WHATSAPP_ICON,
-} from '../../assets';
+import { LOGO } from '../../assets';
+import palette from '../../lib/styles/palette';
 
 const FooterBlock = styled.div`
   padding-top: 85px;
@@ -21,10 +15,10 @@ const FooterBlock = styled.div`
 const Wrapper = styled(Responsive)`
   /* min-height: 506px; */
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
   justify-content: space-between;
-  font-size: 15px;
-  color: rgba(193, 193, 193, 1);
+  font-size: ${(props) => (props.isMobile ? '12px' : '15px')};
+  color: ${palette.footergray[0]};
 
   .logo {
     ${mq({
@@ -53,6 +47,7 @@ const LogoBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  ${(props) => props.isMobile && `align-items: center;`}
   .title {
     font-size: 25px;
     font-weight: 700;
@@ -64,30 +59,35 @@ const LogoBox = styled.div`
 `;
 
 const RowWithMarginTop = styled.div`
-  margin-top: 30px;
+  margin-top: ${(props) => (props.isMobile ? '17px' : '30px')};
 `;
 
 const CopyrightsTextBox = styled.div`
-  color: rgba(124, 124, 124, 1);
+  color: ${palette.footergray[1]};
 `;
 const MultipleLinksBox = styled.div`
   a {
     margin-left: 10px;
     margin-right: 10px;
   }
+  .terms {
+    color: ${palette.footergray[1]};
+  }
 `;
-const Menus = styled.div`
+const MenusBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
   justify-content: space-between;
   .menu {
     margin-right: 10px;
+    ${(props) => props.isMobile && `margin-top: 27px;`}
   }
 `;
 const Submenus = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  ${(props) => props.isMobile && `margin-left: 26px;`}
 `;
 
 /**
@@ -104,41 +104,46 @@ const Footer = ({ menus, socialMedia, terms }) => {
     <>
       {/* <Spacer /> */}
       <FooterBlock>
-        <Wrapper>
-          <LogoBox>
+        <Wrapper isMobile={isMobile}>
+          <LogoBox isMobile={isMobile}>
             <Link to="/" className="logo title">
               <img src={LOGO} alt="logo" />
             </Link>
-            <RowWithMarginTop>
+            <RowWithMarginTop isMobile={isMobile}>
               {socialMedia.map((media, key) => (
-                <>
+                <span key={key}>
                   <Link to={media.path} className="icon">
                     <img src={media.icon} alt={`${media.name} icon`} />
                   </Link>
                   <span className="icon-spacer" />
-                </>
+                </span>
               ))}
             </RowWithMarginTop>
           </LogoBox>
-          <Menus>
+          <MenusBox isMobile={isMobile}>
             {menus.map((menu, key) => (
-              <div className="title menu">
+              <div className="title menu" key={key}>
                 <Link to={menu.path} className="menuitem ">
                   {menu.text}
                 </Link>
-                <RowWithMarginTop>
-                  <Submenus>
+                <RowWithMarginTop isMobile={isMobile}>
+                  <Submenus isMobile={isMobile}>
                     {menu.submenus.map((submenu, key) => (
-                      <Link to={submenu.subpath}>{submenu.text}</Link>
+                      <Link to={submenu.subpath} key={key}>
+                        {submenu.text}
+                      </Link>
                     ))}
                   </Submenus>
                 </RowWithMarginTop>
               </div>
             ))}
-          </Menus>
+          </MenusBox>
         </Wrapper>
 
-        <Wrapper style={{ marginTop: '90px' }}>
+        <Wrapper style={{ marginTop: '90px' }} isMobile={isMobile}>
+          <CopyrightsTextBox>
+            Ⓒ Copyright 2020 Produce-O-Matic. All rights reserved.
+          </CopyrightsTextBox>
           <MultipleLinksBox>
             <Link to="/privacy" className="terms">
               Privacy Policy
@@ -152,9 +157,6 @@ const Footer = ({ menus, socialMedia, terms }) => {
               Copyrights
             </Link>
           </MultipleLinksBox>
-          <CopyrightsTextBox>
-            Ⓒ Copyright 2020 Produce-O-Matic. All rights reserved.
-          </CopyrightsTextBox>
         </Wrapper>
       </FooterBlock>
     </>

@@ -13,6 +13,7 @@ const palette = {
     '#343a40',
     '#212529',
   ],
+  footergray: ['rgba(193,193,193,1)', 'rgba(124,124,124,1)'],
   cyan: [
     '#e3fafc',
     '#c5f6fa',
