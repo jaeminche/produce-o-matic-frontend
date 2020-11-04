@@ -7,7 +7,7 @@ import Responsive from './Responsive';
 import { LOGO, SEARCH } from '../../assets';
 
 const HeaderBlock = styled.div`
-  position: fixed;
+  ${(props) => props.isFixed && `position: fixed;`}
   z-index: 10;
   width: 100%;
   background: white;
@@ -62,7 +62,7 @@ const Spacer = styled.div`
   height: 68px;
 `;
 
-const Header = ({ menus /*, user, onLogout*/ }) => {
+const Header = ({ menus, isFixed /*, user, onLogout*/ }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   function takeOutPrefix(word, prefix) {
@@ -71,7 +71,7 @@ const Header = ({ menus /*, user, onLogout*/ }) => {
 
   return (
     <>
-      <HeaderBlock>
+      <HeaderBlock isFixed={isFixed}>
         <Wrapper>
           <div style={{ margin: isMobile ? '0 auto' : 'none' }}>
             <Link to="/" className="logo">

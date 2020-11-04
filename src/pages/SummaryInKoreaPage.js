@@ -21,7 +21,7 @@ const SummaryInKoreaPage = () => {
         <title>Produce-In-Korea_PRODUCE-O-MATIC</title>
       </Helmet>
       <HeaderContainer />
-      <SubHeaderContainer />
+      <SubHeaderContainer menuIndex={0} />
       {/* <ContentsContainer /> */}
       <FooterContainer />
     </SummaryInKoreaPageBlock>

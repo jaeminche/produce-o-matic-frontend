@@ -7,6 +7,8 @@ import Responsive from './Responsive';
 import { LOGO, SEARCH } from '../../assets';
 
 const SubHeaderBlock = styled.div`
+  position: sticky;
+  top: 0;
   z-index: 10;
   width: 100%;
   background: white;
@@ -61,7 +63,7 @@ const Spacer = styled.div`
   height: 68px;
 `;
 
-const Header = ({ menus /*, user, onLogout*/ }) => {
+const SubHeader = ({ submenus /*, user, onLogout*/ }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   function takeOutPrefix(word, prefix) {
@@ -69,33 +71,22 @@ const Header = ({ menus /*, user, onLogout*/ }) => {
   }
 
   return (
-    <>
-      <SubHeaderBlock>
-        <Wrapper>
-          <div style={{ margin: isMobile ? '0 auto' : 'none' }}>
-            <Link to="/" className="logo">
-              <img src={LOGO} alt="로고" />
-            </Link>
-            {!isMobile && (
-              <span style={{ marginLeft: '25px' }}>
-                {menus.map((menu, key) => (
-                  <Link to={menu.path} className="menuitem">
-                    <span className="smalltext">Produce-</span>
-                    {takeOutPrefix(menu.text, 'Produce-')}
-                  </Link>
-                ))}
-              </span>
-            )}
-          </div>
-
-          {!isMobile && (
-            <img className="right" src={SEARCH} alt="search icon" />
-          )}
-        </Wrapper>
-      </SubHeaderBlock>
-      {/* <Spacer /> */}
-    </>
+    <SubHeaderBlock>
+      <Wrapper>
+        <div style={{ margin: '0 auto' }}>
+          {
+            <span style={{ marginLeft: '25px' }}>
+              {submenus.map((submenu, key) => (
+                <Link to={submenu.subpath} className="menuitem">
+                  {submenu.text}
+                </Link>
+              ))}
+            </span>
+          }
+        </div>
+      </Wrapper>
+    </SubHeaderBlock>
   );
 };
 
-export default Header;
+export default SubHeader;
