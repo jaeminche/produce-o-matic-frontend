@@ -45,6 +45,9 @@ const Wrapper = styled(Responsive)`
     font-size: 16px;
     margin-right: 15px;
   }
+  .isActive {
+    color: white;
+  }
   .smalltext {
     font-size: 0.8em;
     /* font-style: italic; */
@@ -62,7 +65,7 @@ const Spacer = styled.div`
   height: 68px;
 `;
 
-const Header = ({ menus, isFixed /*, user, onLogout*/ }) => {
+const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   function takeOutPrefix(word, prefix) {
@@ -80,7 +83,14 @@ const Header = ({ menus, isFixed /*, user, onLogout*/ }) => {
             {!isMobile && (
               <span style={{ marginLeft: '25px' }}>
                 {menus.map((menu, key) => (
-                  <Link to={menu.path} className="menuitem">
+                  <Link
+                    to={menu.path}
+                    className={
+                      menu.path.includes(activeMenu)
+                        ? 'isActive menuitem'
+                        : 'menuitem'
+                    }
+                  >
                     <span className="smalltext">Produce-</span>
                     {takeOutPrefix(menu.text, 'Produce-')}
                   </Link>
