@@ -33,137 +33,137 @@ const socialMedia = [
 ];
 
 const terms = [
-  { id: 1, text: 'Privacy Policy', path: './privacy' },
-  { id: 1, text: 'Terms Of Use', path: './terms' },
-  { id: 1, text: 'Copyrights', path: './copyrights' },
+  { id: 1, text: 'Privacy Policy', path: '/privacy' },
+  { id: 1, text: 'Terms Of Use', path: '/terms' },
+  { id: 1, text: 'Copyrights', path: '/copyrights' },
 ];
 
 const menus = [
   {
     id: 1,
     text: 'Produce-In-Korea',
-    path: './summary-produce-in-korea',
+    path: '/produce-in-korea/summary',
     submenus: [
       {
         id: 1,
         text: 'Summary',
-        subpath: `./summary-produce-in-korea`,
+        subpath: `/produce-in-korea/summary`,
       },
       {
         id: 2,
         text: 'Popular Locations',
-        subpath: `./popular-locations`,
+        subpath: `/produce-in-korea/popular-locations`,
       },
       {
         id: 3,
         text: 'Locations With Benefits',
-        subpath: `./locations-with-benefits`,
+        subpath: `/produce-in-korea/locations-with-benefits`,
       },
       {
         id: 4,
         text: 'General Knowledge',
-        subpath: `./general-knowledge`,
+        subpath: `/produce-in-korea/general-knowledge`,
       },
     ],
   },
   {
     id: 2,
     text: 'Produce-O-Manual',
-    path: './summary-produce-o-manual',
+    path: '/produce-o-manual/summary',
     submenus: [
       {
         id: 1,
         text: 'Summary',
-        subpath: `./summary-produce-o-manual`,
+        subpath: `/produce-o-manual/summary`,
       },
       {
         id: 2,
         text: 'Permit',
-        subpath: `./permit`,
+        subpath: `/produce-o-manual/permit`,
       },
       {
         id: 3,
         text: 'Contract',
-        subpath: `./contract`,
+        subpath: `/produce-o-manual/contract`,
       },
       {
         id: 4,
         text: 'Insurance',
-        subpath: `./insurance`,
+        subpath: `/produce-o-manual/insurance`,
       },
       {
         id: 5,
         text: 'Rental',
-        subpath: `./rental`,
+        subpath: `/produce-o-manual/rental`,
       },
       {
         id: 6,
         text: 'Incentive',
-        subpath: `./incentive`,
+        subpath: `/produce-o-manual/incentive`,
       },
       {
         id: 7,
         text: 'On Set Knowledge',
-        subpath: `./on-set-knowledge`,
+        subpath: `/produce-o-manual/on-set-knowledge`,
       },
       {
         id: 8,
         text: 'Download',
-        subpath: `./download`,
+        subpath: `/produce-o-manual/download`,
       },
     ],
   },
   {
     id: 3,
     text: 'Produce-O-Matic',
-    path: './summary-produce-o-matic',
+    path: '/produce-o-matic/summary',
     submenus: [
       {
         id: 1,
         text: 'Summary',
-        subpath: `./summary-produce-o-matic`,
+        subpath: `/produce-o-matic/summary`,
       },
       {
         id: 2,
         text: 'Budget-O-Matic',
-        subpath: `./budget-o-matic`,
+        subpath: `/produce-o-matic/budget-o-matic`,
       },
       {
         id: 3,
         text: 'Produce-O-Matic',
-        subpath: `./produce-o-matic`,
+        subpath: `/produce-o-matic/produce-o-matic`,
       },
       {
         id: 4,
         text: 'Account-O-Matic',
-        subpath: `./account-o-matic`,
+        subpath: `/produce-o-matic/account-o-matic`,
       },
     ],
   },
   {
     id: 4,
     text: 'Produce-O-People',
-    path: './summary-produce-o-people',
+    path: '/produce-o-people/summary',
     submenus: [
       {
         id: 1,
         text: 'Summary',
-        subpath: `./summary-produce-o-people`,
+        subpath: `/produce-o-people/summary`,
       },
       {
         id: 2,
         text: 'How We Work',
-        subpath: `./how-we-work`,
+        subpath: `/produce-o-people/how-we-work`,
       },
       {
         id: 3,
         text: 'People Of The Month',
-        subpath: `./people-of-the-month`,
+        subpath: `/produce-o-people/people-of-the-month`,
       },
       {
         id: 4,
         text: 'Be Our People',
-        subpath: `./be-our-people`,
+        subpath: `/produce-o-people/be-our-people`,
       },
     ],
   },

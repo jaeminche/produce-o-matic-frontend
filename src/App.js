@@ -49,29 +49,90 @@ const App = () => {
       {/* ----- Admin Pages ends ----- */}
 
       <Route component={MainPage} exact path="/" />
-      <Route component={SummaryInKoreaPage} path="/summary-produce-in-korea" />
-      <Route component={SummaryOManualPage} path="/summary-produce-o-manual" />
-      <Route component={SummaryOMaticPage} path="/summary-produce-o-matic" />
-      <Route component={SummaryOPeoplePage} path="/summary-produce-o-people" />
-      <Route component={PopularLocationsPage} path="/popular-locations" />
+      <Route
+        component={SummaryInKoreaPage}
+        exact
+        path="/produce-in-korea/summary"
+      />
+      <Route
+        component={SummaryOManualPage}
+        exact
+        path="/produce-o-manual/summary"
+      />
+      <Route
+        component={SummaryOMaticPage}
+        exact
+        path="/produce-o-matic/summary"
+      />
+      <Route
+        component={SummaryOPeoplePage}
+        exact
+        path="/produce-o-people/summary"
+      />
+      <Route
+        component={PopularLocationsPage}
+        exact
+        path="/produce-in-korea/popular-locations"
+      />
       <Route
         component={LocationsWithBenefitsPage}
-        path="/locations-with-benefits"
+        exact
+        path="/produce-in-korea/locations-with-benefits"
       />
-      <Route component={GeneralKnowledgePage} path="/general-knowledge" />
-      <Route component={PermitPage} path="/permit" />
-      <Route component={ContractPage} path="/contract" />
-      <Route component={InsurancePage} path="/insurance" />
-      <Route component={RentalPage} path="/rental" />
-      <Route component={IncentivePage} path="/incentive" />
-      <Route component={OnSetKnowledgePage} path="/on-set-knowledge" />
-      <Route component={DownloadPage} path="/download" />
-      <Route component={BudgetOMaticPage} path="/budget-o-matic" />
-      <Route component={ProduceOMaticPage} path="/produce-o-matic" />
-      <Route component={AccountOMaticPage} path="/account-o-matic" />
-      <Route component={HowWeWorkPage} path="/how-we-work" />
-      <Route component={PeopleOfTheMonthPage} path="/people-of-the-month" />
-      <Route component={BeOurPeoplePage} path="/be-our-people" />
+      <Route
+        component={GeneralKnowledgePage}
+        exact
+        path="/produce-in-korea/general-knowledge"
+      />
+      <Route component={PermitPage} exact path="/produce-o-manual/permit" />
+      <Route component={ContractPage} exact path="/produce-o-manual/contract" />
+      <Route
+        component={InsurancePage}
+        exact
+        path="/produce-o-manual/insurance"
+      />
+      <Route component={RentalPage} exact path="/produce-o-manual/rental" />
+      <Route
+        component={IncentivePage}
+        exact
+        path="/produce-o-manual/incentive"
+      />
+      <Route
+        component={OnSetKnowledgePage}
+        exact
+        path="/produce-o-manual/on-set-knowledge"
+      />
+      <Route component={DownloadPage} exact path="/produce-o-manual/download" />
+      <Route
+        component={BudgetOMaticPage}
+        exact
+        path="/produce-o-matic/budget-o-matic"
+      />
+      <Route
+        component={ProduceOMaticPage}
+        exact
+        path="/produce-o-matic/produce-o-matic"
+      />
+      <Route
+        component={AccountOMaticPage}
+        exact
+        path="/produce-o-matic/account-o-matic"
+      />
+      <Route
+        component={HowWeWorkPage}
+        exact
+        path="/produce-o-people/how-we-work"
+      />
+      <Route
+        component={PeopleOfTheMonthPage}
+        exact
+        path="/produce-o-people/people-of-the-month"
+      />
+      <Route
+        component={BeOurPeoplePage}
+        exact
+        path="/produce-o-people/be-our-people"
+      />
     </>
   );
 };

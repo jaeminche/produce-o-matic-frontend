@@ -47,7 +47,7 @@ const SubHeader = ({ submenus, pathname }) => {
           <Link
             to={submenu.subpath}
             className={
-              submenu.subpath === `.${pathname}`
+              submenu.subpath === `${pathname}`
                 ? 'isActive menuitem'
                 : 'menuitem'
             }
