@@ -18,7 +18,7 @@ const Wrapper = styled(Responsive)`
   flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
   justify-content: space-between;
   font-size: ${(props) => (props.isMobile ? '12px' : '15px')};
-  color: ${palette.footergray[0]};
+  color: ${palette.textgray[0]};
 
   .logo {
     ${mq({
@@ -63,7 +63,7 @@ const RowWithMarginTop = styled.div`
 `;
 
 const CopyrightsTextBox = styled.div`
-  color: ${palette.footergray[1]};
+  color: ${palette.textgray[2]};
 `;
 const MultipleLinksBox = styled.div`
   a {
@@ -71,7 +71,7 @@ const MultipleLinksBox = styled.div`
     margin-right: 10px;
   }
   .terms {
-    color: ${palette.footergray[1]};
+    color: ${palette.textgray[2]};
   }
 `;
 const MenusBox = styled.div`
