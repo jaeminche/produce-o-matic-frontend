@@ -5,8 +5,8 @@ import { menus } from '../../lib/constants/bars';
 
 const SubHeaderContainer = ({ location, menuIndex }) => {
   const submenus = menus[menuIndex].submenus;
-  const { pathname } = location;
-  return <SubHeader submenus={submenus} pathname={pathname} />;
+  const activeSubMenu = location.pathname.split('/')[2];
+  return <SubHeader submenus={submenus} activeSubMenu={activeSubMenu} />;
 };
 
 export default withRouter(SubHeaderContainer);

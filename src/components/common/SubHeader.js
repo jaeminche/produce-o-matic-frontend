@@ -55,17 +55,18 @@ const Wrapper = styled.div`
   }
 `;
 
-const SubHeader = ({ submenus, pathname }) => {
+const SubHeader = ({ submenus, activeSubMenu }) => {
   return (
     <SubHeaderBlock>
       <Wrapper>
         <ul>
           {submenus.map((submenu, key) => (
             <li>
+              {console.log('...', submenu)}
               <Link
-                to={submenu.subpath}
+                to={submenu.path}
                 className={
-                  submenu.subpath === `${pathname}`
+                  submenu.path.includes(activeSubMenu)
                     ? 'isActive menuitem'
                     : 'menuitem'
                 }
