@@ -28,62 +28,33 @@ const SubHeaderBlock = styled.div`
 const Wrapper = styled(Responsive)`
   height: 68px;
   display: flex;
-  align-items: center;
   color: rgba(193, 193, 193, 1);
-  justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
-  .logo {
-    /* ${mq({
-      fontSize: ['26px', , , , , '32px', ,],
-    })}
-    font-weight: 800;
-    letter-spacing: 2px; */
-    img {
-      ${mq({ height: ['20px', , , '24px', , , ,] })}
-      border-radius: 10px;
-    }
-  }
+  justify-content: center;
   .menuitem {
     font-size: 16px;
     margin-right: 15px;
   }
-  .smalltext {
-    font-size: 0.8em;
-    /* font-style: italic; */
-  }
-  .right {
-    display: flex;
-    align-items: center;
+  .isActive {
+    color: white;
   }
 `;
 
-/**
- * 헤더가 fixed로 되어 있기 때문에 페이지의 컨텐츠가 4rem 아래 나타나도록 해주는 컴포넌트
- */
-const Spacer = styled.div`
-  height: 68px;
-`;
-
-const SubHeader = ({ submenus /*, user, onLogout*/ }) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-
-  function takeOutPrefix(word, prefix) {
-    return word.replace(prefix, '');
-  }
-
+const SubHeader = ({ submenus, pathname }) => {
   return (
     <SubHeaderBlock>
       <Wrapper>
-        <div style={{ margin: '0 auto' }}>
-          {
-            <span style={{ marginLeft: '25px' }}>
-              {submenus.map((submenu, key) => (
-                <Link to={submenu.subpath} className="menuitem">
-                  {submenu.text}
-                </Link>
-              ))}
-            </span>
-          }
-        </div>
+        {submenus.map((submenu, key) => (
+          <Link
+            to={submenu.subpath}
+            className={
+              submenu.subpath === `.${pathname}`
+                ? 'isActive menuitem'
+                : 'menuitem'
+            }
+          >
+            {submenu.text}
+          </Link>
+        ))}
       </Wrapper>
     </SubHeaderBlock>
   );
