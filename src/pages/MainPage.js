@@ -10,7 +10,7 @@ import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
 const MainPageBlock = styled.div`
-  background: ${palette.gray[9]};
+  background: ${palette.background[0]};
   color: white;
 `;
 

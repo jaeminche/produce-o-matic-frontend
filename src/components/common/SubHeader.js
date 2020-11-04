@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components/macro';
-import { mq } from '../../lib/util/device';
+import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import { LOGO, SEARCH } from '../../assets';
@@ -10,14 +10,15 @@ const SubHeaderBlock = styled.nav`
   position: sticky;
   top: 0;
   z-index: 10;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
   height: 68px;
   z-index: 9987;
   width: 100%;
   overflow: hidden;
   color: white;
+  background: ${palette.background[1]};
 `;
 
 /**
