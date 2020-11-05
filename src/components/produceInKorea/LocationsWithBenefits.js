@@ -2,13 +2,31 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { mq } from '../../lib/util/device';
 import Responsive from '../common/Responsive';
+import Masonry from 'react-masonry-css';
 
 const LocationsWithBenefitsBlock = styled.div`
   height: auto;
 `;
 
 const Wrapper = styled(Responsive)`
-  padding: 0;
+  .my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+  }
+
+  /* Style your items */
+  .my-masonry-grid_column > div {
+    /* change div to reference your elements you put in <Masonry> */
+    background: grey;
+    margin-bottom: 30px;
+  }
 `;
 
 const ImgBlock = styled.div`
@@ -58,10 +76,30 @@ const ImagesBlock = (props) => {
   );
 };
 
+const breakpointColumnsObj = {
+  default: 2,
+  567: 1,
+};
 const LocationsWithBenefits = ({ data }) => {
+  const { title, thumbnail, cards } = data;
   return (
     <LocationsWithBenefitsBlock>
-      <Wrapper></Wrapper>
+      <Wrapper>
+        <div>{title}</div>
+        <div>{thumbnail}</div>
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {cards.map((card) => (
+            <div key={card.id}>
+              <div>{card.title}</div>
+              <div>{card.subtitle}</div>
+            </div>
+          ))}
+        </Masonry>
+      </Wrapper>
     </LocationsWithBenefitsBlock>
   );
 };
