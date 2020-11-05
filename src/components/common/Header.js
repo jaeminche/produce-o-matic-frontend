@@ -41,6 +41,9 @@ const Wrapper = styled(Responsive)`
       border-radius: 10px;
     }
   }
+  .center {
+    margin: 0 auto;
+  }
   .menuitem {
     font-size: 16px;
     margin-right: 15px;
@@ -68,29 +71,27 @@ const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
   return (
     <HeaderBlock isFixed={isFixed}>
       <Wrapper>
-        <div style={{ margin: isMobile ? '0 auto' : 'none' }}>
-          <Link to="/" className="logo">
-            <img src={LOGO} alt="로고" />
-          </Link>
-          {!isMobile && (
-            <span style={{ marginLeft: '25px' }}>
-              {menus.map((menu, key) => (
-                <Link
-                  to={menu.path}
-                  className={
-                    menu.path.includes(activeMenu)
-                      ? 'isActive menuitem'
-                      : 'menuitem'
-                  }
-                  key={key}
-                >
-                  <span className="smalltext">Produce-</span>
-                  {takeOutPrefix(menu.text, 'Produce-')}
-                </Link>
-              ))}
-            </span>
-          )}
-        </div>
+        <Link to="/" className={isMobile ? 'logo center' : 'logo'}>
+          <img src={LOGO} alt="로고" />
+        </Link>
+        {!isMobile && (
+          <span style={{ marginLeft: '25px' }}>
+            {menus.map((menu, key) => (
+              <Link
+                to={menu.path}
+                className={
+                  menu.path.includes(activeMenu)
+                    ? 'isActive menuitem'
+                    : 'menuitem'
+                }
+                key={key}
+              >
+                <span className="smalltext">Produce-</span>
+                {takeOutPrefix(menu.text, 'Produce-')}
+              </Link>
+            ))}
+          </span>
+        )}
 
         {!isMobile && <img className="right" src={SEARCH} alt="search icon" />}
       </Wrapper>
