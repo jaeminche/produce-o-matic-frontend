@@ -128,8 +128,9 @@ const Footer = ({ menus, socialMedia, terms }) => {
                 </Link>
                 <RowWithMarginTop isMobile={isMobile}>
                   <Submenus isMobile={isMobile}>
+                    {console.log('menus', menu)}
                     {menu.submenus.map((submenu, key) => (
-                      <Link to={submenu.subpath} key={key}>
+                      <Link to={submenu.path} key={key}>
                         {submenu.text}
                       </Link>
                     ))}
