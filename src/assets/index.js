@@ -2,6 +2,7 @@ const LOGO = require('./templogo.png');
 const SEARCH = require('./search.svg');
 const GYEONGBOKGUNG = require('./gyeongbokgung.jpg');
 const GYEONGBOKGUNG02 = require('./gyeongbokgung02.jpg');
+const GYEONGBOKGUNG03 = require('./gyeongbokgung03.jpg');
 const HANOKMAEUL = require('./hanokmaeul.jpg');
 const INSADONG = require('./insadong.jpg');
 const THUMB1_GENERAL = require('./thumb1_general.jpg');
@@ -22,6 +23,7 @@ export {
   WHATSAPP_ICON,
   GYEONGBOKGUNG,
   GYEONGBOKGUNG02,
+  GYEONGBOKGUNG03,
   HANOKMAEUL,
   INSADONG,
   THUMB1_GENERAL,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import LocationsWithBenefits from '../../components/produceInKorea/LocationsWithBenefits';
-import { menus } from '../../lib/constants/bars';
+import { GYEONGBOKGUNG03 } from '../../assets';
 
 const LocationsWithBenefitsContainer = ({ location }) => {
   const retrieved = {
@@ -9,7 +9,7 @@ const LocationsWithBenefitsContainer = ({ location }) => {
     name: 'locationsWithBenefits',
     title: 'Locations With Benefits',
     subtitle: 'Locations with benefits list!',
-    thumbnail: '',
+    titleImage: GYEONGBOKGUNG03,
     cards: [
       {
         id: 1,

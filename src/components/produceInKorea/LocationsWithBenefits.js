@@ -9,6 +9,17 @@ const LocationsWithBenefitsBlock = styled.div`
 `;
 
 const Wrapper = styled(Responsive)`
+  .title {
+    font-size: ${mq({
+      fontSize: ['24px', '24px', , '42px', , '60px', ,],
+    })};
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+  .title-image {
+    width: 100%;
+  }
   .my-masonry-grid {
     display: -webkit-box; /* Not needed if autoprefixing */
     display: -ms-flexbox; /* Not needed if autoprefixing */
@@ -81,12 +92,12 @@ const breakpointColumnsObj = {
   567: 1,
 };
 const LocationsWithBenefits = ({ data }) => {
-  const { title, thumbnail, cards } = data;
+  const { title, titleImage, cards } = data;
   return (
     <LocationsWithBenefitsBlock>
       <Wrapper>
-        <div>{title}</div>
-        <div>{thumbnail}</div>
+        <div className="title">{title}</div>
+        <img src={titleImage} alt={`${title} image`} className="title-image" />
         <Masonry
           breakpointCols={breakpointColumnsObj}
           className="my-masonry-grid"
