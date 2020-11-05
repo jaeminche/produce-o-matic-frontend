@@ -1,10 +1,7 @@
 import React from 'react';
-import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
-import Responsive from './Responsive';
-import { LOGO, SEARCH } from '../../assets';
 
 const SubHeaderBlock = styled.nav`
   position: sticky;
@@ -62,8 +59,7 @@ const SubHeader = ({ submenus, activeSubMenu }) => {
       <Wrapper>
         <ul>
           {submenus.map((submenu, key) => (
-            <li>
-              {console.log('...', submenu)}
+            <li key={key}>
               <Link
                 to={submenu.path}
                 className={

@@ -90,77 +90,66 @@ const Submenus = styled.div`
   ${(props) => props.isMobile && `margin-left: 26px;`}
 `;
 
-/**
- * 헤더가 fixed로 되어 있기 때문에 페이지의 컨텐츠가 4rem 아래 나타나도록 해주는 컴포넌트
- */
-const Spacer = styled.div`
-  height: 68px;
-`;
-
 const Footer = ({ menus, socialMedia, terms }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
-    <>
-      {/* <Spacer /> */}
-      <FooterBlock>
-        <Wrapper isMobile={isMobile}>
-          <LogoBox isMobile={isMobile}>
-            <Link to="/" className="logo title">
-              <img src={LOGO} alt="logo" />
-            </Link>
-            <RowWithMarginTop isMobile={isMobile}>
-              {socialMedia.map((media, key) => (
-                <span key={key}>
-                  <Link to={media.path} className="icon">
-                    <img src={media.icon} alt={`${media.name} icon`} />
-                  </Link>
-                  <span className="icon-spacer" />
-                </span>
-              ))}
-            </RowWithMarginTop>
-          </LogoBox>
-          <MenusBox isMobile={isMobile}>
-            {menus.map((menu, key) => (
-              <div className="title menu" key={key}>
-                <Link to={menu.path} className="menuitem ">
-                  {menu.text}
+    <FooterBlock>
+      <Wrapper isMobile={isMobile}>
+        <LogoBox isMobile={isMobile}>
+          <Link to="/" className="logo title">
+            <img src={LOGO} alt="logo" />
+          </Link>
+          <RowWithMarginTop isMobile={isMobile}>
+            {socialMedia.map((media, key) => (
+              <span key={key}>
+                <Link to={media.path} className="icon">
+                  <img src={media.icon} alt={`${media.name} icon`} />
                 </Link>
-                <RowWithMarginTop isMobile={isMobile}>
-                  <Submenus isMobile={isMobile}>
-                    {console.log('menus', menu)}
-                    {menu.submenus.map((submenu, key) => (
-                      <Link to={submenu.path} key={key}>
-                        {submenu.text}
-                      </Link>
-                    ))}
-                  </Submenus>
-                </RowWithMarginTop>
-              </div>
+                <span className="icon-spacer" />
+              </span>
             ))}
-          </MenusBox>
-        </Wrapper>
+          </RowWithMarginTop>
+        </LogoBox>
+        <MenusBox isMobile={isMobile}>
+          {menus.map((menu, key) => (
+            <div className="title menu" key={key}>
+              <Link to={menu.path} className="menuitem ">
+                {menu.text}
+              </Link>
+              <RowWithMarginTop isMobile={isMobile}>
+                <Submenus isMobile={isMobile}>
+                  {menu.submenus.map((submenu, key) => (
+                    <Link to={submenu.path} key={key}>
+                      {submenu.text}
+                    </Link>
+                  ))}
+                </Submenus>
+              </RowWithMarginTop>
+            </div>
+          ))}
+        </MenusBox>
+      </Wrapper>
 
-        <Wrapper style={{ marginTop: '90px' }} isMobile={isMobile}>
-          <CopyrightsTextBox>
-            Ⓒ Copyright 2020 Produce-O-Matic. All rights reserved.
-          </CopyrightsTextBox>
-          <MultipleLinksBox>
-            <Link to="/privacy" className="terms">
-              Privacy Policy
-            </Link>
-            <span>|</span>
-            <Link to="/terms" className="terms">
-              Terms of Use
-            </Link>
-            <span>|</span>
-            <Link to="/copyrights" className="terms">
-              Copyrights
-            </Link>
-          </MultipleLinksBox>
-        </Wrapper>
-      </FooterBlock>
-    </>
+      <Wrapper style={{ marginTop: '90px' }} isMobile={isMobile}>
+        <CopyrightsTextBox>
+          Ⓒ Copyright 2020 Produce-O-Matic. All rights reserved.
+        </CopyrightsTextBox>
+        <MultipleLinksBox>
+          <Link to="/privacy" className="terms">
+            Privacy Policy
+          </Link>
+          <span>|</span>
+          <Link to="/terms" className="terms">
+            Terms of Use
+          </Link>
+          <span>|</span>
+          <Link to="/copyrights" className="terms">
+            Copyrights
+          </Link>
+        </MultipleLinksBox>
+      </Wrapper>
+    </FooterBlock>
   );
 };
 

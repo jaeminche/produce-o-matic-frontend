@@ -58,13 +58,6 @@ const Wrapper = styled(Responsive)`
   }
 `;
 
-/**
- * 헤더가 fixed로 되어 있기 때문에 페이지의 컨텐츠가 4rem 아래 나타나도록 해주는 컴포넌트
- */
-const Spacer = styled.div`
-  height: 68px;
-`;
-
 const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
@@ -73,39 +66,35 @@ const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
   }
 
   return (
-    <>
-      <HeaderBlock isFixed={isFixed}>
-        <Wrapper>
-          <div style={{ margin: isMobile ? '0 auto' : 'none' }}>
-            <Link to="/" className="logo">
-              <img src={LOGO} alt="로고" />
-            </Link>
-            {!isMobile && (
-              <span style={{ marginLeft: '25px' }}>
-                {menus.map((menu, key) => (
-                  <Link
-                    to={menu.path}
-                    className={
-                      menu.path.includes(activeMenu)
-                        ? 'isActive menuitem'
-                        : 'menuitem'
-                    }
-                  >
-                    <span className="smalltext">Produce-</span>
-                    {takeOutPrefix(menu.text, 'Produce-')}
-                  </Link>
-                ))}
-              </span>
-            )}
-          </div>
-
+    <HeaderBlock isFixed={isFixed}>
+      <Wrapper>
+        <div style={{ margin: isMobile ? '0 auto' : 'none' }}>
+          <Link to="/" className="logo">
+            <img src={LOGO} alt="로고" />
+          </Link>
           {!isMobile && (
-            <img className="right" src={SEARCH} alt="search icon" />
+            <span style={{ marginLeft: '25px' }}>
+              {menus.map((menu, key) => (
+                <Link
+                  to={menu.path}
+                  className={
+                    menu.path.includes(activeMenu)
+                      ? 'isActive menuitem'
+                      : 'menuitem'
+                  }
+                  key={key}
+                >
+                  <span className="smalltext">Produce-</span>
+                  {takeOutPrefix(menu.text, 'Produce-')}
+                </Link>
+              ))}
+            </span>
           )}
-        </Wrapper>
-      </HeaderBlock>
-      {/* <Spacer /> */}
-    </>
+        </div>
+
+        {!isMobile && <img className="right" src={SEARCH} alt="search icon" />}
+      </Wrapper>
+    </HeaderBlock>
   );
 };
 
