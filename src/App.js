@@ -64,7 +64,7 @@ const App = () => {
       <Route
         component={SummaryOPeoplePage}
         exact
-        path="/produce-o-people/the-team"
+        path="/produce-o-people/summary"
       />
       <Route
         component={PopularLocationsPage}

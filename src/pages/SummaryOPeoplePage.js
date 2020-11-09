@@ -2,6 +2,8 @@ import React from 'react';
 // import Responsive from '../components/common/Responsive';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
+import SubHeaderContainer from '../containers/common/SubHeaderContainer';
+import SummaryContainer from '../containers/common/SummaryContainer';
 import FooterContainer from '../containers/common/FooterContainer';
 // import LocationsContainer from '../containers/main/LocationsContainer';
 import styled from 'styled-components/macro';
@@ -19,7 +21,8 @@ const SummaryOPeoplePage = () => {
         <title>Produce-O-People_PRODUCE-O-MATIC</title>
       </Helmet>
       <HeaderContainer />
-      <></>
+      <SubHeaderContainer menuIndex={3} />
+      <SummaryContainer />
       <FooterContainer />
     </SummaryOPeoplePageBlock>
   );

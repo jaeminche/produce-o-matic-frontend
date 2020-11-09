@@ -1,24 +1,24 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { withRouter } from 'react-router-dom';
-import { uiData_summaryInKorea } from '../../lib/constants/summaryInKorea';
+import { uiData } from '../../lib/constants/summaryInKorea';
 import Summary from '../../components/common/Summary';
 const SummaryContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const { pathname } = location;
-  let uiData = dataRouter(pathname);
+  const _uiData = dataRouter(pathname);
 
   function dataRouter(path) {
     switch (path) {
       case '/produce-in-korea/summary':
-        return uiData_summaryInKorea;
-      //   case '/produce-in-korea/summary':
-      //     return uiData_summaryInKorea;
-      //   case '/produce-in-korea/summary':
-      //     return uiData_summaryInKorea;
-      //   case '/produce-in-korea/summary':
-      //     return uiData_summaryInKorea;
+        return uiData['summaryInKorea'];
+      case '/produce-o-manual/summary':
+        return uiData['summaryOManual'];
+      case '/produce-o-matic/summary':
+        return uiData['summaryOMatic'];
+      case '/produce-o-people/summary':
+        return uiData['summaryOPeople'];
       default:
     }
   }
@@ -35,7 +35,7 @@ const SummaryContainer = ({ location }) => {
   //     }
   //   }
 
-  return <Summary uiData={uiData} isMobile={isMobile} />;
+  return <Summary uiData={_uiData} isMobile={isMobile} />;
 };
 
 export default withRouter(SummaryContainer);

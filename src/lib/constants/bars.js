@@ -128,12 +128,12 @@ const menus = [
   {
     id: 4,
     text: 'Produce-O-People',
-    path: '/produce-o-people/the-team',
+    path: '/produce-o-people/summary',
     submenus: [
       {
         id: 1,
-        text: 'The Team',
-        path: `/produce-o-people/the-team`,
+        text: 'Summary',
+        path: `/produce-o-people/summary`,
       },
       {
         id: 2,
