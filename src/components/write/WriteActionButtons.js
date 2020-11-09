@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Button from '../common/Button';
+import { Button } from '../common/Button';
 
 const WriteActionButtonsBlock = styled.div`
   margin-top: 1rem;

@@ -101,6 +101,7 @@ const ImageBlock = ({ data, history }) => {
 
 const PopularLocations = ({ data, history }) => {
   const { title, titleImage, cards } = data;
+  console.log('history', history);
   return (
     <PopularLocationsBlock>
       <Wrapper>

@@ -11,8 +11,8 @@ import SummaryInKoreaPage from './pages/SummaryInKoreaPage';
 import SummaryOManualPage from './pages/SummaryOManualPage';
 import SummaryOMaticPage from './pages/SummaryOMaticPage';
 import SummaryOPeoplePage from './pages/SummaryOPeoplePage';
-
 import PopularLocationsPage from './pages/PopularLocationsPage';
+import PopularLocationPage from './pages/PopularLocationPage';
 import LocationsWithBenefitsPage from './pages/LocationsWithBenefitsPage';
 import GeneralKnowledgePage from './pages/GeneralKnowledgePage';
 import PermitPage from './pages/PermitPage';
@@ -56,6 +56,11 @@ const App = () => {
         component={PopularLocationsPage}
         exact
         path="/produce-in-korea/popular-locations"
+      />
+      <Route
+        component={PopularLocationPage}
+        exact
+        path="/produce-in-korea/popular-locations/:id"
       />
       <Route
         component={LocationsWithBenefitsPage}

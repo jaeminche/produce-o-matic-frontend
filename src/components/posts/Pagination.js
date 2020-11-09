@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import qs from 'qs';
-import Button from '../common/Button';
+import { Button } from '../common/Button';
 
 const PaginationBlock = styled.div`
   width: 320px;

@@ -41,6 +41,19 @@ const buttonStyle = css`
         background: ${palette.cyan[4]};
       }
     `}
+
+    ${(props) =>
+    props.bigBlue &&
+    css`
+      width: 318px;
+      height: 85px;
+
+      background: #0745bd;
+      border-radius: 100px;
+
+      align-self: center;
+      margin: 0 auto;
+    `}
 `;
 
 const StyledButton = styled.button`
@@ -51,6 +64,13 @@ const StyledLink = styled(Link)`
   ${buttonStyle}
 `;
 
+const StyledCentered = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 80px 0;
+`;
+
 const Button = (props) => {
   return props.to ? (
     <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
@@ -59,4 +79,10 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+const CenteredButton = (props) => (
+  <StyledCentered>
+    <Button {...props} />
+  </StyledCentered>
+);
+
+export { Button, CenteredButton };

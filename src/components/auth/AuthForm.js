@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
-import Button from '../common/Button';
+import { Button } from '../common/Button';
 
 /* Show Auth form */
 const AuthFormBlock = styled.div`

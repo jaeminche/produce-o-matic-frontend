@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
-import Button from './Button';
+import { Button } from './Button';
 
 const FirstAvnHeaderBlock = styled.div`
   position: fixed;
