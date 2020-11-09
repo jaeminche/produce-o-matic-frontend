@@ -4,7 +4,11 @@ const GYEONGBOKGUNG = require('./gyeongbokgung.jpg');
 const GYEONGBOKGUNG02 = require('./gyeongbokgung02.jpg');
 const GYEONGBOKGUNG03 = require('./gyeongbokgung03.jpg');
 const HANOKMAEUL = require('./hanokmaeul.jpg');
+const HANOKMAEUL02 = require('./hanokmaeul02.jpg');
 const INSADONG = require('./insadong.jpg');
+const SEOUL01 = require('./seoul01.jpg');
+const SEOUL02 = require('./seoul02.jpg');
+const SEOUL03 = require('./seoul03.jpg');
 const THUMB1_GENERAL = require('./thumb1_general.jpg');
 const THUMB2_OMATIC = require('./thumb2_omatic.jpg');
 const THUMB3_OMANUAL = require('./thumb3_omanual.jpg');
@@ -25,7 +29,11 @@ export {
   GYEONGBOKGUNG02,
   GYEONGBOKGUNG03,
   HANOKMAEUL,
+  HANOKMAEUL02,
   INSADONG,
+  SEOUL01,
+  SEOUL02,
+  SEOUL03,
   THUMB1_GENERAL,
   THUMB2_OMATIC,
   THUMB3_OMANUAL,

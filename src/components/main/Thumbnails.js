@@ -74,7 +74,7 @@ const Thumbnails = ({ data }) => {
     <ThumbnailsBlock>
       <Wrapper full>
         {data.map((item, key) => (
-          <ImageBlock data={item} />
+          <ImageBlock data={item} key={key} />
         ))}
       </Wrapper>
     </ThumbnailsBlock>

@@ -1,7 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PopularLocations from '../../components/produceInKorea/PopularLocations';
-import { GYEONGBOKGUNG03 } from '../../assets';
+import {
+  GYEONGBOKGUNG,
+  GYEONGBOKGUNG02,
+  GYEONGBOKGUNG03,
+  SEOUL01,
+  SEOUL02,
+  SEOUL03,
+  HANOKMAEUL02,
+  HANOKMAEUL,
+} from '../../assets';
 
 const PopularLocationsContainer = ({ location }) => {
   const retrieved = {
@@ -17,7 +26,7 @@ const PopularLocationsContainer = ({ location }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: '',
+        thumbnail: SEOUL01,
         tags: ['seoul', 'urban', 'incentives-on-transportation'],
         contentId: '',
       },
@@ -27,7 +36,7 @@ const PopularLocationsContainer = ({ location }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: '',
+        thumbnail: GYEONGBOKGUNG03,
         tags: ['busan', 'urban', 'incentives-on-accomodation'],
         contentId: '',
       },
@@ -37,7 +46,7 @@ const PopularLocationsContainer = ({ location }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: '',
+        thumbnail: GYEONGBOKGUNG02,
         tags: ['jeonju', 'suburban', 'incentives-on-accomodation'],
         contentId: '',
       },
@@ -47,7 +56,7 @@ const PopularLocationsContainer = ({ location }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: '',
+        thumbnail: GYEONGBOKGUNG,
         tags: ['jeju', 'nature', 'incentives-on-accomodation'],
         contentId: '',
       },
@@ -57,7 +66,7 @@ const PopularLocationsContainer = ({ location }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: '',
+        thumbnail: SEOUL03,
         tags: ['suncheon', 'nature', 'incentives-on-accomodation'],
         contentId: '',
       },
@@ -67,7 +76,7 @@ const PopularLocationsContainer = ({ location }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: '',
+        thumbnail: SEOUL02,
         tags: ['daegu', 'urban'],
         contentId: '',
       },
@@ -77,7 +86,7 @@ const PopularLocationsContainer = ({ location }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: '',
+        thumbnail: HANOKMAEUL02,
         tags: ['suncheon', 'nature', 'incentives-on-transportation'],
         contentId: '',
       },
@@ -87,7 +96,7 @@ const PopularLocationsContainer = ({ location }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: '',
+        thumbnail: HANOKMAEUL,
         tags: ['dmz', 'nature', 'incentives-on-transportation'],
         contentId: '',
       },
