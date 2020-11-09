@@ -3,7 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import SubHeaderContainer from '../containers/common/SubHeaderContainer';
-// import ContentsContainer from '../containers/common/ContentsContainer';
+import SummaryContainer from '../containers/common/SummaryContainer';
 import FooterContainer from '../containers/common/FooterContainer';
 // import LocationsContainer from '../containers/main/LocationsContainer';
 import styled from 'styled-components/macro';
@@ -22,7 +22,7 @@ const SummaryInKoreaPage = () => {
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={0} />
-      {/* <ContentsContainer /> */}
+      <SummaryContainer />
       <FooterContainer />
     </SummaryInKoreaPageBlock>
   );
