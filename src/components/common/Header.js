@@ -5,6 +5,7 @@ import { mq } from '../../lib/util/device';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import { LOGO, SEARCH } from '../../assets';
+import palette from '../../lib/styles/palette';
 
 const HeaderBlock = styled.div`
   ${(props) => props.isFixed && `position: fixed;`}
@@ -28,7 +29,7 @@ const Wrapper = styled(Responsive)`
   height: 68px;
   display: flex;
   align-items: center;
-  color: rgba(193, 193, 193, 1);
+  color: ${palette.textgray[1]};
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
   .logo {
     /* ${mq({
@@ -50,6 +51,11 @@ const Wrapper = styled(Responsive)`
   }
   .isActive {
     color: white;
+  }
+  a {
+    &:hover {
+      color: white;
+    }
   }
   .smalltext {
     font-size: 0.8em;

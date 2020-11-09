@@ -32,7 +32,7 @@ const Wrapper = styled.div`
     padding-bottom: 80px;
     margin: 0;
 
-    color: rgba(193, 193, 193, 1);
+    color: ${palette.textgray[1]};
 
     overflow-x: auto;
     overflow-y: hidden;
@@ -47,6 +47,11 @@ const Wrapper = styled.div`
   .menuitem {
     font-size: 16px;
     margin-right: 15px;
+  }
+  a {
+    &:hover {
+      color: white;
+    }
   }
   .isActive {
     color: white;
