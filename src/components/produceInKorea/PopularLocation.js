@@ -3,7 +3,6 @@ import Responsive from '../../components/common/Responsive';
 import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import { CenteredButton } from '../../components/common/Button';
-import palette from '../../lib/styles/palette';
 
 const PopularLocationBlock = styled.div`
   height: auto;
@@ -57,31 +56,29 @@ const PopularLocation = ({ data, history, isMobile }) => {
   const { title, url, text } = data;
 
   return (
-    <>
-      <PopularLocationBlock>
-        <Wrapper isMobile={isMobile}>
-          {title && <h1 className="title margin-tb">{title}</h1>}
-          {url && (
-            <div className="video_wrapper">
-              <iframe
-                title={title}
-                width="100%"
-                height="100%"
-                src={url}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
-          {text && <p className="text">{text}</p>}
+    <PopularLocationBlock>
+      <Wrapper isMobile={isMobile}>
+        {title && <h1 className="title margin-tb">{title}</h1>}
+        {url && (
+          <div className="video_wrapper">
+            <iframe
+              title={title}
+              width="100%"
+              height="100%"
+              src={url}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+        {text && <p className="text">{text}</p>}
 
-          <CenteredButton onClick={history.goBack} bigBlue>
-            {'< List'}
-          </CenteredButton>
-        </Wrapper>
-      </PopularLocationBlock>
-    </>
+        <CenteredButton onClick={history.goBack} bigBlue>
+          {'< List'}
+        </CenteredButton>
+      </Wrapper>
+    </PopularLocationBlock>
   );
 };
 

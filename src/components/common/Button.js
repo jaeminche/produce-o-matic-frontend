@@ -47,10 +47,8 @@ const buttonStyle = css`
     css`
       width: 318px;
       height: 85px;
-
-      background: #0745bd;
+      background: ${palette.button[0]};
       border-radius: 100px;
-
       align-self: center;
       margin: 0 auto;
     `}

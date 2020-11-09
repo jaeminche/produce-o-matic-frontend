@@ -19,6 +19,7 @@ const palette = {
     'rgba(124,124,124,1)',
   ],
   background: ['rgba(17, 17, 17, 1)', 'rgba(42, 42, 42, 1)'],
+  button: ['rgba(7,69,189,1)'],
   cyan: [
     'rgba(227,250,252,1)',
     'rgba(197,246,250,1)',
