@@ -95,7 +95,6 @@ const App = () => {
         exact
         path="/produce-o-people/how-we-work"
       />
-      {/* TODO: add Contact Us page  */}
       <Route
         component={PeopleOfTheMonthPage}
         exact

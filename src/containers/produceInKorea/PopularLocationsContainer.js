@@ -1,14 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import LocationsWithBenefits from '../../components/produceInKorea/LocationsWithBenefits';
+import PopularLocations from '../../components/produceInKorea/PopularLocations';
 import { GYEONGBOKGUNG03 } from '../../assets';
 
-const LocationsWithBenefitsContainer = ({ location }) => {
+const PopularLocationsContainer = ({ location }) => {
   const retrieved = {
     id: 1,
-    name: 'locationsWithBenefits',
-    title: 'Locations With Benefits',
-    subtitle: 'Locations with benefits list!',
+    name: 'PopularLocations',
+    title: 'Popular Locations',
+    subtitle: 'Popular locations list!',
     titleImage: GYEONGBOKGUNG03,
     cards: [
       {
@@ -93,7 +93,7 @@ const LocationsWithBenefitsContainer = ({ location }) => {
       },
     ],
   };
-  return <LocationsWithBenefits data={retrieved} />;
+  return <PopularLocations data={retrieved} />;
 };
 
-export default withRouter(LocationsWithBenefitsContainer);
+export default withRouter(PopularLocationsContainer);

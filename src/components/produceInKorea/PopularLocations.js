@@ -4,7 +4,7 @@ import { mq } from '../../lib/util/device';
 import Responsive from '../common/Responsive';
 import Masonry from 'react-masonry-css';
 
-const LocationsWithBenefitsBlock = styled.div`
+const PopularLocationsBlock = styled.div`
   height: auto;
 `;
 
@@ -91,10 +91,10 @@ const breakpointColumnsObj = {
   default: 2,
   567: 1,
 };
-const LocationsWithBenefits = ({ data }) => {
+const PopularLocations = ({ data }) => {
   const { title, titleImage, cards } = data;
   return (
-    <LocationsWithBenefitsBlock>
+    <PopularLocationsBlock>
       <Wrapper>
         <div className="title">{title}</div>
         <img src={titleImage} alt={`${title} image`} className="title-image" />
@@ -111,8 +111,8 @@ const LocationsWithBenefits = ({ data }) => {
           ))}
         </Masonry>
       </Wrapper>
-    </LocationsWithBenefitsBlock>
+    </PopularLocationsBlock>
   );
 };
 
-export default LocationsWithBenefits;
+export default PopularLocations;
