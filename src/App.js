@@ -46,26 +46,10 @@ const App = () => {
       {/* ----- Admin Pages ends ----- */}
 
       <Route component={MainPage} exact path="/" />
-      <Route
-        component={SummaryInKoreaPage}
-        exact
-        path="/produce-in-korea/summary"
-      />
-      <Route
-        component={SummaryOManualPage}
-        exact
-        path="/produce-o-manual/summary"
-      />
-      <Route
-        component={SummaryOMaticPage}
-        exact
-        path="/produce-o-matic/summary"
-      />
-      <Route
-        component={SummaryOPeoplePage}
-        exact
-        path="/produce-o-people/summary"
-      />
+      <Route component={SummaryInKoreaPage} exact path="/produce-in-korea" />
+      <Route component={SummaryOManualPage} exact path="/produce-o-manual" />
+      <Route component={SummaryOMaticPage} exact path="/produce-o-matic" />
+      <Route component={SummaryOPeoplePage} exact path="/produce-o-people" />
       <Route
         component={PopularLocationsPage}
         exact

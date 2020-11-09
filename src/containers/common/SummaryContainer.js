@@ -11,13 +11,13 @@ const SummaryContainer = ({ location }) => {
 
   function dataRouter(path) {
     switch (path) {
-      case '/produce-in-korea/summary':
+      case '/produce-in-korea':
         return uiData['summaryInKorea'];
-      case '/produce-o-manual/summary':
+      case '/produce-o-manual':
         return uiData['summaryOManual'];
-      case '/produce-o-matic/summary':
+      case '/produce-o-matic':
         return uiData['summaryOMatic'];
-      case '/produce-o-people/summary':
+      case '/produce-o-people':
         return uiData['summaryOPeople'];
       default:
     }

@@ -42,25 +42,20 @@ const menus = [
   {
     id: 1,
     text: 'Produce-In-Korea',
-    path: '/produce-in-korea/summary',
+    path: '/produce-in-korea',
     submenus: [
       {
         id: 1,
-        text: 'Summary',
-        path: `/produce-in-korea/summary`,
-      },
-      {
-        id: 2,
         text: 'Popular Locations',
         path: `/produce-in-korea/popular-locations`,
       },
       {
-        id: 3,
+        id: 2,
         text: 'Locations With Benefits',
         path: `/produce-in-korea/locations-with-benefits`,
       },
       {
-        id: 4,
+        id: 3,
         text: 'General Knowledge',
         path: `/produce-in-korea/general-knowledge`,
       },
@@ -69,86 +64,71 @@ const menus = [
   {
     id: 2,
     text: 'Produce-O-Manual',
-    path: '/produce-o-manual/summary',
+    path: '/produce-o-manual',
     submenus: [
       {
         id: 1,
-        text: 'Summary',
-        path: `/produce-o-manual/summary`,
-      },
-      {
-        id: 2,
         text: 'Permit',
         path: `/produce-o-manual/permit`,
       },
       {
-        id: 3,
+        id: 2,
         text: 'Contract',
-        path: `/produce-o-manual/contract`,
+        path: '/produce-o-manual/contract',
+      },
+      {
+        id: 3,
+        text: 'Insurance',
+        path: '/produce-o-manual/insurance',
       },
       {
         id: 4,
-        text: 'Insurance',
-        path: `/produce-o-manual/insurance`,
-      },
-      {
-        id: 5,
         text: 'Rental',
-        path: `/produce-o-manual/rental`,
+        path: '/produce-o-manual/rental',
       },
     ],
   },
   {
     id: 3,
     text: 'Produce-O-Matic',
-    path: '/produce-o-matic/summary',
+    path: '/produce-o-matic',
     submenus: [
       {
         id: 1,
-        text: 'Summary',
-        path: `/produce-o-matic/summary`,
+        text: 'Budget-O-Matic',
+        path: '/produce-o-matic/budget-o-matic',
       },
       {
         id: 2,
-        text: 'Budget-O-Matic',
-        path: `/produce-o-matic/budget-o-matic`,
+        text: 'Produce-O-Matic',
+        path: '/produce-o-matic/produce-o-matic',
       },
       {
         id: 3,
-        text: 'Produce-O-Matic',
-        path: `/produce-o-matic/produce-o-matic`,
-      },
-      {
-        id: 4,
         text: 'Account-O-Matic',
-        path: `/produce-o-matic/account-o-matic`,
+        path: '/produce-o-matic/account-o-matic',
       },
     ],
   },
   {
     id: 4,
     text: 'Produce-O-People',
-    path: '/produce-o-people/summary',
+    path: '/produce-o-people',
     submenus: [
       {
         id: 1,
-        text: 'Summary',
-        path: `/produce-o-people/summary`,
+        text: 'Our Vision',
+        path: '/produce-o-people/our-vision',
       },
       {
         id: 2,
-        text: 'Our Vision',
-        path: `/produce-o-people/our-vision`,
+        text: 'People Of The Month',
+        path: '/produce-o-people/people-of-the-month',
       },
       {
         id: 3,
-        text: 'People Of The Month',
-        path: `/produce-o-people/people-of-the-month`,
-      },
-      {
-        id: 4,
         text: 'Be Our People',
-        path: `/produce-o-people/be-our-people`,
+        path: '/produce-o-people/be-our-people',
       },
     ],
   },
