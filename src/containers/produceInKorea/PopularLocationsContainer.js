@@ -26,7 +26,7 @@ const PopularLocationsContainer = ({ location, history }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: SEOUL01,
+        thumbnail: GYEONGBOKGUNG02,
         tags: ['seoul', 'urban', 'incentives-on-transportation'],
         contentId: '',
         baseUrl: '/produce-in-korea/popular-locations',
@@ -37,7 +37,7 @@ const PopularLocationsContainer = ({ location, history }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: GYEONGBOKGUNG03,
+        thumbnail: GYEONGBOKGUNG,
         tags: ['busan', 'urban', 'incentives-on-accomodation'],
         contentId: '',
         baseUrl: '/produce-in-korea/popular-locations',
@@ -48,7 +48,7 @@ const PopularLocationsContainer = ({ location, history }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: GYEONGBOKGUNG02,
+        thumbnail: SEOUL01,
         tags: ['jeonju', 'suburban', 'incentives-on-accomodation'],
         contentId: '',
         baseUrl: '/produce-in-korea/popular-locations',
@@ -59,7 +59,7 @@ const PopularLocationsContainer = ({ location, history }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: GYEONGBOKGUNG,
+        thumbnail: GYEONGBOKGUNG03,
         tags: ['jeju', 'nature', 'incentives-on-accomodation'],
         contentId: '',
         baseUrl: '/produce-in-korea/popular-locations',
@@ -70,7 +70,7 @@ const PopularLocationsContainer = ({ location, history }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: SEOUL03,
+        thumbnail: HANOKMAEUL,
         tags: ['suncheon', 'nature', 'incentives-on-accomodation'],
         contentId: '',
         baseUrl: '/produce-in-korea/popular-locations',
@@ -103,8 +103,30 @@ const PopularLocationsContainer = ({ location, history }) => {
         title: 'Cafes and Apartments',
         subtitle:
           'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
-        thumbnail: HANOKMAEUL,
+        thumbnail: SEOUL03,
         tags: ['dmz', 'nature', 'incentives-on-transportation'],
+        contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
+      },
+      {
+        id: 9,
+        name: 'cafesAndApartment',
+        title: 'Cafes and Apartments',
+        subtitle:
+          'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
+        thumbnail: GYEONGBOKGUNG02,
+        tags: ['jeonju', 'suburban', 'incentives-on-accomodation'],
+        contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
+      },
+      {
+        id: 10,
+        name: 'cafesAndApartment',
+        title: 'Cafes and Apartments',
+        subtitle:
+          'Cafes and Apartments subtitles placeholder cafes and Apartments subtitles...',
+        thumbnail: GYEONGBOKGUNG03,
+        tags: ['jeonju', 'suburban', 'incentives-on-accomodation'],
         contentId: '',
         baseUrl: '/produce-in-korea/popular-locations',
       },

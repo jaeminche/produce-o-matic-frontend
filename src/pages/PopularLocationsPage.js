@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import SubHeaderContainer from '../containers/common/SubHeaderContainer';
 import PopularLocationsContainer from '../containers/produceInKorea/PopularLocationsContainer';
-
+import IntroTextContainer from '../containers/main/IntroTextContainer';
 import FooterContainer from '../containers/common/FooterContainer';
 // import LocationsContainer from '../containers/main/LocationsContainer';
 import styled from 'styled-components/macro';
@@ -24,6 +24,7 @@ const PopularLocationsPage = () => {
       <HeaderContainer />
       <SubHeaderContainer menuIndex={0} />
       <PopularLocationsContainer />
+      <IntroTextContainer />
       <FooterContainer />
     </PopularLocationsPageBlock>
   );

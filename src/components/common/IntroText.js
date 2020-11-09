@@ -27,7 +27,7 @@ const IntroText = ({ text }) => {
       <Wrapper>
         <>
           {ReactHtmlParser(text)}
-          <Link to="/budget-o-matic" className="viewmore">
+          <Link to="/produce-o-matic/budget-o-matic" className="viewmore">
             {'View More >'}
           </Link>
         </>
