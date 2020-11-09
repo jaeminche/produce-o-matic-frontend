@@ -96,21 +96,6 @@ const menus = [
         text: 'Rental',
         path: `/produce-o-manual/rental`,
       },
-      {
-        id: 6,
-        text: 'Incentive',
-        path: `/produce-o-manual/incentive`,
-      },
-      {
-        id: 7,
-        text: 'On Set Knowledge',
-        path: `/produce-o-manual/on-set-knowledge`,
-      },
-      {
-        id: 8,
-        text: 'Download',
-        path: `/produce-o-manual/download`,
-      },
     ],
   },
   {
@@ -143,17 +128,17 @@ const menus = [
   {
     id: 4,
     text: 'Produce-O-People',
-    path: '/produce-o-people/summary',
+    path: '/produce-o-people/the-team',
     submenus: [
       {
         id: 1,
-        text: 'Summary',
-        path: `/produce-o-people/summary`,
+        text: 'The Team',
+        path: `/produce-o-people/the-team`,
       },
       {
         id: 2,
-        text: 'How We Work',
-        path: `/produce-o-people/how-we-work`,
+        text: 'Our Vision',
+        path: `/produce-o-people/our-vision`,
       },
       {
         id: 3,

@@ -7,22 +7,22 @@ import FooterContainer from '../containers/common/FooterContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
-const OnSetKnowledgePageBlock = styled.div`
+const OurVisionPageBlock = styled.div`
   background: ${palette.background[0]};
   color: white;
 `;
 
-const OnSetKnowledgePage = () => {
+const OurVisionPage = () => {
   return (
-    <OnSetKnowledgePageBlock>
+    <OurVisionPageBlock>
       <Helmet>
-        <title>OnSetKnowledge_PRODUCE-O-MATIC</title>
+        <title>OurVision_PRODUCE-O-MATIC</title>
       </Helmet>
       <HeaderContainer />
       <></>
       <FooterContainer />
-    </OnSetKnowledgePageBlock>
+    </OurVisionPageBlock>
   );
 };
 
-export default OnSetKnowledgePage;
+export default OurVisionPage;

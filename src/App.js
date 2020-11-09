@@ -19,13 +19,10 @@ import PermitPage from './pages/PermitPage';
 import ContractPage from './pages/ContractPage';
 import InsurancePage from './pages/InsurancePage';
 import RentalPage from './pages/RentalPage';
-import IncentivePage from './pages/IncentivePage';
-import OnSetKnowledgePage from './pages/OnSetKnowledgePage';
-import DownloadPage from './pages/DownloadPage';
 import BudgetOMaticPage from './pages/BudgetOMaticPage';
 import ProduceOMaticPage from './pages/ProduceOMaticPage';
 import AccountOMaticPage from './pages/AccountOMaticPage';
-import HowWeWorkPage from './pages/HowWeWorkPage';
+import OurVisionPage from './pages/OurVisionPage';
 import PeopleOfTheMonthPage from './pages/PeopleOfTheMonthPage';
 import BeOurPeoplePage from './pages/BeOurPeoplePage';
 import { Helmet } from 'react-helmet-async';
@@ -67,7 +64,7 @@ const App = () => {
       <Route
         component={SummaryOPeoplePage}
         exact
-        path="/produce-o-people/summary"
+        path="/produce-o-people/the-team"
       />
       <Route
         component={PopularLocationsPage}
@@ -93,17 +90,6 @@ const App = () => {
       />
       <Route component={RentalPage} exact path="/produce-o-manual/rental" />
       <Route
-        component={IncentivePage}
-        exact
-        path="/produce-o-manual/incentive"
-      />
-      <Route
-        component={OnSetKnowledgePage}
-        exact
-        path="/produce-o-manual/on-set-knowledge"
-      />
-      <Route component={DownloadPage} exact path="/produce-o-manual/download" />
-      <Route
         component={BudgetOMaticPage}
         exact
         path="/produce-o-matic/budget-o-matic"
@@ -119,10 +105,11 @@ const App = () => {
         path="/produce-o-matic/account-o-matic"
       />
       <Route
-        component={HowWeWorkPage}
+        component={OurVisionPage}
         exact
         path="/produce-o-people/how-we-work"
       />
+      {/* TODO: add Contact Us page  */}
       <Route
         component={PeopleOfTheMonthPage}
         exact
