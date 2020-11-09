@@ -12,7 +12,7 @@ import {
   HANOKMAEUL,
 } from '../../assets';
 
-const PopularLocationsContainer = ({ location }) => {
+const PopularLocationsContainer = ({ location, history }) => {
   const retrieved = {
     id: 1,
     name: 'PopularLocations',
@@ -29,6 +29,7 @@ const PopularLocationsContainer = ({ location }) => {
         thumbnail: SEOUL01,
         tags: ['seoul', 'urban', 'incentives-on-transportation'],
         contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
       },
       {
         id: 2,
@@ -39,6 +40,7 @@ const PopularLocationsContainer = ({ location }) => {
         thumbnail: GYEONGBOKGUNG03,
         tags: ['busan', 'urban', 'incentives-on-accomodation'],
         contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
       },
       {
         id: 3,
@@ -49,6 +51,7 @@ const PopularLocationsContainer = ({ location }) => {
         thumbnail: GYEONGBOKGUNG02,
         tags: ['jeonju', 'suburban', 'incentives-on-accomodation'],
         contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
       },
       {
         id: 4,
@@ -59,6 +62,7 @@ const PopularLocationsContainer = ({ location }) => {
         thumbnail: GYEONGBOKGUNG,
         tags: ['jeju', 'nature', 'incentives-on-accomodation'],
         contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
       },
       {
         id: 5,
@@ -69,6 +73,7 @@ const PopularLocationsContainer = ({ location }) => {
         thumbnail: SEOUL03,
         tags: ['suncheon', 'nature', 'incentives-on-accomodation'],
         contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
       },
       {
         id: 6,
@@ -79,6 +84,7 @@ const PopularLocationsContainer = ({ location }) => {
         thumbnail: SEOUL02,
         tags: ['daegu', 'urban'],
         contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
       },
       {
         id: 7,
@@ -89,6 +95,7 @@ const PopularLocationsContainer = ({ location }) => {
         thumbnail: HANOKMAEUL02,
         tags: ['suncheon', 'nature', 'incentives-on-transportation'],
         contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
       },
       {
         id: 8,
@@ -99,10 +106,11 @@ const PopularLocationsContainer = ({ location }) => {
         thumbnail: HANOKMAEUL,
         tags: ['dmz', 'nature', 'incentives-on-transportation'],
         contentId: '',
+        baseUrl: '/produce-in-korea/popular-locations',
       },
     ],
   };
-  return <PopularLocations data={retrieved} />;
+  return <PopularLocations data={retrieved} history={history} />;
 };
 
 export default withRouter(PopularLocationsContainer);

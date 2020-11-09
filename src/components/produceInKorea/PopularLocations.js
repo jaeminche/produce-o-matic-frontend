@@ -41,52 +41,6 @@ const Wrapper = styled(Responsive)`
   }
 `;
 
-const ImgBlock = styled.div`
-  position: relative;
-
-  img {
-    width: 100%;
-    max-width: 1200px;
-    object-fit: cover;
-    margin: 0 auto;
-
-    &:hover {
-      filter: brightness(0.5);
-    }
-  }
-  .textbox {
-    position: absolute;
-    transform: translateX(-50%) translateY(-50%);
-    left: 50%;
-    top: 50%;
-    color: white;
-    text-align: center;
-  }
-  .title {
-    ${mq({
-      fontSize: ['28px', '34px', , '46px', , '60px', ,],
-    })}
-  }
-  .subtitle {
-    ${mq({
-      fontSize: ['12px', '14px', , '18px', , '24px', ,],
-    })}
-  }
-`;
-
-const ImagesBlock = (props) => {
-  const { title, imgpath, subtitle } = props;
-  return (
-    <ImgBlock>
-      <img src={imgpath} alt="click to watch Youtube" />
-      <div className="textbox">
-        <div className="title">{title}</div>
-        <div className="subtitle">{subtitle}</div>
-      </div>
-    </ImgBlock>
-  );
-};
-
 const breakpointColumnsObj = {
   default: 2,
   567: 1,
@@ -130,11 +84,12 @@ const ImgLinkBlock = styled.div`
   }
 `;
 
-const ImageBlock = ({ data }) => {
-  const { title, subtitle, thumbnail, to } = data;
-  console.log('props', data);
+const ImageBlock = ({ data, history }) => {
+  const { id, title, subtitle, thumbnail, baseUrl } = data;
+  const handleClick = () => history.push(`${baseUrl}/${id}`);
+
   return (
-    <ImgLinkBlock to={to}>
+    <ImgLinkBlock onClick={() => handleClick()}>
       <img src={thumbnail} alt="click to go to the page" />
       <div className="textbox">
         <div className="title">{title}</div>
@@ -144,7 +99,7 @@ const ImageBlock = ({ data }) => {
   );
 };
 
-const PopularLocations = ({ data }) => {
+const PopularLocations = ({ data, history }) => {
   const { title, titleImage, cards } = data;
   return (
     <PopularLocationsBlock>
@@ -157,7 +112,7 @@ const PopularLocations = ({ data }) => {
           columnClassName="my-masonry-grid_column"
         >
           {cards.map((card, key) => (
-            <ImageBlock data={card} key={key} />
+            <ImageBlock data={card} history={history} key={key} />
 
             // <div key={card.id}>
             //   <img src={card.thumbnail} alt={card.title} />
