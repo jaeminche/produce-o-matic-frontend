@@ -25,6 +25,8 @@ import AccountOMaticPage from './pages/AccountOMaticPage';
 import OurVisionPage from './pages/OurVisionPage';
 import PeopleOfTheMonthPage from './pages/PeopleOfTheMonthPage';
 import BeOurPeoplePage from './pages/BeOurPeoplePage';
+import ContactUsPage from './pages/ContactUsPage';
+
 import { Helmet } from 'react-helmet-async';
 
 const App = () => {
@@ -103,6 +105,11 @@ const App = () => {
         component={BeOurPeoplePage}
         exact
         path="/produce-o-people/be-our-people"
+      />
+      <Route
+        component={ContactUsPage}
+        exact
+        path="/produce-o-people/contact-us"
       />
     </>
   );

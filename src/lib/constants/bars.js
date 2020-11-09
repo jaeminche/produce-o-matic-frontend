@@ -130,6 +130,11 @@ const menus = [
         text: 'Be Our People',
         path: '/produce-o-people/be-our-people',
       },
+      {
+        id: 4,
+        text: 'Contact Us',
+        path: '/produce-o-people/contact-us',
+      },
     ],
   },
 ];
