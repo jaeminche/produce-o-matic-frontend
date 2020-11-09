@@ -27,6 +27,7 @@ const Wrapper = styled(Responsive)`
     display: flex;
     margin-left: -30px; /* gutter size offset */
     width: auto;
+    margin-top: 40px;
   }
   .my-masonry-grid_column {
     padding-left: 30px; /* gutter size */
