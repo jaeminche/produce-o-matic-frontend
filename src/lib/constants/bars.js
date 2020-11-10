@@ -51,8 +51,8 @@ const menus = [
       },
       {
         id: 2,
-        text: 'Locations With Benefits',
-        path: `/produce-in-korea/locations-with-benefits`,
+        text: 'Location Incentive',
+        path: `/produce-in-korea/location-incentives`,
       },
       {
         id: 3,
