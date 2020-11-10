@@ -2,8 +2,9 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { withRouter } from 'react-router-dom';
 import { uiData } from '../../lib/constants/uiData';
-import LocationIncentives from '../../components/produceInKorea/LocationIncentives';
-const LocationIncentivesContainer = ({ location }) => {
+import Contents from '../../components/common/Contents';
+
+const ContentsContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const { pathname } = location;
@@ -19,7 +20,7 @@ const LocationIncentivesContainer = ({ location }) => {
     }
   }
 
-  return <LocationIncentives uiData={_uiData} isMobile={isMobile} />;
+  return <Contents uiData={_uiData} isMobile={isMobile} />;
 };
 
-export default withRouter(LocationIncentivesContainer);
+export default withRouter(ContentsContainer);

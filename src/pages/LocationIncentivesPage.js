@@ -3,7 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import SubHeaderContainer from '../containers/common/SubHeaderContainer';
-import LocationIncentivesContainer from '../containers/produceInKorea/LocationIncentivesContainer';
+import ContentsContainer from '../containers/common/ContentsContainer';
 import FooterContainer from '../containers/common/FooterContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
@@ -21,7 +21,7 @@ const LocationIncentivesPage = () => {
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={0} />
-      <LocationIncentivesContainer />
+      <ContentsContainer />
       <FooterContainer />
     </LocationIncentivesPageBlock>
   );

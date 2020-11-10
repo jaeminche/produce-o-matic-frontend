@@ -1,11 +1,11 @@
 import React from 'react';
-import Responsive from '../../components/common/Responsive';
+import Responsive from './Responsive';
 import { mq } from '../../lib/util/device';
 
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 
-const LocationIncentivesBlock = styled.div`
+const ContentsBlock = styled.div`
   height: auto;
 `;
 
@@ -23,7 +23,9 @@ const Wrapper = styled(Responsive)`
   .text {
     color: white;
     font-family: Lato;
-    font-size: 24px;
+    ${mq({
+      fontSize: ['16px', '18px', , '24px', , , ,],
+    })}
     font-style: normal;
     font-weight: 400;
     line-height: 31px;
@@ -32,14 +34,11 @@ const Wrapper = styled(Responsive)`
   }
   img {
     width: 100%;
-    /* ${mq({
-      height: ['320px', '360px', , '380px', , '400px', '640px'],
-    })} */
     object-fit: cover;
     margin: 0 auto;
   }
   .margin-tb {
-    margin-top: 80px;
+    margin-top: 40px;
     margin-bottom: 40px;
   }
   .flex-container {
@@ -59,13 +58,14 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FlexContainer = (props) => {
-  const { data } = props;
+  const { items } = props;
+  console.log('ittt', items);
   return (
     <ul className="flex-container">
-      {data.map((item, key) => (
+      {items.map((item, key) => (
         <li key={key} className="flex-item">
           {item.type === 'image' ? (
-            <img src={item.image} alt={item.desc} />
+            <img src={item.path} alt={item.desc} />
           ) : (
             <p>{item.text}</p>
           )}
@@ -75,31 +75,28 @@ const FlexContainer = (props) => {
   );
 };
 
-const LocationIncentives = ({ uiData, isMobile }) => {
-  const { title, text, titleImage, flexBox, subImages } = uiData;
+const DrawRowComponent = (item) => {
+  const { type, path, text, desc, items } = item;
+  const ui = {
+    title: <h1 className="title">{text}</h1>,
+    image: <img src={path} className="title-image margin-tb" alt={desc} />,
+    flexContainer: <FlexContainer items={items} />,
+    text: <p className="text">{text}</p>,
+  };
+
+  return ui[type];
+};
+
+const Contents = ({ uiData, isMobile }) => {
+  const { rows } = uiData.uiType === 'default' && uiData;
 
   return (
-    <LocationIncentivesBlock>
+    <ContentsBlock>
       <Wrapper isMobile={isMobile}>
-        {title && <h1 className="title">{title}</h1>}
-        {title && (
-          <img src={titleImage} alt={title} className="title-image margin-tb" />
-        )}
-        {text && <p className="text">{text[0]}</p>}
-        {flexBox && <FlexContainer data={flexBox} />}
-        {text && <p className="text">{text[1]}</p>}
-        {subImages &&
-          subImages.map((image, key) => (
-            <img
-              key={key}
-              src={image}
-              alt={`${title}`}
-              className="title-image margin-tb"
-            />
-          ))}
+        {rows.map((row, key) => DrawRowComponent(row))}
       </Wrapper>
-    </LocationIncentivesBlock>
+    </ContentsBlock>
   );
 };
 
-export default LocationIncentives;
+export default Contents;
