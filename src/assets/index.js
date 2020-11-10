@@ -17,6 +17,8 @@ const FACEBOOK_ICON = require('./facebook.svg');
 const INSTAGRAM_ICON = require('./instagram.svg');
 const YOUTUBE_ICON = require('./youtube.svg');
 const WHATSAPP_ICON = require('./whatsapp.svg');
+const GRAPH01_LOCATIONINCENTIVES = require('./graph01_locationIncentives.svg');
+const GRAPH02_LOCATIONINCENTIVES = require('./graph02_locationIncentives.svg');
 
 export {
   LOGO,
@@ -38,4 +40,6 @@ export {
   THUMB2_OMATIC,
   THUMB3_OMANUAL,
   THUMB4_OPEOPLE,
+  GRAPH01_LOCATIONINCENTIVES,
+  GRAPH02_LOCATIONINCENTIVES,
 };
