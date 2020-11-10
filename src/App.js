@@ -13,7 +13,7 @@ import SummaryOMaticPage from './pages/SummaryOMaticPage';
 import SummaryOPeoplePage from './pages/SummaryOPeoplePage';
 import PopularLocationsPage from './pages/PopularLocationsPage';
 import PopularLocationPage from './pages/PopularLocationPage';
-import LocationsWithBenefitsPage from './pages/LocationsWithBenefitsPage';
+import LocationIncentivesPage from './pages/LocationIncentivesPage';
 import GeneralKnowledgePage from './pages/GeneralKnowledgePage';
 import PermitPage from './pages/PermitPage';
 import ContractPage from './pages/ContractPage';
@@ -63,9 +63,9 @@ const App = () => {
         path="/produce-in-korea/popular-locations/:id"
       />
       <Route
-        component={LocationsWithBenefitsPage}
+        component={LocationIncentivesPage}
         exact
-        path="/produce-in-korea/locations-with-benefits"
+        path="/produce-in-korea/location-incentives"
       />
       <Route
         component={GeneralKnowledgePage}

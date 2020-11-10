@@ -2,27 +2,30 @@ import React from 'react';
 // import Responsive from '../components/common/Responsive';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
+import SubHeaderContainer from '../containers/common/SubHeaderContainer';
+// import LocationIncentivesContainer from '../containers/produceInKorea/PopularLocationsContainer';
 import FooterContainer from '../containers/common/FooterContainer';
 // import LocationsContainer from '../containers/main/LocationsContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
-const DownloadPageBlock = styled.div`
+const LocationIncentivesPageBlock = styled.div`
   background: ${palette.background[0]};
   color: white;
 `;
 
-const DownloadPage = () => {
+const LocationIncentivesPage = () => {
   return (
-    <DownloadPageBlock>
+    <LocationIncentivesPageBlock>
       <Helmet>
-        <title>Download_PRODUCE-O-MATIC</title>
+        <title>LocationIncentives_PRODUCE-O-MATIC</title>
       </Helmet>
       <HeaderContainer />
-      <></>
+      <SubHeaderContainer menuIndex={0} />
+      {/* <LocationIncentivesContainer /> */}
       <FooterContainer />
-    </DownloadPageBlock>
+    </LocationIncentivesPageBlock>
   );
 };
 
-export default DownloadPage;
+export default LocationIncentivesPage;
