@@ -148,13 +148,19 @@ const uiData = {
               path: TIME_KOREA,
               desc: 'Korea Time',
               text: 'Korea Time',
+              // ? specify customcss for it is a particular case for clocks UI
+              customCssForImage: 'time-backgroundimage',
+              customCssForText: 'time-title',
             },
             {
               id: 2,
               type: 'imageWithTextInside',
               path: TIME_YOUR,
               desc: 'Your Time',
-              text: 'Your time',
+              text: 'Your Time',
+              // ? specify customcss for it is a particular case for clocks UI
+              customCssForImage: 'time-backgroundimage',
+              customCssForText: 'time-title',
             },
           ],
         },

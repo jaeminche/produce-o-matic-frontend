@@ -1,3 +1,4 @@
+/* eslint-disable no-sparse-arrays */
 import React from 'react';
 import Responsive from './Responsive';
 import { mq } from '../../lib/util/device';
@@ -48,9 +49,12 @@ const Wrapper = styled(Responsive)`
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
     left: 50%;
-    top: 23%;
+    top: ${(props) => (props.isMobile ? '35%' : '23%')};
     color: white;
     text-align: center;
+  }
+  .time-backgroundimage {
+    ${(props) => props.isMobile && `height: 200px`};
   }
   .time-title {
     ${mq({
@@ -121,6 +125,7 @@ const Wrapper = styled(Responsive)`
 
 const FlexContainerResponsive = (props) => {
   const { items, times } = props;
+  const customcss = times ? 'time-numbers' : null;
   return (
     <ul className="flex-container-responsive">
       {items.map((item, key) => (
@@ -136,13 +141,18 @@ const FlexContainerResponsive = (props) => {
             <img src={item.path} alt={item.desc} />
           ) : item.type === 'imageWithTextInside' ? (
             <>
-              <img src={item.path} alt={item.desc} />
+              <img
+                src={item.path}
+                alt={item.desc}
+                className={item.customCssForImage}
+              />
               {item.text && (
-                <p className="textInImage time-title">
+                <p className={`textInImage ${item.customCssForText}`}>
                   {item.text}
                   <br />
-                  <span className="time-numbers">
-                    {item.text === 'Korea Time' ? times[0] : times[1]}
+                  <span className={customcss}>
+                    {times.length > 0 &&
+                      (item.text === 'Korea Time' ? times[0] : times[1])}
                   </span>
                 </p>
               )}
@@ -183,7 +193,6 @@ const DrawRowComponent = (row, key, times) => {
     flexContainerResponsive: (
       <FlexContainerResponsive items={items} key={key} times={times} />
     ),
-    flexContainer: <FlexContainerResponsive items={items} key={key} />,
     text: (
       <p className="text" key={key}>
         {ReactHtmlParser(text)}
