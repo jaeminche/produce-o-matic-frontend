@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import FooterContainer from '../containers/common/FooterContainer';
 import LocationsContainer from '../containers/main/LocationsContainer';
-import IntroTextContainer from '../containers/main/IntroTextContainer';
+import IntroTextContainer from '../containers/common/IntroTextContainer';
 import ThumbnailsContainer from '../containers/main/ThumbnailsContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';

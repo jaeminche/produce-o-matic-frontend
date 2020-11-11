@@ -20,6 +20,18 @@ const Wrapper = styled(Responsive)`
     margin-bottom: 10px;
     text-align: center;
   }
+  .section-title {
+    font-family: Lato;
+    ${mq({
+      fontSize: ['22px', '28px', , '36px', , '46px', ,],
+    })}
+    font-style: normal;
+    font-weight: 700;
+    line-height: 46px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 10px;
+  }
   .text {
     color: white;
     font-family: Lato;
