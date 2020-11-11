@@ -48,9 +48,26 @@ const Wrapper = styled(Responsive)`
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
     left: 50%;
-    top: 50%;
+    top: 23%;
     color: white;
     text-align: center;
+  }
+  .time-title {
+    ${mq({
+      fontSize: ['26px', '30px', , '40px', , , ,],
+    })}
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: bold;
+    opacity: 0.6;
+  }
+  .time-numbers {
+    ${mq({
+      fontSize: ['30px', '40px', , '70px', , , ,],
+    })}
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: bold;
   }
   img {
     width: 100%;
@@ -121,10 +138,12 @@ const FlexContainerResponsive = (props) => {
             <>
               <img src={item.path} alt={item.desc} />
               {item.text && (
-                <p className="textInImage">
+                <p className="textInImage time-title">
                   {item.text}
                   <br />
-                  {item.text === 'Korea Time' ? times[0] : times[1]}
+                  <span className="time-numbers">
+                    {item.text === 'Korea Time' ? times[0] : times[1]}
+                  </span>
                 </p>
               )}
             </>
