@@ -6,6 +6,7 @@ import {
   TIME_KOREA,
   TIME_YOUR,
   WEATHER,
+  MAP_KTX,
 } from '../../assets';
 
 const uiData = {
@@ -191,267 +192,290 @@ const uiData = {
         {
           id: 2,
           type: 'text',
-          text: `A valid passport is required to enter the Republic of Korea (ROK). Nationals of non-visa waiver countries need to apply for visas at a Korean embassy or consulate before entering South Korea. A visa is not required for nationals of visa waiver or visa-free countries who wish to enter the country for tourism purposes only. You can find more detailed information on the government website.
+          text: `A valid passport is required to enter the Republic of Korea (ROK). Nationals of non-visa waiver countries need to apply for visas at a Korean embassy or consulate before entering South Korea. A visa is not required for nationals of visa waiver or visa-free countries who wish to enter the country for tourism purposes only. You can find more detailed information on the <a href='https://www.visa.go.kr/'>government website</a>.
             `,
         },
         { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 4,
           type: 'sectionTitle',
-          text: 'Weather',
+          text: 'Health',
         },
         {
           id: 5,
           type: 'text',
-          text:
-            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+          text: `The CDC (Centers for Disease Control and Prevention) and WHO (World Health Organization) recommend the following vaccinations for travellers to South Korea:
+            Hepatitis A
+            Hepatitis B
+            Japanese Encephalitis
+            Rabies
+            
+            Currently the COVID-19 situation is well managed and under control. South Korea introduced what is considered one of the best-organised epidemic control programs in the world. It is for this reason that the country’s daily virus cases remain in the mere dozens. As Netflix has pointed out, Korea is one of the few countries worldwide that is able to safely produce movies and TV series right now.
+            `,
         },
         { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 7,
           type: 'sectionTitle',
-          text: 'Language',
+          text: 'Security',
         },
         {
           id: 8,
           type: 'text',
-          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
+          text: `South Korea is considered one of the safest countries in the world when it comes to crimes, including pickpocketing. It’s better to be safe than sorry, but it may reassure you to know that in cafes and restaurants many individuals leave their bags, notebooks and even cellphones to reserve a seat or when they use the restroom, because theft is so rare. Guns and drugs are illegal in Korea and it is a rarity to see any kind of violence from the public or the police.
 
-            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+          Although the relations between North and South Korea is often a hotly contested topic in the media, South Koreans themselves rarely worry about an actual attack. In the 70 years since the North and South were divided as a consequence of the Korean War, there has never been a major attack or conflict between the two.
+          `,
         },
         { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 10,
+          type: 'sectionTitle',
+          text: 'Emergency numbers',
+        },
+        {
+          id: 11,
+          type: 'text',
+          text: `To call an ambulance or the fire department, dial 119. For the police, it’s 112. In case of a medical emergency, calling 1339 will connect to Seoul’s medical information centre aimed specifically at foreigners.
+
+          111 is the number to call for the National Intelligence Service, 1330 for the Tourism and Translation Service, and 122 for the coast guard.
+           
+          Another useful number to be aware of is 120, <a href='https://www.120dasan.or.kr/static/lang/lang1.html'>Dasan Call Center</a>. It is a helpline offering general information on living and tourism in Seoul.
+          
+          `,
+        },
+        { id: 12, type: 'image', path: WEATHER, desc: 'weather' },
       ],
       money: [
         {
           id: 1,
           type: 'sectionTitle',
-          text: 'Time Zone',
+          text: 'Currency & Money Exchange',
         },
         {
           id: 2,
           type: 'text',
-          text:
-            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+          text: `The Korean currency is called Won. Coins range from 10 to 500 KRW, while bills range from 1,000 to 50,000 KRW.
+ 
+            As of 24th Aug 2020, 1 KRW = 0.00084 USD or 1 USD = 1187,47 KRW.
+            
+            South Korea’s major banks offer currency exchange: Kookmin, Woori, Shinhan, etc. Currency exchange offices with good exchange rates can also be found in Seoul districts Itaewon and Myeongdong.`,
         },
-        {
-          id: 3,
-          type: 'flexContainer',
-          items: [
-            {
-              id: 1,
-              type: 'image',
-              path: TIME_KOREA,
-              desc: 'Korea Time',
-              text: 'Korea Time',
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: TIME_YOUR,
-              desc: 'Your Time',
-              text: 'Your time',
-            },
-          ],
-        },
+        { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 4,
           type: 'sectionTitle',
-          text: 'Weather',
+          text: 'Banking & Payment',
         },
         {
           id: 5,
           type: 'text',
-          text:
-            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+          text: `Banks are open in Seoul from 9:00am to 4:00pm, Monday to Friday. At Incheon International Airport they are open daily from 6:00am to 9:00pm. Don’t be surprised if you’re unable to draw money from an ATM between 11:30pm and midnight on a Sunday - for many ATMs this half-hour time slot is their maintenance time. 
+            
+            In South Korea it is very common to pay by credit card and many individuals also use Samsung Pay and Zero Pay. Micropayments can be made in convenience stores, taxis and at subway stations.
+            `,
         },
         { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
-        {
-          id: 7,
-          type: 'sectionTitle',
-          text: 'Language',
-        },
-        {
-          id: 8,
-          type: 'text',
-          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
-
-            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
-        },
-        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
       ],
       transportation: [
         {
           id: 1,
           type: 'sectionTitle',
-          text: 'Time Zone',
+          text: 'Maps',
         },
         {
           id: 2,
           type: 'text',
-          text:
-            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+          text: `To get around in the capital and elsewhere, a well-functioning map is essential. Since Google Maps hasn’t legally been allowed to map South Korea in many years, it’s not a viable option. Instead, make sure to download the app Naver Map (iOS or Android) for accurate directions and locations.
+            
+            Popular places of interest can easily be found on Naver Map when typing in English, but often there won’t be any English results for restaurants or cafes. If the spot is listed on Google, the roundabout way is to copy the Korean name from there and paste it into Naver Map in order to find the location.
+            
+            You can download the most up-to-date subway map on the Seoul Metro website. It’s available in Korean, English, Chinese and Japanese.
+            `,
         },
-        {
-          id: 3,
-          type: 'flexContainer',
-          items: [
-            {
-              id: 1,
-              type: 'image',
-              path: TIME_KOREA,
-              desc: 'Korea Time',
-              text: 'Korea Time',
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: TIME_YOUR,
-              desc: 'Your Time',
-              text: 'Your time',
-            },
-          ],
-        },
+        { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 4,
           type: 'sectionTitle',
-          text: 'Weather',
+          text: 'T-Money Card',
         },
         {
           id: 5,
           type: 'text',
-          text:
-            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+          text: `It’s most cost-effective to use a T-Money card when using public transportation such as the subway, bus or taxi. It is contactless and reloadable and can also be used for purchases at convenience stores, cafes and fast food outlets such as McDonald’s.
+          
+          T-Money can be purchased at convenience stores or subway stations (price: KRW 2,500), but all reloads must be paid for with cash. T-Money can be shared between two people on Seoul public buses, but not on the subway.
+          `,
         },
         { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 7,
           type: 'sectionTitle',
-          text: 'Language',
+          text: 'Subway & Bus Fares',
         },
         {
           id: 8,
           type: 'text',
-          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
-
-            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+          text: `Adults pay 1,250 won per subway ride within a radius of 10km. An additional 100 won is charged for every 5km. A bus ride with a Blue Bus (mainline bus) or Green Bus (branch bus) will cost 1,200 won or 1,300 won per adult.
+          
+          You can find more detailed information regarding public transportation in Seoul on the <a href='http://english.seoul.go.kr/life-information/transportation-information/public-transportation/2-subway/'>Seoul Metropolitan Government website</a> and the <a href='https://english.visitkorea.or.kr/enu/TRP/TRP_MAIN.jsp'>Korea Tourism Organization website</a>.`,
         },
         { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 10,
+          type: 'sectionTitle',
+          text: 'Kakao T',
+        },
+        {
+          id: 11,
+          type: 'text',
+          text: `Kakao T (<a href='https://apps.apple.com/us/app/kakao-t/id981110422'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.kakao.taxi&hl=en_US'>Android</a>) is the Korean equivalent of UBER or LYFT and is widely used to call a taxi, especially during night time. `,
+        },
+        { id: 12, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 13,
+          type: 'sectionTitle',
+          text: 'KTX',
+        },
+        {
+          id: 14,
+          type: 'text',
+          text: `The Korail Train eXpress travels at a speed of 305km per hour and connects South Korea’s major cities. In Seoul, there are four KTX train stations: Seoul Station, Yongsan Station, Cheongnyangni Station, and Yeongdeungpo Station.
+          `,
+        },
+        {
+          id: 15,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'image',
+              path: MAP_KTX,
+              desc: 'KTX map',
+            },
+            {
+              id: 2,
+              type: 'text',
+              text: `Reservations can be made online, at the ticket counters in stations, via travel agents, or through automatic ticketing machines. 
+
+              The passenger’s reservation number and passport are required to pick up tickets at a Korail ticketing counter before departure. For more information and to book your ticket, visit the <a href='https://www.ktxtrains.com/'>KTX website</a>.`,
+            },
+          ],
+        },
+        {
+          id: 16,
+          type: 'sectionTitle',
+          text: 'Quick-service',
+        },
+        {
+          id: 17,
+          type: 'text',
+          text: `Quick-service is a quick delivery system available in Korea’s urban areas that can be very useful for a film production crew. Anything from documents to packages to food can be delivered via motorcycle at lightning speed from point A to point B for around 20-40 US dollars. You’ll often hear crew members say “let’s use Quick” to get things delivered.
+          `,
+        },
+        { id: 18, type: 'image', path: WEATHER, desc: 'weather' },
       ],
       food: [
         {
           id: 1,
-          type: 'sectionTitle',
-          text: 'Time Zone',
+          type: 'text',
+          text: `Korean food culture is diverse and marked by innovation. Many cafes will serve the latest drink that everyone is talking about, while restaurants serve their own specialties that quickly become trendy spots, attracting Seoul’s novelty food seekers.
+
+            In contrast to this, there are everyday affordable eateries such as Kimbab Cheonguk or Bonjuk and Bibimbap Cafe, as well as more traditional restaurants with a range of different banchan (side dishes). Some restaurants even specialise in Buddhist temple food, a great place to find vegan food.
+            
+            Tap water is drinkable, but for convenience it’s the norm to use filter machines. You’ll find filtered water available for free in most restaurants, cafes, libraries, etc. Restrooms are safe and free to use everywhere and most importantly, they’re ubiquitous. They can be found in restaurants, cafes, public buildings and at every subway station.`,
         },
         {
           id: 2,
-          type: 'text',
-          text:
-            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+          type: 'sectionTitle',
+          text: 'Vegetarian, vegan and halal food',
         },
         {
           id: 3,
-          type: 'flexContainer',
-          items: [
-            {
-              id: 1,
-              type: 'image',
-              path: TIME_KOREA,
-              desc: 'Korea Time',
-              text: 'Korea Time',
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: TIME_YOUR,
-              desc: 'Your Time',
-              text: 'Your time',
-            },
-          ],
+          type: 'text',
+          text: `Many Korean dishes and meals are centred around vegetables, but sometimes it can be hard to find dishes that are 100% vegetarian or vegan (meat or seafood may be used as soup stock and in some vegetable side dishes). 
+
+            A great source for vegan- and vegetarian-friendly dining options in Seoul is <a href='https://www.happycow.net/asia/south_korea/seoul/'>Happycow</a>. Be sure to check it out.
+            
+            Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea. These are certified under four categories:
+            Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
+            Self-certified as halal
+            Muslim-friendly restaurants with a halal menu
+            Pork-free
+            
+            The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
         },
-        {
-          id: 4,
-          type: 'sectionTitle',
-          text: 'Weather',
-        },
+        { id: 4, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 5,
-          type: 'text',
-          text:
-            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
-        },
-        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
-        {
-          id: 7,
           type: 'sectionTitle',
-          text: 'Language',
+          text: 'Delivery apps',
         },
         {
-          id: 8,
+          id: 6,
           type: 'text',
-          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
-
-            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+          text: `Korea is one of the most advanced countries when it comes to restaurant food deliveries. It doesn’t matter whether you are in a park, at the river or in an office building - the food will be delivered to wherever you are. This is particularly convenient for production crews, as there is no need to rely solely on catering services.
+          
+          Baedal Minjok/Baemin (<a href='https://apps.apple.com/us/app/%EB%B0%B0%EB%8B%AC%EC%9D%98%EB%AF%BC%EC%A1%B1/id378084485'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.sampleapp&hl=en_US'>Android</a>) and Yogiyo (<a href='https://apps.apple.com/us/app/id543831532'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.fineapp.yogiyo&hl=en_US'>Android</a>) are the two biggest and most popular food delivery apps. Both operate 24/7, with each store having its own business hours. Daily changing coupons, an ETA, and a real-time food tracking system make these delivery apps very convenient to use.`,
         },
-        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+        { id: 7, type: 'image', path: WEATHER, desc: 'weather' },
       ],
       telecommunication: [
         {
           id: 1,
           type: 'sectionTitle',
-          text: 'Time Zone',
+          text: 'SIM card',
         },
         {
           id: 2,
           type: 'text',
-          text:
-            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+          text: `4G LTE is available in almost every part of the country.
+
+          Prior to arrival in South Korea, it’s important to check:
+          Your phone is unlocked 
+          Your device supports GSM network frequencies
+           
+          It’s easy and convenient to buy a SIM card online before arriving in Korea, but they can also be purchased at Incheon Airport, at major convenience stores such as GS25, CU and Seven Eleven, and at outlets run by Korean mobile service providers KT, SKT, and LG U+.
+          
+          Purchasing a universal type USIM Card will ensure it’s compatible with all types of phones. There are many payment plans available, from unlimited data for a certain amount of days, without the option to make or receive calls, to all-inclusive monthly plans. Travel shop <a href='https://blog.trazy.com/survival-tip-all-about-sim-card-prepaid-sim-card-for-foreigners/'>Trazy</a> provides more information.
+          `,
         },
-        {
-          id: 3,
-          type: 'flexContainer',
-          items: [
-            {
-              id: 1,
-              type: 'image',
-              path: TIME_KOREA,
-              desc: 'Korea Time',
-              text: 'Korea Time',
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: TIME_YOUR,
-              desc: 'Your Time',
-              text: 'Your time',
-            },
-          ],
-        },
+        { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 4,
           type: 'sectionTitle',
-          text: 'Weather',
+          text: 'WiFi egg',
         },
         {
           id: 5,
           type: 'text',
-          text:
-            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+          text: `An alternative to getting a SIM card is renting a WiFi egg or WiFi router. If all you need is access to the internet without making phone calls or sending text messages, then a WiFi egg is a hassle-free option. It also means that other crew members can connect to the WiFi with their phones, iPads and laptops, without incurring an additional charge.
+          `,
         },
         { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 7,
           type: 'sectionTitle',
-          text: 'Language',
+          text: 'Mobile rental',
         },
         {
           id: 8,
           type: 'text',
-          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
-
-            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+          text: `If you prefer to rent a mobile phone, this service is offered by major telecom companies such as LG, SK, and KT in the arrivals lobby at Incheon and Gimpo International Airports. Your passport and a credit card are required upon pick-up and the rental phone must be returned to the same counter from which it was rented.`,
         },
         { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 10,
+          type: 'sectionTitle',
+          text: 'WiFi access',
+        },
+        {
+          id: 11,
+          type: 'text',
+          text: `Internet access is nearly omnipresent in Seoul. There are almost 10,000 free WiFi hotspots in the capital alone. You’ll find these at many restaurants and cafes, at airports, hotels and tourist information centres, at public facilities such as subway and railway stations, and on the high-speed KTX trains as well. Libraries, hospitals, universities, tourists spots, and even taxis offer complimentary WiFi access. Sometimes you’ll have to ask for the password (bimil beonho 비밀 번호) or log in to their system.
+          `,
+        },
+        { id: 12, type: 'image', path: WEATHER, desc: 'weather' },
       ],
     },
   },

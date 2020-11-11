@@ -3,7 +3,7 @@ import Responsive from './Responsive';
 import { mq } from '../../lib/util/device';
 
 import styled from 'styled-components/macro';
-import palette from '../../lib/styles/palette';
+import ReactHtmlParser from 'react-html-parser';
 
 const ContentsBlock = styled.div`
   height: auto;
@@ -116,7 +116,7 @@ const DrawRowComponent = (row, key, toggleTabs) => {
     flexContainer: <FlexContainerResponsive items={items} key={key} />,
     text: (
       <p className="text" key={key}>
-        {text}
+        {ReactHtmlParser(text)}
       </p>
     ),
     tabs: <Tabs tabs={tabs} key={key} toggleTabs={toggleTabs} />,

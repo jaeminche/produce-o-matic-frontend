@@ -22,6 +22,7 @@ const GRAPH02_LOCATIONINCENTIVES = require('./graph02_locationIncentives.svg');
 const TIME_KOREA = require('./time_korea.svg');
 const TIME_YOUR = require('./time_your.svg');
 const WEATHER = require('./weather.jpg');
+const MAP_KTX = require('./map_ktx.png');
 
 export {
   LOGO,
@@ -48,4 +49,5 @@ export {
   TIME_KOREA,
   TIME_YOUR,
   WEATHER,
+  MAP_KTX,
 };
