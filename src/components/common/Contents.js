@@ -67,11 +67,23 @@ const Wrapper = styled(Responsive)`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: -20px;
+    margin: -10px 0;
   }
   .flex-item {
-    width: 50%;
-    margin: 20px;
+    margin: 10px 0;
+    text-align: center;
+  }
+  /* TODO: 세부 조정 */
+  .tab-bar {
+    flex-wrap: wrap;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: ${(props) => (props.isMobile ? '0 5px' : '0 30px')};
+  }
+  .tab-bar-item {
+    ${(props) => props.isMobile && `width: 32%;`}
   }
   ul {
     list-style-type: none;
@@ -97,13 +109,12 @@ const FlexContainerResponsive = (props) => {
   );
 };
 
-// !여기 차례
 const Tabs = (props) => {
   const { tabs, toggleTabs } = props;
   return (
-    <ul className="flex-container">
+    <ul className="flex-container tab-bar">
       {tabs.map((tab, key) => (
-        <li key={key} className="flex-item">
+        <li key={key} className="flex-item tab-bar-item">
           <a href={tab.path}>{tab.name}</a>
         </li>
       ))}
