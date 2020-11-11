@@ -21,7 +21,7 @@ const PermitPage = () => {
         <title>{pagekey}</title>
       </Helmet>
       <HeaderContainer />
-      <SubHeaderContainer menuIndex={0} />
+      <SubHeaderContainer menuIndex={1} />
       <ContentsContainer pagekey={pagekey} />
       <FooterContainer />
     </PermitPageBlock>
