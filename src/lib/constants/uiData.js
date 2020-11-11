@@ -140,7 +140,7 @@ const uiData = {
         },
         {
           id: 3,
-          type: 'flexContainer',
+          type: 'flexContainerResponsive',
           items: [
             {
               id: 1,

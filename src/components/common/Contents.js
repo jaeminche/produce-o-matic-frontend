@@ -103,7 +103,7 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FlexContainerResponsive = (props) => {
-  const { items } = props;
+  const { items, times } = props;
   return (
     <ul className="flex-container-responsive">
       {items.map((item, key) => (
@@ -120,7 +120,13 @@ const FlexContainerResponsive = (props) => {
           ) : item.type === 'imageWithTextInside' ? (
             <>
               <img src={item.path} alt={item.desc} />
-              {item.text && <p className="textInImage">{item.text}</p>}
+              {item.text && (
+                <p className="textInImage">
+                  {item.text}
+                  <br />
+                  {item.text === 'Korea Time' ? times[0] : times[1]}
+                </p>
+              )}
             </>
           ) : (
             <p>{item.text}</p>
@@ -132,7 +138,7 @@ const FlexContainerResponsive = (props) => {
 };
 
 const Tabs = (props) => {
-  const { tabs, toggleTabs } = props;
+  const { tabs } = props;
   return (
     <ul className="flex-container tab-bar">
       {tabs.map((tab, key) => (
@@ -144,7 +150,7 @@ const Tabs = (props) => {
   );
 };
 
-const DrawRowComponent = (row, key, toggleTabs) => {
+const DrawRowComponent = (row, key, times) => {
   const { type, path, text, desc, items, tabs } = row;
   const ui = {
     title: (
@@ -156,7 +162,7 @@ const DrawRowComponent = (row, key, toggleTabs) => {
       <img src={path} className="title-image margin-tb" alt={desc} key={key} />
     ),
     flexContainerResponsive: (
-      <FlexContainerResponsive items={items} key={key} />
+      <FlexContainerResponsive items={items} key={key} times={times} />
     ),
     flexContainer: <FlexContainerResponsive items={items} key={key} />,
     text: (
@@ -164,7 +170,7 @@ const DrawRowComponent = (row, key, toggleTabs) => {
         {ReactHtmlParser(text)}
       </p>
     ),
-    tabs: <Tabs tabs={tabs} key={key} toggleTabs={toggleTabs} />,
+    tabs: <Tabs tabs={tabs} key={key} />,
     sectionTitle: (
       <h2 className="section-title" key={key}>
         {text}
@@ -175,12 +181,13 @@ const DrawRowComponent = (row, key, toggleTabs) => {
   return ui[type];
 };
 
-const Contents = ({ rows, isMobile, tabRows = false, toggleTabs }) => {
+const Contents = ({ rows, isMobile, tabRows = false, times = false }) => {
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>
-        {rows.map((row, key) => DrawRowComponent(row, key, toggleTabs))}
-        {tabRows && tabRows.map((row, key) => DrawRowComponent(row, key))}
+        {rows.map((row, key) => DrawRowComponent(row, key))}
+        {tabRows &&
+          tabRows.map((row, key) => DrawRowComponent(row, key, times))}
       </Wrapper>
     </ContentsBlock>
   );
