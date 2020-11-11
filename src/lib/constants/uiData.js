@@ -7,6 +7,7 @@ import {
   TIME_YOUR,
   WEATHER,
   MAP_KTX,
+  MAP_DRONE,
 } from '../../assets';
 
 const uiData = {
@@ -478,6 +479,69 @@ const uiData = {
         { id: 12, type: 'image', path: WEATHER, desc: 'weather' },
       ],
     },
+  },
+  permit: {
+    id: 3,
+    uiType: 'default',
+    parent: 'produce-o-manual',
+    rows: [
+      { id: 1, type: 'title', text: 'Permit' },
+      {
+        id: 2,
+        type: 'text',
+        text: `South Korea is world renowned for its swiftness and efficiency when it comes to working with government organizations and agencies and getting a filming permit is not an exception. Getting a filming permit is quick and easy in South Korea as long as you know how to communicate with them. 
+        The local authorities are extremely cooperative because they are well aware of the power of culture and the media and the local governments in the areas with popular tourist attractions are competing with each other for more films and TV shows to be produced in their governing regions. What makes it not always easy is the language barrier and you are advised to have a local producer partner to fill in the application forms. 
+        Once an application is submitted, it takes no more than a couple of days to maximum a couple of weeks to get permission to shoot in most public locations and it is also not hard to get permits from privately owned properties as long as they are commercially managed. Prices and conditions for the permit in most public locations are straightforward and clearly stated upfront most of the time so no room for bullshit.
+        Below is the list of some of the most popular and frequently requested filming locations and necessary information on requesting filming permission.`,
+      },
+      { id: 3, type: 'image', path: GYEONGBOKGUNG },
+      {
+        id: 4,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'image',
+            path: GRAPH01_LOCATIONINCENTIVES,
+            desc: '..',
+          },
+          {
+            id: 2,
+            type: 'text',
+            text: `Getting permits for flying a drone can be tricky due to the strict national security laws but it is possible to fly drones in many areas of the country 
+            and the possibilities for exceptions are always there as long as you approach the authority with proper knowledge and motivations. 
+            `,
+          },
+        ],
+      },
+      {
+        id: 5,
+        type: 'sectionTitle',
+        text: 'Drone permit',
+      },
+      {
+        id: 6,
+        type: 'text',
+        text: `General Drone Rules in Korea 
+        - (Source:  <a href='http://jasonteale.com/blog/2019/03/flying-a-drone-in-south-korea'>http://jasonteale.com/blog/2019/03/flying-a-drone-in-south-korea/</a>) 
+            Source: UAV Systems International. *edited to add more clarity for Korea.
+
+            You cannot fly higher than 150 meters (492 feet). You can set the limit in your DJI Go4 app.
+You cannot fly within 5.5km of airfields or in areas where aircraft are operating. These will be regulated
+ in the app but also keep an eye out for hospital helipads (there are more here than you may realize).
+You must fly during daylight hours and only fly in good weather conditions. Use UAV Forecast to let you know the conditions.
+Avoid flying over crowds and respect the privacy of others. This goes double for places like Haeundae beach and other areas. There are police that will patrol these areas due to a higher rate of people taking pictures of sunbathers without permission.
+You cannot fly near Seoul Plaza, military installations, government facilities, power plants, or areas of facilities related to national security
+You cannot fly when there is low visibility or yellow dust. This is a particular issue this year and will continue to be a problem. Fly with caution.
+Do not fly your drone beyond line of sight. This can be an issue for smaller drones but keep it in mind when flying.`,
+      },
+      {
+        id: 7,
+        type: 'sectionTitle',
+        text: 'Drone Zone Maps (서울지도)',
+      },
+      { id: 8, type: 'image', path: MAP_DRONE },
+    ],
   },
 };
 

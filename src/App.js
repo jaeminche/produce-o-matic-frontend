@@ -71,10 +71,6 @@ const App = () => {
         component={GeneralKnowledgePage}
         path="/produce-in-korea/general-knowledge/:active_tab?"
       />
-      {/* <Redirect
-        from="/produce-in-korea/general-knowledge"
-        to="/produce-in-korea/general-knowledge/:active_tab?"
-      /> */}
       <Route component={PermitPage} exact path="/produce-o-manual/permit" />
       <Route component={ContractPage} exact path="/produce-o-manual/contract" />
       <Route

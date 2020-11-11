@@ -23,6 +23,7 @@ const TIME_KOREA = require('./time_korea.svg');
 const TIME_YOUR = require('./time_your.svg');
 const WEATHER = require('./weather.jpg');
 const MAP_KTX = require('./map_ktx.png');
+const MAP_DRONE = require('./map_drone.svg');
 
 export {
   LOGO,
@@ -50,4 +51,5 @@ export {
   TIME_YOUR,
   WEATHER,
   MAP_KTX,
+  MAP_DRONE,
 };
