@@ -55,7 +55,7 @@ const uiData = {
 
         Besides KOFIC’s location incentive program, there are regional supports from most provinces and several major cities of Korea available to foreign projects shot in South Korea and some of the support programs can be extremely beneficial to the projects in development or in pre-production. SFC (Seoul Film Commission) for example, provides up to 30%, or up to USD 265K, for production costs for film projects to be shot in Seoul. For projects with an extraordinarily high marketing value, the cap can be lifted. The City also provides the cost of location scouting and script development to selected foreign producers, directors, writers and principal staff. The location scouting support includes round-trip air tickets for two people, accommodations, a domestic location coordinator and a rental car whereas script development support includes round trip air tickets and a screenplay writing space.
         
-        Find out if your project is eligible and get tailored advice on accessing South Korea’s national and regional incentives and cash rebates by using BUDGET-O-MATIC.`,
+        Find out if your project is eligible and get tailored advice on accessing South Korea’s national and regional incentives and cash rebates by using <a href='/produce-o-matic/budget-o-matic'>BUDGET-O-MATIC</a>.`,
       },
       { id: 6, type: 'image', path: GYEONGBOKGUNG },
     ],
