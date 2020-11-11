@@ -44,6 +44,14 @@ const Wrapper = styled(Responsive)`
     text-align: left;
     white-space: pre-wrap;
   }
+  .textInImage {
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top: 50%;
+    color: white;
+    text-align: center;
+  }
   img {
     width: 100%;
     object-fit: cover;
@@ -62,6 +70,9 @@ const Wrapper = styled(Responsive)`
   .flex-item-responsive {
     width: ${(props) => (props.isMobile ? '100%' : '50%')};
     ${(props) => !props.isMobile && `margin: 20px;`}// space between
+  }
+  .positionRelative {
+    position: relative;
   }
   .flex-container {
     display: flex;
@@ -93,13 +104,24 @@ const Wrapper = styled(Responsive)`
 
 const FlexContainerResponsive = (props) => {
   const { items } = props;
-  console.log('ittt', items);
   return (
     <ul className="flex-container-responsive">
       {items.map((item, key) => (
-        <li key={key} className="flex-item-responsive">
+        <li
+          key={key}
+          className={
+            item.type === 'imageWithTextInside'
+              ? 'flex-item-responsive positionRelative'
+              : 'flex-item-responsive'
+          }
+        >
           {item.type === 'image' ? (
             <img src={item.path} alt={item.desc} />
+          ) : item.type === 'imageWithTextInside' ? (
+            <>
+              <img src={item.path} alt={item.desc} />
+              {item.text && <p className="textInImage">{item.text}</p>}
+            </>
           ) : (
             <p>{item.text}</p>
           )}

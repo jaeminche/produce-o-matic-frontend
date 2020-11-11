@@ -144,14 +144,14 @@ const uiData = {
           items: [
             {
               id: 1,
-              type: 'image',
+              type: 'imageWithTextInside',
               path: TIME_KOREA,
               desc: 'Korea Time',
               text: 'Korea Time',
             },
             {
               id: 2,
-              type: 'image',
+              type: 'imageWithTextInside',
               path: TIME_YOUR,
               desc: 'Your Time',
               text: 'Your time',
