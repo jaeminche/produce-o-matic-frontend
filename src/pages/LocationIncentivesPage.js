@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import SubHeaderContainer from '../containers/common/SubHeaderContainer';
 import ContentsContainer from '../containers/common/ContentsContainer';
+import IntroTextContainer from '../containers/common/IntroTextContainer';
 import FooterContainer from '../containers/common/FooterContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
@@ -23,6 +24,7 @@ const LocationIncentivesPage = () => {
       <HeaderContainer />
       <SubHeaderContainer menuIndex={0} />
       <ContentsContainer pagekey={pagekey} />
+      <IntroTextContainer />
       <FooterContainer />
     </LocationIncentivesPageBlock>
   );
