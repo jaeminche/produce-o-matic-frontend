@@ -19,6 +19,9 @@ const YOUTUBE_ICON = require('./youtube.svg');
 const WHATSAPP_ICON = require('./whatsapp.svg');
 const GRAPH01_LOCATIONINCENTIVES = require('./graph01_locationIncentives.svg');
 const GRAPH02_LOCATIONINCENTIVES = require('./graph02_locationIncentives.svg');
+const TIME_KOREA = require('./time_korea.svg');
+const TIME_YOUR = require('./time_your.svg');
+const WEATHER = require('./weather.jpg');
 
 export {
   LOGO,
@@ -42,4 +45,7 @@ export {
   THUMB4_OPEOPLE,
   GRAPH01_LOCATIONINCENTIVES,
   GRAPH02_LOCATIONINCENTIVES,
+  TIME_KOREA,
+  TIME_YOUR,
+  WEATHER,
 };

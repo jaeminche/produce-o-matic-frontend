@@ -57,7 +57,7 @@ const menus = [
       {
         id: 3,
         text: 'General Knowledge',
-        path: `/produce-in-korea/general-knowledge`,
+        path: `/produce-in-korea/general-knowledge/korea`,
       },
     ],
   },

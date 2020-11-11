@@ -3,6 +3,9 @@ import {
   GRAPH01_LOCATIONINCENTIVES,
   GRAPH02_LOCATIONINCENTIVES,
   GYEONGBOKGUNG,
+  TIME_KOREA,
+  TIME_YOUR,
+  WEATHER,
 } from '../../assets';
 
 const uiData = {
@@ -27,7 +30,7 @@ const uiData = {
       },
       {
         id: 4,
-        type: 'flexContainer',
+        type: 'flexContainerResponsive',
         items: [
           {
             id: 1,
@@ -54,6 +57,403 @@ const uiData = {
       },
       { id: 6, type: 'image', path: GYEONGBOKGUNG },
     ],
+  },
+  generalKnowledge: {
+    id: 2,
+    uiType: 'withTabs',
+    parent: 'produce-in-korea',
+    rows: [
+      { id: 1, type: 'title', text: 'General Knowledge' },
+      {
+        id: 2,
+        type: 'tabs',
+        tabs: [
+          {
+            id: 1,
+            name: 'Korea',
+            path: '/produce-in-korea/general-knowledge/korea',
+            tabRowsKeys: ['Timezone', 'Weather', 'Language'],
+          },
+          {
+            id: 2,
+            name: 'Security & Health',
+            path: '/produce-in-korea/general-knowledge/security-health',
+            tabRowsKeys: ['Visa', 'Health', 'Security', 'Emergency Numbers'],
+          },
+          {
+            id: 3,
+            name: 'Money',
+            path: '/produce-in-korea/general-knowledge/money',
+            tabRowsKeys: ['Currency & Money Exchange', 'Banking & Payment'],
+          },
+          {
+            id: 4,
+            name: 'Transportation',
+            path: '/produce-in-korea/general-knowledge/transportation',
+            tabRowsKeys: [
+              'Maps',
+              'T-Money Card',
+              'Subway & Bus Fares',
+              'Kakao T',
+              'KTX',
+              'Quick-service',
+            ],
+          },
+          {
+            id: 5,
+            name: 'Food',
+            path: '/produce-in-korea/general-knowledge/food',
+            tabRowsKeys: [
+              'default',
+              'Vegetarian, Vegan and Halal Food',
+              'Delivery Apps',
+            ],
+          },
+          {
+            id: 6,
+            name: 'Telecommunication',
+            path: '/produce-in-korea/general-knowledge/telecommunication',
+            tabRowsKeys: [
+              'SIM Card',
+              'WiFi Egg',
+              'Mobile Rental',
+              'WiFi Access',
+            ],
+          },
+        ],
+      },
+    ],
+    tabRows: {
+      korea: [
+        {
+          id: 1,
+          type: 'sectionTitle',
+          text: 'Time Zone',
+        },
+        {
+          id: 2,
+          type: 'text',
+          text:
+            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+        },
+        {
+          id: 3,
+          type: 'flexContainer',
+          items: [
+            {
+              id: 1,
+              type: 'image',
+              path: TIME_KOREA,
+              desc: 'Korea Time',
+              text: 'Korea Time',
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: TIME_YOUR,
+              desc: 'Your Time',
+              text: 'Your time',
+            },
+          ],
+        },
+        {
+          id: 4,
+          type: 'sectionTitle',
+          text: 'Weather',
+        },
+        {
+          id: 5,
+          type: 'text',
+          text:
+            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+        },
+        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 7,
+          type: 'sectionTitle',
+          text: 'Language',
+        },
+        {
+          id: 8,
+          type: 'text',
+          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
+
+            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+        },
+        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+      ],
+      'security-health': [
+        {
+          id: 1,
+          type: 'sectionTitle',
+          text: 'Visa',
+        },
+        {
+          id: 2,
+          type: 'text',
+          text: `A valid passport is required to enter the Republic of Korea (ROK). Nationals of non-visa waiver countries need to apply for visas at a Korean embassy or consulate before entering South Korea. A visa is not required for nationals of visa waiver or visa-free countries who wish to enter the country for tourism purposes only. You can find more detailed information on the government website.
+            `,
+        },
+        { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 4,
+          type: 'sectionTitle',
+          text: 'Weather',
+        },
+        {
+          id: 5,
+          type: 'text',
+          text:
+            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+        },
+        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 7,
+          type: 'sectionTitle',
+          text: 'Language',
+        },
+        {
+          id: 8,
+          type: 'text',
+          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
+
+            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+        },
+        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+      ],
+      money: [
+        {
+          id: 1,
+          type: 'sectionTitle',
+          text: 'Time Zone',
+        },
+        {
+          id: 2,
+          type: 'text',
+          text:
+            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+        },
+        {
+          id: 3,
+          type: 'flexContainer',
+          items: [
+            {
+              id: 1,
+              type: 'image',
+              path: TIME_KOREA,
+              desc: 'Korea Time',
+              text: 'Korea Time',
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: TIME_YOUR,
+              desc: 'Your Time',
+              text: 'Your time',
+            },
+          ],
+        },
+        {
+          id: 4,
+          type: 'sectionTitle',
+          text: 'Weather',
+        },
+        {
+          id: 5,
+          type: 'text',
+          text:
+            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+        },
+        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 7,
+          type: 'sectionTitle',
+          text: 'Language',
+        },
+        {
+          id: 8,
+          type: 'text',
+          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
+
+            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+        },
+        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+      ],
+      transportation: [
+        {
+          id: 1,
+          type: 'sectionTitle',
+          text: 'Time Zone',
+        },
+        {
+          id: 2,
+          type: 'text',
+          text:
+            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+        },
+        {
+          id: 3,
+          type: 'flexContainer',
+          items: [
+            {
+              id: 1,
+              type: 'image',
+              path: TIME_KOREA,
+              desc: 'Korea Time',
+              text: 'Korea Time',
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: TIME_YOUR,
+              desc: 'Your Time',
+              text: 'Your time',
+            },
+          ],
+        },
+        {
+          id: 4,
+          type: 'sectionTitle',
+          text: 'Weather',
+        },
+        {
+          id: 5,
+          type: 'text',
+          text:
+            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+        },
+        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 7,
+          type: 'sectionTitle',
+          text: 'Language',
+        },
+        {
+          id: 8,
+          type: 'text',
+          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
+
+            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+        },
+        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+      ],
+      food: [
+        {
+          id: 1,
+          type: 'sectionTitle',
+          text: 'Time Zone',
+        },
+        {
+          id: 2,
+          type: 'text',
+          text:
+            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+        },
+        {
+          id: 3,
+          type: 'flexContainer',
+          items: [
+            {
+              id: 1,
+              type: 'image',
+              path: TIME_KOREA,
+              desc: 'Korea Time',
+              text: 'Korea Time',
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: TIME_YOUR,
+              desc: 'Your Time',
+              text: 'Your time',
+            },
+          ],
+        },
+        {
+          id: 4,
+          type: 'sectionTitle',
+          text: 'Weather',
+        },
+        {
+          id: 5,
+          type: 'text',
+          text:
+            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+        },
+        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 7,
+          type: 'sectionTitle',
+          text: 'Language',
+        },
+        {
+          id: 8,
+          type: 'text',
+          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
+
+            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+        },
+        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+      ],
+      telecommunication: [
+        {
+          id: 1,
+          type: 'sectionTitle',
+          text: 'Time Zone',
+        },
+        {
+          id: 2,
+          type: 'text',
+          text:
+            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+        },
+        {
+          id: 3,
+          type: 'flexContainer',
+          items: [
+            {
+              id: 1,
+              type: 'image',
+              path: TIME_KOREA,
+              desc: 'Korea Time',
+              text: 'Korea Time',
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: TIME_YOUR,
+              desc: 'Your Time',
+              text: 'Your time',
+            },
+          ],
+        },
+        {
+          id: 4,
+          type: 'sectionTitle',
+          text: 'Weather',
+        },
+        {
+          id: 5,
+          type: 'text',
+          text:
+            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+        },
+        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 7,
+          type: 'sectionTitle',
+          text: 'Language',
+        },
+        {
+          id: 8,
+          type: 'text',
+          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
+
+            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+        },
+        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+      ],
+    },
   },
 };
 

@@ -14,14 +14,15 @@ const LocationIncentivesPageBlock = styled.div`
 `;
 
 const LocationIncentivesPage = () => {
+  const pagekey = 'locationIncentives';
   return (
     <LocationIncentivesPageBlock>
       <Helmet>
-        <title>LocationIncentives_PRODUCE-O-MATIC</title>
+        <title>{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={0} />
-      <ContentsContainer />
+      <ContentsContainer pagekey={pagekey} />
       <FooterContainer />
     </LocationIncentivesPageBlock>
   );

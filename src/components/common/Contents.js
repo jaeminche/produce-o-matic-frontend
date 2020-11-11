@@ -41,15 +41,25 @@ const Wrapper = styled(Responsive)`
     margin-top: 40px;
     margin-bottom: 40px;
   }
-  .flex-container {
+  .flex-container-responsive {
     display: flex;
     flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
     justify-content: space-between;
     ${(props) => !props.isMobile && `margin: -20px;`}// space between
   }
-  .flex-item {
+  .flex-item-responsive {
     width: ${(props) => (props.isMobile ? '100%' : '50%')};
     ${(props) => !props.isMobile && `margin: 20px;`}// space between
+  }
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: -20px;
+  }
+  .flex-item {
+    width: 50%;
+    margin: 20px;
   }
   ul {
     list-style-type: none;
@@ -57,13 +67,13 @@ const Wrapper = styled(Responsive)`
   }
 `;
 
-const FlexContainer = (props) => {
+const FlexContainerResponsive = (props) => {
   const { items } = props;
   console.log('ittt', items);
   return (
-    <ul className="flex-container">
+    <ul className="flex-container-responsive">
       {items.map((item, key) => (
-        <li key={key} className="flex-item">
+        <li key={key} className="flex-item-responsive">
           {item.type === 'image' ? (
             <img src={item.path} alt={item.desc} />
           ) : (
@@ -75,25 +85,57 @@ const FlexContainer = (props) => {
   );
 };
 
-const DrawRowComponent = (item) => {
-  const { type, path, text, desc, items } = item;
+// !여기 차례
+const Tabs = (props) => {
+  const { tabs, toggleTabs } = props;
+  return (
+    <ul className="flex-container">
+      {tabs.map((tab, key) => (
+        <li key={key} className="flex-item">
+          <a href={tab.path}>{tab.name}</a>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const DrawRowComponent = (row, key, toggleTabs) => {
+  const { type, path, text, desc, items, tabs } = row;
   const ui = {
-    title: <h1 className="title">{text}</h1>,
-    image: <img src={path} className="title-image margin-tb" alt={desc} />,
-    flexContainer: <FlexContainer items={items} />,
-    text: <p className="text">{text}</p>,
+    title: (
+      <h1 className="title" key={key}>
+        {text}
+      </h1>
+    ),
+    image: (
+      <img src={path} className="title-image margin-tb" alt={desc} key={key} />
+    ),
+    flexContainerResponsive: (
+      <FlexContainerResponsive items={items} key={key} />
+    ),
+    flexContainer: <FlexContainerResponsive items={items} key={key} />,
+    text: (
+      <p className="text" key={key}>
+        {text}
+      </p>
+    ),
+    tabs: <Tabs tabs={tabs} key={key} toggleTabs={toggleTabs} />,
+    sectionTitle: (
+      <h2 className="section-title" key={key}>
+        {text}
+      </h2>
+    ),
   };
 
   return ui[type];
 };
 
-const Contents = ({ uiData, isMobile }) => {
-  const { rows } = uiData.uiType === 'default' && uiData;
-
+const Contents = ({ rows, isMobile, tabRows = false, toggleTabs }) => {
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>
-        {rows.map((row, key) => DrawRowComponent(row))}
+        {rows.map((row, key) => DrawRowComponent(row, key, toggleTabs))}
+        {tabRows && tabRows.map((row, key) => DrawRowComponent(row, key))}
       </Wrapper>
     </ContentsBlock>
   );

@@ -46,6 +46,7 @@ ReactDOM.render(
         </HelmetProvider>
       </BrowserRouter>
     </Provider>
+    ,
   </React.StrictMode>,
   document.getElementById('root'),
 );

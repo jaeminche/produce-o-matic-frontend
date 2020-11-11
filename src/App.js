@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import PostsListPage from './pages/PostsListPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -69,9 +69,12 @@ const App = () => {
       />
       <Route
         component={GeneralKnowledgePage}
-        exact
-        path="/produce-in-korea/general-knowledge"
+        path="/produce-in-korea/general-knowledge/:active_tab?"
       />
+      {/* <Redirect
+        from="/produce-in-korea/general-knowledge"
+        to="/produce-in-korea/general-knowledge/:active_tab?"
+      /> */}
       <Route component={PermitPage} exact path="/produce-o-manual/permit" />
       <Route component={ContractPage} exact path="/produce-o-manual/contract" />
       <Route

@@ -1,26 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useParams, useHistory } from 'react-router-dom';
 import { uiData } from '../../lib/constants/uiData';
 import Contents from '../../components/common/Contents';
 
-const ContentsContainer = ({ location }) => {
+const ContentsContainer = ({ pagekey, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const history = useHistory();
+  const { active_tab } = useParams();
 
+  const DEFAULT_ACTIVE_TAB = 'korea';
   const { pathname } = location;
-  const _uiData = dataRouter(pathname);
 
-  function dataRouter(path) {
-    switch (path) {
-      case '/produce-in-korea/location-incentives':
-        return uiData['locationIncentives'];
-      case '/produce-in-korea/general-knowledge':
-        return uiData['generalKnowledge'];
-      default:
+  // ? set rows for ui data, tabRows as well if any
+  const { rows, tabRows } = uiData[pagekey];
+
+  const _tabRows = tabRows && tabRows[active_tab];
+
+  useEffect(() => {
+    if (tabRows && !active_tab) {
+      history.push(`${pathname}/${DEFAULT_ACTIVE_TAB}`);
     }
-  }
+  }, []);
 
-  return <Contents uiData={_uiData} isMobile={isMobile} />;
+  const toggleTabs = (tab) => {
+    if (active_tab !== tab) {
+      history.push(`${pathname}/${tab}`);
+    }
+  };
+
+  return (
+    <Contents
+      rows={rows}
+      tabRows={_tabRows}
+      toggleTabs={tabRows && toggleTabs}
+      isMobile={isMobile}
+    />
+  );
 };
 
 export default withRouter(ContentsContainer);
