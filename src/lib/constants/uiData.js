@@ -549,6 +549,40 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
       { id: 8, type: 'image', path: MAP_DRONE },
     ],
   },
+  contract: {
+    id: 4,
+    uiType: 'default',
+    parent: 'produce-o-manual',
+    rows: [
+      { id: 1, type: 'title', text: 'Contract' },
+      { id: 2, type: 'image', path: GYEONGBOKGUNG },
+      {
+        id: 3,
+        type: 'text',
+        text: `Long before Bong Joonho’s Parasite winning the Oscars, South Korea’s film industry has long been known outside the world for its unique community culture, work ethics and high quality but also for the notorious excessive overtime on the other hand. Korean film crews are generally motivated and hard working people with a sense of pride. Since the introduction of the Labor Standard Act in 2012 that states weekly work hours and overtime regulations, the industry players have worked hard together to settle it down and now most employers in the industry commonly practice it. The hourly minimum wage of 2020 is confirmed at 8,590 KRW (USD 7.10) and the work hours are limited to 52 hours per week. Global movement of #Metoo campaign had a great influence on Korea’s film industry and made critical changes in the culture as well as in the system. It is now a compulsory condition to take an education session on sexual harassment for any project that receives grants or supports from Korea Film Council and other regional film funds including KOFIC’s location incentive program.
+
+        Download sample contracts here:
+
+        Local producer / fixer
+        Drone operator
+        Sound mixer`,
+      },
+    ],
+  },
+  contact_us: {
+    id: 7,
+    uiType: 'default',
+    parent: 'produce-o-people',
+    rows: [
+      { id: 1, type: 'title', text: 'Contact Us' },
+      { id: 2, type: 'image', path: GYEONGBOKGUNG },
+      {
+        id: 3,
+        type: 'text',
+        text: `under developement`,
+      },
+    ],
+  },
 };
 
 export { uiData };
