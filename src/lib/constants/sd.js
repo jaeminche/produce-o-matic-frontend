@@ -1,5 +1,5 @@
 const sampleUserData = {
-  id: '',
+  id: '', // to be getnerated on submission success
   type: '',
   currency: '',
   date_submitted: '',
