@@ -2,7 +2,7 @@
 import React from 'react';
 import Responsive from './Responsive';
 import { mq } from '../../lib/util/device';
-
+import { PageTitle } from './SmallComponents';
 import styled from 'styled-components/macro';
 import ReactHtmlParser from 'react-html-parser';
 
@@ -12,15 +12,8 @@ const ContentsBlock = styled.div`
 
 const Wrapper = styled(Responsive)`
   text-align: left;
-  margin-top: 80px;
+  padding-top: 80px;
 
-  .title {
-    ${mq({
-      fontSize: ['26px', '32px', , '40px', , '50px', ,],
-    })}
-    margin-bottom: 10px;
-    text-align: center;
-  }
   .section-title {
     font-family: Lato;
     ${mq({
@@ -182,11 +175,7 @@ const Tabs = (props) => {
 const DrawRowComponent = (row, key, times) => {
   const { type, path, text, desc, items, tabs } = row;
   const ui = {
-    title: (
-      <h1 className="title" key={key}>
-        {text}
-      </h1>
-    ),
+    title: <PageTitle text={text} key={key} />,
     image: (
       <img src={path} className="title-image margin-tb" alt={desc} key={key} />
     ),

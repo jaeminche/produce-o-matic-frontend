@@ -19,7 +19,7 @@ const palette = {
     'rgba(124,124,124,1)',
   ],
   background: ['rgba(17, 17, 17, 1)', 'rgba(42, 42, 42, 1)'],
-  button: ['rgba(7,69,189,1)'],
+  button: ['rgba(7,69,189,1)', 'rgba(27,27,27,1)'],
   cyan: [
     'rgba(227,250,252,1)',
     'rgba(197,246,250,1)',
@@ -32,6 +32,17 @@ const palette = {
     'rgba(12,133,153,1)',
     'rgba(11,114,133,1)',
   ],
+  budgetomatic: {
+    background: ['rgba(229,229,229,1.0)', 'rgba(255,255,255,1)'],
+    text: [
+      'rgba(41,41,41,1)',
+      'rgba(0,32,51,1)',
+      'rgba(122,122,122,1)',
+      'rgba(255,255,255,1)',
+    ],
+    border: ['rgba(165,165,165,1)'],
+    table: ['rgba(27,27,27,1)', 'rgba(236,243,255,1)'],
+  },
 };
 
 export default palette;
