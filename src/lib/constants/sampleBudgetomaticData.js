@@ -441,22 +441,21 @@ const BUDGETOMATIC_UIDATA = {
         2002: {
           name: 'Red Raven(EF-Mount)',
           unit: 'day',
-          isAsyncVariableRate: true,
+          rateType: 'fixedprices-async', // API request, if rateType's fixedprices-async
           rate: RATES_CAMERA['2002'].rates,
           remark: '',
         },
         2003: {
           name: 'SONY PXW-FX9',
           unit: 'day',
-          isAsyncVariableRate: true,
+          rateType: 'fixedprices-async',
           rate: RATES_CAMERA['2003'].rates,
           remark: '',
         },
         2099: {
           name: 'EOS 5D Mark IV',
           unit: 'day',
-          isAsyncVariableRate: true,
-          // API request, if isAsyncVariableRate's true
+          rateType: 'fixedprices-async',
           rate: RATES_CAMERA['2099'].rates,
           remark: '',
         },
@@ -468,21 +467,21 @@ const BUDGETOMATIC_UIDATA = {
         2101: {
           name: 'Arri',
           unit: 'day',
-          isAsyncVariableRate: true,
+          rateType: 'fixedprices-async',
           rate: RATES_LIGHTING['2101'].rates,
           remark: '',
         },
         2102: {
           name: 'Led',
           unit: 'day',
-          isAsyncVariableRate: true,
+          rateType: 'fixedprices-async',
           rate: RATES_LIGHTING['2102'].rates,
           remark: '',
         },
         2103: {
           name: 'Tungsten',
           unit: 'day',
-          isAsyncVariableRate: true,
+          rateType: 'fixedprices-async',
           rate: RATES_LIGHTING['2103'].rates,
           remark: '',
         },
@@ -568,52 +567,58 @@ const BUDGETOMATIC_UIDATA = {
       items: {
         5001: {
           name: 'Simcard Purchase',
-          unit: ' ',
+          unit: 'simcards',
           rate: 10000,
           remark: '',
         },
         5002: {
           name: 'Mobile Phone Rental',
           unit: 'day',
-          isAsyncVariableRate: true,
+          rateType: 'fixedprices-async',
           rate: RATES_COMMUNICATIONS['5002'].rates,
           remark: '',
         },
         5003: {
           name: 'Wifi Egg Rental',
           unit: 'day',
-          // use "if not isAsyncVariableRate && typeof rate === 'object' ""
-          rate: [
-            [10, 8800],
-            [20, 7700],
-            [30, 6600],
-          ],
+          rateType: 'bysection',
+          rate: [{ 10: 8800 }, { 20: 7700 }, { 30: 6600 }],
           remark: '',
         },
       },
     },
-    200: {},
+    5100: {
+      cat_s: 'DELIVERY',
+      items: {
+        5101: {
+          name: 'Motorcycle Express',
+          unit: 'times',
+          rate: null,
+          remark: 'aka "Quick"',
+        },
+      },
+    },
   },
   location_fee: {
-    100: {
-      cat_s: 'PRODUCTION DEPARTMENT',
+    6000: {
+      cat_s: 'LOCATION FEE',
       items: {
-        101: {
-          name: 'Producer/Fixer',
+        6001: {
+          name: 'Royal Palace',
           unit: 'day',
-          rate: 700000,
+          rate: null,
           remark: '',
         },
-        102: {
-          name: 'Production Interpreter',
+        6002: {
+          name: 'Metro',
           unit: 'day',
-          rate: 350000,
+          rate: null,
           remark: '',
         },
-        103: {
-          name: 'Producer/Fixer',
+        6003: {
+          name: 'Public Park',
           unit: 'day',
-          rate: 200000,
+          rate: null,
           remark: '',
         },
       },
