@@ -5,10 +5,30 @@ import BudgetOMatic from '../../components/budgetOMatic/BudgetOMatic';
 import { BUDGETOMATIC_UIDATA } from '../../lib/constants/sampleBudgetomaticData';
 
 const BudgetOMaticContainer = ({ location }) => {
+  const [typeOfProduction, setTypeOfProduction] = useState('documentary');
+  const [shootingDays, setShootingDays] = useState(1);
+  const [currency, setCurrency] = useState('KRW');
+
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const history = useHistory();
 
-  return <BudgetOMatic isMobile={isMobile} uiData={BUDGETOMATIC_UIDATA} />;
+  const typeOptions = [
+    'diy',
+    'documentary',
+    'indie_feature',
+    'tv_commercial',
+    'online_commercial',
+  ];
+  return (
+    <BudgetOMatic
+      typeOfProduction={typeOfProduction}
+      typeOptions={typeOptions}
+      shootingDays={shootingDays}
+      currency={currency}
+      uiData={BUDGETOMATIC_UIDATA}
+      isMobile={isMobile}
+    />
+  );
 };
 
 export default withRouter(BudgetOMaticContainer);

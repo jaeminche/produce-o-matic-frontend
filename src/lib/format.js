@@ -29,4 +29,13 @@ function addZero(k) {
   }
 }
 
-export { formatTime };
+function toLowerCase(str) {
+  return str.toLowerCase();
+}
+
+function removeSpaceAndUnderbar(str) {
+  const regex = /[_ ]/gi;
+  return str.replace(regex, '');
+}
+
+export { formatTime, toLowerCase, removeSpaceAndUnderbar };
