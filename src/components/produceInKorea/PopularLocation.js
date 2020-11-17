@@ -10,7 +10,7 @@ const PopularLocationBlock = styled.div`
 
 const Wrapper = styled(Responsive)`
   text-align: left;
-  margin-top: 80px;
+  padding-top: 80px;
 
   .title {
     ${mq({

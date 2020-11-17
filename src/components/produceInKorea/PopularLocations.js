@@ -15,7 +15,7 @@ const Wrapper = styled(Responsive)`
       fontSize: ['24px', '24px', , '42px', , '60px', ,],
     })};
     text-align: center;
-    margin-top: 80px;
+    padding-top: 80px;
     margin-bottom: 40px;
   }
   .title-image {

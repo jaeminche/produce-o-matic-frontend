@@ -12,7 +12,7 @@ const IntroTextBlock = styled.div`
 const Wrapper = styled(Responsive)`
   padding: 0;
   text-align: center;
-  margin-top: 80px;
+  padding-top: 80px;
   margin-bottom: 80px;
   ${mq({ fontSize: ['16px', , , '24px', , , ,] })}
   .viewmore {
