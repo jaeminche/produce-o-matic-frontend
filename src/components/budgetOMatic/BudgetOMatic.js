@@ -49,19 +49,34 @@ const StyledTable = styled.div`
   .row {
     border-bottom: 1px solid ${palette.budgetomatic.border};
     width: 100%;
-    padding: 40px;
+    ${mq({
+      padding: ['18px', '20px', , '40px', , , ,],
+    })};
     background: ${palette.budgetomatic.table[2]};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
   .left {
+    flex: 1;
     text-align: right;
-    width: 25%;
+    ${mq({
+      minWidth: ['80px', '90px', , '150px', , , ,],
+    })};
+    ${mq({
+      marginRight: ['40px', '45px', , '70px', , '90px', ,],
+    })}
   }
   .right {
+    flex: 7;
     text-align: right;
-    width: auto;
+    display: flex;
+    flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .type-option {
+    display: inline-block;
   }
 `;
 
@@ -76,26 +91,27 @@ const formatType = {
 };
 
 const Controller = (props) => {
-  const { typeOfProduction, typeOptions } = props;
-  console.log(props);
+  const { typeOfProduction, typeOptions, onChangeType, isMobile } = props;
+
   return (
-    <StyledTable className="table">
+    <StyledTable className="table" isMobile={isMobile}>
       <div className="row">
-        <div className="left">Type of Production</div>
-        <div className="right">
-          {typeOptions.map((option, key) => {
+        <div className="key-section left">Type of Production</div>
+        <div className="key-section right" onChange={onChangeType}>
+          {typeOptions.map((typeOption, key) => {
             return (
-              <span>
-                <input
-                  type="radio"
-                  id={option}
-                  name="type-option"
-                  value={option}
-                  className="type-option"
-                  checked={option === typeOfProduction}
-                  key={key}
-                ></input>
-                <label> {formatType[option]}</label>
+              <span className="type-option" key={key}>
+                <label for={typeOption}>
+                  <input
+                    type="radio"
+                    id={typeOption}
+                    name="typeOption"
+                    value={typeOption}
+                    className="typeOption"
+                    checked={typeOption === typeOfProduction}
+                  />
+                  {formatType[typeOption]}
+                </label>
               </span>
             );
           })}
@@ -113,13 +129,14 @@ const Controller = (props) => {
   );
 };
 
-const BudgetOMatic = ({ typeOfProduction, typeOptions, uiData, isMobile }) => {
+const BudgetOMatic = (props) => {
+  const { typeOfProduction, typeOptions, uiData, isMobile } = props;
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
         <PageTitle text="Budget-O-Matic" />
         <div className="spacer" />
-        <Controller typeOptions={typeOptions} />
+        <Controller {...props} />
       </Wrapper>
     </BudgetOMaticBlock>
   );

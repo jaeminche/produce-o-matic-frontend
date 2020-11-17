@@ -19,12 +19,19 @@ const BudgetOMaticContainer = ({ location }) => {
     'tv_commercial',
     'online_commercial',
   ];
+
+  const onChangeType = (e) => {
+    console.log(e.target.value);
+    setTypeOfProduction(e.target.value);
+  };
+
   return (
     <BudgetOMatic
       typeOfProduction={typeOfProduction}
       typeOptions={typeOptions}
       shootingDays={shootingDays}
       currency={currency}
+      onChangeType={onChangeType}
       uiData={BUDGETOMATIC_UIDATA}
       isMobile={isMobile}
     />
