@@ -37,27 +37,28 @@ const Wrapper = styled(Responsive)`
 
 const StyledTable = styled.div`
   box-sizing: border-box;
-  border: 1px solid ${palette.budgetomatic.border};
+  border: 1px solid ${palette.budgetomatic.border[0]};
   border-radius: 13px;
 
-  .row:first-child {
-    border-radius: 13px 13px 0 0;
-  }
-  .row:last-child {
-    border-radius: 0 0 13px 13px;
-  }
-  .row {
-    border-bottom: 1px solid ${palette.budgetomatic.border};
+  .row-container {
+    border-bottom: 1px solid ${palette.budgetomatic.border[0]};
     width: 100%;
     ${mq({
-      padding: ['18px', '20px', , '40px', , , ,],
+      padding: ['9px 18px', '10px 20px', , '20px 40px', , , ,],
     })};
     background: ${palette.budgetomatic.table[2]};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    min-height: 100px;
   }
-  .left {
+  .row-container:first-child {
+    border-radius: 13px 13px 0 0;
+  }
+  .row-container:last-child {
+    border-radius: 0 0 13px 13px;
+  }
+  .left-item {
     flex: 1;
     text-align: right;
     ${mq({
@@ -67,16 +68,38 @@ const StyledTable = styled.div`
       marginRight: ['40px', '45px', , '70px', , '90px', ,],
     })}
   }
-  .right {
+  .vertically-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .right-item {
     flex: 7;
-    text-align: right;
+  }
+  .radio-box {
+    text-align: ${(props) => (props.isMobile ? 'left' : 'right')};
     display: flex;
     flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .type-option {
+  .radio-item {
     display: inline-block;
+  }
+  .select-box {
+    float: left;
+    width: 100%;
+    max-width: 300px;
+    height: 48px;
+    border: 1px solid ${palette.budgetomatic.border[1]};
+    border-radius: 5px;
+    padding: 13px;
+    background: white;
+
+    option {
+      width: inherit;
+      max-width: inherit;
+    }
   }
 `;
 
@@ -91,17 +114,30 @@ const formatType = {
 };
 
 const Controller = (props) => {
-  const { typeOfProduction, typeOptions, onChangeType, isMobile } = props;
+  const {
+    typeOfProduction,
+    shootingDays,
+    currency,
+    OPTIONS,
+    onChangeTypeOfProduction,
+    onChangeShootingDays,
+    onChangeCurrency,
+    uiData,
+    isMobile,
+  } = props;
 
   return (
     <StyledTable className="table" isMobile={isMobile}>
-      <div className="row">
-        <div className="key-section left">Type of Production</div>
-        <div className="key-section right" onChange={onChangeType}>
-          {typeOptions.map((typeOption, key) => {
+      <div className="row-container">
+        <div className="left-item vertically-center">Type of Production</div>
+        <div
+          id="controller01-typeOfProduction"
+          className="right-item radio-box"
+        >
+          {OPTIONS.typeOfProduction.map((typeOption, key) => {
             return (
-              <span className="type-option" key={key}>
-                <label for={typeOption}>
+              <span className="vertically-center" key={key}>
+                <label htmlFor={typeOption} className="radio-item">
                   <input
                     type="radio"
                     id={typeOption}
@@ -109,6 +145,7 @@ const Controller = (props) => {
                     value={typeOption}
                     className="typeOption"
                     checked={typeOption === typeOfProduction}
+                    onChange={onChangeTypeOfProduction}
                   />
                   {formatType[typeOption]}
                 </label>
@@ -117,26 +154,65 @@ const Controller = (props) => {
           })}
         </div>
       </div>
-      <div className="row">
-        <div className="left">Shooting Days</div>
-        <div className="right"></div>
+
+      <div className="row-container">
+        <div className="left-item vertically-center">
+          <label htmlFor="shootingDays">Shooting Days</label>
+        </div>
+        <div className="right-item vertically-center">
+          <select
+            value={shootingDays}
+            onChange={onChangeShootingDays}
+            id="controller02-shootingDays"
+            name="shootingDays"
+            className="select-box"
+            required
+          >
+            {OPTIONS.shootingDays.map((elem, key) => (
+              <option value={elem} key={key}>
+                {elem}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-      <div className="row">
-        <div className="left">Currency</div>
-        <div className="right"></div>
+
+      <div className="row-container">
+        <div className="left-item vertically-center">
+          <label htmlFor="currency">Currency</label>
+        </div>
+        <div className="right-item vertically-center">
+          <select
+            value={currency}
+            onChange={onChangeCurrency}
+            id="controller03-currency"
+            name="currency"
+            className="select-box"
+            required
+          >
+            {OPTIONS.currency.map((elem, key) => (
+              <option value={elem} key={key}>
+                {elem}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </StyledTable>
   );
 };
 
 const BudgetOMatic = (props) => {
-  const { typeOfProduction, typeOptions, uiData, isMobile } = props;
+  const { onSubmit, isMobile } = props;
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
         <PageTitle text="Budget-O-Matic" />
         <div className="spacer" />
-        <Controller {...props} />
+        <form onSubmit={onSubmit}>
+          <Controller {...props} />
+          <input type="submit" value="Submit" />
+        </form>
       </Wrapper>
     </BudgetOMaticBlock>
   );
