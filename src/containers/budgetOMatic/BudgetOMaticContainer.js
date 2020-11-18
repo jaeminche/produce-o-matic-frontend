@@ -2,16 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { withRouter, useHistory } from 'react-router-dom';
 import BudgetOMatic from '../../components/budgetOMatic/BudgetOMatic';
-import { BUDGETOMATIC_UIDATA } from '../../lib/constants/sampleBudgetomaticData';
+import {
+  BUDGETOMATIC_UIDATA,
+  _scenario,
+} from '../../lib/constants/sampleBudgetomaticData';
 import { generateQt } from '../../lib/helper';
 
 const BudgetOMaticContainer = ({ location }) => {
+  // 1. request scenario data and full data set
+  const [scenario, setScenario] = useState(_scenario);
   const [typeOfProduction, setTypeOfProduction] = useState('documentary');
   const [shootingDays, setShootingDays] = useState(1);
   const [currency, setCurrency] = useState('KRW');
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const history = useHistory();
+
+  console.log('scenario', scenario[typeOfProduction], BUDGETOMATIC_UIDATA);
+
+  useEffect(() => {
+    if (scenario && typeOfProduction) {
+      setShootingDays(scenario[typeOfProduction].shootingDays);
+    }
+  }, [typeOfProduction]);
 
   const OPTIONS = {
     typeOfProduction: [
