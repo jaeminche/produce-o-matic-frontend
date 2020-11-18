@@ -4,7 +4,7 @@ import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { PageTitle } from '../common/SmallComponents';
-import { ARROW_OPTION } from '../../assets';
+import Select from '../common/Select';
 import { CenteredButton } from '../../components/common/Button';
 import { toLowerCase, removeSpaceAndUnderbar } from '../../lib/format';
 
@@ -87,36 +87,6 @@ const StyledTable = styled.div`
   .radio-item {
     display: inline-block;
   }
-  select {
-    float: left;
-    width: 100%;
-    max-width: 300px;
-    height: 48px;
-    border: 1px solid ${palette.budgetomatic.border[1]};
-    border-radius: 5px;
-    padding: 13px;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
-    background: url(${ARROW_OPTION}) 95% / 4% no-repeat;
-  }
-  option {
-    width: inherit;
-    max-width: inherit;
-    line-height: 20px;
-  }
-  option:checked {
-    color: ${palette.button[0]};
-  }
-  .arrow-option {
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    right: 20px;
-  }
 `;
 
 const StyledRow = styled.div``;
@@ -176,19 +146,15 @@ const Controller = (props) => {
           <label htmlFor="shootingDays">Shooting Days</label>
         </div>
         <div className="right-item vertically-center">
-          <select
+          <Select
             value={shootingDays}
             onChange={onChangeShootingDays}
             id="controller02-shootingDays"
             name="shootingDays"
-            required
-          >
-            {OPTIONS.shootingDays.map((elem, key) => (
-              <option value={elem} key={key}>
-                {elem}
-              </option>
-            ))}
-          </select>
+            required={true}
+            width100={false}
+            optionsList={OPTIONS.shootingDays}
+          />
         </div>
       </div>
 
@@ -197,19 +163,15 @@ const Controller = (props) => {
           <label htmlFor="currency">Currency</label>
         </div>
         <div className="right-item vertically-center">
-          <select
+          <Select
             value={currency}
             onChange={onChangeCurrency}
             id="controller03-currency"
             name="currency"
-            required
-          >
-            {OPTIONS.currency.map((elem, key) => (
-              <option value={elem} key={key}>
-                {elem}
-              </option>
-            ))}
-          </select>
+            required={true}
+            width100={false}
+            optionsList={OPTIONS.currency}
+          />
         </div>
       </div>
     </StyledTable>
