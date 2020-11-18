@@ -4,6 +4,7 @@ import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { PageTitle } from '../common/SmallComponents';
+import { ARROW_OPTION } from '../../assets';
 import { CenteredButton } from '../../components/common/Button';
 import { toLowerCase, removeSpaceAndUnderbar } from '../../lib/format';
 
@@ -86,7 +87,7 @@ const StyledTable = styled.div`
   .radio-item {
     display: inline-block;
   }
-  .select-box {
+  select {
     float: left;
     width: 100%;
     max-width: 300px;
@@ -94,12 +95,27 @@ const StyledTable = styled.div`
     border: 1px solid ${palette.budgetomatic.border[1]};
     border-radius: 5px;
     padding: 13px;
-    background: white;
 
-    option {
-      width: inherit;
-      max-width: inherit;
-    }
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background: url(${ARROW_OPTION}) 95% / 4% no-repeat;
+  }
+  option {
+    width: inherit;
+    max-width: inherit;
+    line-height: 20px;
+  }
+  option:checked {
+    color: ${palette.button[0]};
+  }
+  .arrow-option {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    right: 20px;
   }
 `;
 
@@ -165,7 +181,6 @@ const Controller = (props) => {
             onChange={onChangeShootingDays}
             id="controller02-shootingDays"
             name="shootingDays"
-            className="select-box"
             required
           >
             {OPTIONS.shootingDays.map((elem, key) => (
@@ -187,7 +202,6 @@ const Controller = (props) => {
             onChange={onChangeCurrency}
             id="controller03-currency"
             name="currency"
-            className="select-box"
             required
           >
             {OPTIONS.currency.map((elem, key) => (
