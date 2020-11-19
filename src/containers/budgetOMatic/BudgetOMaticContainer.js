@@ -12,7 +12,7 @@ const BudgetOMaticContainer = ({ location }) => {
   // 1. request scenario data and full data set
   const [scenario, setScenario] = useState(_scenario);
   const [typeOfProduction, setTypeOfProduction] = useState('documentary');
-  const [shootingDays, setShootingDays] = useState(1);
+  const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -22,7 +22,7 @@ const BudgetOMaticContainer = ({ location }) => {
 
   useEffect(() => {
     if (scenario && typeOfProduction) {
-      setShootingDays(scenario[typeOfProduction].shootingDays);
+      setDaysOfShooting(scenario[typeOfProduction].daysOfShooting);
     }
   }, [typeOfProduction]);
 
@@ -31,10 +31,11 @@ const BudgetOMaticContainer = ({ location }) => {
       'diy',
       'documentary',
       'indie_feature',
+      'tv_feature',
       'tv_commercial',
       'online_commercial',
     ],
-    shootingDays: generateQt(30),
+    daysOfShooting: generateQt(30),
     currency: ['KRW', 'EUR', 'USD'],
   };
 
@@ -42,9 +43,9 @@ const BudgetOMaticContainer = ({ location }) => {
     console.log('onchange', e.target.value);
     setTypeOfProduction(e.target.value);
   };
-  const onChangeShootingDays = (e) => {
+  const onChangeDaysOfShooting = (e) => {
     console.log('onchange', e.target.value);
-    setShootingDays(e.target.value);
+    setDaysOfShooting(e.target.value);
   };
   const onChangeCurrency = (e) => {
     console.log('onchange', e.target.value);
@@ -58,11 +59,11 @@ const BudgetOMaticContainer = ({ location }) => {
   return (
     <BudgetOMatic
       typeOfProduction={typeOfProduction}
-      shootingDays={shootingDays}
+      daysOfShooting={daysOfShooting}
       currency={currency}
       OPTIONS={OPTIONS}
       onChangeTypeOfProduction={onChangeTypeOfProduction}
-      onChangeShootingDays={onChangeShootingDays}
+      onChangeDaysOfShooting={onChangeDaysOfShooting}
       onChangeCurrency={onChangeCurrency}
       onSubmit={onSubmit}
       uiData={BUDGETOMATIC_UIDATA}

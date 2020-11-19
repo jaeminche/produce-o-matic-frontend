@@ -95,6 +95,7 @@ const formatType = {
   diy: 'DIY',
   documentary: 'Documentary',
   indie_feature: 'Indie Feature',
+  tv_feature: 'TV & Feature',
   tv_commercial: 'TV Commercial',
   online_commercial: 'Online Commercial',
 };
@@ -102,11 +103,11 @@ const formatType = {
 const Controller = (props) => {
   const {
     typeOfProduction,
-    shootingDays,
+    daysOfShooting,
     currency,
     OPTIONS,
     onChangeTypeOfProduction,
-    onChangeShootingDays,
+    onChangeDaysOfShooting,
     onChangeCurrency,
     uiData,
     isMobile,
@@ -143,17 +144,17 @@ const Controller = (props) => {
 
       <div className="row-container">
         <div className="left-item vertically-center">
-          <label htmlFor="shootingDays">Shooting Days</label>
+          <label htmlFor="daysOfShooting">Shooting Days</label>
         </div>
         <div className="right-item vertically-center">
           <Select
-            value={shootingDays}
-            onChange={onChangeShootingDays}
-            id="controller02-shootingDays"
-            name="shootingDays"
+            value={daysOfShooting}
+            onChange={onChangeDaysOfShooting}
+            id="controller02-daysOfShooting"
+            name="daysOfShooting"
             required={true}
             width100={false}
-            optionsList={OPTIONS.shootingDays}
+            optionsList={OPTIONS.daysOfShooting}
           />
         </div>
       </div>
