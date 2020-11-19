@@ -4,13 +4,13 @@ import { withRouter, useHistory } from 'react-router-dom';
 import BudgetOMatic from '../../components/budgetOMatic/BudgetOMatic';
 import {
   BUDGETOMATIC_UIDATA,
-  _scenario,
+  _INITIAL_CODES_SET,
 } from '../../lib/constants/sampleBudgetomaticData';
 import { generateQt } from '../../lib/helper';
 
 const BudgetOMaticContainer = ({ location }) => {
-  // 1. request scenario data and full data set
-  const [scenario, setScenario] = useState(_scenario);
+  // 1. request initial_code_set data and full data set
+  const [initial_code_set, setinitial_code_set] = useState(_INITIAL_CODES_SET);
   const [typeOfProduction, setTypeOfProduction] = useState('documentary');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
@@ -18,11 +18,15 @@ const BudgetOMaticContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const history = useHistory();
 
-  console.log('scenario', scenario[typeOfProduction], BUDGETOMATIC_UIDATA);
+  console.log(
+    'initial_code_set',
+    initial_code_set[typeOfProduction],
+    BUDGETOMATIC_UIDATA,
+  );
 
   useEffect(() => {
-    if (scenario && typeOfProduction) {
-      setDaysOfShooting(scenario[typeOfProduction].daysOfShooting);
+    if (initial_code_set && typeOfProduction) {
+      setDaysOfShooting(initial_code_set[typeOfProduction].daysOfShooting);
     }
   }, [typeOfProduction]);
 
