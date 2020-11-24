@@ -54,5 +54,5 @@
   "devDependencies": {
     "babel-plugin-styled-components": "^1.11.1"
   },
-  "proxy": "http://localhost:4000/"
+  "proxy": "http://localhost:4000"
 }

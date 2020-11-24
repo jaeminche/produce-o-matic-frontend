@@ -3,7 +3,7 @@ import axios from 'axios';
 const env = process.env.NODE_ENV || 'development';
 console.log('env', env);
 
-const host = env === 'production' ? 'http://13.124.187.20/' : null;
+const host = env === 'production' ? 'http://13.125.45.94/' : null;
 // const host = 'http://13.124.187.20/';
 
 const option = host && {
