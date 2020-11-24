@@ -25,8 +25,10 @@ const client = option ? axios.create(option) : axios.create();
 client.interceptors.request.use(
   function (config) {
     console.log('client.인터셉터.request config', config);
+    return config;
   },
   function (error) {
+    // Do something with request error
     return Promise.reject(error);
   },
 );
