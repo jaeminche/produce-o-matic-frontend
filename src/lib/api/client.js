@@ -22,14 +22,14 @@ const client = option ? axios.create(option) : axios.create();
 //   },
 // );
 
-// client.interceptors.request.use(
-//   function (config) {
-//     console.log('config', config);
-//   },
-//   function (error) {
-//     return Promise.reject(error);
-//   },
-// );
+client.interceptors.request.use(
+  function (config) {
+    console.log('client.인터셉터.request config', config);
+  },
+  function (error) {
+    return Promise.reject(error);
+  },
+);
 
 /** client.defaults.baseURL = 'https://';
 
