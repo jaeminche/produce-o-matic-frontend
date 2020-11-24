@@ -52,6 +52,7 @@ const LoginForm = ({ history }) => {
   useEffect(() => {
     if (user) {
       history.push('/firstavenue');
+      console.log('user이 있고 sessionStorage에 저장 직전');
       try {
         sessionStorage.setItem('user', JSON.stringify(user));
       } catch (e) {
