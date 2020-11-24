@@ -12,6 +12,16 @@ const option = host && {
 
 const client = option ? axios.create(option) : axios.create();
 
+axios.intercepter.response.use(
+  (response) => {
+    console.log('response=====', response);
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
 // client.interceptors.request.use(
 //   function (config) {
 //     console.log('config', config);
