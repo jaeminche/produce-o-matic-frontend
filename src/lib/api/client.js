@@ -8,6 +8,7 @@ const host = env === 'production' ? 'http://13.125.45.94/' : null;
 
 const option = host && {
   baseURL: `${host}`,
+  withCredentials: true,
 };
 
 const client = option ? axios.create(option) : axios.create();
