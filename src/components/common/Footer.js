@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import { LOGO } from '../../assets';
 import palette from '../../lib/styles/palette';
+import { formatTime } from '../../lib/format';
 
 const FooterBlock = styled.div`
   padding-top: 85px;
@@ -147,6 +148,16 @@ const Footer = ({ menus, socialMedia, terms }) => {
           <Link to="/copyrights" className="terms">
             Copyrights
           </Link>
+          {/* TODO: to be erased on production */}
+          <span
+            style={{
+              fontSize: '5px',
+              color: 'white',
+              opacity: '0.3',
+            }}
+          >
+            dev: deployed at {formatTime(new Date())}
+          </span>
         </MultipleLinksBox>
       </Wrapper>
     </FooterBlock>
