@@ -2,16 +2,17 @@ import axios from 'axios';
 
 const env = process.env.NODE_ENV || 'development';
 console.log('env', env);
+const isProduction = env === 'production';
 
-const host = env === 'production' ? 'http://api.produceomatic.com/' : null;
+const host = isProduction ? 'http://api.produceomatic.com/' : null;
 // const host = 'http://13.124.187.20/';
 
-const option = host && {
+const option = isProduction && {
   baseURL: `${host}`,
   withCredentials: true,
 };
 
-const client = option ? axios.create(option) : axios.create();
+const client = isProduction ? axios.create(option) : axios.create();
 
 // client.intercepter.response.use(
 //   (response) => {
