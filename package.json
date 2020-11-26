@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync ./build s3://produceomatic-test --exclude './build/.*' --profile=default"
+    "deploy": "aws s3 sync ./build s3://produceomatic.com --exclude './build/.*' --profile=default"
   },
   "eslintConfig": {
     "extends": "react-app"
