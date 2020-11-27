@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import { LOGO, SEARCH } from '../../assets';
 import palette from '../../lib/styles/palette';
+import Hamburger from '../hamburger/Hamburger';
 
 const HeaderBlock = styled.div`
   ${(props) => props.isFixed && `position: fixed;`}
@@ -26,6 +27,7 @@ const HeaderBlock = styled.div`
  * Responsive 컴포넌트의 속성에 스타일을 추가해서 새로운 컴포넌트 생성
  */
 const Wrapper = styled(Responsive)`
+  position: relative;
   height: 68px;
   display: flex;
   align-items: center;
@@ -77,6 +79,7 @@ const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
   return (
     <HeaderBlock isFixed={isFixed}>
       <Wrapper>
+        {isMobile && <Hamburger />}
         <Link to="/" className={isMobile ? 'logo center' : 'logo'}>
           <img src={LOGO} alt="로고" />
         </Link>
