@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useDispatch } from 'react-redux';
-import { sideOpen } from '../../modules/main';
-import palette from '../../lib/styles/palette';
+import { openHamburgerside } from '../../modules/main';
 
 const Group = styled.div`
   width: 18px;
@@ -42,7 +41,7 @@ const Hamburger = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <Group onClick={() => dispatch(sideOpen())}>
+    <Group onClick={() => dispatch(openHamburgerside())}>
       <Line {...props} />
       <Line {...props} />
       <Line {...props} />

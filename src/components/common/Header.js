@@ -7,6 +7,7 @@ import Responsive from './Responsive';
 import { LOGO, SEARCH } from '../../assets';
 import palette from '../../lib/styles/palette';
 import Hamburger from '../hamburger/Hamburger';
+import HamburgersideContainer from '../../containers/hamburger/HamburgersideContainer';
 
 const HeaderBlock = styled.div`
   ${(props) => props.isFixed && `position: fixed;`}
@@ -80,6 +81,8 @@ const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
     <HeaderBlock isFixed={isFixed}>
       <Wrapper>
         {isMobile && <Hamburger />}
+        {isMobile && <HamburgersideContainer activeMenu={activeMenu} />}
+
         <Link to="/" className={isMobile ? 'logo center' : 'logo'}>
           <img src={LOGO} alt="로고" />
         </Link>

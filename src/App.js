@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+
 import PostsListPage from './pages/PostsListPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
