@@ -14,28 +14,28 @@ const temp1 = [
   {
     id: 1,
     imgpath: GYEONGBOKGUNG,
-    title: 'First Image Title',
-    subtitle: 'First Subtitle first subtitle',
+    title: 'Coming Soon!',
+    subtitle: 'Contact us at produceomatic@gmail.com',
   },
   {
     id: 2,
     imgpath: GYEONGBOKGUNG02,
-    title: 'Second Image Title',
-    subtitle: 'Second Subtitle Second subtitle',
+    title: 'Coming Soon!',
+    subtitle: 'Contact us at produceomatic@gmail.com',
   },
 ];
 const temp2 = [
   {
     id: 1,
     imgpath: HANOKMAEUL,
-    title: 'First Image Title',
-    subtitle: 'First Subtitle first subtitle',
+    title: 'Coming Soon!',
+    subtitle: 'Contact us at produceomatic@gmail.com',
   },
   {
     id: 2,
     imgpath: INSADONG,
-    title: 'Second Image Title',
-    subtitle: 'Second Subtitle Second subtitle',
+    title: 'Coming Soon!',
+    subtitle: 'Contact us at produceomatic@gmail.com',
   },
 ];
 
