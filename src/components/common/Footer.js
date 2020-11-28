@@ -10,6 +10,7 @@ import palette from '../../lib/styles/palette';
 const FooterBlock = styled.div`
   padding-top: 85px;
   padding-bottom: 10px;
+  margin-bottom: -68px; // offset as much as the header's height
 `;
 
 const Wrapper = styled(Responsive)`
