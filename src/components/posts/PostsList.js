@@ -61,7 +61,11 @@ const PostItem = ({ post }) => {
 const PostsList = ({ posts, loading, error, showWriteButton }) => {
   // 에러 발생 시
   if (error) {
-    return <PostsListBlock>에러가 발생했습니다.</PostsListBlock>;
+    return (
+      <PostsListBlock>
+        We are working hard to solve this problem!
+      </PostsListBlock>
+    );
   }
 
   return (
