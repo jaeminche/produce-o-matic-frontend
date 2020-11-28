@@ -63,7 +63,7 @@ const PostsList = ({ posts, loading, error, showWriteButton }) => {
   if (error) {
     return (
       <PostsListBlock>
-        We are working hard to solve this problem!
+        Error! We are working hard to solve this problem!
       </PostsListBlock>
     );
   }
