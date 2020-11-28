@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV || 'development';
 console.log('env', env);
 const isProduction = env === 'production';
 
-const host = isProduction ? 'http://api.produceomatic.com/' : null;
+const host = isProduction ? 'https://api.produceomatic.com/' : null;
 // const host = 'http://13.124.187.20/';
 
 const option = isProduction && {
