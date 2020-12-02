@@ -148,9 +148,6 @@ const Footer = ({ menus, socialMedia, terms }) => {
           <Link to="/copyrights" className="terms">
             Copyrights
           </Link>
-          <Link to="/firstavenue" className="terms">
-            admin
-          </Link>
         </MultipleLinksBox>
       </Wrapper>
     </FooterBlock>
