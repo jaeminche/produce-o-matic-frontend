@@ -10,7 +10,7 @@ import { generateQt } from '../../lib/helper';
 
 const BudgetOMaticContainer = ({ location }) => {
   // 1. request initial_code_set data and full data set
-  const [initial_code_set, setinitial_code_set] = useState(_INITIAL_CODES_SET);
+  const [initial_code_set, setInitial_code_set] = useState(_INITIAL_CODES_SET);
   const [typeOfProduction, setTypeOfProduction] = useState('documentary');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
