@@ -23,10 +23,11 @@ const store = createStore(
 );
 
 function loadUser() {
+  console.log('로드유저');
   try {
     const user = sessionStorage.getItem('user');
     if (!user) return;
-    console.log(user);
+    console.log('세션스토리지', user);
     store.dispatch(tempSetUser(user));
     store.dispatch(check());
   } catch (e) {
