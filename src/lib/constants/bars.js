@@ -120,16 +120,16 @@ const menus = [
         text: 'Our Vision',
         path: '/produce-o-people/our-vision',
       },
-      {
-        id: 2,
-        text: 'People Of The Month',
-        path: '/produce-o-people/people-of-the-month',
-      },
-      {
-        id: 3,
-        text: 'Be Our People',
-        path: '/produce-o-people/be-our-people',
-      },
+      // {
+      //   id: 2,
+      //   text: 'People Of The Month',
+      //   path: '/produce-o-people/people-of-the-month',
+      // },
+      // {
+      //   id: 3,
+      //   text: 'Be Our People',
+      //   path: '/produce-o-people/be-our-people',
+      // },
       {
         id: 4,
         text: 'Contact Us',
