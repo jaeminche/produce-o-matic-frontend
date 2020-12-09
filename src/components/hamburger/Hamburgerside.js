@@ -111,6 +111,7 @@ const Hamburgerside = (props) => {
                     : 'menuitem'
                 }
               >
+                {/* TODO: CANNOT PLACE AN <A> IN AN <A> */}
                 {menu.text}
                 <Submenu>
                   {menu.submenus.map((submenu, key) => (
