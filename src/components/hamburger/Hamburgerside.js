@@ -102,7 +102,7 @@ const Hamburgerside = (props) => {
 
         <Menu>
           {menus.map((menu, key) => (
-            <li onClick={() => handleCloseHamburgerside()}>
+            <li onClick={() => handleCloseHamburgerside()} key={key}>
               <NavLink
                 to={menu.path}
                 className={
@@ -110,12 +110,11 @@ const Hamburgerside = (props) => {
                     ? 'isActive menuitem'
                     : 'menuitem'
                 }
-                key={key}
               >
                 {menu.text}
                 <Submenu>
                   {menu.submenus.map((submenu, key) => (
-                    <li>
+                    <li key={key}>
                       <NavLink
                         to={submenu.path}
                         className={
@@ -123,7 +122,6 @@ const Hamburgerside = (props) => {
                             ? 'isActive menuitem'
                             : 'menuitem'
                         }
-                        key={key}
                       >
                         {submenu.text}
                       </NavLink>
