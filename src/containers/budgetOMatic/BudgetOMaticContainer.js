@@ -1,44 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { withRouter, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import BudgetOMatic from '../../components/budgetOMatic/BudgetOMatic';
 import {
   BUDGETOMATIC_UIDATA,
   _INITIAL_CODES_SET,
 } from '../../lib/constants/sampleBudgetomaticData';
+import { listItemsGroups } from '../../modules/itemsGroups';
 import { generateQt } from '../../lib/helper';
 
 const BudgetOMaticContainer = ({ location }) => {
-  // 1. request initial_code_set data and full data set
-  const [initial_code_set, setInitial_code_set] = useState(_INITIAL_CODES_SET);
-  const [typeOfProduction, setTypeOfProduction] = useState('documentary');
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const dispatch = useDispatch();
+
+  const { itemsGroups, error, loading } = useSelector(
+    ({ itemsGroups, loading }) => ({
+      itemsGroups: itemsGroups.dataset,
+      error: itemsGroups.error,
+      loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
+    }),
+  );
+
+  // 1. request initialDataSet data and full data set
+  const [initialDataSet, setInitialDataSet] = useState();
+  const [typeOfProduction, setTypeOfProduction] = useState('DO');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
 
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const history = useHistory();
 
-  console.log(
-    'initial_code_set',
-    initial_code_set[typeOfProduction],
-    BUDGETOMATIC_UIDATA,
-  );
+  useEffect(() => {
+    dispatch(listItemsGroups());
+  }, []);
 
   useEffect(() => {
-    if (initial_code_set && typeOfProduction) {
-      setDaysOfShooting(initial_code_set[typeOfProduction].daysOfShooting);
+    if (itemsGroups && typeOfProduction) {
+      setInitialDataSet(
+        itemsGroups.map((group) =>
+          group.budgetItems.filter((item) =>
+            item.tags.includes(typeOfProduction),
+          ),
+        ),
+      );
     }
-  }, [typeOfProduction]);
+  }, [itemsGroups, typeOfProduction]);
+
+  useEffect(() => {
+    initialDataSet && console.log('셋이니셜라이즈드: ', initialDataSet);
+  }, [initialDataSet]);
 
   const OPTIONS = {
-    typeOfProduction: [
-      'diy',
-      'documentary',
-      'indie_feature',
-      'tv_feature',
-      'tv_commercial',
-      'online_commercial',
-    ],
+    typeOfProduction: ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'],
     daysOfShooting: generateQt(30),
     currency: ['KRW', 'EUR', 'USD'],
   };
