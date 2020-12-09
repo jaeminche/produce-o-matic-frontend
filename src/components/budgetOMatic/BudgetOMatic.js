@@ -92,12 +92,12 @@ const StyledTable = styled.div`
 const StyledRow = styled.div``;
 
 const formatType = {
-  diy: 'DIY',
-  documentary: 'Documentary',
-  indie_feature: 'Indie Feature',
-  tv_feature: 'TV & Feature',
-  tv_commercial: 'TV Commercial',
-  online_commercial: 'Online Commercial',
+  DO: 'Documentary',
+  IN: 'Indie Feature',
+  TV: 'TV & Feature',
+  TC: 'TV Commercial',
+  OC: 'Online Commercial',
+  DIY: 'DIY',
 };
 
 const Controller = (props) => {
