@@ -7,4 +7,14 @@ const generateQt = (num) => {
   return elem;
 };
 
-export { generateQt };
+const myDataSetsTemplate = {
+  labor: [],
+  equipments: [],
+  cast: [],
+  'travel & accommodations': [],
+  'communications & delivery': [],
+  'location fee': [],
+  'insurances & taxes': [],
+};
+
+export { generateQt, myDataSetsTemplate };

@@ -22,16 +22,16 @@ export function* itemsGroupsSaga() {
 }
 
 const initialState = {
-  dataset: null,
+  dataSets: null,
   error: null,
 };
 
 const itemsGroups = handleActions(
   {
-    [LIST_ITEMSGROUPS_SUCCESS]: (state, { payload: dataset }) => {
+    [LIST_ITEMSGROUPS_SUCCESS]: (state, { payload: dataSets }) => {
       return {
         ...state,
-        dataset,
+        dataSets,
       };
     },
     [LIST_ITEMSGROUPS_FAILURE]: (state, { payload: error }) => ({

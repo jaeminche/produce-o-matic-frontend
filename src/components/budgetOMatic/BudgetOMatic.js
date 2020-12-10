@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { PageTitle } from '../common/SmallComponents';
 import Select from '../common/Select';
-import { CenteredButton } from '../../components/common/Button';
+import { Button, CenteredButton } from '../../components/common/Button';
 import { toLowerCase, removeSpaceAndUnderbar } from '../../lib/format';
 
 const BudgetOMaticBlock = styled.div`
@@ -59,6 +59,13 @@ const StyledTable = styled.div`
   .row-container:last-child {
     border-radius: 0 0 13px 13px;
   }
+  .one-row {
+    border-radius: 13px;
+  }
+  .wrap-evenly {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
   .left-item {
     flex: 1;
     text-align: right;
@@ -73,6 +80,13 @@ const StyledTable = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  .category-name {
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.24rem 1rem;
+    flex: 1 0 auto;
   }
   .right-item {
     flex: 7;
@@ -91,6 +105,29 @@ const StyledTable = styled.div`
 
 const StyledRow = styled.div``;
 
+const ButtonStyledCheckbox = styled.span`
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.24rem 1rem;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  flex: 1 0 auto;
+
+  background: ${palette.gray[5]};
+  &:hover {
+    background: ${palette.gray[8]};
+  }
+
+  &:disabled {
+    background: ${palette.gray[3]};
+    color: ${palette.gray[5]};
+    cursor: not-allowed;
+  }
+`;
+
 const formatType = {
   DO: 'Documentary',
   IN: 'Indie Feature',
@@ -100,7 +137,7 @@ const formatType = {
   DIY: 'DIY',
 };
 
-const Controller = (props) => {
+const Controller1 = (props) => {
   const {
     typeOfProduction,
     daysOfShooting,
@@ -114,7 +151,7 @@ const Controller = (props) => {
   } = props;
 
   return (
-    <StyledTable className="table" isMobile={isMobile}>
+    <StyledTable isMobile={isMobile}>
       <div className="row-container">
         <div className="left-item vertically-center">Type of Production</div>
         <div
@@ -179,6 +216,51 @@ const Controller = (props) => {
   );
 };
 
+const Controller2 = (props) => {
+  const {
+    dataSetInstance,
+    typeOfProduction,
+    daysOfShooting,
+    currency,
+    OPTIONS,
+    onChangeTypeOfProduction,
+    onChangeDaysOfShooting,
+    onChangeCurrency,
+    uiData,
+    isMobile,
+  } = props;
+  // console.log('그룹네임프롭', dataSetInstance);
+  return (
+    <StyledTable isMobile={isMobile}>
+      <div className="row-container one-row wrap-evenly">
+        {dataSetInstance &&
+          Object.entries(dataSetInstance).map(([key, value]) => (
+            <>
+              <div className="vertically-center category-name">{key} :</div>
+
+              {value.map((group, key) => (
+                <ButtonStyledCheckbox className="vertically-center" key={key}>
+                  <label htmlFor={group.name} className="radio-item">
+                    <input
+                      type="checkbox"
+                      id={group.name}
+                      name="group.name"
+                      value={group.name}
+                      className="group.name"
+                      checked={group.name === typeOfProduction}
+                      onChange={onChangeTypeOfProduction}
+                    />
+                    {group.name.replace('department', 'dept.')}
+                  </label>
+                </ButtonStyledCheckbox>
+              ))}
+            </>
+          ))}
+      </div>
+    </StyledTable>
+  );
+};
+
 const BudgetOMatic = (props) => {
   const { onSubmit, isMobile } = props;
   return (
@@ -187,7 +269,8 @@ const BudgetOMatic = (props) => {
         <PageTitle text="Budget-O-Matic" />
         <div className="spacer" />
         <form onSubmit={onSubmit}>
-          <Controller {...props} />
+          <Controller1 {...props} />
+          <Controller2 {...props} />
           <input type="submit" value="Submit" />
         </form>
       </Wrapper>
