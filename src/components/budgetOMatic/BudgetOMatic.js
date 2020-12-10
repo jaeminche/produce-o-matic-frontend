@@ -15,6 +15,8 @@ const BudgetOMaticBlock = styled.div`
 `;
 
 const Wrapper = styled(Responsive)`
+  font-family: Lato;
+  font-style: normal;
   text-align: center;
   padding-top: 80px;
 
@@ -67,6 +69,10 @@ const StyledTable = styled.div`
     flex-wrap: wrap;
     gap: 12px;
   }
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
   .left-item {
     flex: 1;
     text-align: right;
@@ -77,10 +83,23 @@ const StyledTable = styled.div`
       marginRight: ['40px', '45px', , '70px', , '90px', ,],
     })}
   }
+  .left-left-item {
+    flex: 2;
+    text-align: left;
+    ${mq({
+      minWidth: ['80px', '90px', '150px', '300px', , , ,],
+    })};
+    ${mq({
+      marginRight: ['40px', '45px', , '70px', , '90px', ,],
+    })}
+  }
   .vertically-center {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  .horizontally-center {
+    margin: 0 auto;
   }
   .checkbox {
     display: none;
@@ -90,18 +109,22 @@ const StyledTable = styled.div`
   }
   .category-name {
     border: none;
-    font-size: 1rem;
+    font-size: 16px;
     flex: 1 0 auto;
   }
   .right-item {
     flex: 7;
   }
-  .radio-box {
+  .radio-box,
+  .budgetItem-contents {
     text-align: ${(props) => (props.isMobile ? 'left' : 'right')};
     display: flex;
-    flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
     flex-wrap: wrap;
+    flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
     justify-content: space-between;
+  }
+  .budgetItem-contents {
+    flex-wrap: nowrap;
   }
   .radio-item {
     display: inline-block;
@@ -115,14 +138,25 @@ const StyledTable = styled.div`
   }
 `;
 
-const StyledRow = styled.div``;
+const CategoryTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 76px;
+  text-align: center;
+  color: ${palette.budgetomatic.text[2]};
+`;
 
 const ButtonStyledCheckbox = styled.span`
   border: none;
   border-radius: 13px;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0.24rem 1rem;
+  font-size: 16px;
+  /* font-weight: bold; */
+  padding: 4px 16px 7px 16px;
   color: white;
   outline: none;
   cursor: pointer;
@@ -203,7 +237,7 @@ const Controller1 = (props) => {
             id="controller02-daysOfShooting"
             name="daysOfShooting"
             required={true}
-            width100={false}
+            maxWidth={'300px'}
             optionsList={OPTIONS.daysOfShooting}
           />
         </div>
@@ -220,7 +254,7 @@ const Controller1 = (props) => {
             id="controller03-currency"
             name="currency"
             required={true}
-            width100={false}
+            maxWidth={'300px'}
             optionsList={OPTIONS.currency}
           />
         </div>
@@ -230,19 +264,7 @@ const Controller1 = (props) => {
 };
 
 const Controller2 = (props) => {
-  const {
-    dataSetInstance,
-    typeOfProduction,
-    daysOfShooting,
-    currency,
-    OPTIONS,
-    onChangeCheckbox,
-    onChangeTypeOfProduction,
-    onChangeDaysOfShooting,
-    onChangeCurrency,
-    uiData,
-    isMobile,
-  } = props;
+  const { dataSetInstance, onChangeCheckbox, isMobile } = props;
   // console.log('그룹네임프롭', dataSetInstance);
   return (
     <StyledTable isMobile={isMobile}>
@@ -284,6 +306,86 @@ const Controller2 = (props) => {
   );
 };
 
+const Grandtotal = ({ children }) => {
+  return <div>{children}</div>;
+};
+
+const Subtotal = ({ children }) => {
+  return <div>{children}</div>;
+};
+
+const Calculator = (props) => {
+  const { dataSetInstance, currency, OPTIONS, isMobile } = props;
+  console.log('데이터인스턴스', dataSetInstance);
+  return (
+    <Grandtotal props={props}>
+      {dataSetInstance &&
+        Object.entries(dataSetInstance).map(([key, value]) => (
+          <>
+            <CategoryTitle>{key.toUpperCase()}</CategoryTitle>
+            {value.map(
+              (group, key) =>
+                group.checked() && (
+                  <StyledTable isMobile={isMobile} key={key}>
+                    <div className="row-container">
+                      <div className="vertically-center horizontally-center">
+                        {`${group.code}. ${group.name}`}
+                      </div>
+                    </div>
+                    {group.budgetItems.map(
+                      (budgetItem) =>
+                        budgetItem.checked && (
+                          <div className="row-container">
+                            <div className="left-left-item vertically-center">
+                              {`${budgetItem.code}. ${budgetItem.name}`}
+                            </div>
+
+                            <div className="right-item budgetItem-contents">
+                              <div className="vertically-center">
+                                Rate: {budgetItem.rate[0]}
+                                {`(${currency})`}
+                              </div>
+                              <div className="vertically-center">
+                                <div className="flex-row">
+                                  <Select
+                                    value={OPTIONS.daysOfShooting}
+                                    // onChange={}
+                                    id="controller02-"
+                                    name=""
+                                    required={true}
+                                    maxWidth={'70px'}
+                                    optionsList={OPTIONS.daysOfShooting}
+                                  />
+                                  <div className="vertically-center">Amnt.</div>
+                                </div>
+                              </div>
+                              <div className="vertically-center">
+                                <div className="flex-row">
+                                  <Select
+                                    value={OPTIONS.daysOfShooting}
+                                    // onChange={}
+                                    id="controller02-"
+                                    name=""
+                                    required={true}
+                                    maxWidth={'70px'}
+                                    optionsList={OPTIONS.daysOfShooting}
+                                  />
+                                  <div className="vertically-center">Days</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ),
+                    )}
+                  </StyledTable>
+                ),
+            )}
+          </>
+        ))}
+    </Grandtotal>
+  );
+};
+
 const BudgetOMatic = (props) => {
   const { onSubmit, isMobile } = props;
   return (
@@ -294,6 +396,7 @@ const BudgetOMatic = (props) => {
         <form onSubmit={onSubmit}>
           <Controller1 {...props} />
           <Controller2 {...props} />
+          <Calculator {...props} />
           <input type="submit" value="Submit" />
         </form>
       </Wrapper>

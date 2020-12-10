@@ -4,7 +4,8 @@ import palette from '../../lib/styles/palette';
 import { ARROW_OPTION } from '../../assets';
 
 const StyledSelect = styled.select`
-  ${(props) => (props.width100 ? 'width: 100px' : 'max-width: 300px')};
+  ${(props) => props.maxWidth && `max-width: ${props.maxWidth}`};
+  /* ${(props) => (props.width ? 'width: 100px' : 'max-width: 300px')}; */
   height: 48px;
   border: 1px solid ${palette.budgetomatic.border[1]};
   border-radius: 5px;
@@ -35,7 +36,8 @@ const Select = (props) => {
     name,
     required = false,
     optionsList,
-    width100,
+    maxWidth,
+    width = false,
   } = props;
   return (
     <StyledSelect
@@ -44,7 +46,8 @@ const Select = (props) => {
       id={id}
       name={name}
       required={required}
-      width100={width100}
+      maxWidth={maxWidth}
+      width={width}
     >
       {optionsList.map((option, key) => (
         <option value={option} key={key}>
