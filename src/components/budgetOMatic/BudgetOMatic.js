@@ -254,7 +254,7 @@ const Controller2 = (props) => {
               {value.map((group, key) => (
                 <ButtonStyledCheckbox
                   className={
-                    group.budgetItems.length > 0
+                    group.checked()
                       ? 'checked vertically-center'
                       : 'vertically-center'
                   }
@@ -265,9 +265,9 @@ const Controller2 = (props) => {
                       type="checkbox"
                       id={group.name}
                       name={group.name}
-                      value={group.name}
+                      value={group.code}
                       className="checkbox"
-                      checked={group.budgetItems.length > 0}
+                      checked={group.checked()}
                       onChange={onChangeCheckbox}
                     />
                     {group.name.replace('department', 'dept.')}

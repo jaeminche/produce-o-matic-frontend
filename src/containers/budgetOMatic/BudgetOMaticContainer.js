@@ -49,58 +49,45 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [DATASETS]);
 
   useEffect(() => {
-    // ? 3. filter typeOfProduction and make an instance out of the original datasets retrieved
-    // * will bring changes only on budgetItems layer, for Controller2 needs to use the group names unfiltered
+    // ? 3. create checked attributes for both group and budgetItems and make an INSTANCE out of the original datasets retrieved
     if (myDataSets && typeOfProduction) {
       const tempDataSetInstance = JSON.parse(JSON.stringify(myDataSets));
-      const defaultGroupsSelected = [];
+      // const defaultGroupsSelected = [];
       for (let [key, category] of Object.entries(tempDataSetInstance)) {
         for (let group of category) {
-          group.budgetItems = group.budgetItems.filter((item) =>
-            item.tags.includes(typeOfProduction),
-          );
-          group.budgetItems.length > 0 &&
-            defaultGroupsSelected.push(group.code);
+          /**
+           * ? create attribute, checked.
+           * ? ex. budgetItems: [... { ...checked: true (if its tags include typeOfProduction) } ]
+           */
+          for (let budgetItem of group.budgetItems) {
+            budgetItem.checked = budgetItem.tags.includes(typeOfProduction);
+          }
+          /**
+           * ? returns func. that returns
+           * ? group(ex.labor) { ...
+           * ?    checked: true (if budgetItems.length > 0)
+           * ? }
+           */
+          group.checked = function () {
+            const filtered = group.budgetItems.filter(
+              (budgetItem) => budgetItem.checked,
+            );
+            return filtered.length > 0;
+          };
+
+          // ? delete below: filter typeOfProduction and make an INSTANCE out of the original datasets retrieved
+          // group.budgetItems = group.budgetItems.filter((budgetItem) =>
+          //   budgetItem.tags.includes(typeOfProduction),
+          // );
+          // delelte below:
+          // group.budgetItems.length > 0 &&
+          //   defaultGroupsSelected.push(group.code);
         }
       }
       setDataSetInstance(tempDataSetInstance);
-      setGroupsSelected(defaultGroupsSelected);
-
-      // const tempDataSetInstance = Object.entries(myDataSets).map(
-      //   ([key, value]) => {
-      //     console.log('밸류', value);
-      //     value.map((group) =>
-      //       group.budgetItems.filter((item) =>
-      //         item.tags.includes(typeOfProduction),
-      //       ),
-      //     );
-      //   },
-      // );
-      // const _tempDataSetInstance = myDataSets.map((GROUP) => {
-      //   console.log('카테고리:', GROUP.category);
-      //   // * set groupNames
-      //   tempMyDataSets[GROUP.category].push(GROUP);
-
-      //   return tempMyDataSets.budgetItems.filter((item) =>
-      //     item.tags.includes(typeOfProduction),
-      //   );
-      // });
-      // setDataSetInstance(tempDataSetInstance);
-      // setGroupNames(tempMyDataSets);
+      // setGroupsSelected(defaultGroupsSelected);
     }
   }, [myDataSets, typeOfProduction]);
-
-  useEffect(() => {
-    // if (dataSetInstance) {
-    //   const tempMyDataSets = JSON.parse(JSON.stringify(myDataSetsTemplate));
-    //   console.log('데이터셋');
-    //   const initialGroupsSelected = dataSetInstance.map((group) => {
-    //     const groupCode = Math.floor(group.code / 100) * 100;
-    //     tempMyDataSets[group.category].push(group.name);
-    //   });
-    //   setGroupsSelected(initialGroupsSelected);
-    // }
-  }, [dataSetInstance]);
 
   useEffect(() => {
     dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
@@ -113,6 +100,7 @@ const BudgetOMaticContainer = ({ location }) => {
   };
 
   const onChangeCheckbox = (e) => {
+    console.log('버튼클릭트', e, e.target.value);
     // console.log('onchange', e.target.value);
     // defaultGroupsSelected
     // setDefaultGroupsSelected(e.target.value);
