@@ -28,7 +28,6 @@ const BudgetOMaticContainer = ({ location }) => {
   const [typeOfProduction, setTypeOfProduction] = useState('DO');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
-  const [groupNames, setGroupNames] = useState();
   const [groupsSelected, setGroupsSelected] = useState();
 
   const history = useHistory();
@@ -54,15 +53,18 @@ const BudgetOMaticContainer = ({ location }) => {
     // * will bring changes only on budgetItems layer, for Controller2 needs to use the group names unfiltered
     if (myDataSets && typeOfProduction) {
       const tempDataSetInstance = JSON.parse(JSON.stringify(myDataSets));
-
-      for (let [key, value] of Object.entries(tempDataSetInstance)) {
-        for (let group of value) {
+      const defaultGroupsSelected = [];
+      for (let [key, category] of Object.entries(tempDataSetInstance)) {
+        for (let group of category) {
           group.budgetItems = group.budgetItems.filter((item) =>
             item.tags.includes(typeOfProduction),
           );
+          group.budgetItems.length > 0 &&
+            defaultGroupsSelected.push(group.code);
         }
       }
       setDataSetInstance(tempDataSetInstance);
+      setGroupsSelected(defaultGroupsSelected);
 
       // const tempDataSetInstance = Object.entries(myDataSets).map(
       //   ([key, value]) => {
@@ -101,13 +103,7 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [dataSetInstance]);
 
   useEffect(() => {
-    dataSetInstance &&
-      console.log(
-        '데이터 세팅됨: ',
-        dataSetInstance,
-        '그룹네임즈 현재: ',
-        groupNames,
-      );
+    dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
   }, [dataSetInstance]);
 
   const OPTIONS = {
@@ -116,6 +112,11 @@ const BudgetOMaticContainer = ({ location }) => {
     currency: ['KRW', 'EUR', 'USD'],
   };
 
+  const onChangeCheckbox = (e) => {
+    // console.log('onchange', e.target.value);
+    // defaultGroupsSelected
+    // setDefaultGroupsSelected(e.target.value);
+  };
   const onChangeTypeOfProduction = (e) => {
     console.log('onchange', e.target.value);
     setTypeOfProduction(e.target.value);
@@ -140,6 +141,7 @@ const BudgetOMaticContainer = ({ location }) => {
       currency={currency}
       OPTIONS={OPTIONS}
       dataSetInstance={dataSetInstance}
+      onChangeCheckbox={onChangeCheckbox}
       onChangeTypeOfProduction={onChangeTypeOfProduction}
       onChangeDaysOfShooting={onChangeDaysOfShooting}
       onChangeCurrency={onChangeCurrency}

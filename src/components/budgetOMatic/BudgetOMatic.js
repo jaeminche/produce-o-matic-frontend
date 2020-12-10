@@ -40,6 +40,7 @@ const StyledTable = styled.div`
   box-sizing: border-box;
   border: 1px solid ${palette.budgetomatic.border[0]};
   border-radius: 13px;
+  margin-bottom: 40px;
 
   .row-container {
     border-bottom: 1px solid ${palette.budgetomatic.border[0]};
@@ -59,8 +60,8 @@ const StyledTable = styled.div`
   .row-container:last-child {
     border-radius: 0 0 13px 13px;
   }
-  .one-row {
-    border-radius: 13px;
+  .solo-container {
+    border-radius: 13px !important;
   }
   .wrap-evenly {
     flex-wrap: wrap;
@@ -81,11 +82,15 @@ const StyledTable = styled.div`
     flex-direction: column;
     justify-content: center;
   }
+  .checkbox {
+    display: none;
+  }
+  .checked {
+    background: ${palette.gray[8]};
+  }
   .category-name {
     border: none;
     font-size: 1rem;
-    font-weight: bold;
-    padding: 0.24rem 1rem;
     flex: 1 0 auto;
   }
   .right-item {
@@ -101,13 +106,20 @@ const StyledTable = styled.div`
   .radio-item {
     display: inline-block;
   }
+  .checkbox-item {
+    display: inline-block;
+    cursor: pointer;
+  }
+  i {
+    flex: 1 0 auto;
+  }
 `;
 
 const StyledRow = styled.div``;
 
 const ButtonStyledCheckbox = styled.span`
   border: none;
-  border-radius: 4px;
+  border-radius: 13px;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.24rem 1rem;
@@ -117,6 +129,7 @@ const ButtonStyledCheckbox = styled.span`
   flex: 1 0 auto;
 
   background: ${palette.gray[5]};
+
   &:hover {
     background: ${palette.gray[8]};
   }
@@ -223,6 +236,7 @@ const Controller2 = (props) => {
     daysOfShooting,
     currency,
     OPTIONS,
+    onChangeCheckbox,
     onChangeTypeOfProduction,
     onChangeDaysOfShooting,
     onChangeCurrency,
@@ -232,23 +246,29 @@ const Controller2 = (props) => {
   // console.log('그룹네임프롭', dataSetInstance);
   return (
     <StyledTable isMobile={isMobile}>
-      <div className="row-container one-row wrap-evenly">
+      <div className="row-container solo-container wrap-evenly">
         {dataSetInstance &&
           Object.entries(dataSetInstance).map(([key, value]) => (
             <>
               <div className="vertically-center category-name">{key} :</div>
-
               {value.map((group, key) => (
-                <ButtonStyledCheckbox className="vertically-center" key={key}>
-                  <label htmlFor={group.name} className="radio-item">
+                <ButtonStyledCheckbox
+                  className={
+                    group.budgetItems.length > 0
+                      ? 'checked vertically-center'
+                      : 'vertically-center'
+                  }
+                  key={key}
+                >
+                  <label htmlFor={group.name} className="checkbox-item">
                     <input
                       type="checkbox"
                       id={group.name}
-                      name="group.name"
+                      name={group.name}
                       value={group.name}
-                      className="group.name"
-                      checked={group.name === typeOfProduction}
-                      onChange={onChangeTypeOfProduction}
+                      className="checkbox"
+                      checked={group.budgetItems.length > 0}
+                      onChange={onChangeCheckbox}
                     />
                     {group.name.replace('department', 'dept.')}
                   </label>
@@ -256,6 +276,9 @@ const Controller2 = (props) => {
               ))}
             </>
           ))}
+        {[...Array(10).keys()].map((i) => (
+          <i aria-hidden={true} />
+        ))}
       </div>
     </StyledTable>
   );
