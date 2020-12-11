@@ -42,7 +42,7 @@ const StyledTable = styled.div`
   box-sizing: border-box;
   border: 1px solid ${palette.budgetomatic.border[0]};
   border-radius: 13px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 
   .row-container {
     border-bottom: 1px solid ${palette.budgetomatic.border[0]};
@@ -61,6 +61,7 @@ const StyledTable = styled.div`
   }
   .row-container:last-child {
     border-radius: 0 0 13px 13px;
+    border-bottom: none;
   }
   .solo-container {
     border-radius: 13px !important;
@@ -135,6 +136,9 @@ const StyledTable = styled.div`
   }
   i {
     flex: 1 0 auto;
+  }
+  .group-title {
+    font-size: 18px;
   }
 `;
 
@@ -264,40 +268,36 @@ const Controller1 = (props) => {
 };
 
 const Controller2 = (props) => {
-  const { dataSetInstance, onChangeCheckbox, isMobile } = props;
+  const { keyname, dataSetInstance, onChangeCheckbox, isMobile } = props;
   // console.log('그룹네임프롭', dataSetInstance);
+  const D = dataSetInstance[keyname];
   return (
     <StyledTable isMobile={isMobile}>
       <div className="row-container solo-container wrap-evenly">
-        {dataSetInstance &&
-          Object.entries(dataSetInstance).map(([key, value]) => (
-            <>
-              <div className="vertically-center category-name">{key} :</div>
-              {value.map((group, key) => (
-                <ButtonStyledCheckbox
-                  className={
-                    group.checked()
-                      ? 'checked vertically-center'
-                      : 'vertically-center'
-                  }
-                  key={key}
-                >
-                  <label htmlFor={group.name} className="checkbox-item">
-                    <input
-                      type="checkbox"
-                      id={group.name}
-                      name={group.name}
-                      value={group.code}
-                      className="checkbox"
-                      checked={group.checked()}
-                      onChange={onChangeCheckbox}
-                    />
-                    {group.name.replace('department', 'dept.')}
-                  </label>
-                </ButtonStyledCheckbox>
-              ))}
-            </>
-          ))}
+        {D.map((group, key) => (
+          <ButtonStyledCheckbox
+            className={
+              group.checked()
+                ? 'checked vertically-center'
+                : 'vertically-center'
+            }
+            key={key}
+          >
+            <label htmlFor={group.name} className="checkbox-item">
+              <input
+                type="checkbox"
+                id={group.name}
+                name={group.name}
+                value={group.code}
+                className="checkbox"
+                checked={group.checked()}
+                onChange={onChangeCheckbox}
+              />
+              {group.name.replace('department', 'dept.')}
+            </label>
+          </ButtonStyledCheckbox>
+        ))}
+
         {[...Array(10).keys()].map((i) => (
           <i aria-hidden={true} />
         ))}
@@ -323,13 +323,14 @@ const Calculator = (props) => {
         Object.entries(dataSetInstance).map(([key, value]) => (
           <>
             <CategoryTitle>{key.toUpperCase()}</CategoryTitle>
+            <Controller2 keyname={key} {...props} />
             {value.map(
               (group, key) =>
                 group.checked() && (
                   <StyledTable isMobile={isMobile} key={key}>
                     <div className="row-container">
-                      <div className="vertically-center horizontally-center">
-                        {`${group.code}. ${group.name}`}
+                      <div className="vertically-center horizontally-center group-title">
+                        {`${group.code}. ${group.name.toUpperCase()}`}
                       </div>
                     </div>
                     {group.budgetItems.map(
@@ -395,7 +396,7 @@ const BudgetOMatic = (props) => {
         <div className="spacer" />
         <form onSubmit={onSubmit}>
           <Controller1 {...props} />
-          <Controller2 {...props} />
+
           <Calculator {...props} />
           <input type="submit" value="Submit" />
         </form>
