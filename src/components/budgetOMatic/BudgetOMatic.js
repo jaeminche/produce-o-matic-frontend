@@ -449,7 +449,9 @@ const Calculator = (props) => {
                       </div>
                       <div className="right-item subtotal-contents">
                         <div style={{ display: 'flex' }}>
-                          <span className="vertically-center ">{80000}</span>
+                          <span className="vertically-center ">
+                            {group.subtotal}
+                          </span>
                           <span className="vertically-center margin-l">
                             {currency}
                           </span>

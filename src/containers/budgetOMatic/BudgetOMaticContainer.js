@@ -52,7 +52,6 @@ const BudgetOMaticContainer = ({ location }) => {
   // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
   // * update dataSetInstance 1/3
   const initializeDataSetInstance = () => {
-    console.log('데어터셋인스턴스 유뮤', !!dataSetInstance, !!myDataSets);
     const tempDataSet = dataSetInstance || myDataSets;
 
     const defaultAmnt = 1;
@@ -71,6 +70,17 @@ const BudgetOMaticContainer = ({ location }) => {
           group.checked = group.budgetItems.some(
             (budgetItem) => budgetItem.checked,
           );
+          const subtotal = group.checked
+            ? group.budgetItems.map((item) =>
+                item.checked ? item.rate[0] * item.amnt * item.days : 0,
+              )
+            : [];
+          group.subtotal =
+            subtotal.length > 0
+              ? subtotal.reduce(
+                  (accumulator, currentValue) => accumulator + currentValue,
+                )
+              : 0;
         }
       }
     });
@@ -127,6 +137,17 @@ const BudgetOMaticContainer = ({ location }) => {
           group.checked = group.budgetItems.some(
             (budgetItem) => budgetItem.checked,
           );
+          const subtotal = group.checked
+            ? group.budgetItems.map((item) =>
+                item.checked ? item.rate[0] * item.amnt * item.days : 0,
+              )
+            : [];
+          group.subtotal =
+            subtotal.length > 0
+              ? subtotal.reduce(
+                  (accumulator, currentValue) => accumulator + currentValue,
+                )
+              : 0;
         }
       }
     });
@@ -170,6 +191,17 @@ const BudgetOMaticContainer = ({ location }) => {
             group.checked = group.budgetItems.some(
               (budgetItem) => budgetItem.checked,
             );
+            const subtotal = group.checked
+              ? group.budgetItems.map((item) =>
+                  item.checked ? item.rate[0] * item.amnt * item.days : 0,
+                )
+              : [];
+            group.subtotal =
+              subtotal.length > 0
+                ? subtotal.reduce(
+                    (accumulator, currentValue) => accumulator + currentValue,
+                  )
+                : 0;
           }
         }
       }
