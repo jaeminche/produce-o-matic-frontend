@@ -66,6 +66,7 @@ const BudgetOMaticContainer = ({ location }) => {
             if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
             if (!budgetItem.days) budgetItem.days = daysOfShooting;
           }
+          // * IMPORTANT! update group.checked as well
           group.checked = group.budgetItems.some(
             (budgetItem) => budgetItem.checked,
           );
@@ -89,6 +90,10 @@ const BudgetOMaticContainer = ({ location }) => {
           for (let budgetItem of group.budgetItems) {
             budgetItem[target] = value;
           }
+          // * IMPORTANT! update group.checked as well
+          group.checked = group.budgetItems.some(
+            (budgetItem) => budgetItem.checked,
+          );
         }
       }
     });
@@ -104,12 +109,36 @@ const BudgetOMaticContainer = ({ location }) => {
     !!dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
   }, [dataSetInstance]);
 
-  const onChangeCheckbox = (e) => {
-    console.log('버튼클릭트', e, e.target.value);
-    // console.log('onchange', e.target.value);
-    // defaultGroupsSelected
-    // setDefaultGroupsSelected(e.target.value);
+  const toggleGroupInDataSetInstance = ({ code, toggleCheck }) => {
+    const baseState = { ...dataSetInstance };
+    const nextState = produce(baseState, (draftState) => {
+      // draftState[name][idx][key] = value;
+      for (let [key, category] of Object.entries(draftState)) {
+        for (let group of category) {
+          if (group.code === code) {
+            for (let [index, budgetItem] of group.budgetItems.entries()) {
+              if (toggleCheck && index > 0) continue;
+              budgetItem.checked = toggleCheck;
+            }
+          }
+          // * IMPORTANT! update group.checked as well
+          group.checked = group.budgetItems.some(
+            (budgetItem) => budgetItem.checked,
+          );
+        }
+      }
+    });
+    setDataSetInstance(nextState);
   };
+  const onChangeCheckbox = (e) => {
+    console.log('버튼클릭트', e.target.value, e.target.checked, e.target.name);
+    const { value, checked } = e.target;
+    toggleGroupInDataSetInstance({
+      code: parseInt(value),
+      toggleCheck: checked,
+    });
+  };
+
   const onChangeTypeOfProduction = (e) => {
     console.log('onchange', e.target.value);
     setTypeOfProduction(e.target.value);
@@ -136,6 +165,9 @@ const BudgetOMaticContainer = ({ location }) => {
                 budgetItem[targetAttr] = value;
               }
             }
+            group.checked = group.budgetItems.some(
+              (budgetItem) => budgetItem.checked,
+            );
           }
         }
       }
@@ -148,6 +180,7 @@ const BudgetOMaticContainer = ({ location }) => {
     name = JSON.parse(name);
     updateItemInDataSetInstance({ name, value });
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('onsubmit', e, e.target.value);
