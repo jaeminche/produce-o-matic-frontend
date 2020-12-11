@@ -9,6 +9,7 @@ import {
 } from '../../lib/constants/sampleBudgetomaticData';
 import { listItemsGroups } from '../../modules/itemsGroups';
 import { generateQt, myDataSetsTemplate } from '../../lib/helper';
+import produce from 'immer';
 
 const BudgetOMaticContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -48,21 +49,42 @@ const BudgetOMaticContainer = ({ location }) => {
     }
   }, [DATASETS]);
 
+  const initializeDataSetInstance = ({ target, value }) => {
+    const baseState = { ...dataSetInstance };
+    const nextState = produce(baseState, (draftState) => {
+      // draftState[name][idx][key] = value;
+      for (let [key, category] of Object.entries(draftState)) {
+        for (let group of category) {
+          for (let budgetItem of group.budgetItems) {
+            budgetItem[target] = value;
+          }
+        }
+      }
+    });
+    setDataSetInstance(nextState);
+  };
   useEffect(() => {
     // ? 3. create checked attributes for both group and budgetItems and make an INSTANCE out of the original datasets retrieved
     if (myDataSets && typeOfProduction) {
       const tempDataSetInstance = JSON.parse(JSON.stringify(myDataSets));
+      const defaultAmnt = 1;
       // const defaultGroupsSelected = [];
       for (let [key, category] of Object.entries(tempDataSetInstance)) {
         for (let group of category) {
           /**
-           * ? create attribute, checked.
+           * ? create attribute, 'checked' FOR BUDGETITEM.
            * ? ex. budgetItems: [... { ...checked: true (if its tags include typeOfProduction) } ]
            */
           for (let budgetItem of group.budgetItems) {
             budgetItem.checked = budgetItem.tags.includes(typeOfProduction);
+            console.log('여기', budgetItem.amnt);
+            // if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
+            // if (!budgetItem.days) budgetItem.days = daysOfShooting;
+            // budgetItem.amnt = !budgetItem.amnt && defaultAmnt;
+            // budgetItem.days = !budgetItem.days && daysOfShooting;
           }
           /**
+           * ? create attribute, 'checked' FOR GROUP.
            * ? returns func. that returns
            * ? group(ex.labor) { ...
            * ?    checked: true (if budgetItems.length > 0)
@@ -74,20 +96,32 @@ const BudgetOMaticContainer = ({ location }) => {
             );
             return filtered.length > 0;
           };
-
-          // ? delete below: filter typeOfProduction and make an INSTANCE out of the original datasets retrieved
-          // group.budgetItems = group.budgetItems.filter((budgetItem) =>
-          //   budgetItem.tags.includes(typeOfProduction),
-          // );
-          // delelte below:
-          // group.budgetItems.length > 0 &&
-          //   defaultGroupsSelected.push(group.code);
         }
       }
       setDataSetInstance(tempDataSetInstance);
       // setGroupsSelected(defaultGroupsSelected);
     }
   }, [myDataSets, typeOfProduction]);
+
+  const updateDataSetInstanceAllAtOnce = ({ target, value }) => {
+    const baseState = { ...dataSetInstance };
+    const nextState = produce(baseState, (draftState) => {
+      // draftState[name][idx][key] = value;
+      for (let [key, category] of Object.entries(draftState)) {
+        for (let group of category) {
+          for (let budgetItem of group.budgetItems) {
+            budgetItem[target] = value;
+          }
+        }
+      }
+    });
+    setDataSetInstance(nextState);
+  };
+  useEffect(() => {
+    if (dataSetInstance && daysOfShooting) {
+      updateDataSetInstanceAllAtOnce({ target: 'days', value: daysOfShooting });
+    }
+  }, [daysOfShooting]);
 
   useEffect(() => {
     dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
@@ -119,6 +153,33 @@ const BudgetOMaticContainer = ({ location }) => {
     console.log('onchange', e.target.value);
     setCurrency(e.target.value);
   };
+
+  const updateItemInDataSetInstance = ({ name, value }) => {
+    const [targetGroupCd, targetBudgetItemCd, targetAttr] = name;
+    const baseState = { ...dataSetInstance };
+    const nextState = produce(baseState, (draftState) => {
+      // draftState[name][idx][key] = value;
+      for (let [key, category] of Object.entries(draftState)) {
+        for (let group of category) {
+          if (group.code === targetGroupCd) {
+            for (let budgetItem of group.budgetItems) {
+              if (budgetItem.code === targetBudgetItemCd) {
+                budgetItem[targetAttr] = value;
+              }
+            }
+          }
+        }
+      }
+    });
+    setDataSetInstance(nextState);
+  };
+  const onChangeSelect = (e) => {
+    const { value } = e.target;
+    let { name } = e.target;
+    name = JSON.parse(name);
+    console.log('셀렉트변경');
+    updateItemInDataSetInstance({ name, value });
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('onsubmit', e, e.target.value);
@@ -135,6 +196,7 @@ const BudgetOMaticContainer = ({ location }) => {
       onChangeTypeOfProduction={onChangeTypeOfProduction}
       onChangeDaysOfShooting={onChangeDaysOfShooting}
       onChangeCurrency={onChangeCurrency}
+      onChangeSelect={onChangeSelect}
       onSubmit={onSubmit}
       uiData={BUDGETOMATIC_UIDATA}
       isMobile={isMobile}

@@ -244,7 +244,7 @@ const Controller1 = (props) => {
 
       <div className="row-container content-row">
         <div className="left-item vertically-center">
-          <label htmlFor="daysOfShooting">Shooting Days</label>
+          <label htmlFor="daysOfShooting">Days of Shooting</label>
         </div>
         <div className="right-item vertically-center">
           <Select
@@ -283,7 +283,7 @@ const Controller2 = (props) => {
   const { keyname, dataSetInstance, onChangeCheckbox, isMobile } = props;
   // console.log('그룹네임프롭', dataSetInstance);
   const D = dataSetInstance[keyname];
-  const regex = /department|equipments/gi;
+  const regexGroupName = /department|equipments/gi;
   return (
     <StyledTable isMobile={isMobile}>
       <div
@@ -309,7 +309,7 @@ const Controller2 = (props) => {
                 checked={group.checked()}
                 onChange={onChangeCheckbox}
               />
-              {group.name.replace(regex, '')}
+              {group.name.replace(regexGroupName, '')}
             </label>
           </ButtonStyledCheckbox>
         ))}
@@ -331,7 +331,13 @@ const Subtotal = ({ children }) => {
 };
 
 const Calculator = (props) => {
-  const { dataSetInstance, currency, OPTIONS, isMobile } = props;
+  const {
+    dataSetInstance,
+    currency,
+    OPTIONS,
+    onChangeSelect,
+    isMobile,
+  } = props;
   console.log('데이터인스턴스', dataSetInstance);
   return (
     <Grandtotal props={props}>
@@ -365,10 +371,10 @@ const Calculator = (props) => {
                               <div className="vertically-center">
                                 <div className="flex-row">
                                   <Select
-                                    value={budgetItem.amnt}
-                                    // onChange={}
-                                    id="controller02-amnt"
-                                    name="amnt"
+                                    value={budgetItem.amnt && budgetItem.amnt}
+                                    onChange={onChangeSelect}
+                                    id="calculator-amnt"
+                                    name={`[${group.code}, ${budgetItem.code}, "amnt"]`}
                                     required={true}
                                     width={'70px'}
                                     maxWidth={'70px'}
@@ -381,11 +387,14 @@ const Calculator = (props) => {
                               </div>
                               <div className="vertically-center">
                                 <div className="flex-row">
+                                  {console.log('선택된 밸류', budgetItem.days)}
                                   <Select
-                                    value={budgetItem.days}
-                                    // onChange={}
-                                    id="controller02-days"
-                                    name="days"
+                                    value={
+                                      (budgetItem.days && budgetItem.days) || 5
+                                    }
+                                    onChange={onChangeSelect}
+                                    id="calculator-days"
+                                    name={`[${group.code}, ${budgetItem.code}, "days"]`}
                                     required={true}
                                     width={'70px'}
                                     maxWidth={'70px'}

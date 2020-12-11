@@ -39,6 +39,7 @@ const Select = (props) => {
     optionsList,
     maxWidth,
     width = 'false',
+    groupCode,
   } = props;
   return (
     <StyledSelect
@@ -49,6 +50,7 @@ const Select = (props) => {
       required={required}
       maxWidth={maxWidth}
       width={width}
+      // {...props}
     >
       {optionsList.map((option, key) => (
         <option value={option} key={key}>
