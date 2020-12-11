@@ -446,6 +446,7 @@ const Calculator = (props) => {
                     <div className="row-container content-row right-contents">
                       <div
                         className="vertically-center"
+                        style={{ marginRight: '-5px' }}
                         // onClick={() =>
                         //   onClickRemove({
                         //     targetGroupCd: group.code,
