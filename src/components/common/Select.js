@@ -38,7 +38,7 @@ const Select = (props) => {
     required = false,
     optionsList,
     maxWidth,
-    width = false,
+    width = 'false',
   } = props;
   return (
     <StyledSelect

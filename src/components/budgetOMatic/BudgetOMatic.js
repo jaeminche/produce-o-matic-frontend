@@ -314,8 +314,8 @@ const Controller2 = (props) => {
           </ButtonStyledCheckbox>
         ))}
 
-        {[...Array(10).keys()].map((i) => (
-          <i aria-hidden={true} />
+        {[...Array(10).keys()].map((i, key) => (
+          <i aria-hidden={true} key={key} />
         ))}
       </div>
     </StyledTable>
@@ -337,7 +337,7 @@ const Calculator = (props) => {
     <Grandtotal props={props}>
       {dataSetInstance &&
         Object.entries(dataSetInstance).map(([key, value]) => (
-          <>
+          <div key={key}>
             <CategoryTitle>{key.toUpperCase()}</CategoryTitle>
             <Controller2 keyname={key} {...props} />
             {value.map(
@@ -350,9 +350,9 @@ const Calculator = (props) => {
                       </div>
                     </div>
                     {group.budgetItems.map(
-                      (budgetItem) =>
+                      (budgetItem, key) =>
                         budgetItem.checked && (
-                          <div className="row-container content-row">
+                          <div className="row-container content-row" key={key}>
                             <div className="left-left-item vertically-center">
                               {`${budgetItem.code}. ${budgetItem.name}`}
                             </div>
@@ -403,7 +403,7 @@ const Calculator = (props) => {
                   </StyledTable>
                 ),
             )}
-          </>
+          </div>
         ))}
     </Grandtotal>
   );
