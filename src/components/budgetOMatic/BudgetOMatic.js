@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { PageTitle } from '../common/SmallComponents';
 import Select from '../common/Select';
-import { XMARK } from '../../assets';
+import { XMARK, PLUSMARK } from '../../assets';
 import { Button, CenteredButton } from '../../components/common/Button';
 import { toLowerCase, removeSpaceAndUnderbar } from '../../lib/format';
 
@@ -131,7 +131,7 @@ const StyledTable = styled.div`
   .budgetItem-contents {
     flex-wrap: nowrap;
   }
-  .subtotal-contents {
+  .right-contents {
     text-align: right;
     display: flex;
     flex-direction: row;
@@ -429,7 +429,7 @@ const Calculator = (props) => {
                               </div>
                             </div>
                             <div
-                              className="vertically-center"
+                              className="vertically-center margin-l"
                               onClick={() =>
                                 onClickRemove({
                                   targetGroupCd: group.code,
@@ -438,16 +438,29 @@ const Calculator = (props) => {
                                 })
                               }
                             >
-                              <img src={XMARK} alt="x-mark" />
+                              <img src={XMARK} alt="delete item" />
                             </div>
                           </div>
                         ),
                     )}
+                    <div className="row-container content-row right-contents">
+                      <div
+                        className="vertically-center"
+                        // onClick={() =>
+                        //   onClickRemove({
+                        //     targetGroupCd: group.code,
+                        //     willTargetGroup: false,
+                        //   })
+                        // }
+                      >
+                        <img src={PLUSMARK} alt="add item" />
+                      </div>
+                    </div>
                     <div className="row-container content-row">
                       <div className="left-left-item vertically-center">
                         Subtotal
                       </div>
-                      <div className="right-item subtotal-contents">
+                      <div className="right-item right-contents">
                         <div style={{ display: 'flex' }}>
                           <span className="vertically-center ">
                             {group.subtotal}

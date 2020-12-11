@@ -26,6 +26,7 @@ const MAP_KTX = require('./map_ktx.png');
 const MAP_DRONE = require('./map_drone.svg');
 const ARROW_OPTION = require('./arrow_option.svg');
 const XMARK = require('./xmark.svg');
+const PLUSMARK = require('./plusmark.svg');
 
 export {
   LOGO,
@@ -56,4 +57,5 @@ export {
   MAP_DRONE,
   ARROW_OPTION,
   XMARK,
+  PLUSMARK,
 };
