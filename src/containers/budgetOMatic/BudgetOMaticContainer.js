@@ -97,6 +97,8 @@ const BudgetOMaticContainer = ({ location }) => {
     typeOfProduction: ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'],
     daysOfShooting: generateQt(30),
     currency: ['KRW', 'EUR', 'USD'],
+    amnt: generateQt(15),
+    days: generateQt(40),
   };
 
   const onChangeCheckbox = (e) => {

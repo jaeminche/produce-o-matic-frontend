@@ -5,6 +5,7 @@ import { ARROW_OPTION } from '../../assets';
 
 const StyledSelect = styled.select`
   ${(props) => props.maxWidth && `max-width: ${props.maxWidth}`};
+  ${(props) => props.width && `width: ${props.width}`};
   /* ${(props) => (props.width ? 'width: 100px' : 'max-width: 300px')}; */
   height: 48px;
   border: 1px solid ${palette.budgetomatic.border[1]};

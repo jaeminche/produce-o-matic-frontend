@@ -73,6 +73,7 @@ const StyledTable = styled.div`
   .flex-row {
     display: flex;
     flex-direction: row;
+    padding: 5px 0;
   }
   .left-item {
     flex: 1;
@@ -137,8 +138,18 @@ const StyledTable = styled.div`
   i {
     flex: 1 0 auto;
   }
-  .group-title {
-    font-size: 18px;
+  .title-row {
+    ${mq({
+      fontSize: ['13px', '14px', , '16px', , '18px', ,],
+    })}
+  }
+  .content-row {
+    ${mq({
+      fontSize: ['12px', '12px', , '16px', , '18px', ,],
+    })}
+  }
+  .margin-l {
+    margin-left: 20px;
   }
 `;
 
@@ -159,6 +170,7 @@ const ButtonStyledCheckbox = styled.span`
   border: none;
   border-radius: 13px;
   font-size: 16px;
+  max-height: 36px;
   /* font-weight: bold; */
   padding: 4px 16px 7px 16px;
   color: white;
@@ -203,7 +215,7 @@ const Controller1 = (props) => {
 
   return (
     <StyledTable isMobile={isMobile}>
-      <div className="row-container">
+      <div className="row-container content-row">
         <div className="left-item vertically-center">Type of Production</div>
         <div
           id="controller01-typeOfProduction"
@@ -230,7 +242,7 @@ const Controller1 = (props) => {
         </div>
       </div>
 
-      <div className="row-container">
+      <div className="row-container content-row">
         <div className="left-item vertically-center">
           <label htmlFor="daysOfShooting">Shooting Days</label>
         </div>
@@ -247,7 +259,7 @@ const Controller1 = (props) => {
         </div>
       </div>
 
-      <div className="row-container">
+      <div className="row-container content-row">
         <div className="left-item vertically-center">
           <label htmlFor="currency">Currency</label>
         </div>
@@ -271,9 +283,13 @@ const Controller2 = (props) => {
   const { keyname, dataSetInstance, onChangeCheckbox, isMobile } = props;
   // console.log('그룹네임프롭', dataSetInstance);
   const D = dataSetInstance[keyname];
+  const regex = /department|equipments/gi;
   return (
     <StyledTable isMobile={isMobile}>
-      <div className="row-container solo-container wrap-evenly">
+      <div
+        className="row-container solo-container wrap-evenly"
+        style={{ minHeight: '76px' }}
+      >
         {D.map((group, key) => (
           <ButtonStyledCheckbox
             className={
@@ -293,7 +309,7 @@ const Controller2 = (props) => {
                 checked={group.checked()}
                 onChange={onChangeCheckbox}
               />
-              {group.name.replace('department', 'dept.')}
+              {group.name.replace(regex, '')}
             </label>
           </ButtonStyledCheckbox>
         ))}
@@ -329,14 +345,14 @@ const Calculator = (props) => {
                 group.checked() && (
                   <StyledTable isMobile={isMobile} key={key}>
                     <div className="row-container">
-                      <div className="vertically-center horizontally-center group-title">
+                      <div className="vertically-center horizontally-center title-row">
                         {`${group.code}. ${group.name.toUpperCase()}`}
                       </div>
                     </div>
                     {group.budgetItems.map(
                       (budgetItem) =>
                         budgetItem.checked && (
-                          <div className="row-container">
+                          <div className="row-container content-row">
                             <div className="left-left-item vertically-center">
                               {`${budgetItem.code}. ${budgetItem.name}`}
                             </div>
@@ -349,29 +365,35 @@ const Calculator = (props) => {
                               <div className="vertically-center">
                                 <div className="flex-row">
                                   <Select
-                                    value={OPTIONS.daysOfShooting}
+                                    value={budgetItem.amnt}
                                     // onChange={}
-                                    id="controller02-"
-                                    name=""
+                                    id="controller02-amnt"
+                                    name="amnt"
                                     required={true}
+                                    width={'70px'}
                                     maxWidth={'70px'}
-                                    optionsList={OPTIONS.daysOfShooting}
+                                    optionsList={OPTIONS.amnt}
                                   />
-                                  <div className="vertically-center">Amnt.</div>
+                                  <div className="vertically-center margin-l">
+                                    Amnt.
+                                  </div>
                                 </div>
                               </div>
                               <div className="vertically-center">
                                 <div className="flex-row">
                                   <Select
-                                    value={OPTIONS.daysOfShooting}
+                                    value={budgetItem.days}
                                     // onChange={}
-                                    id="controller02-"
-                                    name=""
+                                    id="controller02-days"
+                                    name="days"
                                     required={true}
+                                    width={'70px'}
                                     maxWidth={'70px'}
-                                    optionsList={OPTIONS.daysOfShooting}
+                                    optionsList={OPTIONS.days}
                                   />
-                                  <div className="vertically-center">Days</div>
+                                  <div className="vertically-center margin-l">
+                                    Days
+                                  </div>
                                 </div>
                               </div>
                             </div>
