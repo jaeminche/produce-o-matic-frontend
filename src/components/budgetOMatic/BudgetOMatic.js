@@ -293,9 +293,7 @@ const Controller2 = (props) => {
         {D.map((group, key) => (
           <ButtonStyledCheckbox
             className={
-              group.checked()
-                ? 'checked vertically-center'
-                : 'vertically-center'
+              group.checked ? 'checked vertically-center' : 'vertically-center'
             }
             key={key}
           >
@@ -306,7 +304,7 @@ const Controller2 = (props) => {
                 name={group.name}
                 value={group.code}
                 className="checkbox"
-                checked={group.checked()}
+                checked={group.checked}
                 onChange={onChangeCheckbox}
               />
               {group.name.replace(regexGroupName, '')}
@@ -348,7 +346,7 @@ const Calculator = (props) => {
             <Controller2 keyname={key} {...props} />
             {value.map(
               (group, key) =>
-                group.checked() && (
+                group.checked && (
                   <StyledTable isMobile={isMobile} key={key}>
                     <div className="row-container">
                       <div className="vertically-center horizontally-center title-row">
@@ -387,11 +385,8 @@ const Calculator = (props) => {
                               </div>
                               <div className="vertically-center">
                                 <div className="flex-row">
-                                  {console.log('선택된 밸류', budgetItem.days)}
                                   <Select
-                                    value={
-                                      (budgetItem.days && budgetItem.days) || 5
-                                    }
+                                    value={budgetItem.days && budgetItem.days}
                                     onChange={onChangeSelect}
                                     id="calculator-days"
                                     name={`[${group.code}, ${budgetItem.code}, "days"]`}

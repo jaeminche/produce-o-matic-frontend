@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { ARROW_OPTION } from '../../assets';
+import { disabledDefault } from '../../lib/constants/budgetomatic';
 
 const StyledSelect = styled.select`
   ${(props) => props.maxWidth && `max-width: ${props.maxWidth}`};
@@ -53,7 +54,7 @@ const Select = (props) => {
       // {...props}
     >
       {optionsList.map((option, key) => (
-        <option value={option} key={key}>
+        <option value={option} key={key} disabled={option === disabledDefault}>
           {option}
         </option>
       ))}

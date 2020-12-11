@@ -7,8 +7,9 @@ import {
   BUDGETOMATIC_UIDATA,
   _INITIAL_CODES_SET,
 } from '../../lib/constants/sampleBudgetomaticData';
+import { OPTIONS } from '../../lib/constants/budgetomatic';
 import { listItemsGroups } from '../../modules/itemsGroups';
-import { generateQt, myDataSetsTemplate } from '../../lib/helper';
+import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 
 const BudgetOMaticContainer = ({ location }) => {
@@ -24,12 +25,11 @@ const BudgetOMaticContainer = ({ location }) => {
   );
 
   // 1. request dataSetInstance data and full dataset
-  const [myDataSets, setMyDataSets] = useState();
-  const [dataSetInstance, setDataSetInstance] = useState();
+  const [myDataSets, setMyDataSets] = useState('');
+  const [dataSetInstance, setDataSetInstance] = useState('');
   const [typeOfProduction, setTypeOfProduction] = useState('DO');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
-  const [groupsSelected, setGroupsSelected] = useState();
 
   const history = useHistory();
 
@@ -49,57 +49,34 @@ const BudgetOMaticContainer = ({ location }) => {
     }
   }, [DATASETS]);
 
-  const initializeDataSetInstance = ({ target, value }) => {
-    const baseState = { ...dataSetInstance };
+  // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
+  const initializeDataSetInstance = () => {
+    console.log('데어터셋인스턴스 유뮤', !!dataSetInstance, !!myDataSets);
+    const tempDataSet = dataSetInstance || myDataSets;
+
+    const defaultAmnt = 1;
+    const baseState = { ...tempDataSet };
     const nextState = produce(baseState, (draftState) => {
       // draftState[name][idx][key] = value;
       for (let [key, category] of Object.entries(draftState)) {
         for (let group of category) {
           for (let budgetItem of group.budgetItems) {
-            budgetItem[target] = value;
+            budgetItem.checked = budgetItem.tags.includes(typeOfProduction);
+            // * if there's data, leave it
+            if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
+            if (!budgetItem.days) budgetItem.days = daysOfShooting;
           }
+          group.checked = group.budgetItems.some(
+            (budgetItem) => budgetItem.checked,
+          );
         }
       }
     });
     setDataSetInstance(nextState);
   };
   useEffect(() => {
-    // ? 3. create checked attributes for both group and budgetItems and make an INSTANCE out of the original datasets retrieved
     if (myDataSets && typeOfProduction) {
-      const tempDataSetInstance = JSON.parse(JSON.stringify(myDataSets));
-      const defaultAmnt = 1;
-      // const defaultGroupsSelected = [];
-      for (let [key, category] of Object.entries(tempDataSetInstance)) {
-        for (let group of category) {
-          /**
-           * ? create attribute, 'checked' FOR BUDGETITEM.
-           * ? ex. budgetItems: [... { ...checked: true (if its tags include typeOfProduction) } ]
-           */
-          for (let budgetItem of group.budgetItems) {
-            budgetItem.checked = budgetItem.tags.includes(typeOfProduction);
-            console.log('여기', budgetItem.amnt);
-            // if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
-            // if (!budgetItem.days) budgetItem.days = daysOfShooting;
-            // budgetItem.amnt = !budgetItem.amnt && defaultAmnt;
-            // budgetItem.days = !budgetItem.days && daysOfShooting;
-          }
-          /**
-           * ? create attribute, 'checked' FOR GROUP.
-           * ? returns func. that returns
-           * ? group(ex.labor) { ...
-           * ?    checked: true (if budgetItems.length > 0)
-           * ? }
-           */
-          group.checked = function () {
-            const filtered = group.budgetItems.filter(
-              (budgetItem) => budgetItem.checked,
-            );
-            return filtered.length > 0;
-          };
-        }
-      }
-      setDataSetInstance(tempDataSetInstance);
-      // setGroupsSelected(defaultGroupsSelected);
+      initializeDataSetInstance();
     }
   }, [myDataSets, typeOfProduction]);
 
@@ -124,16 +101,8 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [daysOfShooting]);
 
   useEffect(() => {
-    dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
+    !!dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
   }, [dataSetInstance]);
-
-  const OPTIONS = {
-    typeOfProduction: ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'],
-    daysOfShooting: generateQt(30),
-    currency: ['KRW', 'EUR', 'USD'],
-    amnt: generateQt(15),
-    days: generateQt(40),
-  };
 
   const onChangeCheckbox = (e) => {
     console.log('버튼클릭트', e, e.target.value);
