@@ -343,6 +343,7 @@ const Calculator = (props) => {
     currency,
     OPTIONS,
     onChangeSelect,
+    onClickRemove,
     isMobile,
   } = props;
   console.log('데이터인스턴스', dataSetInstance);
@@ -361,7 +362,15 @@ const Calculator = (props) => {
                       <div className="vertically-center horizontally-center title-row">
                         {`${group.code}. ${group.name.toUpperCase()}`}
                       </div>
-                      <div className="vertically-center">
+                      <div
+                        onClick={() =>
+                          onClickRemove({
+                            targetGroupCd: group.code,
+                            willTargetGroup: true,
+                          })
+                        }
+                        className="vertically-center"
+                      >
                         <img src={XMARK} alt="x-mark" />
                       </div>
                     </div>
@@ -413,7 +422,16 @@ const Calculator = (props) => {
                                 </div>
                               </div>
 
-                              <div className="vertically-center">
+                              <div
+                                className="vertically-center"
+                                onClick={() =>
+                                  onClickRemove({
+                                    targetGroupCd: group.code,
+                                    targetBudgetItemCd: budgetItem.code,
+                                    willTargetGroup: false,
+                                  })
+                                }
+                              >
                                 <img src={XMARK} alt="x-mark" />
                               </div>
                             </div>

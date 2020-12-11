@@ -50,6 +50,7 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [DATASETS]);
 
   // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
+  // * update dataSetInstance 1/3
   const initializeDataSetInstance = () => {
     console.log('데어터셋인스턴스 유뮤', !!dataSetInstance, !!myDataSets);
     const tempDataSet = dataSetInstance || myDataSets;
@@ -109,6 +110,7 @@ const BudgetOMaticContainer = ({ location }) => {
     !!dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
   }, [dataSetInstance]);
 
+  // * update dataSetInstance 2/3
   const toggleGroupInDataSetInstance = ({ code, toggleCheck }) => {
     const baseState = { ...dataSetInstance };
     const nextState = produce(baseState, (draftState) => {
@@ -131,7 +133,6 @@ const BudgetOMaticContainer = ({ location }) => {
     setDataSetInstance(nextState);
   };
   const onChangeCheckbox = (e) => {
-    console.log('버튼클릭트', e.target.value, e.target.checked, e.target.name);
     const { value, checked } = e.target;
     toggleGroupInDataSetInstance({
       code: parseInt(value),
@@ -152,6 +153,7 @@ const BudgetOMaticContainer = ({ location }) => {
     setCurrency(e.target.value);
   };
 
+  // * update dataSetInstance 3/3
   const updateItemInDataSetInstance = ({ name, value }) => {
     const [targetGroupCd, targetBudgetItemCd, targetAttr] = name;
     const baseState = { ...dataSetInstance };
@@ -181,6 +183,22 @@ const BudgetOMaticContainer = ({ location }) => {
     updateItemInDataSetInstance({ name, value });
   };
 
+  const onClickRemove = ({
+    targetGroupCd,
+    targetBudgetItemCd = false,
+    willTargetGroup,
+  }) => {
+    willTargetGroup
+      ? toggleGroupInDataSetInstance({
+          code: targetGroupCd,
+          toggleCheck: false,
+        })
+      : updateItemInDataSetInstance({
+          name: [targetGroupCd, targetBudgetItemCd, 'checked'],
+          value: false,
+        });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('onsubmit', e, e.target.value);
@@ -198,6 +216,7 @@ const BudgetOMaticContainer = ({ location }) => {
       onChangeDaysOfShooting={onChangeDaysOfShooting}
       onChangeCurrency={onChangeCurrency}
       onChangeSelect={onChangeSelect}
+      onClickRemove={onClickRemove}
       onSubmit={onSubmit}
       uiData={BUDGETOMATIC_UIDATA}
       isMobile={isMobile}
