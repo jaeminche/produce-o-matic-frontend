@@ -146,7 +146,6 @@ const BudgetOMaticContainer = ({ location }) => {
     const { value } = e.target;
     let { name } = e.target;
     name = JSON.parse(name);
-    console.log('셀렉트변경');
     updateItemInDataSetInstance({ name, value });
   };
   const onSubmit = (e) => {

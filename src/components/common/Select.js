@@ -42,6 +42,7 @@ const Select = (props) => {
     width = 'false',
     groupCode,
   } = props;
+  console.log('셀렉트', value);
   return (
     <StyledSelect
       value={value}
@@ -54,7 +55,12 @@ const Select = (props) => {
       // {...props}
     >
       {optionsList.map((option, key) => (
-        <option value={option} key={key} disabled={option === disabledDefault}>
+        <option
+          value={option}
+          key={key}
+          // defaultValue={2}
+          // disabled={option === disabledDefault}
+        >
           {option}
         </option>
       ))}

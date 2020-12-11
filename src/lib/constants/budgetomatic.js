@@ -2,7 +2,9 @@ const disabledDefault = 'set';
 
 // ? generate [1 through num]
 const generateQt = (num) => {
-  const elem = [disabledDefault];
+  const elem = [
+    /*disabledDefault*/
+  ];
   for (let i = 1; i <= num; i++) {
     elem.push(i);
   }
