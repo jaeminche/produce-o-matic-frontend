@@ -8,7 +8,8 @@ const StyledPageTitle = styled.h1`
   ${mq({
     fontSize: ['26px', '32px', , '40px', , '50px', ,],
   })}
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  margin-top: 0;
   text-align: center;
 `;
 
