@@ -89,7 +89,7 @@ const StyledTable = styled.div`
     flex: 2;
     text-align: left;
     ${mq({
-      minWidth: ['80px', '90px', '150px', '300px', , , ,],
+      minWidth: ['80px', '90px', '140px', , , '300px', ,],
     })};
     ${mq({
       marginRight: ['40px', '45px', , '70px', , '90px', ,],
@@ -130,6 +130,12 @@ const StyledTable = styled.div`
   }
   .budgetItem-contents {
     flex-wrap: nowrap;
+  }
+  .subtotal-contents {
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
   }
   .radio-item {
     display: inline-block;
@@ -421,23 +427,35 @@ const Calculator = (props) => {
                                   </div>
                                 </div>
                               </div>
-
-                              <div
-                                className="vertically-center"
-                                onClick={() =>
-                                  onClickRemove({
-                                    targetGroupCd: group.code,
-                                    targetBudgetItemCd: budgetItem.code,
-                                    willTargetGroup: false,
-                                  })
-                                }
-                              >
-                                <img src={XMARK} alt="x-mark" />
-                              </div>
+                            </div>
+                            <div
+                              className="vertically-center"
+                              onClick={() =>
+                                onClickRemove({
+                                  targetGroupCd: group.code,
+                                  targetBudgetItemCd: budgetItem.code,
+                                  willTargetGroup: false,
+                                })
+                              }
+                            >
+                              <img src={XMARK} alt="x-mark" />
                             </div>
                           </div>
                         ),
                     )}
+                    <div className="row-container content-row">
+                      <div className="left-left-item vertically-center">
+                        Subtotal
+                      </div>
+                      <div className="right-item subtotal-contents">
+                        <div style={{ display: 'flex' }}>
+                          <span className="vertically-center ">{80000}</span>
+                          <span className="vertically-center margin-l">
+                            {currency}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </StyledTable>
                 ),
             )}
