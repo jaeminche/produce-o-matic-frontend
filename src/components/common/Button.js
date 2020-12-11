@@ -14,8 +14,11 @@ const buttonStyle = css`
   cursor: pointer;
 
   background: ${palette.gray[8]};
-  &:hover {
-    background: ${palette.gray[6]};
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: ${palette.gray[6]};
+    }
   }
 
   &:disabled {

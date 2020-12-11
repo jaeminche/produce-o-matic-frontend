@@ -68,7 +68,6 @@ const StyledTable = styled.div`
   }
   .wrap-evenly {
     flex-wrap: wrap;
-    gap: 12px;
   }
   .flex-row {
     display: flex;
@@ -102,6 +101,9 @@ const StyledTable = styled.div`
   }
   .horizontally-center {
     margin: 0 auto;
+  }
+  .gap {
+    margin: 6px;
   }
   .checkbox {
     display: none;
@@ -180,8 +182,10 @@ const ButtonStyledCheckbox = styled.span`
 
   background: ${palette.gray[5]};
 
-  &:hover {
-    background: ${palette.gray[8]};
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: ${palette.gray[8]};
+    }
   }
 
   &:disabled {
@@ -293,7 +297,9 @@ const Controller2 = (props) => {
         {D.map((group, key) => (
           <ButtonStyledCheckbox
             className={
-              group.checked ? 'checked vertically-center' : 'vertically-center'
+              group.checked
+                ? 'checked vertically-center gap'
+                : 'vertically-center gap'
             }
             key={key}
           >
