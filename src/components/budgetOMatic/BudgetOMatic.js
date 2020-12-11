@@ -156,13 +156,15 @@ const StyledTable = styled.div`
 `;
 
 const CategoryTitle = styled.div`
+  ${mq({
+    fontSize: ['24px', '28px', , '31px', , '34px', ,],
+  })}
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: Lato;
   font-style: normal;
   font-weight: bold;
-  font-size: 34px;
   line-height: 76px;
   text-align: center;
   color: ${palette.budgetomatic.text[2]};
