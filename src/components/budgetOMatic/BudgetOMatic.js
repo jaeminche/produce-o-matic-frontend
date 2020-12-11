@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { PageTitle } from '../common/SmallComponents';
 import Select from '../common/Select';
+import { XMARK } from '../../assets';
 import { Button, CenteredButton } from '../../components/common/Button';
 import { toLowerCase, removeSpaceAndUnderbar } from '../../lib/format';
 
@@ -360,6 +361,9 @@ const Calculator = (props) => {
                       <div className="vertically-center horizontally-center title-row">
                         {`${group.code}. ${group.name.toUpperCase()}`}
                       </div>
+                      <div className="vertically-center">
+                        <img src={XMARK} alt="x-mark" />
+                      </div>
                     </div>
                     {group.budgetItems.map(
                       (budgetItem, key) =>
@@ -407,6 +411,10 @@ const Calculator = (props) => {
                                     Days
                                   </div>
                                 </div>
+                              </div>
+
+                              <div className="vertically-center">
+                                <img src={XMARK} alt="x-mark" />
                               </div>
                             </div>
                           </div>

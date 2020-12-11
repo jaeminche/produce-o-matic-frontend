@@ -25,6 +25,7 @@ const WEATHER = require('./weather.jpg');
 const MAP_KTX = require('./map_ktx.png');
 const MAP_DRONE = require('./map_drone.svg');
 const ARROW_OPTION = require('./arrow_option.svg');
+const XMARK = require('./xmark.svg');
 
 export {
   LOGO,
@@ -54,4 +55,5 @@ export {
   MAP_KTX,
   MAP_DRONE,
   ARROW_OPTION,
+  XMARK,
 };
