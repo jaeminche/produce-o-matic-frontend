@@ -29,4 +29,23 @@ const myDataSetsTemplate = {
   'insurances & taxes': [],
 };
 
-export { disabledDefault, generateQt, OPTIONS, myDataSetsTemplate };
+const moveItemBeforeAnotherInArr = (arr, newIndex, oldIndex) => {
+  if (oldIndex >= arr.length) {
+    let i = oldIndex - arr.length + 1;
+    while (i--) {
+      arr.push(undefined);
+    }
+  }
+  arr.splice(oldIndex, 0, arr.splice(newIndex, 1)[0]);
+  return arr;
+};
+// returns [22, 11, 33]
+// console.log(moveItemInArr([11, 22, 33], 0, 1));
+
+export {
+  disabledDefault,
+  generateQt,
+  OPTIONS,
+  myDataSetsTemplate,
+  moveItemBeforeAnotherInArr,
+};

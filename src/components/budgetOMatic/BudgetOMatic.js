@@ -427,12 +427,16 @@ const Calculator = (props) => {
                       const options = group.options.map(
                         (item) => item.budgetItemCode, // * CODES makes the options
                       );
+                      const getItemsCurrIdxFromCurrArr = (
+                        budgetItems,
+                        itemCode,
+                      ) =>
+                        budgetItems
+                          .map((item) => item.code)
+                          .indexOf(parseInt(itemCode));
                       return (
                         budgetItem.checked && (
                           <div className="row-container content-row" key={key}>
-                            {/* <div className="left-left-item vertically-center">
-                              {`${budgetItem.code}. ${budgetItem.name}`}
-                            </div> */}
                             <div className="left-left-item  vertically-center">
                               <div className="flex-row">
                                 <Select
@@ -442,7 +446,14 @@ const Calculator = (props) => {
                                       e,
                                       amnt: budgetItem.amnt,
                                       days: budgetItem.days,
-                                      oldIdx: key,
+                                      oldIdx: getItemsCurrIdxFromCurrArr(
+                                        group.budgetItems,
+                                        budgetItem.code,
+                                      ),
+                                      newIdx: getItemsCurrIdxFromCurrArr(
+                                        group.budgetItems,
+                                        e.target.value,
+                                      ),
                                       targetGroupCd: group.code,
                                     })
                                   }

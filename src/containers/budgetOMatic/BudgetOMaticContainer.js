@@ -7,7 +7,10 @@ import {
   BUDGETOMATIC_UIDATA,
   _INITIAL_CODES_SET,
 } from '../../lib/constants/sampleBudgetomaticData';
-import { OPTIONS } from '../../lib/constants/budgetomatic';
+import {
+  OPTIONS,
+  moveItemBeforeAnotherInArr,
+} from '../../lib/constants/budgetomatic';
 import { listItemsGroups } from '../../modules/itemsGroups';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
@@ -63,7 +66,7 @@ const BudgetOMaticContainer = ({ location }) => {
           group.options = [];
           for (let budgetItem of group.budgetItems) {
             budgetItem.checked = budgetItem.tags.includes(typeOfProduction);
-            // * if there's data, leave it
+            // todo: if there's data, leave it, but may change
             if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
             if (!budgetItem.days) budgetItem.days = daysOfShooting;
 
@@ -73,6 +76,10 @@ const BudgetOMaticContainer = ({ location }) => {
               budgetItemName: budgetItem.name,
             });
           }
+          // * normalize its order, in case it may have been changed from the previous user inpus.
+          dataSetInstance &&
+            group.options.sort((a, b) => a.budgetItemCode - b.budgetItemCode);
+
           // * IMPORTANT! update group.checked as well
           group.checked = group.budgetItems.some(
             (budgetItem) => budgetItem.checked,
@@ -188,7 +195,10 @@ const BudgetOMaticContainer = ({ location }) => {
     willReplaceItem = false,
   }) => {
     const [targetGroupCd, targetBudgetItemCd, targetAttr] = name;
-    const { newItemCode, oldIdx, newIdx, amnt, days } = willReplaceItem;
+    const { newItemCode, amnt, days } = willReplaceItem;
+    const oldIdx = parseInt(willReplaceItem.oldIdx);
+    const newIdx = parseInt(willReplaceItem.newIdx);
+
     const baseState = { ...dataSetInstance };
     const nextState = produce(baseState, (draftState) => {
       // draftState[name][idx][key] = value;
@@ -208,6 +218,14 @@ const BudgetOMaticContainer = ({ location }) => {
                 budgetItem.amnt = parseInt(amnt);
                 budgetItem.days = parseInt(days);
               }
+            }
+
+            if (willReplaceItem) {
+              group.budgetItems = moveItemBeforeAnotherInArr(
+                group.budgetItems,
+                newIdx,
+                oldIdx,
+              );
             }
 
             group.checked = group.budgetItems.some(
@@ -237,21 +255,27 @@ const BudgetOMaticContainer = ({ location }) => {
     updateItemInDataSetInstance({ name, value });
   };
 
-  const onChangeReplace = ({ e, amnt, days, oldIdx, targetGroupCd }) => {
+  const onChangeReplace = ({
+    e,
+    amnt,
+    days,
+    oldIdx,
+    newIdx,
+    targetGroupCd,
+  }) => {
     const { name, value } = e.target;
-    const newIdx = e.target.options.selectedIndex;
+    // const newIdx = e.target.options.selectedIndex;
     const oldItemCode = name;
     const newItemCode = value;
     console.log(
       '온체인지리플레이스',
-      'name:',
-      name,
-      'value',
-      value,
-      amnt,
-      days,
+      'oldItemCode:',
+      oldItemCode,
+      'newItemCode:',
+      newItemCode,
+      '올드',
       oldIdx,
-      '키:',
+      '뉴:',
       newIdx,
     );
     updateItemInDataSetInstance({
