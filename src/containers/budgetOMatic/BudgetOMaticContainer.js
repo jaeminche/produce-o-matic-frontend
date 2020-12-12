@@ -196,8 +196,8 @@ const BudgetOMaticContainer = ({ location }) => {
   }) => {
     const [targetGroupCd, targetBudgetItemCd, targetAttr] = name;
     const { newItemCode, amnt, days } = willReplaceItem;
-    const oldIdx = parseInt(willReplaceItem.oldIdx);
-    const newIdx = parseInt(willReplaceItem.newIdx);
+    const oldIdx = willReplaceItem && parseInt(willReplaceItem.oldIdx);
+    const newIdx = willReplaceItem && parseInt(willReplaceItem.newIdx);
 
     const baseState = { ...dataSetInstance };
     const nextState = produce(baseState, (draftState) => {
@@ -264,20 +264,8 @@ const BudgetOMaticContainer = ({ location }) => {
     targetGroupCd,
   }) => {
     const { name, value } = e.target;
-    // const newIdx = e.target.options.selectedIndex;
     const oldItemCode = name;
     const newItemCode = value;
-    console.log(
-      '온체인지리플레이스',
-      'oldItemCode:',
-      oldItemCode,
-      'newItemCode:',
-      newItemCode,
-      '올드',
-      oldIdx,
-      '뉴:',
-      newIdx,
-    );
     updateItemInDataSetInstance({
       name: [targetGroupCd, oldItemCode, 'checked'],
       value: false,
@@ -301,6 +289,13 @@ const BudgetOMaticContainer = ({ location }) => {
         });
   };
 
+  const onClickAdd = ({ targetGroupCd, targetBudgetItemCd }) => {
+    updateItemInDataSetInstance({
+      name: [targetGroupCd, targetBudgetItemCd, 'checked'],
+      value: true,
+    });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('onsubmit', e, e.target.value);
@@ -320,6 +315,7 @@ const BudgetOMaticContainer = ({ location }) => {
       onChangeSelect={onChangeSelect}
       onChangeReplace={onChangeReplace}
       onClickRemove={onClickRemove}
+      onClickAdd={onClickAdd}
       onSubmit={onSubmit}
       uiData={BUDGETOMATIC_UIDATA}
       isMobile={isMobile}

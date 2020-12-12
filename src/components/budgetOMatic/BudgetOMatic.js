@@ -389,9 +389,11 @@ const Calculator = (props) => {
     onChangeSelect,
     onChangeReplace,
     onClickRemove,
+    onClickAdd,
     isMobile,
   } = props;
   console.log('데이터인스턴스', dataSetInstance);
+
   return (
     <Grandtotal props={props}>
       {dataSetInstance &&
@@ -399,8 +401,13 @@ const Calculator = (props) => {
           <div key={key}>
             <CategoryTitle>{key.toUpperCase()}</CategoryTitle>
             <Controller2 keyname={key} {...props} />
-            {value.map(
-              (group, key) =>
+            {value.map((group, key) => {
+              const getFirstUncheckedItemsCode = () => {
+                for (const budgetItem of group.budgetItems) {
+                  if (!budgetItem.checked) return budgetItem.code;
+                }
+              };
+              return (
                 group.checked && (
                   <StyledTable isMobile={isMobile} key={key}>
                     <div className="row-container">
@@ -434,6 +441,7 @@ const Calculator = (props) => {
                         budgetItems
                           .map((item) => item.code)
                           .indexOf(parseInt(itemCode));
+
                       return (
                         budgetItem.checked && (
                           <div className="row-container content-row" key={key}>
@@ -526,16 +534,16 @@ const Calculator = (props) => {
                       );
                     })}
                     <div className="row-container content-row right-contents align-center">
-                      <div className="plus-parent">
-                        <div
-                          className="plus-child-circle "
-                          // onClick={() =>
-                          // onClickAdd({
-                          //   targetGroupCd: group.code,
-                          //   willTargetGroup: false,
-                          // })
-                          // }
-                        ></div>
+                      <div
+                        className="plus-parent"
+                        onClick={() =>
+                          onClickAdd({
+                            targetGroupCd: group.code,
+                            targetBudgetItemCd: getFirstUncheckedItemsCode(),
+                          })
+                        }
+                      >
+                        <div className="plus-child-circle "></div>
                         <img
                           className="plus-child-mark"
                           src={PLUSMARK}
@@ -559,8 +567,9 @@ const Calculator = (props) => {
                       </div>
                     </div>
                   </StyledTable>
-                ),
-            )}
+                )
+              );
+            })}
           </div>
         ))}
     </Grandtotal>
