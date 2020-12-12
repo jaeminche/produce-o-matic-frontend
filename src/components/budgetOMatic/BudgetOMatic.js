@@ -89,16 +89,19 @@ const StyledTable = styled.div`
     flex: 2;
     text-align: left;
     ${mq({
-      minWidth: ['80px', '90px', '140px', , , '300px', ,],
+      minWidth: ['70px', '90px', '140px', , , '300px', ,],
     })};
     ${mq({
-      marginRight: ['40px', '45px', , '70px', , '90px', ,],
+      marginRight: ['10px', '45px', , '70px', , '90px', ,],
     })}
   }
   .vertically-center {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  .align-center {
+    align-items: center;
   }
   .horizontally-center {
     margin: 0 auto;
@@ -160,21 +163,56 @@ const StyledTable = styled.div`
   .margin-l {
     margin-left: 20px;
   }
+  .plus-parent {
+    border-radius: 50%;
+    ${mq({
+      width: ['35px', , , '50px', , , ,],
+      height: ['35px', , , '50px', , , ,],
+      marginRight: ['-8px', '-10px', , '-20px', , , ,],
+    })}
+    position: relative;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .plus-parent:hover {
+      background: ${palette.budgetomatic.table[1]};
+    }
+  }
+  @media (hover: none) {
+    .plus-parent {
+      background: ${palette.budgetomatic.table[1]};
+    }
+  }
+  .plus-child-circle {
+    position: absolute;
+    ${mq({
+      top: ['50%', , , , , , ,],
+      left: ['50%', , , , , , ,],
+    })};
+  }
+  .plus-child-mark {
+    position: absolute;
+    ${mq({
+      top: ['18%', , , '25%', , , ,],
+      left: ['18%', , , '25%', , , ,],
+    })};
+  }
 `;
 
 const CategoryTitle = styled.div`
   ${mq({
     fontSize: ['24px', '28px', , '31px', , '34px', ,],
-  })}
+    margin: ['40px 0 20px', , , '50px 0 30px', , '60px 0 30px', ,],
+  })};
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: Lato;
   font-style: normal;
   font-weight: bold;
-  line-height: 76px;
+  line-height: 44px;
   text-align: center;
   color: ${palette.budgetomatic.text[2]};
+  letter-spacing: normal;
 `;
 
 const ButtonStyledCheckbox = styled.span`
@@ -443,18 +481,22 @@ const Calculator = (props) => {
                           </div>
                         ),
                     )}
-                    <div className="row-container content-row right-contents">
-                      <div
-                        className="vertically-center"
-                        style={{ marginRight: '-5px' }}
-                        // onClick={() =>
-                        //   onClickRemove({
-                        //     targetGroupCd: group.code,
-                        //     willTargetGroup: false,
-                        //   })
-                        // }
-                      >
-                        <img src={PLUSMARK} alt="add item" />
+                    <div className="row-container content-row right-contents align-center">
+                      <div className="plus-parent">
+                        <div
+                          className="plus-child-circle "
+                          // onClick={() =>
+                          //   onClickRemove({
+                          //     targetGroupCd: group.code,
+                          //     willTargetGroup: false,
+                          //   })
+                          // }
+                        ></div>
+                        <img
+                          className="plus-child-mark"
+                          src={PLUSMARK}
+                          alt="add item"
+                        />
                       </div>
                     </div>
                     <div className="row-container content-row">
