@@ -231,7 +231,7 @@ const ButtonStyledCheckbox = styled.span`
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: ${palette.gray[8]};
+      background: ${palette.gray[7]};
     }
   }
 
@@ -486,10 +486,10 @@ const Calculator = (props) => {
                         <div
                           className="plus-child-circle "
                           // onClick={() =>
-                          //   onClickRemove({
-                          //     targetGroupCd: group.code,
-                          //     willTargetGroup: false,
-                          //   })
+                          // onClickAdd({
+                          //   targetGroupCd: group.code,
+                          //   willTargetGroup: false,
+                          // })
                           // }
                         ></div>
                         <img
