@@ -83,7 +83,7 @@ const StyledTable = styled.div`
     })};
     ${mq({
       marginRight: ['40px', '45px', , '70px', , '90px', ,],
-    })}
+    })};
   }
   .left-left-item {
     flex: 2;
@@ -93,7 +93,7 @@ const StyledTable = styled.div`
     })};
     ${mq({
       marginRight: ['10px', '45px', , '70px', , '90px', ,],
-    })}
+    })};
   }
   .vertically-center {
     display: flex;
@@ -153,12 +153,12 @@ const StyledTable = styled.div`
   .title-row {
     ${mq({
       fontSize: ['13px', '14px', , '16px', , '18px', ,],
-    })}
+    })};
   }
   .content-row {
     ${mq({
       fontSize: ['12px', '12px', , '16px', , '18px', ,],
-    })}
+    })};
   }
   .margin-l {
     margin-left: 20px;
@@ -169,7 +169,7 @@ const StyledTable = styled.div`
       width: ['35px', , , '50px', , , ,],
       height: ['35px', , , '50px', , , ,],
       marginRight: ['-8px', '-10px', , '-20px', , , ,],
-    })}
+    })};
     position: relative;
   }
   @media (hover: hover) and (pointer: fine) {
@@ -418,13 +418,28 @@ const Calculator = (props) => {
                         <img src={XMARK} alt="x-mark" />
                       </div>
                     </div>
-                    {group.budgetItems.map(
-                      (budgetItem, key) =>
+                    {group.budgetItems.map((budgetItem, key) => {
+                      // ! 그룹 아이템들 세팅하기
+                      return (
                         budgetItem.checked && (
                           <div className="row-container content-row" key={key}>
                             <div className="left-left-item vertically-center">
                               {`${budgetItem.code}. ${budgetItem.name}`}
                             </div>
+                            {/* <div className="left-left-item  vertically-center">
+                                <div className="flex-row">
+                                  <Select
+                                    value={budgetItem.amnt && budgetItem.amnt}
+                                    onChange={onChangeSelect}
+                                    id="calculator-amnt"
+                                    name={`[${group.code}, ${budgetItem.code}, "amnt"]`}
+                                    required={true}
+                                    width={'70px'}
+                                    maxWidth={'70px'}
+                                    optionsList={OPTIONS.amnt}
+                                  />
+                                </div>
+                              </div> */}
 
                             <div className="right-item budgetItem-contents">
                               <div className="vertically-center">
@@ -479,8 +494,9 @@ const Calculator = (props) => {
                               <img src={XMARK} alt="delete item" />
                             </div>
                           </div>
-                        ),
-                    )}
+                        )
+                      );
+                    })}
                     <div className="row-container content-row right-contents align-center">
                       <div className="plus-parent">
                         <div
