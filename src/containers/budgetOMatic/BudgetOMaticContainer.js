@@ -60,11 +60,19 @@ const BudgetOMaticContainer = ({ location }) => {
       // draftState[name][idx][key] = value;
       for (let [key, category] of Object.entries(draftState)) {
         for (let group of category) {
+          group.options = [];
           for (let budgetItem of group.budgetItems) {
             budgetItem.checked = budgetItem.tags.includes(typeOfProduction);
             // * if there's data, leave it
             if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
             if (!budgetItem.days) budgetItem.days = daysOfShooting;
+
+            // * make options dropdown for budgetItem Select
+            group.options.push({
+              code: budgetItem.code,
+              optionName: budgetItem.name,
+            });
+            // group.options.push(`${budgetItem.code}. ${budgetItem.name}`);
           }
           // * IMPORTANT! update group.checked as well
           group.checked = group.budgetItems.some(
@@ -153,7 +161,7 @@ const BudgetOMaticContainer = ({ location }) => {
     });
     setDataSetInstance(nextState);
   };
-  const onChangeCheckbox = (e) => {
+  const onChangeToggleGroup = (e) => {
     const { value, checked } = e.target;
     toggleGroupInDataSetInstance({
       code: parseInt(value),
@@ -215,6 +223,8 @@ const BudgetOMaticContainer = ({ location }) => {
     updateItemInDataSetInstance({ name, value });
   };
 
+  const onChangeReplace = (e) => {};
+
   const onClickRemove = ({
     targetGroupCd,
     targetBudgetItemCd = false,
@@ -243,11 +253,12 @@ const BudgetOMaticContainer = ({ location }) => {
       currency={currency}
       OPTIONS={OPTIONS}
       dataSetInstance={dataSetInstance}
-      onChangeCheckbox={onChangeCheckbox}
       onChangeTypeOfProduction={onChangeTypeOfProduction}
       onChangeDaysOfShooting={onChangeDaysOfShooting}
       onChangeCurrency={onChangeCurrency}
+      onChangeToggleGroup={onChangeToggleGroup}
       onChangeSelect={onChangeSelect}
+      onChangeReplace={onChangeReplace}
       onClickRemove={onClickRemove}
       onSubmit={onSubmit}
       uiData={BUDGETOMATIC_UIDATA}

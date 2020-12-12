@@ -37,12 +37,17 @@ const Select = (props) => {
     id,
     name,
     required = false,
+    items = false,
+    codes = false,
     optionsList,
     maxWidth,
     width = 'false',
-    groupCode,
   } = props;
-  console.log('셀렉트', value);
+
+  const selectedItemNames = function () {
+    return items.map((item) => item.checked && item.name);
+  };
+
   return (
     <StyledSelect
       value={value}
@@ -58,9 +63,13 @@ const Select = (props) => {
         <option
           value={option}
           key={key}
+          disabled={
+            items && items.length > 0 && selectedItemNames().includes(option)
+          }
           // defaultValue={2}
           // disabled={option === disabledDefault}
         >
+          {codes && codes[key] + '. '}
           {option}
         </option>
       ))}

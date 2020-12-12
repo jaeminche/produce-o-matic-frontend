@@ -331,7 +331,7 @@ const Controller1 = (props) => {
 };
 
 const Controller2 = (props) => {
-  const { keyname, dataSetInstance, onChangeCheckbox, isMobile } = props;
+  const { keyname, dataSetInstance, onChangeToggleGroup, isMobile } = props;
   // console.log('그룹네임프롭', dataSetInstance);
   const D = dataSetInstance[keyname];
   const regexGroupName = /department|equipments/gi;
@@ -358,7 +358,7 @@ const Controller2 = (props) => {
                 value={group.code}
                 className="checkbox"
                 checked={group.checked}
-                onChange={onChangeCheckbox}
+                onChange={onChangeToggleGroup}
               />
               {group.name.replace(regexGroupName, '')}
             </label>
@@ -387,6 +387,7 @@ const Calculator = (props) => {
     currency,
     OPTIONS,
     onChangeSelect,
+    onChangeReplace,
     onClickRemove,
     isMobile,
   } = props;
@@ -420,26 +421,32 @@ const Calculator = (props) => {
                     </div>
                     {group.budgetItems.map((budgetItem, key) => {
                       // ! 그룹 아이템들 세팅하기
+                      const codes = group.options.map((item) => item.code);
+                      const options = group.options.map(
+                        (item) => item.optionName,
+                      );
                       return (
                         budgetItem.checked && (
                           <div className="row-container content-row" key={key}>
-                            <div className="left-left-item vertically-center">
+                            {/* <div className="left-left-item vertically-center">
                               {`${budgetItem.code}. ${budgetItem.name}`}
+                            </div> */}
+                            <div className="left-left-item  vertically-center">
+                              <div className="flex-row">
+                                <Select
+                                  value={budgetItem.name && budgetItem.name}
+                                  onChange={onChangeReplace}
+                                  id="calculator-budgetItem"
+                                  name={budgetItem.code}
+                                  required={true}
+                                  width={'100%'}
+                                  maxWidth={'300px'}
+                                  items={group.budgetItems}
+                                  codes={codes}
+                                  optionsList={options}
+                                />
+                              </div>
                             </div>
-                            {/* <div className="left-left-item  vertically-center">
-                                <div className="flex-row">
-                                  <Select
-                                    value={budgetItem.amnt && budgetItem.amnt}
-                                    onChange={onChangeSelect}
-                                    id="calculator-amnt"
-                                    name={`[${group.code}, ${budgetItem.code}, "amnt"]`}
-                                    required={true}
-                                    width={'70px'}
-                                    maxWidth={'70px'}
-                                    optionsList={OPTIONS.amnt}
-                                  />
-                                </div>
-                              </div> */}
 
                             <div className="right-item budgetItem-contents">
                               <div className="vertically-center">
