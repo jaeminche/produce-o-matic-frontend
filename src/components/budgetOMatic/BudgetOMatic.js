@@ -305,7 +305,7 @@ const Controller1 = (props) => {
             name="daysOfShooting"
             required={true}
             maxWidth={'300px'}
-            optionsList={OPTIONS.daysOfShooting}
+            options={OPTIONS.daysOfShooting}
           />
         </div>
       </div>
@@ -322,7 +322,7 @@ const Controller1 = (props) => {
             name="currency"
             required={true}
             maxWidth={'300px'}
-            optionsList={OPTIONS.currency}
+            options={OPTIONS.currency}
           />
         </div>
       </div>
@@ -420,10 +420,12 @@ const Calculator = (props) => {
                       </div>
                     </div>
                     {group.budgetItems.map((budgetItem, key) => {
-                      // ! 그룹 아이템들 세팅하기
-                      const codes = group.options.map((item) => item.code);
+                      // ? make helpers for Select
+                      const itemNamesNextToOption = group.options.map(
+                        (item) => item.budgetItemName,
+                      );
                       const options = group.options.map(
-                        (item) => item.optionName,
+                        (item) => item.budgetItemCode, // * CODES makes the options
                       );
                       return (
                         budgetItem.checked && (
@@ -434,16 +436,24 @@ const Calculator = (props) => {
                             <div className="left-left-item  vertically-center">
                               <div className="flex-row">
                                 <Select
-                                  value={budgetItem.name && budgetItem.name}
-                                  onChange={onChangeReplace}
-                                  id="calculator-budgetItem"
+                                  value={budgetItem.code && budgetItem.code}
+                                  onChange={(e) =>
+                                    onChangeReplace({
+                                      e,
+                                      amnt: budgetItem.amnt,
+                                      days: budgetItem.days,
+                                      oldIdx: key,
+                                      targetGroupCd: group.code,
+                                    })
+                                  }
+                                  id={`calculator-${budgetItem.name}`}
                                   name={budgetItem.code}
                                   required={true}
                                   width={'100%'}
                                   maxWidth={'300px'}
                                   items={group.budgetItems}
-                                  codes={codes}
-                                  optionsList={options}
+                                  itemNamesNextToOption={itemNamesNextToOption}
+                                  options={options}
                                 />
                               </div>
                             </div>
@@ -463,7 +473,7 @@ const Calculator = (props) => {
                                     required={true}
                                     width={'70px'}
                                     maxWidth={'70px'}
-                                    optionsList={OPTIONS.amnt}
+                                    options={OPTIONS.amnt}
                                   />
                                   <div className="vertically-center margin-l">
                                     Amnt.
@@ -480,7 +490,7 @@ const Calculator = (props) => {
                                     required={true}
                                     width={'70px'}
                                     maxWidth={'70px'}
-                                    optionsList={OPTIONS.days}
+                                    options={OPTIONS.days}
                                   />
                                   <div className="vertically-center margin-l">
                                     Days

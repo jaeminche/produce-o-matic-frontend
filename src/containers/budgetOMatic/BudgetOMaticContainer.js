@@ -67,12 +67,11 @@ const BudgetOMaticContainer = ({ location }) => {
             if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
             if (!budgetItem.days) budgetItem.days = daysOfShooting;
 
-            // * make options dropdown for budgetItem Select
+            // * make options dropdown for budgetItem Select (IMPORTANT! Orders in the sets remain as these at initialization)
             group.options.push({
-              code: budgetItem.code,
-              optionName: budgetItem.name,
+              budgetItemCode: budgetItem.code,
+              budgetItemName: budgetItem.name,
             });
-            // group.options.push(`${budgetItem.code}. ${budgetItem.name}`);
           }
           // * IMPORTANT! update group.checked as well
           group.checked = group.budgetItems.some(
@@ -183,8 +182,13 @@ const BudgetOMaticContainer = ({ location }) => {
   };
 
   // * update dataSetInstance 3/3
-  const updateItemInDataSetInstance = ({ name, value }) => {
+  const updateItemInDataSetInstance = ({
+    name,
+    value,
+    willReplaceItem = false,
+  }) => {
     const [targetGroupCd, targetBudgetItemCd, targetAttr] = name;
+    const { newItemCode, oldIdx, newIdx, amnt, days } = willReplaceItem;
     const baseState = { ...dataSetInstance };
     const nextState = produce(baseState, (draftState) => {
       // draftState[name][idx][key] = value;
@@ -192,10 +196,20 @@ const BudgetOMaticContainer = ({ location }) => {
         for (let group of category) {
           if (group.code === targetGroupCd) {
             for (let budgetItem of group.budgetItems) {
-              if (budgetItem.code === targetBudgetItemCd) {
+              if (budgetItem.code === parseInt(targetBudgetItemCd)) {
                 budgetItem[targetAttr] = value;
               }
+              // ? Only if it's to replace old item with new one, do this:
+              if (
+                willReplaceItem &&
+                budgetItem.code === parseInt(newItemCode)
+              ) {
+                budgetItem.checked = true;
+                budgetItem.amnt = parseInt(amnt);
+                budgetItem.days = parseInt(days);
+              }
             }
+
             group.checked = group.budgetItems.some(
               (budgetItem) => budgetItem.checked,
             );
@@ -223,7 +237,29 @@ const BudgetOMaticContainer = ({ location }) => {
     updateItemInDataSetInstance({ name, value });
   };
 
-  const onChangeReplace = (e) => {};
+  const onChangeReplace = ({ e, amnt, days, oldIdx, targetGroupCd }) => {
+    const { name, value } = e.target;
+    const newIdx = e.target.options.selectedIndex;
+    const oldItemCode = name;
+    const newItemCode = value;
+    console.log(
+      '온체인지리플레이스',
+      'name:',
+      name,
+      'value',
+      value,
+      amnt,
+      days,
+      oldIdx,
+      '키:',
+      newIdx,
+    );
+    updateItemInDataSetInstance({
+      name: [targetGroupCd, oldItemCode, 'checked'],
+      value: false,
+      willReplaceItem: { newItemCode, oldIdx, newIdx, amnt, days },
+    });
+  };
 
   const onClickRemove = ({
     targetGroupCd,

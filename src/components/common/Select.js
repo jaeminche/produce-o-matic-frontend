@@ -38,14 +38,14 @@ const Select = (props) => {
     name,
     required = false,
     items = false,
-    codes = false,
-    optionsList,
+    itemNamesNextToOption = false,
+    options,
     maxWidth,
     width = 'false',
   } = props;
 
-  const selectedItemNames = function () {
-    return items.map((item) => item.checked && item.name);
+  const selectedItemCodes = function () {
+    return items.map((item) => item.checked && item.code);
   };
 
   return (
@@ -59,18 +59,18 @@ const Select = (props) => {
       width={width}
       // {...props}
     >
-      {optionsList.map((option, key) => (
+      {options.map((option, key) => (
         <option
           value={option}
           key={key}
           disabled={
-            items && items.length > 0 && selectedItemNames().includes(option)
+            items && items.length > 0 && selectedItemCodes().includes(option)
           }
           // defaultValue={2}
           // disabled={option === disabledDefault}
         >
-          {codes && codes[key] + '. '}
           {option}
+          {itemNamesNextToOption && '. ' + itemNamesNextToOption[key]}
         </option>
       ))}
     </StyledSelect>
