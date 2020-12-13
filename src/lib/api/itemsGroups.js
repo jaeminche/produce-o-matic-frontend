@@ -9,6 +9,9 @@ import client from './client';
 
 export const listItemsGroups = () => client.get(`/api/itemsGroups`);
 
+export const postItemsGroups = ({ data }) =>
+  client.post('/api/itemGroups', { data });
+
 // export const updateGroup = ({ id, title, body, tags }) =>
 //   client.patch(`/api/itemGroups/${id}`, { title, body, tags });
 

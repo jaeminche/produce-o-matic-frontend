@@ -12,7 +12,7 @@ import {
   moveItemBeforeAnotherInArr,
   defaultCurrencyRates,
 } from '../../lib/constants/budgetomatic';
-import { listItemsGroups } from '../../modules/itemsGroups';
+import { listItemsGroups, postItemsGroups } from '../../modules/itemsGroups';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 
@@ -95,14 +95,18 @@ const BudgetOMaticContainer = ({ location }) => {
           group.checked = group.budgetItems.some(
             (budgetItem) => budgetItem.checked,
           );
-          const subtotal = group.checked
-            ? group.budgetItems.map((item) =>
-                item.checked ? item.rate[0] * item.amnt * item.days : 0,
-              )
+          const itemtotals = group.checked
+            ? group.budgetItems.map((item) => {
+                const product = item.checked
+                  ? item.rate[0] * item.amnt * item.days
+                  : 0;
+                item.itemtotal = product;
+                return product;
+              })
             : [];
           group.subtotal =
-            subtotal.length > 0
-              ? subtotal.reduce(
+            itemtotals.length > 0
+              ? itemtotals.reduce(
                   (accumulator, currentValue) => accumulator + currentValue,
                 )
               : 0;
@@ -130,14 +134,18 @@ const BudgetOMaticContainer = ({ location }) => {
           group.checked = group.budgetItems.some(
             (budgetItem) => budgetItem.checked,
           );
-          const subtotal = group.checked
-            ? group.budgetItems.map((item) =>
-                item.checked ? item.rate[0] * item.amnt * item.days : 0,
-              )
+          const itemtotals = group.checked
+            ? group.budgetItems.map((item) => {
+                const product = item.checked
+                  ? item.rate[0] * item.amnt * item.days
+                  : 0;
+                item.itemtotal = product;
+                return product;
+              })
             : [];
           group.subtotal =
-            subtotal.length > 0
-              ? subtotal.reduce(
+            itemtotals.length > 0
+              ? itemtotals.reduce(
                   (accumulator, currentValue) => accumulator + currentValue,
                 )
               : 0;
@@ -174,14 +182,18 @@ const BudgetOMaticContainer = ({ location }) => {
           group.checked = group.budgetItems.some(
             (budgetItem) => budgetItem.checked,
           );
-          const subtotal = group.checked
-            ? group.budgetItems.map((item) =>
-                item.checked ? item.rate[0] * item.amnt * item.days : 0,
-              )
+          const itemtotals = group.checked
+            ? group.budgetItems.map((item) => {
+                const product = item.checked
+                  ? item.rate[0] * item.amnt * item.days
+                  : 0;
+                item.itemtotal = product;
+                return product;
+              })
             : [];
           group.subtotal =
-            subtotal.length > 0
-              ? subtotal.reduce(
+            itemtotals.length > 0
+              ? itemtotals.reduce(
                   (accumulator, currentValue) => accumulator + currentValue,
                 )
               : 0;
@@ -267,14 +279,18 @@ const BudgetOMaticContainer = ({ location }) => {
             group.checked = group.budgetItems.some(
               (budgetItem) => budgetItem.checked,
             );
-            const subtotal = group.checked
-              ? group.budgetItems.map((item) =>
-                  item.checked ? item.rate[0] * item.amnt * item.days : 0,
-                )
+            const itemtotals = group.checked
+              ? group.budgetItems.map((item) => {
+                  const product = item.checked
+                    ? item.rate[0] * item.amnt * item.days
+                    : 0;
+                  item.itemtotal = product;
+                  return product;
+                })
               : [];
             group.subtotal =
-              subtotal.length > 0
-                ? subtotal.reduce(
+              itemtotals.length > 0
+                ? itemtotals.reduce(
                     (accumulator, currentValue) => accumulator + currentValue,
                   )
                 : 0;
@@ -340,16 +356,32 @@ const BudgetOMaticContainer = ({ location }) => {
     });
   };
 
+  // * calculate dataSetInstance (onSubmit)
+  const getCategoryTotals = () => {
+    const totals = [];
+    for (let [key, category] of Object.entries(dataSetInstance)) {
+      let categorytotal = 0;
+      for (let group of category) {
+        categorytotal = categorytotal + group.subtotal;
+      }
+      totals.push({ [key]: categorytotal });
+    }
+    return totals;
+  };
+
   const onSubmit = (e) => {
     // e.preventDefault();
     console.log('onsubmit', e, e.target);
     //==결과 페이지 가는 과정
     // budgetomatic 페이지 컨펌 누르면>
     // 1. 아이템 소팅, 토탈 & 그랜드토탈 계산 >
+
     // 2. 데이터 post  >
+    dispatch(postItemsGroups({ data: dataSetInstance }));
     // 3. back: db 저장 > 성공이면 > 아이디 반환 >
     // 4. 아이디를 받아서 스토어에 저장. 있으면!! >
     // 5. 결과 페이지로 이동.
+    // getCategoryTotals()
     // 6. 결과 페이지는 스토어에 아이디가 있으면>
     // 7. 결과 테이블 표시
   };
