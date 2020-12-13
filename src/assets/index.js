@@ -27,6 +27,11 @@ const MAP_DRONE = require('./map_drone.svg');
 const ARROW_OPTION = require('./arrow_option.svg');
 const XMARK = require('./xmark.svg');
 const PLUSMARK = require('./plusmark.svg');
+const RENTALIMAGE1 = require('./rentalimage1.png');
+const RENTALIMAGE2 = require('./rentalimage2.png');
+const RENTALCAR1 = require('./rentalcar1.svg');
+const RENTALCAR2 = require('./rentalcar2.svg');
+const RENTALCAR3 = require('./rentalcar3.svg');
 
 export {
   LOGO,
@@ -58,4 +63,9 @@ export {
   ARROW_OPTION,
   XMARK,
   PLUSMARK,
+  RENTALIMAGE1,
+  RENTALIMAGE2,
+  RENTALCAR1,
+  RENTALCAR2,
+  RENTALCAR3,
 };
