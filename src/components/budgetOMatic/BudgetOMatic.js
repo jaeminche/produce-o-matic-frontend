@@ -385,6 +385,7 @@ const Calculator = (props) => {
   const {
     dataSetInstance,
     currency,
+    currencyRate,
     OPTIONS,
     onChangeSelect,
     onChangeReplace,
@@ -479,7 +480,10 @@ const Calculator = (props) => {
 
                             <div className="right-item budgetItem-contents">
                               <div className="vertically-center">
-                                Rate: {budgetItem.rate[0]}
+                                Rate:{' '}
+                                {(budgetItem.rate[0] / currencyRate).toFixed(
+                                  currency !== 'KRW' ? 2 : 0,
+                                )}
                                 {`(${currency})`}
                               </div>
                               <div className="vertically-center">
@@ -558,7 +562,9 @@ const Calculator = (props) => {
                       <div className="right-item right-contents">
                         <div style={{ display: 'flex' }}>
                           <span className="vertically-center ">
-                            {group.subtotal}
+                            {(group.subtotal / currencyRate).toFixed(
+                              currency !== 'KRW' ? 2 : 0,
+                            )}
                           </span>
                           <span className="vertically-center margin-l">
                             {currency}

@@ -42,10 +42,17 @@ const moveItemBeforeAnotherInArr = (arr, newIndex, oldIndex) => {
 // returns [22, 11, 33]
 // console.log(moveItemInArr([11, 22, 33], 0, 1));
 
+const defaultCurrencyRates = {
+  KRW: 1,
+  USD: 1100,
+  EUR: 1300,
+};
+
 export {
   disabledDefault,
   generateQt,
   OPTIONS,
   myDataSetsTemplate,
   moveItemBeforeAnotherInArr,
+  defaultCurrencyRates,
 };

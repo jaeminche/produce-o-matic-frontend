@@ -10,6 +10,7 @@ import {
 import {
   OPTIONS,
   moveItemBeforeAnotherInArr,
+  defaultCurrencyRates,
 } from '../../lib/constants/budgetomatic';
 import { listItemsGroups } from '../../modules/itemsGroups';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
@@ -27,12 +28,15 @@ const BudgetOMaticContainer = ({ location }) => {
     }),
   );
 
-  // 1. request dataSetInstance data and full dataset
+  // ? 1. request dataSetInstance data and full dataset
   const [myDataSets, setMyDataSets] = useState('');
   const [dataSetInstance, setDataSetInstance] = useState('');
   const [typeOfProduction, setTypeOfProduction] = useState('DO');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
+  const [currencyRate, setCurrencyRate] = useState(
+    defaultCurrencyRates[currency],
+  );
 
   const history = useHistory();
 
@@ -51,6 +55,12 @@ const BudgetOMaticContainer = ({ location }) => {
       setMyDataSets(tempMyDataSets);
     }
   }, [DATASETS]);
+
+  useEffect(() => {
+    if (currency) {
+      setCurrencyRate(defaultCurrencyRates[currency]);
+    }
+  }, [currency]);
 
   // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
   // * update dataSetInstance 1/3
@@ -317,6 +327,7 @@ const BudgetOMaticContainer = ({ location }) => {
       typeOfProduction={typeOfProduction}
       daysOfShooting={daysOfShooting}
       currency={currency}
+      currencyRate={currencyRate}
       OPTIONS={OPTIONS}
       dataSetInstance={dataSetInstance}
       onChangeTypeOfProduction={onChangeTypeOfProduction}
