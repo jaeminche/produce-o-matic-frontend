@@ -55,6 +55,17 @@ const buttonStyle = css`
       align-self: center;
       margin: 0 auto;
     `}
+
+    ${(props) =>
+    props.bigGray &&
+    css`
+      width: 100%;
+      height: 84px;
+      background: ${palette.button[1]};
+      border-radius: 100px;
+      align-self: center;
+      margin: 0 auto;
+    `}
 `;
 
 const StyledButton = styled.button`
@@ -69,7 +80,7 @@ const StyledCentered = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 80px 0;
+  margin: 50px 0 80px 0;
 `;
 
 const Button = (props) => {
@@ -86,4 +97,10 @@ const CenteredButton = (props) => (
   </StyledCentered>
 );
 
-export { Button, CenteredButton };
+const ConfirmButton = (props) => (
+  <StyledCentered>
+    <Button {...props} />
+  </StyledCentered>
+);
+
+export { Button, CenteredButton, ConfirmButton };

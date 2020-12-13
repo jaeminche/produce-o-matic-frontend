@@ -318,8 +318,15 @@ const BudgetOMaticContainer = ({ location }) => {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    console.log('onsubmit', e, e.target.value);
+    // e.preventDefault();
+    console.log('onsubmit', e, e.target);
+    //==결과 페이지 가는 과정
+    // budgetomatic 페이지 컨펌 누르면>
+    // 아이템 소팅, 토탈 & 그랜드토탈 계산 > 데이터 post  > 저장 > 성공이면 > 아이디 반환 >
+    // 아이디를 받아서 스토어에 저장. 있으면!! >
+    // 결과 페이지로 이동.
+    // 결과 페이지는 스토어에 아이디가 있으면>
+    // 결과 테이블 표시
   };
 
   return (

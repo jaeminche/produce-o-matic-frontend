@@ -6,7 +6,8 @@ import palette from '../../lib/styles/palette';
 import { PageTitle } from '../common/SmallComponents';
 import Select from '../common/Select';
 import { XMARK, PLUSMARK } from '../../assets';
-import { Button, CenteredButton } from '../../components/common/Button';
+import { ConfirmButton } from '../../components/common/Button';
+import { Spacer } from '../common/styledCss';
 import { toLowerCase, removeSpaceAndUnderbar } from '../../lib/format';
 
 const BudgetOMaticBlock = styled.div`
@@ -22,7 +23,7 @@ const Wrapper = styled(Responsive)`
   padding-top: 80px;
 
   .spacer {
-    padding-top: 80px;
+    padding-top: ${(props) => (props.width ? props.width : '80px')};
   }
   .text {
     color: ${palette.budgetomatic.text[1]};
@@ -589,12 +590,14 @@ const BudgetOMatic = (props) => {
       <Wrapper isMobile={isMobile}>
         <PageTitle text="Budget-O-Matic" />
         <div className="spacer" />
-        <form onSubmit={onSubmit}>
-          <Controller1 {...props} />
+        <Controller1 {...props} />
 
-          <Calculator {...props} />
-          <input type="submit" value="Submit" />
-        </form>
+        <Calculator {...props} />
+
+        <ConfirmButton onClick={onSubmit} bigGray>
+          Get Result
+        </ConfirmButton>
+        <Spacer width="1px" />
       </Wrapper>
     </BudgetOMaticBlock>
   );
