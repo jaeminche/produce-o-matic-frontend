@@ -172,10 +172,10 @@ const Tabs = (props) => {
   );
 };
 
-const DrawRowComponent = (row, key, times) => {
+const DrawRowComponent = (row, key, isMobile, times) => {
   const { type, path, text, desc, items, tabs } = row;
   const ui = {
-    title: <PageTitle text={text} key={key} />,
+    title: <PageTitle text={text} key={key} isMobile={isMobile} />,
     image: (
       <img src={path} className="title-image margin-tb" alt={desc} key={key} />
     ),
@@ -202,9 +202,11 @@ const Contents = ({ rows, isMobile, tabRows = false, times = false }) => {
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>
-        {rows.map((row, key) => DrawRowComponent(row, key))}
+        {rows.map((row, key) => DrawRowComponent(row, key, isMobile))}
         {tabRows &&
-          tabRows.map((row, key) => DrawRowComponent(row, key, times))}
+          tabRows.map((row, key) =>
+            DrawRowComponent(row, key, isMobile, times),
+          )}
       </Wrapper>
     </ContentsBlock>
   );

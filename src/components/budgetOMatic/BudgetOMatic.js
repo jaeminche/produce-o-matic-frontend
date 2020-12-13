@@ -588,7 +588,7 @@ const BudgetOMatic = (props) => {
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
-        <PageTitle text="Budget-O-Matic" />
+        <PageTitle text="Budget-O-Matic" isMobile={isMobile} />
         <div className="spacer" />
         <Controller1 {...props} />
 

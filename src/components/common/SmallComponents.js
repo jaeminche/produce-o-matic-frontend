@@ -5,6 +5,7 @@ import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 
 const StyledPageTitle = styled.h1`
+  ${(props) => !props.isMobile && `display: none`};
   ${mq({
     fontSize: ['26px', '32px', , '40px', , '50px', ,],
   })}
@@ -14,9 +15,9 @@ const StyledPageTitle = styled.h1`
 `;
 
 const PageTitle = (props) => {
-  const { text, key } = props;
+  const { text, key, isMobile } = props;
   return (
-    <StyledPageTitle className="title" key={key}>
+    <StyledPageTitle className="title" isMobile={isMobile} key={key}>
       {text}
     </StyledPageTitle>
   );

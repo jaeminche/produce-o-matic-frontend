@@ -8,12 +8,18 @@ import {
   WEATHER,
   MAP_KTX,
   MAP_DRONE,
+  RENTALIMAGE1,
+  RENTALIMAGE2,
+  RENTALCAR1,
+  RENTALCAR2,
+  RENTALCAR3,
+  TEMPTABLEINRENTAL,
 } from '../../assets';
 
 const uiData = {
   locationIncentives: {
     id: 1,
-    uiType: 'default',
+    uiType: 'default', // 'default' or 'withTabs'(as in general knowledge page)
     parent: 'produce-in-korea',
     rows: [
       { id: 1, type: 'title', text: 'Location Incentive' },
@@ -570,7 +576,7 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
     ],
   },
   insurance: {
-    id: 1,
+    id: 5,
     uiType: 'default',
     parent: 'produce-o-manual',
     rows: [
@@ -601,8 +607,94 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
       },
     ],
   },
+  rental: {
+    id: 6,
+    uiType: 'default',
+    parent: 'produce-o-manual',
+    rows: [
+      { id: 1, type: 'title', text: 'Rental' },
+      { id: 2, type: 'image', path: RENTALIMAGE1 },
+      {
+        id: 3,
+        type: 'sectionTitle',
+        text: 'For accident insurance',
+      },
+      {
+        id: 4,
+        type: 'text',
+        text: `Korea’s most production equipment rental stores are found in two different districts of Seoul: Gangnam and Hongdae. Gangnam that covers Sinsa and Apgujeong has long been a home to film and video production houses whereas an increasing number of rental stores were opened in Hongdae and Hapjeong district more recently since DMC (Digital Media City) was built and became Korea’s media industry hub. It is highly recommended for a producer with serious productions to search around Seoul as renting high end equipment can be a challenging task in other cities than Seoul.
+
+        Along with the current popularity of YouTube, lighter and affordable production gears are largely popular in Korea and an increasing number of rental stores provide DSLR and mirrorless camera based gears to satisfy the needs from the customers. Whereas these stores are popular with choices of affordable gimbals, action cams and camera drones available, there usually is a long cue so it may not be an ideal place to rent equipment for those who work with a tight schedule. Among aged professional rental stores in Seoul are open 24 hours and are located near the highway entrance which comes in handy if shooting involves a long distance travel. Equipment is rented by 12 hours or 24 hours and renting for a longer period could be discounted at most stores and student discounts are available at some stores. 
+        `,
+      },
+      { id: 5, type: 'image', path: TEMPTABLEINRENTAL }, // TODO: change to table / text for mobile
+      {
+        id: 5,
+        type: 'text', // TODO: change to table / text for mobile
+        text: ``,
+      },
+      { id: 6, type: 'image', path: RENTALIMAGE2 },
+      {
+        id: 7,
+        type: 'text',
+        text: `Budget-O-Matic™ is a web software that helps filmmakers and producers to get estimated costs for filming based on local price data collected on a daily basis and it shows the average rental price of some of the most frequently rented equipment in South Korea today. Try it now. 
+        `,
+      },
+      {
+        id: 8,
+        type: 'sectionTitle',
+        text: 'Renting Vehicles',
+      },
+      {
+        id: 9,
+        type: 'text',
+        text: `Hyundai Grand Starex (H-1) and Kia Grand Carnival are among the most popular production vehicles in South Korea and they are compatible with Mercedes Benz’s Sprinter or Toyota’s HiAce. Other popular models are 15 seater mini van H-350, 45 seater coach Universe, and box truck Bongo III. These production vehicles are commonly rented from local car rental agencies with an owner driver attached and they are popular among local producers as they often have more competitive offers than international car rental companies such as AVIS or Hertz which specialize more in passenger vehicles for tourists. The rates differ by model, season or distance and the price is a subject for negotiation of course. Below is the list of some useful tips for renting a car in South Korea.
+
+        - Quotes usually include the daily price of a rented vehicle and driver but without fuel, gas, toll, parking 
+          and foods and accomodations.
+        
+        - Overtime charge may apply after 8 hours of driving daily.
+        
+        - While many rented production vehicles come without the last row of seats to secure more space for
+           loads, it is illegal and can be fined when uncovered.
+        `,
+      },
+      {
+        id: 10,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'image',
+            path: RENTALCAR1,
+            desc: 'Hyundai Grand Starex (H-1)',
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: RENTALCAR2,
+            desc: 'Hyundai H-350',
+          },
+          {
+            id: 3,
+            type: 'image',
+            path: RENTALCAR3,
+            desc: 'Kia Bongo III',
+          },
+        ],
+      },
+      {
+        id: 11,
+        type: 'text',
+        text: `Budget-O-Matic™ is a web software that helps filmmakers and producers to get estimated costs for filming based on local price data collected on a daily basis and it shows the average rental price of
+        some of the most frequently rented production vehicles in South Korea today. Try it now.
+        
+        We offer an inclusive production service that includes premium production vehicle rentals with a highly selective team of drivers with years of experience of working with filmmakers among many of them who speak fluent English and understand the work environment. For more information about our production vehicle or booking one, please contact us  `,
+      },
+    ],
+  },
   contact_us: {
-    id: 1,
+    id: 7,
     uiType: 'default',
     parent: 'produce-o-people',
     rows: [
@@ -611,7 +703,7 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
       {
         id: 3,
         type: 'text',
-        text: `under developement`,
+        text: `Contact us at <a href="mailto:produceomatic@gmail.com">produceomatic@gmail.com</a>`,
       },
     ],
   },

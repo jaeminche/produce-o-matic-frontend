@@ -32,6 +32,7 @@ const RENTALIMAGE2 = require('./rentalimage2.png');
 const RENTALCAR1 = require('./rentalcar1.svg');
 const RENTALCAR2 = require('./rentalcar2.svg');
 const RENTALCAR3 = require('./rentalcar3.svg');
+const TEMPTABLEINRENTAL = require('./temptableinrental.svg');
 
 export {
   LOGO,
@@ -68,4 +69,5 @@ export {
   RENTALCAR1,
   RENTALCAR2,
   RENTALCAR3,
+  TEMPTABLEINRENTAL,
 };
