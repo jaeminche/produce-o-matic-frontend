@@ -394,7 +394,7 @@ const Calculator = (props) => {
     onClickAdd,
     isMobile,
   } = props;
-  console.log('데이터인스턴스', dataSetInstance);
+  // console.log('데이터인스턴스', dataSetInstance);
 
   return (
     <Grandtotal props={props}>
@@ -404,11 +404,6 @@ const Calculator = (props) => {
             <CategoryTitle>{key.toUpperCase()}</CategoryTitle>
             <Controller2 keyname={key} {...props} />
             {value.map((group, key) => {
-              const getFirstUncheckedItemsCode = () => {
-                for (const budgetItem of group.budgetItems) {
-                  if (!budgetItem.checked) return budgetItem.code;
-                }
-              };
               return (
                 group.checked && (
                   <StyledTable isMobile={isMobile} key={key}>
@@ -538,24 +533,44 @@ const Calculator = (props) => {
                         )
                       );
                     })}
-                    <div className="row-container content-row right-contents align-center">
-                      <div
-                        className="plus-parent"
-                        onClick={() =>
-                          onClickAdd({
-                            targetGroupCd: group.code,
-                            targetBudgetItemCd: getFirstUncheckedItemsCode(),
-                          })
-                        }
-                      >
-                        <div className="plus-child-circle "></div>
-                        <img
-                          className="plus-child-mark"
-                          src={PLUSMARK}
-                          alt="add item"
-                        />
+                    {group.budgetItems.some(
+                      (budgetItem) => !budgetItem.checked,
+                    ) && (
+                      <div className="row-container content-row right-contents align-center">
+                        <div
+                          className="plus-parent"
+                          onClick={() => {
+                            console.log('온클릭');
+                            const getFirstUncheckedItem = function (group) {
+                              const items = group.budgetItems;
+                              console.log('==20-', items);
+
+                              for (let i = 0; i < items.length; i++) {
+                                if (!items[i].checked)
+                                  return {
+                                    targetBudgetItemCd: items[i].code,
+                                    targetBudgetItemIdx: i,
+                                  };
+                              }
+                            };
+                            onClickAdd({
+                              targetGroupCd: group.code,
+                              targetBudgetItemCdAndIdx: getFirstUncheckedItem(
+                                group,
+                              ),
+                            });
+                          }}
+                        >
+                          <div className="plus-child-circle "></div>
+                          <img
+                            className="plus-child-mark"
+                            src={PLUSMARK}
+                            alt="add item"
+                          />
+                        </div>
                       </div>
-                    </div>
+                    )}
+
                     <div className="row-container content-row">
                       <div className="left-left-item vertically-center">
                         Subtotal

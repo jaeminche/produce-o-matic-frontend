@@ -65,6 +65,7 @@ const BudgetOMaticContainer = ({ location }) => {
   // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
   // * update dataSetInstance 1/3
   const initializeDataSetInstance = () => {
+    console.log('update type: 1. 초기화');
     const tempDataSet = dataSetInstance || myDataSets;
 
     const defaultAmnt = 1;
@@ -157,6 +158,7 @@ const BudgetOMaticContainer = ({ location }) => {
 
   // * update dataSetInstance 2/3
   const toggleGroupInDataSetInstance = ({ code, toggleCheck }) => {
+    console.log('update type: 2. 토글 그룹');
     const baseState = { ...dataSetInstance };
     const nextState = produce(baseState, (draftState) => {
       // draftState[name][idx][key] = value;
@@ -213,12 +215,20 @@ const BudgetOMaticContainer = ({ location }) => {
   const updateItemInDataSetInstance = ({
     name,
     value,
-    willReplaceItem = false,
+    willReplaceItem = false, // true, to prevent auto sort
+    targetBudgetItemIdx = false,
   }) => {
+    console.log('update type: 3. 아이템 수정');
+    (willReplaceItem || targetBudgetItemIdx) &&
+      console.log('update type: 3.5 아이템 수정 후 소팅 무효');
+
     const [targetGroupCd, targetBudgetItemCd, targetAttr] = name;
     const { newItemCode, amnt, days } = willReplaceItem;
-    const oldIdx = willReplaceItem && parseInt(willReplaceItem.oldIdx);
-    const newIdx = willReplaceItem && parseInt(willReplaceItem.newIdx);
+    const oldIdx =
+      (willReplaceItem && parseInt(willReplaceItem.oldIdx)) ||
+      (targetBudgetItemIdx && parseInt(targetBudgetItemIdx));
+    let newIdx;
+    console.log('윌리블레이', newItemCode, amnt, days);
 
     const baseState = { ...dataSetInstance };
     const nextState = produce(baseState, (draftState) => {
@@ -226,6 +236,9 @@ const BudgetOMaticContainer = ({ location }) => {
       for (let [key, category] of Object.entries(draftState)) {
         for (let group of category) {
           if (group.code === targetGroupCd) {
+            newIdx =
+              (willReplaceItem && parseInt(willReplaceItem.newIdx)) ||
+              (targetBudgetItemIdx && group.budgetItems.length - 1);
             for (let budgetItem of group.budgetItems) {
               if (budgetItem.code === parseInt(targetBudgetItemCd)) {
                 budgetItem[targetAttr] = value;
@@ -239,9 +252,11 @@ const BudgetOMaticContainer = ({ location }) => {
                 budgetItem.amnt = parseInt(amnt);
                 budgetItem.days = parseInt(days);
               }
+
+              // ? Only if it's to add a new item, the item has to be removed from the list and its copy  old item with new one, do this:
             }
 
-            if (willReplaceItem) {
+            if (willReplaceItem /*|| targetBudgetItemIdx*/) {
               group.budgetItems = moveItemBeforeAnotherInArr(
                 group.budgetItems,
                 newIdx,
@@ -310,10 +325,18 @@ const BudgetOMaticContainer = ({ location }) => {
         });
   };
 
-  const onClickAdd = ({ targetGroupCd, targetBudgetItemCd }) => {
+  const onClickAdd = ({ targetGroupCd, targetBudgetItemCdAndIdx }) => {
+    console.log('==21', targetBudgetItemCdAndIdx);
+
+    const {
+      targetBudgetItemCd,
+      targetBudgetItemIdx,
+    } = targetBudgetItemCdAndIdx;
+    console.log(targetBudgetItemCd, targetBudgetItemIdx);
     updateItemInDataSetInstance({
       name: [targetGroupCd, targetBudgetItemCd, 'checked'],
       value: true,
+      targetBudgetItemIdx: JSON.stringify(targetBudgetItemIdx), // to unsort; added item is always the last
     });
   };
 
@@ -322,11 +345,13 @@ const BudgetOMaticContainer = ({ location }) => {
     console.log('onsubmit', e, e.target);
     //==결과 페이지 가는 과정
     // budgetomatic 페이지 컨펌 누르면>
-    // 아이템 소팅, 토탈 & 그랜드토탈 계산 > 데이터 post  > 저장 > 성공이면 > 아이디 반환 >
-    // 아이디를 받아서 스토어에 저장. 있으면!! >
-    // 결과 페이지로 이동.
-    // 결과 페이지는 스토어에 아이디가 있으면>
-    // 결과 테이블 표시
+    // 1. 아이템 소팅, 토탈 & 그랜드토탈 계산 >
+    // 2. 데이터 post  >
+    // 3. back: db 저장 > 성공이면 > 아이디 반환 >
+    // 4. 아이디를 받아서 스토어에 저장. 있으면!! >
+    // 5. 결과 페이지로 이동.
+    // 6. 결과 페이지는 스토어에 아이디가 있으면>
+    // 7. 결과 테이블 표시
   };
 
   return (
