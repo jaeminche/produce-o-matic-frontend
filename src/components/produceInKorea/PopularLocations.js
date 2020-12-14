@@ -15,8 +15,8 @@ const Wrapper = styled(Responsive)`
       fontSize: ['24px', '24px', , '42px', , '60px', ,],
     })};
     text-align: center;
-    padding-top: 80px;
-    margin-bottom: 40px;
+    padding-top: ${(props) => (props.isMobile ? '30px' : '80px')};
+    margin-bottom: ${(props) => (props.isMobile ? '10px' : '40px')};
   }
   .title-image {
     width: 100%;
@@ -104,7 +104,7 @@ const PopularLocations = ({ data, history, isMobile }) => {
   console.log('history', history);
   return (
     <PopularLocationsBlock>
-      <Wrapper>
+      <Wrapper isMobile={isMobile}>
         {isMobile && <div className="title">{title}</div>}
         {/* <img src={titleImage} alt={`${title} image`} className="title-image" /> */}
         {!isMobile && <Spacer />}

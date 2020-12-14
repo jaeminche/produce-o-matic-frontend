@@ -1,7 +1,7 @@
 import React from 'react';
 import Responsive from '../../components/common/Responsive';
 import { mq } from '../../lib/util/device';
-
+import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 
@@ -48,7 +48,7 @@ const Wrapper = styled(Responsive)`
     ${(props) => !props.isMobile && `margin: -20px;`}// space between
   }
   .flex-item {
-    width: ${(props) => (props.isMobile ? '100%' : '50%')};
+    width: ${(props) => (props.isMobile ? '100%' : '44%')};
     ${(props) => !props.isMobile && `margin: 20px;`}// space between
   }
   .radius-round {
@@ -73,7 +73,7 @@ const Summary = ({ uiData, isMobile }) => {
     <SummaryBlock>
       <Wrapper isMobile={isMobile}>
         {isMobile && title && <h1 className="title">{title}</h1>}
-        {text && <p className="text">{text}</p>}
+        {text && <p className="text">{ReactHtmlParser(text)}</p>}
         {/* {title && (
           <img src={titleImage} alt={title} className="title-image margin-tb" />
         )} */}
@@ -91,7 +91,7 @@ const Summary = ({ uiData, isMobile }) => {
                         : 'flex-item radius-round'
                     }
                   />
-                  <p className="flex-item">{item.text}</p>
+                  <p className="flex-item">{ReactHtmlParser(item.text)}</p>
                 </li>
               </ul>
             ))}
