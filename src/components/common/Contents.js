@@ -224,7 +224,7 @@ const FlexContainerResponsive = (props) => {
 };
 
 const Tabs = (props) => {
-  const { tabs, isMobile, activeTab } = props;
+  const { tabs, isMobile } = props;
   const { active_tab } = useParams();
   return (
     <SubHeaderTabBlock isMobile={isMobile}>
@@ -236,7 +236,9 @@ const Tabs = (props) => {
             <li
               key={key}
               className={
-                tab.path.split('/')[3].includes(active_tab) && 'isActive'
+                tab.path.split('/')[3].includes(active_tab)
+                  ? 'isActive'
+                  : undefined
               }
             >
               <a href={tab.path}>{tab.name}</a>
@@ -248,7 +250,7 @@ const Tabs = (props) => {
   );
 };
 
-const DrawRowComponent = (row, key, isMobile, times, activeTab) => {
+const DrawRowComponent = (row, key, isMobile, times) => {
   const { type, path, text, desc, items, tabs } = row;
   const ui = {
     title: <PageTitle text={text} key={key} isMobile={isMobile} />,
@@ -256,16 +258,14 @@ const DrawRowComponent = (row, key, isMobile, times, activeTab) => {
       <img src={path} className="title-image margin-tb" alt={desc} key={key} />
     ),
     flexContainerResponsive: (
-      <FlexContainerResponsive items={items} key={key} times={times} />
+      <FlexContainerResponsive items={items} _key={key} times={times} />
     ),
     text: (
       <p className="text" key={key}>
         {ReactHtmlParser(text)}
       </p>
     ),
-    tabs: (
-      <Tabs isMobile={isMobile} tabs={tabs} key={key} activeTab={activeTab} />
-    ),
+    tabs: <Tabs isMobile={isMobile} tabs={tabs} key={key} />,
     sectionTitle: (
       <h2 className="section-title" key={key}>
         {text}
@@ -276,20 +276,14 @@ const DrawRowComponent = (row, key, isMobile, times, activeTab) => {
   return ui[type];
 };
 
-const Contents = ({
-  rows,
-  isMobile,
-  tabRows = false,
-  times = false,
-  activeTab = false,
-}) => {
+const Contents = ({ rows, isMobile, tabRows = false, times = false }) => {
   return (
     <ContentsBlock>
-      <Wrapper activeTab={activeTab} isMobile={isMobile}>
+      <Wrapper isMobile={isMobile}>
         {rows.map((row, key) => DrawRowComponent(row, key, isMobile))}
         {tabRows &&
           tabRows.map((row, key) =>
-            DrawRowComponent(row, key, isMobile, times, activeTab),
+            DrawRowComponent(row, key, isMobile, times),
           )}
       </Wrapper>
     </ContentsBlock>
