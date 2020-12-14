@@ -6,6 +6,7 @@ import { PageTitle } from './SmallComponents';
 import styled from 'styled-components/macro';
 import ReactHtmlParser from 'react-html-parser';
 import palette from '../../lib/styles/palette';
+import { withRouter, useParams, useHistory } from 'react-router-dom';
 
 const ContentsBlock = styled.div`
   height: auto;
@@ -15,6 +16,7 @@ const SubHeaderTabBlock = styled.nav`
   position: sticky;
   top: ${(props) => (props.isMobile ? '0' : '68px')};
   z-index: 10;
+  ${(props) => props.isMobile && `margin-top: 30px`};
   /* padding-bottom: 20px; */
   text-align: center;
   height: 68px;
@@ -59,6 +61,7 @@ const SubHeaderTabWrapper = styled.div`
   }
   .isActive {
     color: white;
+    font-style: bold;
   }
   .tab-bar {
     border-top: 1px solid white;
@@ -221,7 +224,8 @@ const FlexContainerResponsive = (props) => {
 };
 
 const Tabs = (props) => {
-  const { tabs, isMobile } = props;
+  const { tabs, isMobile, activeTab } = props;
+  const { active_tab } = useParams();
   return (
     <SubHeaderTabBlock isMobile={isMobile}>
       <SubHeaderTabWrapper isMobile={isMobile}>
@@ -229,7 +233,12 @@ const Tabs = (props) => {
         <ul className="tab-bar">
           {tabs.map((tab, key) => (
             // <li key={key} className="flex-item tab-bar-item">
-            <li key={key}>
+            <li
+              key={key}
+              className={
+                tab.path.split('/')[3].includes(active_tab) && 'isActive'
+              }
+            >
               <a href={tab.path}>{tab.name}</a>
             </li>
           ))}
@@ -239,7 +248,7 @@ const Tabs = (props) => {
   );
 };
 
-const DrawRowComponent = (row, key, isMobile, times) => {
+const DrawRowComponent = (row, key, isMobile, times, activeTab) => {
   const { type, path, text, desc, items, tabs } = row;
   const ui = {
     title: <PageTitle text={text} key={key} isMobile={isMobile} />,
@@ -254,7 +263,9 @@ const DrawRowComponent = (row, key, isMobile, times) => {
         {ReactHtmlParser(text)}
       </p>
     ),
-    tabs: <Tabs isMobile={isMobile} tabs={tabs} key={key} />,
+    tabs: (
+      <Tabs isMobile={isMobile} tabs={tabs} key={key} activeTab={activeTab} />
+    ),
     sectionTitle: (
       <h2 className="section-title" key={key}>
         {text}
@@ -265,14 +276,20 @@ const DrawRowComponent = (row, key, isMobile, times) => {
   return ui[type];
 };
 
-const Contents = ({ rows, isMobile, tabRows = false, times = false }) => {
+const Contents = ({
+  rows,
+  isMobile,
+  tabRows = false,
+  times = false,
+  activeTab = false,
+}) => {
   return (
     <ContentsBlock>
-      <Wrapper isMobile={isMobile}>
+      <Wrapper activeTab={activeTab} isMobile={isMobile}>
         {rows.map((row, key) => DrawRowComponent(row, key, isMobile))}
         {tabRows &&
           tabRows.map((row, key) =>
-            DrawRowComponent(row, key, isMobile, times),
+            DrawRowComponent(row, key, isMobile, times, activeTab),
           )}
       </Wrapper>
     </ContentsBlock>

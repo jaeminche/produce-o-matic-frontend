@@ -20,7 +20,6 @@ const ContentsContainer = ({ pagekey, location }) => {
   const { rows, tabRows } = uiData[pagekey];
 
   const _tabRows = tabRows && tabRows[active_tab];
-
   useEffect(() => {
     if (isGeneralKnowledge && tabRows && !active_tab) {
       history.push(`${pathname}/${DEFAULT_ACTIVE_TAB}`);
@@ -45,6 +44,7 @@ const ContentsContainer = ({ pagekey, location }) => {
         rows={rows}
         tabRows={_tabRows}
         isMobile={isMobile}
+        activeTab={active_tab}
         times={time && [formatTime(time, true), formatTime(time)]}
       />
     </>
