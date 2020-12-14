@@ -37,7 +37,7 @@ const temp2 = [
   {
     id: 2,
     imgpath: INSADONG,
-    title: 'UP to 35% of your expense',
+    title: 'UP to 30% of your expense',
     subtitle: 'BACK TO YOU!',
     url:
       'https://www.lonelyplanet.com/south-korea/seoul/activities/half-day-korean-dmz-tour-from-seoul/a/pa-act/v-30023P6/357441', //TODO: replace the samples
