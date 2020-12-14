@@ -74,6 +74,7 @@ const PopularLocation = ({ data, history, isMobile }) => {
               allowFullScreen
             ></iframe> */}
             <iframe
+              title={title}
               width="100%"
               height="100%"
               src={url}

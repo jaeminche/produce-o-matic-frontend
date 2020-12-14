@@ -1,5 +1,5 @@
-const SAMPLEYOUTUBES = {
-  1: {
+const SAMPLEYOUTUBES = [
+  {
     id: 1,
     title: 'Seoul At Night',
     url: 'https://www.youtube.com/embed/SfTdervrcrg',
@@ -7,7 +7,7 @@ const SAMPLEYOUTUBES = {
 
               With major technology hubs centered in Gangnam and Digital Media City, the Seoul Capital Area is home to the headquarters of 14 Fortune Global 500 companies, including Samsung,[13] LG, and Hyundai. The metropolis exerts a major influence in global affairs as one of the five leading hosts of global conferences.[14] Seoul has hosted the 1986 Asian Games, 1988 Summer Olympics, 2002 FIFA World Cup (with Japan), and the 2010 G-20 Seoul summit.`,
   },
-  2: {
+  {
     id: 2,
     title: 'Welcome to Busan!',
     url: 'https://www.youtube.com/embed/GGLwsq6o8Ng',
@@ -15,6 +15,6 @@ const SAMPLEYOUTUBES = {
 
           Busan is divided into 15 major administrative districts and a single county, together housing a population of approximately 3.6 million. The full metropolitan area, the Southeastern Maritime Industrial Region, has a population of approximately 8 million. The most densely built-up areas of the city are situated in a number of narrow valleys between the Nakdong and the Suyeong Rivers, with mountains separating most of the districts. The Nakdong is Korea's longest river and Busan's Haeundae Beach is also the country's largest.`,
   },
-};
+];
 
 export default SAMPLEYOUTUBES;

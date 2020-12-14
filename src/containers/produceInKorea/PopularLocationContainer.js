@@ -30,7 +30,7 @@ const PopularLocationContainer = ({ location, match, history }) => {
 
   useEffect(() => {
     // GET url
-    setData(SAMPLEYOUTUBES[id]);
+    id && setData(SAMPLEYOUTUBES[id - 1]);
   }, [id]);
 
   return <PopularLocation data={data} history={history} isMobile={isMobile} />;
