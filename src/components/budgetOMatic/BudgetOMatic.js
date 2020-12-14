@@ -8,7 +8,7 @@ import Select from '../common/Select';
 import { XMARK, PLUSMARK } from '../../assets';
 import { ConfirmButton } from '../../components/common/Button';
 import { Spacer } from '../common/styledCss';
-import { toLowerCase, removeSpaceAndUnderbar } from '../../lib/format';
+import ReactHtmlParser from 'react-html-parser';
 
 const BudgetOMaticBlock = styled.div`
   height: auto;
@@ -598,12 +598,26 @@ const Calculator = (props) => {
   );
 };
 
+const IntroText = (isMobile) => {
+  const text = ReactHtmlParser(`<strong>Budget-O-Matic™</strong><br /> is a web software that helps filmmakers and producers
+  <br />
+  to get estimated costs for filming based on local price data collected
+  on a daily basis
+  <br /> and it shows the average rental price of some of the most
+  frequently rented equipment
+  <br /> in South Korea today.
+  <br />
+  <br /> <em>Try it now.</em>`);
+  return isMobile ? <h3>{text}</h3> : <h2>{text}</h2>;
+};
+
 const BudgetOMatic = (props) => {
   const { onSubmit, isMobile } = props;
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
-        <PageTitle text="Budget-O-Matic" isMobile={isMobile} />
+        {/* <PageTitle text="Budget-O-Matic" isMobile={isMobile} /> */}
+        <IntroText isMobile={isMobile} />
         <div className="spacer" />
         <Controller1 {...props} />
 
