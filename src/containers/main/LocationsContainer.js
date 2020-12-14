@@ -16,12 +16,14 @@ const temp1 = [
     imgpath: GYEONGBOKGUNG,
     title: 'Coming Soon!',
     subtitle: 'Contact us at produceomatic@gmail.com',
+    url: '/produce-in-korea/popular-locations/1', //TODO: replace the samples
   },
   {
     id: 2,
     imgpath: GYEONGBOKGUNG02,
     title: 'Coming Soon!',
     subtitle: 'Contact us at produceomatic@gmail.com',
+    url: '/produce-in-korea/popular-locations/2', //TODO: replace the samples
   },
 ];
 const temp2 = [
@@ -30,12 +32,15 @@ const temp2 = [
     imgpath: HANOKMAEUL,
     title: 'Coming Soon!',
     subtitle: 'Contact us at produceomatic@gmail.com',
+    url: 'https://www.lonelyplanet.com/south-korea/seoul', //TODO: replace the samples
   },
   {
     id: 2,
     imgpath: INSADONG,
     title: 'Coming Soon!',
     subtitle: 'Contact us at produceomatic@gmail.com',
+    url:
+      'https://www.lonelyplanet.com/south-korea/seoul/activities/half-day-korean-dmz-tour-from-seoul/a/pa-act/v-30023P6/357441', //TODO: replace the samples
   },
 ];
 

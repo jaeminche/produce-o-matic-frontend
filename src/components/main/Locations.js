@@ -5,6 +5,7 @@ import Responsive from '../common/Responsive';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useHistory } from 'react-router-dom';
 
 const LocationsBlock = styled.div`
   height: auto;
@@ -36,7 +37,7 @@ function PrevArrow(props) {
   );
 }
 
-const ImgBlock = styled.div`
+const StyledImgBlock = styled.div`
   position: relative;
 
   img {
@@ -70,37 +71,33 @@ const ImgBlock = styled.div`
   }
 `;
 
-const ImagesBlock = (props) => {
-  const { title, imgpath, subtitle } = props;
-  return (
-    <ImgBlock>
-      <img src={imgpath} alt="click to watch Youtube" />
-      <div className="textbox">
-        <div className="title">{title}</div>
-        <div className="subtitle">{subtitle}</div>
-      </div>
-    </ImgBlock>
-  );
-};
-
 const CustomSlide = (props) => {
+  const { key, title, imgpath, subtitle, url, history } = props;
   return (
-    <div>
-      <ImagesBlock {...props} />
-    </div>
+    // <StyledImgBlock onClick={() => history.push(url)}>
+    <StyledImgBlock key={key}>
+      <a href={url} /*target="_blank"*/>
+        <img src={imgpath} alt="click to watch Youtube" />
+        <div className="textbox">
+          <div className="title">{title}</div>
+          <div className="subtitle">{subtitle}</div>
+        </div>
+      </a>
+    </StyledImgBlock>
   );
 };
 
 const Locations = ({ items }) => {
+  const history = useHistory();
   const settings = {
     dots: true,
     infinite: true,
-    fade: true,
-    speed: 4000,
+    // fade: true,
+    speed: 2500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     pauseOnHover: true,
     swipeToSlide: true,
     appendDots: (dots) => (
@@ -121,11 +118,14 @@ const Locations = ({ items }) => {
     <LocationsBlock>
       <Wrapper>
         <Slider {...settings}>
-          {items.map((item) => (
+          {items.map((item, key) => (
             <CustomSlide
+              key={key}
               imgpath={item.imgpath}
               title={item.title}
               subtitle={item.subtitle}
+              url={item.url}
+              history={history}
             />
           ))}
         </Slider>

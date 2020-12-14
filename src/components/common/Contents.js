@@ -6,7 +6,7 @@ import { PageTitle } from './SmallComponents';
 import styled from 'styled-components/macro';
 import ReactHtmlParser from 'react-html-parser';
 import palette from '../../lib/styles/palette';
-import { withRouter, useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const ContentsBlock = styled.div`
   height: auto;
