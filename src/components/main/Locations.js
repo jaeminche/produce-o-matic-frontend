@@ -71,7 +71,7 @@ const StyledImgBlock = styled.div`
   }
 `;
 
-const CustomSlide = (props) => {
+const ImagesBlock = (props) => {
   const { key, title, imgpath, subtitle, url, history } = props;
   return (
     // <StyledImgBlock onClick={() => history.push(url)}>
@@ -84,6 +84,27 @@ const CustomSlide = (props) => {
         </div>
       </a>
     </StyledImgBlock>
+  );
+};
+
+// const ImagesBlock = (props) => {
+//   const { title, imgpath, subtitle } = props;
+//   return (
+//     <ImgBlock>
+//       <img src={imgpath} alt="click to watch Youtube" />
+//       <div className="textbox">
+//         <div className="title">{title}</div>
+//         <div className="subtitle">{subtitle}</div>
+//       </div>
+//     </ImgBlock>
+//   );
+// };
+
+const CustomSlide = (props) => {
+  return (
+    <div>
+      <ImagesBlock {...props} />
+    </div>
   );
 };
 
