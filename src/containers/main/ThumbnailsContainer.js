@@ -11,23 +11,28 @@ import Thumbnails from '../../components/main/Thumbnails';
 
 const ThumbnailsContainer = () => {
   const data = [
-    { id: 1, title: 'General Knowledge', to: '/', imgpath: THUMB1_GENERAL },
+    {
+      id: 1,
+      title: 'General Knowledge',
+      to: '/produce-in-korea/general-knowledge/korea',
+      imgpath: THUMB1_GENERAL,
+    },
     {
       id: 2,
       title: 'Produce-O-Matic Summary',
-      to: '/',
+      to: '/produce-o-matic',
       imgpath: THUMB2_OMATIC,
     },
     {
       id: 3,
       title: 'Produce-O-Manual Summary',
-      to: '/',
+      to: '/produce-o-manual',
       imgpath: THUMB3_OMANUAL,
     },
     {
       id: 4,
       title: ' Produce-O-People Summary',
-      to: '/',
+      to: '/produce-o-people',
       imgpath: THUMB4_OPEOPLE,
     },
   ];
