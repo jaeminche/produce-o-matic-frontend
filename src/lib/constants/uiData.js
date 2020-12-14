@@ -23,12 +23,13 @@ const uiData = {
     parent: 'produce-in-korea',
     rows: [
       { id: 1, type: 'title', text: 'Location Incentive' },
-      {
-        id: 2,
-        type: 'image',
-        path: GYEONGBOKGUNG03,
-        desc: 'Gyeuongokgung palace',
-      },
+      // TODO: 영상 게시 예정
+      // {
+      //   id: 2,
+      //   type: 'image',
+      //   path: GYEONGBOKGUNG03,
+      //   desc: 'Gyeuongokgung palace',
+      // },
       {
         id: 3,
         type: 'text',
@@ -63,7 +64,7 @@ const uiData = {
         
         Find out if your project is eligible and get tailored advice on accessing South Korea’s national and regional incentives and cash rebates by using <a href='/produce-o-matic/budget-o-matic'>BUDGET-O-MATIC</a>.`,
       },
-      { id: 6, type: 'image', path: GYEONGBOKGUNG },
+      // { id: 6, type: 'image', path: GYEONGBOKGUNG },
     ],
   },
   generalKnowledge: {

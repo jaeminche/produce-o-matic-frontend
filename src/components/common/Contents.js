@@ -11,6 +11,62 @@ const ContentsBlock = styled.div`
   height: auto;
 `;
 
+const SubHeaderTabBlock = styled.nav`
+  position: sticky;
+  top: ${(props) => (props.isMobile ? '0' : '68px')};
+  z-index: 10;
+  /* padding-bottom: 20px; */
+  text-align: center;
+  height: 68px;
+  z-index: 9987;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+  background: rgba(32, 32, 32, 0.7);
+`;
+
+const SubHeaderTabWrapper = styled.div`
+  height: 100%;
+  position: relative;
+  z-index: 10;
+
+  ul {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 80px;
+    margin: 0;
+
+    color: ${palette.textgray[1]};
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+  li {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px;
+    padding: 0 5px;
+  }
+  .menuitem {
+    font-size: 16px;
+    margin-right: 15px;
+  }
+  a {
+    &:hover {
+      color: white;
+    }
+  }
+  .isActive {
+    color: white;
+  }
+  .tab-bar {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: ${(props) => (props.isMobile ? '21px 30px' : '21px 30px')};
+  }
+`;
+
 const Wrapper = styled(Responsive)`
   text-align: left;
   padding-top: 80px;
@@ -100,7 +156,7 @@ const Wrapper = styled(Responsive)`
     text-align: center;
   }
   /* TODO: 세부 조정 */
-  .tab-bar {
+  /* .tab-bar {
     flex-wrap: wrap;
     margin-top: 0;
     margin-bottom: 80px;
@@ -108,6 +164,10 @@ const Wrapper = styled(Responsive)`
     border-bottom: 1px solid white;
     padding: ${(props) => (props.isMobile ? '0 5px' : '0 30px')};
   }
+  .tab-bar-item {
+    ${(props) => props.isMobile && `width: 32%;`}
+  } */
+
   .tab-bar-item {
     ${(props) => props.isMobile && `width: 32%;`}
   }
@@ -161,15 +221,21 @@ const FlexContainerResponsive = (props) => {
 };
 
 const Tabs = (props) => {
-  const { tabs } = props;
+  const { tabs, isMobile } = props;
   return (
-    <ul className="flex-container tab-bar">
-      {tabs.map((tab, key) => (
-        <li key={key} className="flex-item tab-bar-item">
-          <a href={tab.path}>{tab.name}</a>
-        </li>
-      ))}
-    </ul>
+    <SubHeaderTabBlock isMobile={isMobile}>
+      <SubHeaderTabWrapper isMobile={isMobile}>
+        {/* <ul className="flex-container tab-bar"> */}
+        <ul className="tab-bar">
+          {tabs.map((tab, key) => (
+            // <li key={key} className="flex-item tab-bar-item">
+            <li key={key}>
+              <a href={tab.path}>{tab.name}</a>
+            </li>
+          ))}
+        </ul>
+      </SubHeaderTabWrapper>
+    </SubHeaderTabBlock>
   );
 };
 
@@ -188,7 +254,7 @@ const DrawRowComponent = (row, key, isMobile, times) => {
         {ReactHtmlParser(text)}
       </p>
     ),
-    tabs: <Tabs tabs={tabs} key={key} />,
+    tabs: <Tabs isMobile={isMobile} tabs={tabs} key={key} />,
     sectionTitle: (
       <h2 className="section-title" key={key}>
         {text}
