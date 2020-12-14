@@ -5,6 +5,7 @@ import { mq } from '../../lib/util/device';
 import { PageTitle } from './SmallComponents';
 import styled from 'styled-components/macro';
 import ReactHtmlParser from 'react-html-parser';
+import palette from '../../lib/styles/palette';
 
 const ContentsBlock = styled.div`
   height: auto;
@@ -27,7 +28,7 @@ const Wrapper = styled(Responsive)`
     margin-bottom: 10px;
   }
   .text {
-    color: white;
+    color: ${palette.textgray[0]};
     font-family: Lato;
     ${mq({
       fontSize: ['16px', '18px', , '24px', , , ,],

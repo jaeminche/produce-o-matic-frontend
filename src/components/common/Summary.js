@@ -21,7 +21,7 @@ const Wrapper = styled(Responsive)`
     text-align: center;
   }
   .text {
-    color: white;
+    color: ${palette.textgray[0]};
     font-family: Lato;
     font-size: 24px;
     font-style: normal;
