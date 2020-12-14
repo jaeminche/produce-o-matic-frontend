@@ -22,6 +22,7 @@ import ContractPage from './pages/ContractPage';
 import InsurancePage from './pages/InsurancePage';
 import RentalPage from './pages/RentalPage';
 import BudgetOMaticPage from './pages/BudgetOMaticPage';
+import BudgetResultPage from './pages/BudgetResultPage';
 import ProduceOMaticPage from './pages/ProduceOMaticPage';
 import AccountOMaticPage from './pages/AccountOMaticPage';
 import OurVisionPage from './pages/OurVisionPage';
@@ -85,6 +86,11 @@ const App = () => {
         component={BudgetOMaticPage}
         exact
         path="/produce-o-matic/budget-o-matic"
+      />
+      <Route
+        component={BudgetResultPage}
+        exact
+        path="/produce-o-matic/budget-o-matic/result/:id"
       />
       <Route
         component={ProduceOMaticPage}

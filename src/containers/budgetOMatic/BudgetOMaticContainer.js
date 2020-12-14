@@ -15,6 +15,7 @@ import {
 import { listItemsGroups, postItemsGroups } from '../../modules/itemsGroups';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
+import { v1 } from 'uuid';
 
 const BudgetOMaticContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -374,13 +375,18 @@ const BudgetOMaticContainer = ({ location }) => {
     console.log('onsubmit', e, e.target);
     //==결과 페이지 가는 과정
     // budgetomatic 페이지 컨펌 누르면>
-    // 1. 아이템 소팅, 토탈 & 그랜드토탈 계산 >
 
-    // 2. 데이터 post  >
-    dispatch(postItemsGroups({ data: dataSetInstance }));
-    // 3. back: db 저장 > 성공이면 > 아이디 반환 >
-    // 4. 아이디를 받아서 스토어에 저장. 있으면!! >
-    // 5. 결과 페이지로 이동.
+    // 1. 데이터 post  >
+    // dispatch(postItemsGroups({ data: dataSetInstance }));
+    // 2. backend: db 저장 > 성공이면 > 아이디 반환 >
+    // 3. 아이디를 받아서 스토어에 저장. 있으면!! >
+    // 4. 결과 페이지로 이동.
+    const id = v1(); // TODO:
+    history.push(`/produce-o-matic/budget-o-matic/result/${id}`, {
+      data: dataSetInstance,
+      categoryTotals: getCategoryTotals(),
+    });
+    // 5. 아이템 소팅, 토탈 & 그랜드토탈 계산 >
     // getCategoryTotals()
     // 6. 결과 페이지는 스토어에 아이디가 있으면>
     // 7. 결과 테이블 표시
