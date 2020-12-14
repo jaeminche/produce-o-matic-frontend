@@ -1,14 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import { useMediaQuery } from 'react-responsive';
+import { closeHamburgerside } from '../../modules/main';
 
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
   background-color: rgba(34, 36, 36, 0.8);
-  z-index: 50;
+  z-index: 10;
   top: 0;
   right: 0;
   -webkit-­transition: opacity 0.5s ease;
@@ -32,8 +33,15 @@ const Wrapper = styled.div`
 const Background = () => {
   const isOpen = useSelector((state) => state.main.isBackgroundBlur, false);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const dispatch = useDispatch();
 
-  return <Wrapper isOpen={isOpen} isMobile={isMobile} />;
+  return (
+    <Wrapper
+      isOpen={isOpen}
+      isMobile={isMobile}
+      onClick={() => dispatch(closeHamburgerside())}
+    />
+  );
 };
 
 export default Background;

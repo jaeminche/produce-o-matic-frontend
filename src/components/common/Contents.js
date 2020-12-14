@@ -20,7 +20,7 @@ const SubHeaderTabBlock = styled.nav`
   /* padding-bottom: 20px; */
   text-align: center;
   height: 68px;
-  z-index: 9987;
+  z-index: 10;
   width: 100%;
   overflow: hidden;
   color: white;

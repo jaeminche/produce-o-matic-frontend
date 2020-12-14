@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 const Wrapper = styled.div`
   overflow-x: hidden;
-  z-index: 10001;
-  width: 100%;
+  /* z-index: 9999; */
+  width: 75%;
   height: 100vh;
   position: absolute;
   top: 0;
@@ -26,7 +26,7 @@ const Container = styled.div`
   height: 100%;
   /* padding: 20px; */
   position: absolute;
-  z-index: 1001;
+  z-index: 900;
   top: 0;
   left: 0;
   box-shadow: ${(props) =>
@@ -44,20 +44,20 @@ const Container = styled.div`
   overflow-y: scroll;
 `;
 
-const Background = styled.div`
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  left: 0;
-  background-color: rgba(34, 36, 36, 0.8);
-  z-index: 1000;
-  top: 0;
-  -webkit-­transition: opacity 0.5s ease;
-  ­-moz-­transition: opacity 0.5s ease;
-  -­o-­transition: opacity 0.5s ease;
-  transition: opacity 0.5s ease;
-  opacity: ${(props) => (props.isOpen ? 1 : 0)};
-`;
+// const Background = styled.div`
+//   width: 100vw;
+//   height: 100vh;
+//   position: fixed;
+//   right: 0;
+//   background-color: rgba(34, 36, 36, 0.8);
+//   z-index: 555;
+//   top: 0;
+//   -webkit-­transition: opacity 0.5s ease;
+//   ­-moz-­transition: opacity 0.5s ease;
+//   -­o-­transition: opacity 0.5s ease;
+//   transition: opacity 0.5s ease;
+//   opacity: ${(props) => (props.isOpen ? 1 : 0)};
+// `;
 
 const HeaderRow = styled.div`
   display: flex;
@@ -96,7 +96,7 @@ const Hamburgerside = (props) => {
 
   return (
     <Wrapper isOpen={isOpen}>
-      <Background isOpen={isOpen} onClick={() => handleCloseHamburgerside()} />
+      {/* <Background isOpen={isOpen} onClick={() => handleCloseHamburgerside()} /> */}
       <Container isOpen={isOpen}>
         <HeaderRow></HeaderRow>
 
