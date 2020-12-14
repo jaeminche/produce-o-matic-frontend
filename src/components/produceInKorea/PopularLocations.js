@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { mq } from '../../lib/util/device';
 import Responsive from '../common/Responsive';
 import Masonry from 'react-masonry-css';
-import { Link } from 'react-router-dom';
+import { Spacer } from '../common/styledCss';
 
 const PopularLocationsBlock = styled.div`
   height: auto;
@@ -99,14 +99,15 @@ const ImageBlock = ({ data, history }) => {
   );
 };
 
-const PopularLocations = ({ data, history }) => {
+const PopularLocations = ({ data, history, isMobile }) => {
   const { title, titleImage, cards } = data;
   console.log('history', history);
   return (
     <PopularLocationsBlock>
       <Wrapper>
-        <div className="title">{title}</div>
-        <img src={titleImage} alt={`${title} image`} className="title-image" />
+        {isMobile && <div className="title">{title}</div>}
+        {/* <img src={titleImage} alt={`${title} image`} className="title-image" /> */}
+        {!isMobile && <Spacer />}
         <Masonry
           breakpointCols={breakpointColumnsObj}
           className="my-masonry-grid"

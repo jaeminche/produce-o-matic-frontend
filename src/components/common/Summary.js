@@ -72,11 +72,11 @@ const Summary = ({ uiData, isMobile }) => {
   return (
     <SummaryBlock>
       <Wrapper isMobile={isMobile}>
-        {title && <h1 className="title">{title}</h1>}
+        {isMobile && title && <h1 className="title">{title}</h1>}
         {text && <p className="text">{text}</p>}
-        {title && (
+        {/* {title && (
           <img src={titleImage} alt={title} className="title-image margin-tb" />
-        )}
+        )} */}
         {flexBoxes && (
           <div className="text">
             {flexBoxes.map((item, key) => (

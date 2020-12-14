@@ -11,8 +11,10 @@ import {
   HANOKMAEUL02,
   HANOKMAEUL,
 } from '../../assets';
+import { useMediaQuery } from 'react-responsive';
 
 const PopularLocationsContainer = ({ location, history }) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const retrieved = {
     id: 1,
     name: 'PopularLocations',
@@ -132,7 +134,9 @@ const PopularLocationsContainer = ({ location, history }) => {
       },
     ],
   };
-  return <PopularLocations data={retrieved} history={history} />;
+  return (
+    <PopularLocations isMobile={isMobile} data={retrieved} history={history} />
+  );
 };
 
 export default withRouter(PopularLocationsContainer);

@@ -5,10 +5,11 @@ import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 
 const StyledPageTitle = styled.h1`
-  ${(props) => !props.isMobile && `display: none`};
+  /* display: none; */
+  ${(props) => !props.isMobile && `display: none;`}
   ${mq({
     fontSize: ['26px', '32px', , '40px', , '50px', ,],
-  })}
+  })};
   margin-bottom: 0;
   margin-top: 0;
   text-align: center;
