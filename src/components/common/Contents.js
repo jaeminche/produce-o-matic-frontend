@@ -31,18 +31,23 @@ const SubHeaderTabWrapper = styled.div`
   height: 100%;
   position: relative;
   z-index: 10;
-
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
   ul {
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 80px;
+    padding-bottom: 80px !important;
     margin: 0;
-
     color: ${palette.textgray[1]};
 
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+  }
+  .tab-bar {
+    /* border-top: 1px solid white;
+    border-bottom: 1px solid white; */
+    padding: ${(props) => (props.isMobile ? '20px 30px' : '20px 30px')};
   }
   li {
     display: inline-block;
@@ -62,11 +67,6 @@ const SubHeaderTabWrapper = styled.div`
   .isActive {
     color: white;
     font-style: bold;
-  }
-  .tab-bar {
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    padding: ${(props) => (props.isMobile ? '21px 30px' : '21px 30px')};
   }
 `;
 
