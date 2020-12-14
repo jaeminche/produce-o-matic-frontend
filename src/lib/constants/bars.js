@@ -98,11 +98,11 @@ const menus = [
         text: 'Budget-O-Matic',
         path: '/produce-o-matic/budget-o-matic',
       },
-      // {
-      //   id: 2,
-      //   text: 'Produce-O-Matic',
-      //   path: '/produce-o-matic/produce-o-matic',
-      // },
+      {
+        id: 2,
+        text: 'Produce-O-Matic',
+        path: '/produce-o-matic/produce-o-matic',
+      },
       // {
       //   id: 3,
       //   text: 'Account-O-Matic',
@@ -115,11 +115,11 @@ const menus = [
     text: 'Produce-O-People',
     path: '/produce-o-people',
     submenus: [
-      // {
-      //   id: 1,
-      //   text: 'Our Vision',
-      //   path: '/produce-o-people/our-vision',
-      // },
+      {
+        id: 1,
+        text: 'Our Vision',
+        path: '/produce-o-people/our-vision',
+      },
       // {
       //   id: 2,
       //   text: 'People Of The Month',

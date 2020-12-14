@@ -695,12 +695,40 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
       },
     ],
   },
+  produce_o_matic: {
+    id: 7,
+    uiType: 'default',
+    parent: 'produce-o-matic',
+    rows: [
+      { id: 1, type: 'title', text: 'Produce-O-Matic' },
+      { id: 2, type: 'image', path: GYEONGBOKGUNG },
+      {
+        id: 3,
+        type: 'text',
+        text: `We are developing a new app. It's coming in 2021! Feel free to contact us at <a href="mailto:produceomatic@gmail.com">produceomatic@gmail.com</a> for more information`,
+      },
+    ],
+  },
   contact_us: {
     id: 7,
     uiType: 'default',
     parent: 'produce-o-people',
     rows: [
       { id: 1, type: 'title', text: 'Contact Us' },
+      { id: 2, type: 'image', path: GYEONGBOKGUNG },
+      {
+        id: 3,
+        type: 'text',
+        text: `Contact us at <a href="mailto:produceomatic@gmail.com">produceomatic@gmail.com</a>`,
+      },
+    ],
+  },
+  our_vision: {
+    id: 8,
+    uiType: 'default',
+    parent: 'produce-o-people',
+    rows: [
+      { id: 1, type: 'title', text: 'Our Vision' },
       { id: 2, type: 'image', path: GYEONGBOKGUNG },
       {
         id: 3,

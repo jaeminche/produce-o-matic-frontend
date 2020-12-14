@@ -105,7 +105,7 @@ const App = () => {
       <Route
         component={OurVisionPage}
         exact
-        path="/produce-o-people/how-we-work"
+        path="/produce-o-people/our-vision"
       />
       <Route
         component={PeopleOfTheMonthPage}
