@@ -9,6 +9,7 @@ import WritePage from './pages/WritePage';
 import PostPage from './pages/PostPage';
 
 import MainPage from './pages/MainPage';
+import Background from './components/background/background';
 import SummaryInKoreaPage from './pages/SummaryInKoreaPage';
 import SummaryOManualPage from './pages/SummaryOManualPage';
 import SummaryOMaticPage from './pages/SummaryOMaticPage';
@@ -35,6 +36,7 @@ import { Helmet } from 'react-helmet-async';
 const App = () => {
   return (
     <>
+      <Background />
       <Helmet>
         <title>PRODUCE-O-MATIC</title>
       </Helmet>

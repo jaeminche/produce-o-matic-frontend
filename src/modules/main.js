@@ -12,7 +12,7 @@ export const closeHamburgerside = () => ({
 
 const initialState = {
   isHamburgersideOpen: false,
-  isBackgroundBlur: true,
+  isBackgroundBlur: false,
 };
 
 const main = handleActions(
@@ -22,7 +22,7 @@ const main = handleActions(
       return {
         ...state,
         isHamburgersideOpen: true,
-        isBackgroundBlur: false,
+        isBackgroundBlur: true,
       };
     },
     [CLOSE_HAMBURGERSIDE]: (state) => {
@@ -30,7 +30,7 @@ const main = handleActions(
       return {
         ...state,
         isHamburgersideOpen: false,
-        isBackgroundBlur: true,
+        isBackgroundBlur: false,
       };
     },
   },
