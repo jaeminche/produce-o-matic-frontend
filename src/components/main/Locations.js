@@ -5,7 +5,6 @@ import Responsive from '../common/Responsive';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useHistory } from 'react-router-dom';
 
 const LocationsBlock = styled.div`
   height: auto;
@@ -37,7 +36,7 @@ function PrevArrow(props) {
   );
 }
 
-const StyledImgBlock = styled.div`
+const ImgBlock = styled.div`
   position: relative;
 
   img {
@@ -72,18 +71,18 @@ const StyledImgBlock = styled.div`
 `;
 
 const ImagesBlock = (props) => {
-  const { key, title, imgpath, subtitle, url, history } = props;
+  const { key, title, imgpath, subtitle, url } = props;
+  console.log('-s-s', url);
   return (
-    // <StyledImgBlock onClick={() => history.push(url)}>
-    <StyledImgBlock key={key}>
-      <a href={url} /*target="_blank"*/>
+    <ImgBlock key={key}>
+      <a href={url}>
         <img src={imgpath} alt="click to watch Youtube" />
         <div className="textbox">
           <div className="title">{title}</div>
           <div className="subtitle">{subtitle}</div>
         </div>
       </a>
-    </StyledImgBlock>
+    </ImgBlock>
   );
 };
 
@@ -109,11 +108,9 @@ const CustomSlide = (props) => {
 };
 
 const Locations = ({ items }) => {
-  const history = useHistory();
   const settings = {
     dots: true,
     infinite: true,
-    // fade: true,
     speed: 2500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -146,7 +143,6 @@ const Locations = ({ items }) => {
               title={item.title}
               subtitle={item.subtitle}
               url={item.url}
-              history={history}
             />
           ))}
         </Slider>
