@@ -8,6 +8,7 @@ import {
   WEATHER,
   MAP_KTX,
   MAP_DRONE,
+  DRONE01,
   RENTALIMAGE1,
   RENTALIMAGE2,
   RENTALCAR1,
@@ -515,7 +516,7 @@ const uiData = {
           {
             id: 1,
             type: 'image',
-            path: GRAPH01_LOCATIONINCENTIVES,
+            path: DRONE01,
             desc: '..',
           },
           {

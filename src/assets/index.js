@@ -23,6 +23,7 @@ const TIME_KOREA = require('./time_korea.svg');
 const TIME_YOUR = require('./time_your.svg');
 const WEATHER = require('./weather.jpg');
 const MAP_KTX = require('./map_ktx.png');
+const DRONE01 = require('./drone01.svg');
 const MAP_DRONE = require('./map_drone.svg');
 const ARROW_OPTION = require('./arrow_option.svg');
 const XMARK = require('./xmark.svg');
@@ -60,6 +61,7 @@ export {
   TIME_YOUR,
   WEATHER,
   MAP_KTX,
+  DRONE01,
   MAP_DRONE,
   ARROW_OPTION,
   XMARK,
