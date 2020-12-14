@@ -7,6 +7,7 @@ import { PageTitle } from '../common/SmallComponents';
 import { useTable } from 'react-table';
 
 const BudgetOMaticBlock = styled.div`
+  padding: 80px 0;
   height: auto;
   background: ${palette.budgetomatic.background[0]};
   color: ${palette.budgetomatic.text[1]};
@@ -16,9 +17,7 @@ const Wrapper = styled(Responsive)`
   font-family: Lato;
   font-style: normal;
   text-align: center;
-  padding-top: 80px;
-
-  .spacer {
+  padding-top: 80pxdiv className= 'spacer' {
     padding-top: ${(props) => (props.width ? props.width : '80px')};
   }
   .text {
@@ -38,7 +37,7 @@ const Wrapper = styled(Responsive)`
 
 const StyledTable = styled.div`
   box-sizing: border-box;
-  border: 1px solid ${palette.budgetomatic.border[0]};
+  /* border: 1px solid ${palette.budgetomatic.border[0]}; */
   border-radius: 13px;
   margin-bottom: 20px;
 
@@ -239,49 +238,116 @@ const ButtonStyledCheckbox = styled.span`
   }
 `;
 
-const ResultTableStyles = styled.div`
-  padding: 1rem;
+const FooterRow = styled.div`
+  height: 60px;
+  border: 1px solid #a5a5a5;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  .footer-block {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    div {
+      padding: 18px 14px;
+    }
+  }
+  .footer-child-first {
+    background: #1b1b1b;
+    color: white;
+    div {
+      padding: 18px 14px;
+    }
+  }
+  /* .footer-child-first {
+    background: #1B1B1B;
+  } */
+`;
 
+const ResultTableStyles = styled.div`
+  /* border: 1px solid #a5a5a5 !important; */
   table {
-    width: 100%;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    width: 100% !important;
     border-spacing: 0;
-    border: 1px solid black;
+    /* border-top: 1px solid black; */
+    /* border-left: 1px solid #a5a5a5;
+    border-right: 1px solid #a5a5a5;
+    border: 1px solid #a5a5a5; */
+
+    thead {
+      width: inherit;
+      tr {
+        border: 1px solid #a5a5a5;
+      }
+    }
+    .flex-between {
+      /* border: 1px solid #a5a5a5; */
+      width: 100%;
+      padding: 19px 40px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 60px;
+      background: #1b1b1b;
+      color: white;
+    }
+
+    .groupname {
+      width: 100%;
+      display: block;
+      padding: 19px 40px;
+      text-align: left;
+      /* background: #f5f5f5; */
+      color: rgba(0, 32, 51, 1);
+      border: 1px solid #a5a5a5;
+    }
+
+    .subtotal {
+      background: #ecf3ff;
+      color: black;
+      border-left: 1px solid #a5a5a5;
+      border-right: 1px solid #a5a5a5;
+      border-bottom: 1px solid #a5a5a5;
+      margin-bottom: 10px;
+    }
 
     tr {
-      ${
-        '' /* :first-child {
+      height: 60px;
+
+      /* &:first-child {
         td {
           border-top: 1px solid black;
-        }
-      } */
-      }
+        } 
+    
 
-      :last-child {
+      &:last-child {
         td {
           border-bottom: 0;
         }
-      }
+      } */
     }
-
-    th,
+    tr th,
     td {
       margin: 0;
       padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
+      /* border: 1px solid #a5a5a5; */
+      border-bottom: 1px solid #a5a5a5;
+      border-right: 1px solid #a5a5a5;
 
       :last-child {
         border-right: 0;
       }
     }
-
-    tfoot {
-      tr:first-child {
-        td {
-          border-top: 2px solid black;
-        }
+    tbody {
+      tr {
+        background: white;
       }
-      font-weight: bolder;
     }
   }
 `;
@@ -302,7 +368,7 @@ function ResultTable({ columns, data }) {
 
   // Render the UI for your table
   return (
-    <table {...getTableProps()}>
+    <table style={{ border: '1px solid #a5a5a5' }} {...getTableProps()}>
       <thead>
         {headerGroups.map(
           (group, key) =>
@@ -338,7 +404,7 @@ function ResultTable({ columns, data }) {
 }
 
 const ResultTables = (props) => {
-  const { data, categoryTotals, isMobile } = props;
+  const { data, categoryTotals, grandtotal, isMobile } = props;
   const columns = React.useMemo(
     () => [
       {
@@ -365,7 +431,7 @@ const ResultTables = (props) => {
             accessor: 'rate',
           },
           {
-            Header: 'TOTAL',
+            Header: 'TOTAL(KRW)',
             accessor: 'itemtotal',
           },
         ],
@@ -386,35 +452,110 @@ const ResultTables = (props) => {
           }
         };
         return (
-          <div key={key}>
-            {value.map(
-              (group, key) =>
-                group.checked && (
-                  <ResultTableStyles key={key}>
-                    <div>
-                      {categoryname}
-                      {group.name}
-                      {categoryTotal()}
+          <ResultTableStyles
+            style={{ width: '100%', marginTop: '30px' }}
+            key={key}
+          >
+            <table style={{ width: '100%' }}>
+              <thead style={{ width: '100%' }}>
+                <tr className="flex-between">
+                  <div>{categoryname.toUpperCase()}</div>
+                  <div>
+                    {categoryTotal()} KRW{' '}
+                    {`(${(categoryTotal() / 1100).toFixed(2)} USD)`}
+                  </div>
+                </tr>
+              </thead>
+              {value.map(
+                (group, key) =>
+                  group.checked && (
+                    <div key={key}>
+                      <thead style={{ width: '100%', display: 'block' }}>
+                        <tr
+                          style={{ width: '100%' }}
+                          className="groupname"
+                        >{`${group.name.toUpperCase()}`}</tr>
+                      </thead>
+                      <ResultTable
+                        style={{ border: '1px solid #a5a5a5' }}
+                        columns={columns}
+                        data={group.budgetItems}
+                      />
+                      <div className="flex-between subtotal">
+                        <div>subtotal</div>
+                        <div>
+                          {group.subtotal} KRW{' '}
+                          {`(${(group.subtotal / 1100).toFixed(2)} USD)`}
+                        </div>
+                      </div>
                     </div>
-                    <ResultTable columns={columns} data={group.budgetItems} />
-                    <div>subtotal</div>
-                  </ResultTableStyles>
-                ),
-            )}
-          </div>
+                  ),
+              )}
+            </table>
+
+            <div className="spacer" />
+          </ResultTableStyles>
         );
       })}
+      <FooterRow>
+        <div
+          className="footer-block footer-grandtotal"
+          style={{ width: '40%' }}
+        >
+          <div
+            style={{ width: '50%' }}
+            className="footer-child-first footer-grandtotal-key"
+          >
+            GRAND TOTAL
+          </div>
+          <div
+            style={{ width: '50%', paddingTop: '9px' }}
+            className="footer-child footer-grandtotal-value"
+          >
+            <div style={{ padding: '1px 14px' }}>{grandtotal} KRW</div>
+            <div style={{ padding: '1px 14px' }}>
+              {`(${(grandtotal / 1100).toFixed(2)} USD)`}
+            </div>
+          </div>
+        </div>
+        <div className="footer-block footer-incentive" style={{ width: '60%' }}>
+          <div
+            style={{ width: '50%' }}
+            className="footer-child-first footer-incentive-key"
+          >
+            LOCATION INCENTIVE ADVICE
+          </div>
+          <div
+            style={{ width: '50%', padding: '10px 14px' }}
+            className="footer-child footer-incentive-value"
+          >{`you can get ${
+            grandtotal * 0.3
+          }, a max. 30% of your grand toal for a reimburse.`}</div>
+        </div>
+      </FooterRow>
     </>
   );
 };
 
 const BudgetResult = (props) => {
-  const { isMobile } = props;
+  const { isMobile, categoryTotals } = props;
+  const getGrandtotal = () => {
+    let sum = 0;
+    for (const item of categoryTotals) {
+      console.log('aaaa', item);
+      for (const key in item) {
+        console.log('8888', item[key]);
+        sum = sum + item[key];
+      }
+    }
+    return sum;
+  };
+  const grandtotal = getGrandtotal();
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
         <PageTitle text="Calculation Result" isMobile={isMobile} />
-        <ResultTables {...props} />
+        <ResultTables {...props} grandtotal={grandtotal} />
       </Wrapper>
     </BudgetOMaticBlock>
   );
