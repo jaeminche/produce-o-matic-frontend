@@ -550,7 +550,7 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
       {
         id: 7,
         type: 'sectionTitle',
-        text: 'Drone Zone Maps (서울지도)',
+        text: 'Drone Zone Maps',
       },
       { id: 8, type: 'image', path: MAP_DRONE },
     ],
