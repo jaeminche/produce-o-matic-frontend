@@ -11,12 +11,14 @@ const PopularLocationBlock = styled.div`
 
 const Wrapper = styled(Responsive)`
   text-align: left;
-  padding-top: 80px;
+  ${mq({
+    paddingTop: ['30px', '40px', , '60px', , '80px', ,],
+  })};
 
   .title {
     ${mq({
       fontSize: ['26px', '32px', , '40px', , '50px', ,],
-    })}
+    })};
     margin-bottom: 10px;
     text-align: center;
   }
@@ -30,7 +32,7 @@ const Wrapper = styled(Responsive)`
     text-align: left;
   }
   .margin-tb {
-    margin-top: 80px;
+    /* margin-top: 80px; */
     margin-bottom: 40px;
   }
   .video_wrapper {
@@ -62,7 +64,7 @@ const PopularLocation = ({ data, history, isMobile }) => {
         {title && <h1 className="title margin-tb">{title}</h1>}
         {url && (
           <div className="video_wrapper">
-            <iframe
+            {/* <iframe
               title={title}
               width="100%"
               height="100%"
@@ -70,6 +72,14 @@ const PopularLocation = ({ data, history, isMobile }) => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+            ></iframe> */}
+            <iframe
+              width="100%"
+              height="100%"
+              src={url}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
             ></iframe>
           </div>
         )}
