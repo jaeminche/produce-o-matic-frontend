@@ -181,10 +181,10 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FlexContainerResponsive = (props) => {
-  const { items, times } = props;
+  const { items, times, key } = props;
   const customcss = times ? 'time-numbers' : null;
   return (
-    <ul className="flex-container-responsive">
+    <ul key={key} className="flex-container-responsive">
       {items.map((item, key) => (
         <li
           key={key}
@@ -224,15 +224,13 @@ const FlexContainerResponsive = (props) => {
 };
 
 const Tabs = (props) => {
-  const { tabs, isMobile } = props;
+  const { tabs, isMobile, key } = props;
   const { active_tab } = useParams();
   return (
-    <SubHeaderTabBlock isMobile={isMobile}>
+    <SubHeaderTabBlock key={key} isMobile={isMobile}>
       <SubHeaderTabWrapper isMobile={isMobile}>
-        {/* <ul className="flex-container tab-bar"> */}
         <ul className="tab-bar">
           {tabs.map((tab, key) => (
-            // <li key={key} className="flex-item tab-bar-item">
             <li
               key={key}
               className={
@@ -250,15 +248,17 @@ const Tabs = (props) => {
   );
 };
 
-const DrawRowComponent = (row, key, isMobile, times) => {
+const DrawRowComponent = (props) => {
+  const { row, key, isMobile, times } = props;
   const { type, path, text, desc, items, tabs } = row;
+  console.log('rows');
   const ui = {
     title: <PageTitle text={text} key={key} isMobile={isMobile} />,
     image: (
       <img src={path} className="title-image margin-tb" alt={desc} key={key} />
     ),
     flexContainerResponsive: (
-      <FlexContainerResponsive items={items} _key={key} times={times} />
+      <FlexContainerResponsive items={items} key={key} times={times} />
     ),
     text: (
       <p className="text" key={key}>
@@ -276,15 +276,23 @@ const DrawRowComponent = (row, key, isMobile, times) => {
   return ui[type];
 };
 
-const Contents = ({ rows, isMobile, tabRows = false, times = false }) => {
+const Contents = (props) => {
+  const { rows, isMobile, tabRows = false, times = false } = props;
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>
-        {rows.map((row, key) => DrawRowComponent(row, key, isMobile))}
+        {rows.map((row, key) => (
+          <DrawRowComponent row={row} key={key} isMobile={isMobile} />
+        ))}
         {tabRows &&
-          tabRows.map((row, key) =>
-            DrawRowComponent(row, key, isMobile, times),
-          )}
+          tabRows.map((row, key) => (
+            <DrawRowComponent
+              row={row}
+              key={key}
+              isMobile={isMobile}
+              times={times}
+            />
+          ))}
       </Wrapper>
     </ContentsBlock>
   );

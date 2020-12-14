@@ -27,6 +27,7 @@ const ContentsContainer = ({ pagekey, location }) => {
   }, []);
 
   // *** Activate Clock starts
+  // ! USE MEMO AND CALLBACK FOR TIMER!
   const [time, setTime] = useState(shouldActivateClock ? new Date() : false);
   useEffect(() => {
     if (shouldActivateClock) {
