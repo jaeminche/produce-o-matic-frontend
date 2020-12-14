@@ -488,7 +488,7 @@ const ResultTables = (props) => {
                   <div>{categoryname.toUpperCase()}</div>
                   <div>
                     {categoryTotal()} KRW{' '}
-                    {`(${(categoryTotal() / 1100).toFixed(2)} USD)`}
+                    {`(${(categoryTotal() / 1100).toFixed(0)} USD)`}
                   </div>
                 </tr>
               </thead>
@@ -511,7 +511,7 @@ const ResultTables = (props) => {
                         <div>subtotal</div>
                         <div>
                           {group.subtotal} KRW{' '}
-                          {`(${(group.subtotal / 1100).toFixed(2)} USD)`}
+                          {`(${(group.subtotal / 1100).toFixed(0)} USD)`}
                         </div>
                       </div>
                     </div>
@@ -540,7 +540,7 @@ const ResultTables = (props) => {
           >
             <div style={{ padding: '1px 14px' }}>{grandtotal} KRW</div>
             <div style={{ padding: '1px 14px' }}>
-              {`(${(grandtotal / 1100).toFixed(2)} USD)`}
+              {`(${(grandtotal / 1100).toFixed(0)} USD)`}
             </div>
           </div>
         </div>

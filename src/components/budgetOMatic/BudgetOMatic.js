@@ -478,7 +478,7 @@ const Calculator = (props) => {
                               <div className="vertically-center">
                                 Rate:{' '}
                                 {(budgetItem.rate[0] / currencyRate).toFixed(
-                                  currency !== 'KRW' ? 2 : 0,
+                                  currency !== 'KRW' ? 0 : 0,
                                 )}
                                 {`(${currency})`}
                               </div>
@@ -579,7 +579,7 @@ const Calculator = (props) => {
                         <div style={{ display: 'flex' }}>
                           <span className="vertically-center ">
                             {(group.subtotal / currencyRate).toFixed(
-                              currency !== 'KRW' ? 2 : 0,
+                              currency !== 'KRW' ? 0 : 0,
                             )}
                           </span>
                           <span className="vertically-center margin-l">
