@@ -3,7 +3,7 @@ import Responsive from '../../components/common/Responsive';
 import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
-import { PageTitle } from '../common/SmallComponents';
+import { ConfirmButton } from '../../components/common/Button';
 import { useTable } from 'react-table';
 
 const BudgetOMaticBlock = styled.div`
@@ -11,6 +11,15 @@ const BudgetOMaticBlock = styled.div`
   height: auto;
   background: ${palette.budgetomatic.background[0]};
   color: ${palette.budgetomatic.text[1]};
+`;
+
+const StyledPageTitle = styled.h1`
+  ${mq({
+    fontSize: ['26px', '32px', , '40px', , '50px', ,],
+  })}
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: center;
 `;
 
 const Wrapper = styled(Responsive)`
@@ -239,11 +248,11 @@ const ButtonStyledCheckbox = styled.span`
 `;
 
 const FooterRow = styled.div`
-  height: 60px;
+  height: ${(props) => (props.isMobile ? 'auto' : '60px')};
   border: 1px solid #a5a5a5;
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
   justify-content: space-between;
   margin-bottom: 80px;
   .footer-block {
@@ -289,7 +298,7 @@ const ResultTableStyles = styled.div`
     .flex-between {
       /* border: 1px solid #a5a5a5; */
       width: 100%;
-      padding: 19px 40px;
+      padding: ${(props) => (props.isMobile ? '8px 20px' : '19px 40px')};
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -301,8 +310,8 @@ const ResultTableStyles = styled.div`
     .groupname {
       width: 100%;
       display: block;
-      padding: 19px 40px;
-      text-align: left;
+      padding: ${(props) => (props.isMobile ? '19px 20px' : '19px 40px')};
+      text-align: ${(props) => (props.isMobile ? 'center' : 'left')};
       /* background: #f5f5f5; */
       color: rgba(0, 32, 51, 1);
       border: 1px solid #a5a5a5;
@@ -409,32 +418,48 @@ const ResultTables = (props) => {
     () => [
       {
         Header: 'null',
-        columns: [
-          {
-            Header: 'Code',
-            accessor: 'code',
-          },
-          {
-            Header: 'Title',
-            accessor: 'name',
-          },
-          {
-            Header: 'AMNT',
-            accessor: 'amnt',
-          },
-          {
-            Header: 'UNIT',
-            accessor: 'unit',
-          },
-          {
-            Header: 'RATE',
-            accessor: 'rate',
-          },
-          {
-            Header: 'TOTAL(KRW)',
-            accessor: 'itemtotal',
-          },
-        ],
+        columns: isMobile
+          ? [
+              {
+                Header: 'Title',
+                accessor: 'name',
+              },
+
+              {
+                Header: 'RATE',
+                accessor: 'rate',
+              },
+              {
+                Header: 'TOTAL',
+                accessor: 'itemtotal',
+              },
+            ]
+          : [
+              {
+                Header: 'Code',
+                accessor: 'code',
+              },
+              {
+                Header: 'Title',
+                accessor: 'name',
+              },
+              {
+                Header: 'AMNT',
+                accessor: 'amnt',
+              },
+              {
+                Header: 'Days',
+                accessor: 'days',
+              },
+              {
+                Header: 'RATE',
+                accessor: 'rate',
+              },
+              {
+                Header: 'TOTAL(KRW)',
+                accessor: 'itemtotal',
+              },
+            ],
       },
     ],
     [],
@@ -453,8 +478,9 @@ const ResultTables = (props) => {
         };
         return (
           <ResultTableStyles
-            style={{ width: '100%', marginTop: '30px' }}
+            style={{ width: '100%', marginTop: '50px' }}
             key={key}
+            isMobile={isMobile}
           >
             <table style={{ width: '100%' }}>
               <thead style={{ width: '100%' }}>
@@ -497,19 +523,19 @@ const ResultTables = (props) => {
           </ResultTableStyles>
         );
       })}
-      <FooterRow>
+      <FooterRow isMobile={isMobile}>
         <div
           className="footer-block footer-grandtotal"
-          style={{ width: '40%' }}
+          style={{ width: isMobile ? '100%' : '40%' }}
         >
           <div
-            style={{ width: '50%' }}
+            style={{ width: isMobile ? '40%' : '50%' }}
             className="footer-child-first footer-grandtotal-key"
           >
             GRAND TOTAL
           </div>
           <div
-            style={{ width: '50%', paddingTop: '9px' }}
+            style={{ width: isMobile ? '60%' : '50%', paddingTop: '9px' }}
             className="footer-child footer-grandtotal-value"
           >
             <div style={{ padding: '1px 14px' }}>{grandtotal} KRW</div>
@@ -518,15 +544,18 @@ const ResultTables = (props) => {
             </div>
           </div>
         </div>
-        <div className="footer-block footer-incentive" style={{ width: '60%' }}>
+        <div
+          className="footer-block footer-incentive"
+          style={{ width: isMobile ? '100%' : '60%' }}
+        >
           <div
-            style={{ width: '50%' }}
+            style={{ width: isMobile ? '40%' : '50%' }}
             className="footer-child-first footer-incentive-key"
           >
             LOCATION INCENTIVE ADVICE
           </div>
           <div
-            style={{ width: '50%', padding: '10px 14px' }}
+            style={{ width: isMobile ? '60%' : '50%', padding: '10px 14px' }}
             className="footer-child footer-incentive-value"
           >{`you can get ${
             grandtotal * 0.3
@@ -554,8 +583,21 @@ const BudgetResult = (props) => {
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
-        <PageTitle text="Calculation Result" isMobile={isMobile} />
+        <StyledPageTitle>Calculation Result</StyledPageTitle>
         <ResultTables {...props} grandtotal={grandtotal} />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+          }}
+        >
+          <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
+            Send To Your Email
+          </ConfirmButton>
+          <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
+            Download
+          </ConfirmButton>
+        </div>
       </Wrapper>
     </BudgetOMaticBlock>
   );
