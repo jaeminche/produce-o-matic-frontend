@@ -19,6 +19,7 @@
     "react-redux": "^7.2.1",
     "react-responsive": "^8.1.0",
     "react-router-dom": "^5.2.0",
+    "react-router-scroll-to-top": "^1.0.0",
     "react-scripts": "3.4.3",
     "react-slick": "^0.27.12",
     "react-table": "^7.6.2",

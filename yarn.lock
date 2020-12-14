@@ -8960,6 +8960,11 @@ react-router-dom@^5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
+react-router-scroll-to-top@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-router-scroll-to-top/-/react-router-scroll-to-top-1.0.0.tgz#e5b78ab1b618e126e2ed1c32b2d95cab60d0691a"
+  integrity sha512-jSXrx5owMfcdd0/VDvnamF0qHA181DAqEdi3ka807j5jG/i8gKImiy1gqeYYRWTqEEbzekQI6HCBUL2lpb7mpA==
+
 react-router@5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.2.0.tgz#424e75641ca8747fbf76e5ecca69781aa37ea293"

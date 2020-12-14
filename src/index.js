@@ -12,6 +12,7 @@ import rootReducer, { rootSaga } from './modules';
 import { tempSetUser, check } from './modules/user';
 import { createLogger } from 'redux-logger';
 import { HelmetProvider } from 'react-helmet-async';
+import ScrollToTop from 'react-router-scroll-to-top';
 
 const sagaMiddleware = createSagaMiddleware();
 const logger = createLogger();
@@ -42,9 +43,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
+        <ScrollToTop>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </ScrollToTop>
       </BrowserRouter>
     </Provider>
     ,
