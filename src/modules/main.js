@@ -19,7 +19,6 @@ const main = handleActions(
   {
     [OPEN_HAMBURGERSIDE]: (state) => {
       document.documentElement.classList.add('no-scroll');
-      console.log('스테이트', state);
       return {
         ...state,
         isHamburgersideOpen: true,
@@ -27,7 +26,7 @@ const main = handleActions(
       };
     },
     [CLOSE_HAMBURGERSIDE]: (state) => {
-      document.documentElement.classList.add('no-scroll');
+      document.documentElement.classList.remove('no-scroll');
       return {
         ...state,
         isHamburgersideOpen: false,
