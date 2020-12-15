@@ -402,16 +402,6 @@ function ResultTable({ columns, data, currency, currencyRate }) {
       <tbody {...getTableBodyProps()}>
         {rows.map((row, i) => {
           if (row.original.checked) {
-            console.log('로우', row);
-            row.original.itemtotal = formatCurrency({
-              num: row.original.itemtotal,
-            });
-            row.original.rate = row.original.rate.map((num) =>
-              formatCurrency({
-                num: num,
-              }),
-            );
-
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -479,10 +469,12 @@ const ResultTables = (props) => {
               {
                 Header: 'RATE',
                 accessor: 'rate',
+                Cell: (props) => <> {formatCurrency({ num: props.value })} </>,
               },
               {
                 Header: 'TOTAL(KRW)',
                 accessor: 'itemtotal',
+                Cell: (props) => <> {formatCurrency({ num: props.value })} </>,
               },
             ],
       },
