@@ -67,7 +67,6 @@ const ImgLinkBlock = styled.div`
   .textbox {
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
-
     left: 50%;
     top: 50%;
     color: white;
