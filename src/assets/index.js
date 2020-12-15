@@ -41,7 +41,60 @@ const STAFF03 = require('./staff03.jpg');
 const PRODUCEOMATIC01 = require('./produceomatic_callsheet.png');
 const PRODUCEOMATIC02 = require('./produceomatic_messenger.png');
 const PRODUCEOMATIC03 = require('./produceomatic_web.png');
+const KOREA02 = require('./korea02.png');
+const CONTRACT01 = require('./contract01.jpg');
+const GENERALK_BANKINGPAYMENT01 = require('./gkbankingpayment01.jpg');
+const GENERALK_BANKINGPAYMENT02 = require('./gkbankingpayment02.jpg');
+const GENERALK_CURRENCY = require('./gkcurrency.jpg');
+const GENERALK_EMERGENCYNUMBERS01 = require('./gkemergencynumbers01.jpg');
+const GENERALK_EMERGENCYNUMBERS02 = require('./gkemergencynumbers02.jpg');
+const GENERALK_WEATHER = require('./gkweather.jpg');
+const GENERALK_SECURITY = require('./gksecurity.jpg');
+const GENERALK_CONTRACT01 = require('./contract01.jpg');
+const GENERALK_HEALTH = require('./gkhealth.jpg');
+const GENERALK_VISA = require('./gkvisa.jpg');
+const GENERALK_LANGUAGE = require('./gklanguage.jpg');
+const GENERALK_TELEKTRENTAL = require('./gktelektrental.jpg');
+const GENERALK_WIFIACCESS = require('./gkwifiaccess.jpg');
+const GENERALK_WIFIEGG = require('./gkwifiegg.jpg');
+const TMONEY01 = require('./tmoney.jpg');
+const INSURANCE_DB = require('./insurancedb.jpg');
+const INSURANCE_HYUNDAI = require('./insurancehyundai.jpg');
+const TMONEY02 = require('./tmoney.jpeg');
+const GENERALK_TELESIMCARD = require('./gktelesimcard.png');
+const YOGIYO = require('./yogiyo.png');
+const BAEMIN = require('./baemin.png');
+const KAKAOT = require('./kakaot.png');
+const TMONEY = require('./tmoney.png');
+const NAVERMAP = require('./navermap.png');
+
 export {
+  GENERALK_TELEKTRENTAL,
+  GENERALK_WIFIACCESS,
+  GENERALK_WIFIEGG,
+  TMONEY01,
+  INSURANCE_DB,
+  INSURANCE_HYUNDAI,
+  TMONEY02,
+  GENERALK_TELESIMCARD,
+  YOGIYO,
+  BAEMIN,
+  KAKAOT,
+  TMONEY,
+  NAVERMAP,
+  GENERALK_BANKINGPAYMENT01,
+  GENERALK_BANKINGPAYMENT02,
+  GENERALK_CURRENCY,
+  GENERALK_EMERGENCYNUMBERS01,
+  GENERALK_EMERGENCYNUMBERS02,
+  GENERALK_WEATHER,
+  GENERALK_LANGUAGE,
+  GENERALK_VISA,
+  GENERALK_SECURITY,
+  GENERALK_CONTRACT01,
+  GENERALK_HEALTH,
+  CONTRACT01,
+  KOREA02,
   LOGO,
   LOGO_1ROW,
   SEARCH,

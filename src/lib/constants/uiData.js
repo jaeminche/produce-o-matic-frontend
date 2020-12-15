@@ -18,7 +18,31 @@ import {
   LOGO_1ROW,
   PRODUCEOMATIC01,
   PRODUCEOMATIC02,
-  PRODUCEOMATIC03,
+  CONTRACT01,
+  GENERALK_BANKINGPAYMENT01,
+  GENERALK_BANKINGPAYMENT02,
+  GENERALK_CURRENCY,
+  GENERALK_EMERGENCYNUMBERS01,
+  GENERALK_EMERGENCYNUMBERS02,
+  GENERALK_WEATHER,
+  GENERALK_LANGUAGE,
+  GENERALK_VISA,
+  GENERALK_SECURITY,
+  GENERALK_CONTRACT01,
+  GENERALK_HEALTH,
+  GENERALK_TELEKTRENTAL,
+  GENERALK_WIFIACCESS,
+  GENERALK_WIFIEGG,
+  TMONEY01,
+  INSURANCE_DB,
+  INSURANCE_HYUNDAI,
+  TMONEY02,
+  GENERALK_TELESIMCARD,
+  YOGIYO,
+  BAEMIN,
+  KAKAOT,
+  TMONEY,
+  NAVERMAP,
 } from '../../assets';
 
 const uiData = {
@@ -187,7 +211,7 @@ const uiData = {
           text:
             'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
         },
-        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        { id: 6, type: 'image', path: GENERALK_WEATHER, desc: 'weather' },
         {
           id: 7,
           type: 'sectionTitle',
@@ -200,7 +224,7 @@ const uiData = {
 
             For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
         },
-        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+        { id: 9, type: 'image', path: GENERALK_LANGUAGE, desc: 'language' },
       ],
       'security-health': [
         {
@@ -214,7 +238,7 @@ const uiData = {
           text: `A valid passport is required to enter the Republic of Korea (ROK). Nationals of non-visa waiver countries need to apply for visas at a Korean embassy or consulate before entering South Korea. A visa is not required for nationals of visa waiver or visa-free countries who wish to enter the country for tourism purposes only. You can find more detailed information on the <a href='https://www.visa.go.kr/'>government website</a>.
             `,
         },
-        { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
+        { id: 3, type: 'image', path: GENERALK_VISA, desc: 'visa' },
         {
           id: 4,
           type: 'sectionTitle',
@@ -232,7 +256,7 @@ const uiData = {
             Currently the COVID-19 situation is well managed and under control. South Korea introduced what is considered one of the best-organised epidemic control programs in the world. It is for this reason that the country’s daily virus cases remain in the mere dozens. As Netflix has pointed out, Korea is one of the few countries worldwide that is able to safely produce movies and TV series right now.
             `,
         },
-        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        { id: 6, type: 'image', path: GENERALK_HEALTH, desc: 'health' },
         {
           id: 7,
           type: 'sectionTitle',
@@ -246,7 +270,7 @@ const uiData = {
           Although the relations between North and South Korea is often a hotly contested topic in the media, South Koreans themselves rarely worry about an actual attack. In the 70 years since the North and South were divided as a consequence of the Korean War, there has never been a major attack or conflict between the two.
           `,
         },
-        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
+        { id: 9, type: 'image', path: GENERALK_SECURITY, desc: 'security' },
         {
           id: 10,
           type: 'sectionTitle',
@@ -263,7 +287,12 @@ const uiData = {
           
           `,
         },
-        { id: 12, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 12,
+          type: 'image',
+          path: GENERALK_EMERGENCYNUMBERS01,
+          desc: 'emergency numbers',
+        },
       ],
       money: [
         {
@@ -280,7 +309,12 @@ const uiData = {
             
             South Korea’s major banks offer currency exchange: Kookmin, Woori, Shinhan, etc. Currency exchange offices with good exchange rates can also be found in Seoul districts Itaewon and Myeongdong.`,
         },
-        { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 3,
+          type: 'image',
+          path: GENERALK_CURRENCY,
+          desc: 'Currency & Money Exchange',
+        },
         {
           id: 4,
           type: 'sectionTitle',
@@ -294,7 +328,12 @@ const uiData = {
             In South Korea it is very common to pay by credit card and many individuals also use Samsung Pay and Zero Pay. Micropayments can be made in convenience stores, taxis and at subway stations.
             `,
         },
-        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+        {
+          id: 6,
+          type: 'image',
+          path: GENERALK_BANKINGPAYMENT01,
+          desc: 'banking & payment',
+        },
       ],
       transportation: [
         {
@@ -312,7 +351,22 @@ const uiData = {
             You can download the most up-to-date subway map on the Seoul Metro website. It’s available in Korean, English, Chinese and Japanese.
             `,
         },
-        { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
+        // { id: 3, type: 'image', path: NAVERMAP, desc: 'maps' },
+        // {
+        //   id: 2,
+        //   type: 'flexContainerResponsive',
+        //   items: [
+        //     {
+        //       id: 1,
+        //       type: 'image',
+        //       url: 'https://apps.apple.com/kr/app/id311867728',
+        //       path: NAVERMAP,
+        //       desc: 'maps',
+
+        //     },
+        //   ],
+        //   className: 'flex-container-responsive width80percent',
+        // },
         {
           id: 4,
           type: 'sectionTitle',
@@ -567,7 +621,7 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
     parent: 'produce-o-manual',
     rows: [
       { id: 1, type: 'title', text: 'Contract' },
-      { id: 2, type: 'image', path: GYEONGBOKGUNG },
+      { id: 2, type: 'image', path: CONTRACT01 },
       {
         id: 3,
         type: 'text',

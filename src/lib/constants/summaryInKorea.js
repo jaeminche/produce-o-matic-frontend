@@ -5,6 +5,7 @@ import {
   STAFF01,
   STAFF02,
   STAFF03,
+  KOREA02,
 } from '../../assets';
 
 const uiData = {
@@ -26,8 +27,8 @@ const uiData = {
       },
       {
         id: 2,
-        image: GYEONGBOKGUNG03,
-        desc: 'Gyeongbok Palace Image',
+        image: KOREA02,
+        desc: 'Seoul Street At Night Image',
         text: `These memorable backdrops for a scene in a movie or TV series, although sometimes remote, still translate to a pleasant shooting experience. Seoul and major cities in Korea are well-connected, fast internet is ubiquitous (even in the countryside and on the subway) and you can find delicious food practically everywhere, whether in restaurants, at food stalls or delivered to wherever you are. Many eateries are also open 24/7 and convenience stores provide essentials at any time of the day or night. 
     `,
         order: 'text-first',
