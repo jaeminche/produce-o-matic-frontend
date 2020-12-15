@@ -39,13 +39,12 @@ const Wrapper = styled(Responsive)`
     position: absolute;
     top: 0;
     left: 30px;
-    transform: translateY(35%);
+    transform: translateY(70%);
   }
   .logo {
     img {
       ${mq({ height: ['20px', , , '24px', , , ,] })}
       filter: invert(1);
-      margin-top: 9px;
     }
   }
   .menublock {

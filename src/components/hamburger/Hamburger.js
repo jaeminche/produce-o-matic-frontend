@@ -9,8 +9,7 @@ const Group = styled.div`
   display: flex;
   cursor: pointer;
   position: absolute;
-  left: 0;
-  padding-left: 40px;
+  left: 30px;
   z-index: 50;
   /* top: calc(50% - 7px); */
 `;
