@@ -185,6 +185,10 @@ const Wrapper = styled(Responsive)`
     margin-top: 9px;
     /* border-radius: 10px; */
   }
+  .width80percent {
+    width: 80%;
+    margin: 20px auto;
+  }
 `;
 
 const FlexContainerResponsive = (props) => {
@@ -192,7 +196,10 @@ const FlexContainerResponsive = (props) => {
   console.log('스타일', style);
   const customcss = times ? 'time-numbers' : null;
   return (
-    <ul key={key} className="flex-container-responsive">
+    <ul
+      key={key}
+      className={className ? className : 'flex-container-responsive'}
+    >
       {items.map((item, key) => (
         <li
           key={key}
@@ -266,7 +273,7 @@ const Tabs = (props) => {
 
 const DrawRowComponent = (props) => {
   const { row, key, isMobile, times } = props;
-  const { type, path, text, desc, items, tabs, classNames, style } = row;
+  const { type, path, text, desc, items, tabs, className, style } = row;
 
   console.log('rows');
   const ui = {
@@ -275,14 +282,14 @@ const DrawRowComponent = (props) => {
         text={text}
         key={key}
         isMobile={isMobile}
-        className={classNames}
+        className={className}
         style={style}
       />
     ),
     image: (
       <img
         src={path}
-        className={classNames || 'margin-tb'}
+        className={className || 'margin-tb'}
         style={style}
         alt={desc}
         key={key}
@@ -293,12 +300,12 @@ const DrawRowComponent = (props) => {
         items={items}
         key={key}
         times={times}
-        className={classNames}
+        className={className}
         style={style}
       />
     ),
     text: (
-      <p className={classNames || 'text'} key={key} style={style}>
+      <p className={className || 'text'} key={key} style={style}>
         {ReactHtmlParser(text)}
       </p>
     ),
@@ -307,12 +314,12 @@ const DrawRowComponent = (props) => {
         isMobile={isMobile}
         tabs={tabs}
         key={key}
-        className={classNames}
+        className={className}
         style={style}
       />
     ),
     sectionTitle: (
-      <h2 className={classNames || 'section-title'} style={style} key={key}>
+      <h2 className={className || 'section-title'} style={style} key={key}>
         {text}
       </h2>
     ),

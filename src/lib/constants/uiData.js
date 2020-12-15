@@ -721,14 +721,8 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
             path: PRODUCEOMATIC02,
             desc: 'produce-o-matic messenger',
           },
-          {
-            id: 2,
-            type: 'image',
-            path: PRODUCEOMATIC03,
-            desc: 'produce-o-matic web',
-            style: { maxHeight: '765.09px' },
-          },
         ],
+        className: 'flex-container-responsive width80percent',
       },
       {
         id: 3,
@@ -747,7 +741,7 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
         id: 2,
         type: 'image',
         path: LOGO_1ROW,
-        classNames: 'logo',
+        className: 'logo',
         style: {
           display: 'block',
           marginTop: '30px',
