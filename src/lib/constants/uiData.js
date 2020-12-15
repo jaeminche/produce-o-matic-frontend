@@ -16,6 +16,9 @@ import {
   RENTALCAR3,
   TEMPTABLEINRENTAL,
   LOGO_1ROW,
+  PRODUCEOMATIC01,
+  PRODUCEOMATIC02,
+  PRODUCEOMATIC03,
 } from '../../assets';
 
 const uiData = {
@@ -702,7 +705,31 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
     parent: 'produce-o-matic',
     rows: [
       { id: 1, type: 'title', text: 'Produce-O-Matic' },
-      { id: 2, type: 'image', path: GYEONGBOKGUNG },
+      {
+        id: 2,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'image',
+            path: PRODUCEOMATIC01,
+            desc: 'produce-o-matic call sheet',
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: PRODUCEOMATIC02,
+            desc: 'produce-o-matic messenger',
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: PRODUCEOMATIC03,
+            desc: 'produce-o-matic web',
+            style: { maxHeight: '765.09px' },
+          },
+        ],
+      },
       {
         id: 3,
         type: 'text',

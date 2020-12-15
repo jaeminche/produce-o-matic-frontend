@@ -38,7 +38,9 @@ const TEMPTABLEINRENTAL = require('./temptableinrental.svg');
 const STAFF01 = require('./staff01.jpg');
 const STAFF02 = require('./staff02.jpg');
 const STAFF03 = require('./staff03.jpg');
-
+const PRODUCEOMATIC01 = require('./produceomatic_callsheet.png');
+const PRODUCEOMATIC02 = require('./produceomatic_messenger.png');
+const PRODUCEOMATIC03 = require('./produceomatic_web.png');
 export {
   LOGO,
   LOGO_1ROW,
@@ -80,4 +82,7 @@ export {
   STAFF01,
   STAFF02,
   STAFF03,
+  PRODUCEOMATIC01,
+  PRODUCEOMATIC02,
+  PRODUCEOMATIC03,
 };

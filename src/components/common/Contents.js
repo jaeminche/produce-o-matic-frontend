@@ -188,7 +188,8 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FlexContainerResponsive = (props) => {
-  const { items, times, key } = props;
+  const { items, times, key, className, style } = props;
+  console.log('스타일', style);
   const customcss = times ? 'time-numbers' : null;
   return (
     <ul key={key} className="flex-container-responsive">
@@ -202,7 +203,12 @@ const FlexContainerResponsive = (props) => {
           }
         >
           {item.type === 'image' ? (
-            <img src={item.path} alt={item.desc} />
+            <img
+              src={item.path}
+              alt={item.desc}
+              className={className || null}
+              style={style || null}
+            />
           ) : item.type === 'imageWithTextInside' ? (
             <>
               <img
@@ -262,7 +268,13 @@ const DrawRowComponent = (props) => {
   console.log('rows');
   const ui = {
     title: (
-      <PageTitle text={text} key={key} isMobile={isMobile} style={style} />
+      <PageTitle
+        text={text}
+        key={key}
+        isMobile={isMobile}
+        className={classNames}
+        style={style}
+      />
     ),
     image: (
       <img
@@ -274,16 +286,30 @@ const DrawRowComponent = (props) => {
       />
     ),
     flexContainerResponsive: (
-      <FlexContainerResponsive items={items} key={key} times={times} />
+      <FlexContainerResponsive
+        items={items}
+        key={key}
+        times={times}
+        className={classNames}
+        style={style}
+      />
     ),
     text: (
-      <p className="text" key={key} style={style}>
+      <p className={classNames || 'text'} key={key} style={style}>
         {ReactHtmlParser(text)}
       </p>
     ),
-    tabs: <Tabs isMobile={isMobile} tabs={tabs} key={key} style={style} />,
+    tabs: (
+      <Tabs
+        isMobile={isMobile}
+        tabs={tabs}
+        key={key}
+        className={classNames}
+        style={style}
+      />
+    ),
     sectionTitle: (
-      <h2 className="section-title" key={key}>
+      <h2 className={classNames || 'section-title'} style={style} key={key}>
         {text}
       </h2>
     ),
