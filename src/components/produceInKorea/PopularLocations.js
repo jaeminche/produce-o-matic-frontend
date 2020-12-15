@@ -12,10 +12,10 @@ const PopularLocationsBlock = styled.div`
 const Wrapper = styled(Responsive)`
   .title {
     font-size: ${mq({
-      fontSize: ['24px', '24px', , '42px', , '60px', ,],
+      fontSize: ['24px', '32px', , '42px', , '60px', ,],
     })};
     text-align: center;
-    padding-top: ${(props) => (props.isMobile ? '30px' : '80px')};
+    padding-top: ${(props) => (props.isMobile ? '130px' : '80px')};
     margin-bottom: ${(props) => (props.isMobile ? '10px' : '40px')};
   }
   .title-image {

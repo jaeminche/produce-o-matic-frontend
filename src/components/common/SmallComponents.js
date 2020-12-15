@@ -11,14 +11,20 @@ const StyledPageTitle = styled.h1`
     fontSize: ['26px', '32px', , '40px', , '50px', ,],
   })};
   margin-bottom: 0;
-  margin-top: 0;
+  margin-top: ${(props) => (props.minusmargin ? '0' : '68px')};
   text-align: center;
 `;
 
 const PageTitle = (props) => {
   const { text, key, isMobile } = props;
+  // TODO: 나중에 수정
   return (
-    <StyledPageTitle className="title" isMobile={isMobile} key={key}>
+    <StyledPageTitle
+      minusmargin={isMobile && text === 'General Knowledge'}
+      className="title"
+      isMobile={isMobile}
+      key={key}
+    >
       {text}
     </StyledPageTitle>
   );

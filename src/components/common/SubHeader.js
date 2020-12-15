@@ -46,6 +46,7 @@ const Wrapper = styled.div`
   }
 
   .menuitem {
+    color: rgba(165, 165, 165, 1);
     font-size: 16px;
     margin-right: 15px;
   }

@@ -11,7 +11,7 @@ import HamburgersideContainer from '../../containers/hamburger/HamburgersideCont
 
 const HeaderBlock = styled.div`
   ${(props) => props.isFixed && `position: fixed;`}
-  z-index: 10;
+  z-index: 60;
   width: 100%;
   background: white;
   color: white;
@@ -58,6 +58,7 @@ const Wrapper = styled(Responsive)`
     margin: 0 auto;
   }
   .menuitem {
+    color: rgba(165, 165, 165, 1);
     font-size: 16px;
     margin-right: 15px;
   }
@@ -79,14 +80,24 @@ const Wrapper = styled(Responsive)`
   }
 `;
 
-const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
+const Header = ({
+  menus,
+  isFixed,
+  activeMenu,
+  activeSubMenu /*, user, onLogout*/,
+}) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
     <HeaderBlock isFixed={isFixed}>
       <Wrapper>
         {isMobile && <Hamburger />}
-        {isMobile && <HamburgersideContainer activeMenu={activeMenu} />}
+        {isMobile && (
+          <HamburgersideContainer
+            activeMenu={activeMenu}
+            activeSubMenu={activeSubMenu}
+          />
+        )}
 
         <Link
           to="/"

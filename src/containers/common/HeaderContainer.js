@@ -8,14 +8,21 @@ const HeaderContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   // ? will give header a fixed position only on MainPage on desktop, always on mobile
-  const isFixed = isMobile ? true : location.pathname === '/';
+  const isFixed =
+    isMobile && !location.pathname.includes('general-knowledge')
+      ? true
+      : location.pathname === '/';
   // const isFixed = true;
   const activeMenu = location.pathname.split('/')[1];
+  const activeSubMenu = location.pathname.split('/')[2];
+
+  console.log('액티브메뉴', activeMenu, activeSubMenu);
   return (
     <Header
       menus={menus}
       isFixed={isFixed}
       activeMenu={activeMenu}
+      activeSubMenu={activeSubMenu}
       isMobile={isMobile}
     />
   );

@@ -234,7 +234,8 @@ const FlexContainerResponsive = (props) => {
                   <span>{item.text}</span>
                   <br />
                   <span className={customcss}>
-                    {times.length > 0 &&
+                    {times &&
+                      times.length > 0 &&
                       (item.text === 'Korea Time' ? times[0] : times[1])}
                   </span>
                 </div>

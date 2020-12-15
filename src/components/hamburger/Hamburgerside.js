@@ -92,7 +92,13 @@ const CopyRight = styled.span`
 `;
 
 const Hamburgerside = (props) => {
-  const { isOpen, handleCloseHamburgerside, activeMenu, menus } = props;
+  const {
+    isOpen,
+    handleCloseHamburgerside,
+    activeMenu,
+    activeSubMenu,
+    menus,
+  } = props;
 
   return (
     <Wrapper isOpen={isOpen}>
@@ -115,17 +121,15 @@ const Hamburgerside = (props) => {
                 {menu.text}
                 <Submenu>
                   {menu.submenus.map((submenu, key) => (
-                    <li key={key}>
-                      <NavLink
-                        to={submenu.path}
-                        className={
-                          submenu.path.includes(activeMenu)
-                            ? 'isActive menuitem'
-                            : 'menuitem'
-                        }
-                      >
-                        {submenu.text}
-                      </NavLink>
+                    <li
+                      key={key}
+                      className={
+                        submenu.path.includes(activeSubMenu)
+                          ? 'isActive menuitem'
+                          : 'menuitem'
+                      }
+                    >
+                      <NavLink to={submenu.path}>{submenu.text}</NavLink>
                     </li>
                   ))}
                 </Submenu>
