@@ -16,7 +16,6 @@ const HeaderContainer = ({ location }) => {
   const activeMenu = location.pathname.split('/')[1];
   const activeSubMenu = location.pathname.split('/')[2];
 
-  console.log('액티브메뉴', activeMenu, activeSubMenu);
   return (
     <Header
       menus={menus}
