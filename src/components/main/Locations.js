@@ -24,7 +24,7 @@ function NextArrow(props) {
         zIndex: '5',
         display: 'block',
         right: '10px',
-        padding: '50px 30px ',
+        padding: '50px 25px ',
       }}
       onClick={onClick}
     />
@@ -41,7 +41,7 @@ function PrevArrow(props) {
         zIndex: '5',
         display: 'block',
         left: '0',
-        padding: '50px 30px',
+        padding: '50px 25px',
       }}
       onClick={onClick}
     />

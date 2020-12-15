@@ -15,7 +15,7 @@ const Wrapper = styled(Responsive)`
 
   .title {
     ${mq({
-      fontSize: ['26px', '32px', , '40px', , '50px', ,],
+      fontSize: ['26px', '28px', , '40px', , '50px', ,],
     })}
     margin-bottom: 10px;
     text-align: center;

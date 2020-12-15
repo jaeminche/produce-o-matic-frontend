@@ -39,11 +39,12 @@ const Wrapper = styled(Responsive)`
     position: absolute;
     top: 0;
     left: 30px;
-    transform: translateY(70%);
+    transform: translateY(50%);
   }
   .logo {
     img {
-      ${mq({ height: ['20px', , , '24px', , , ,] })}
+      display: block;
+      ${mq({ height: ['35px', , , '35px', , , ,] })}
       filter: invert(1);
     }
   }
