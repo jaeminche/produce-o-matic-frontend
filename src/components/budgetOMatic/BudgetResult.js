@@ -271,6 +271,13 @@ const FooterRow = styled.div`
       padding: 18px 14px;
     }
   }
+  .footer-grandtotal-value {
+    background: aliceblue;
+  }
+  .incentive-number {
+    color: blue;
+    font-weight: bold;
+  }
   /* .footer-child-first {
     background: #1B1B1B;
   } */
@@ -362,13 +369,12 @@ const ResultTableStyles = styled.div`
   }
 `;
 
-function ResultTable({ columns, data }) {
+function ResultTable({ columns, data, currency, currencyRate }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    footerGroups,
     rows,
     prepareRow,
   } = useTable({
@@ -396,6 +402,16 @@ function ResultTable({ columns, data }) {
       <tbody {...getTableBodyProps()}>
         {rows.map((row, i) => {
           if (row.original.checked) {
+            console.log('로우', row);
+            row.original.itemtotal = formatCurrency({
+              num: row.original.itemtotal,
+            });
+            row.original.rate = row.original.rate.map((num) =>
+              formatCurrency({
+                num: num,
+              }),
+            );
+
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -422,7 +438,7 @@ const ResultTables = (props) => {
     currencyRate,
     isMobile,
   } = props;
-  console.log('====레이', currencyRate);
+  console.log('====레이', currency, currencyRate);
   const columns = React.useMemo(
     () => [
       {
@@ -496,8 +512,17 @@ const ResultTables = (props) => {
                 <tr className="flex-between">
                   <div>{categoryname.toUpperCase()}</div>
                   <div>
-                    {categoryTotal()} KRW{' '}
-                    {`(${(categoryTotal() / 1100).toFixed(0)} USD)`}
+                    {formatCurrency({
+                      num: categoryTotal(),
+                      currency: 'KRW',
+                    })}
+                    {currency !== 'KRW'
+                      ? ` (${formatCurrency({
+                          num: categoryTotal(),
+                          currency,
+                          currencyRate,
+                        })})`
+                      : null}
                   </div>
                 </tr>
               </thead>
@@ -515,6 +540,8 @@ const ResultTables = (props) => {
                         style={{ border: '1px solid #a5a5a5' }}
                         columns={columns}
                         data={group.budgetItems}
+                        currency={currency}
+                        currencyRate={currencyRate}
                       />
                       <div className="flex-between subtotal">
                         <div>subtotal</div>
@@ -523,11 +550,13 @@ const ResultTables = (props) => {
                             num: group.subtotal,
                             currency: 'KRW',
                           })}
-                          {`(${formatCurrency({
-                            num: group.subtotal,
-                            currency,
-                            currencyRate,
-                          })})`}
+                          {currency !== 'KRW'
+                            ? ` (${formatCurrency({
+                                num: group.subtotal,
+                                currency,
+                                currencyRate,
+                              })})`
+                            : null}
                         </div>
                       </div>
                     </div>
@@ -554,10 +583,23 @@ const ResultTables = (props) => {
             style={{ width: isMobile ? '60%' : '50%', paddingTop: '9px' }}
             className="footer-child footer-grandtotal-value"
           >
-            <div style={{ padding: '1px 14px' }}>{grandtotal} KRW</div>
             <div style={{ padding: '1px 14px' }}>
-              {`(${(grandtotal / 1100).toFixed(0)} USD)`}
+              {formatCurrency({
+                num: grandtotal,
+                currency: 'KRW',
+              })}
             </div>
+            {currency !== 'KRW' ? (
+              <div style={{ padding: '1px 14px' }}>
+                {` (
+                  ${formatCurrency({
+                    num: grandtotal,
+                    currency,
+                    currencyRate,
+                  })}
+                )`}
+              </div>
+            ) : null}
           </div>
         </div>
         <div
@@ -573,9 +615,18 @@ const ResultTables = (props) => {
           <div
             style={{ width: isMobile ? '60%' : '50%', padding: '10px 14px' }}
             className="footer-child footer-incentive-value"
-          >{`you can get ${
-            grandtotal * 0.3
-          }, a max. 30% of your grand toal for a reimburse.`}</div>
+          >
+            <span>Claim your reimbursement of </span>
+            <span className="incentive-number">
+              {formatCurrency({
+                num: grandtotal,
+                currency,
+                currencyRate,
+                incentiveRate: 0.3,
+              })}
+            </span>
+            <span>, or max. 30% of your total spending!</span>
+          </div>
         </div>
       </FooterRow>
     </>
