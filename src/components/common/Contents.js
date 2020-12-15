@@ -178,6 +178,13 @@ const Wrapper = styled(Responsive)`
     list-style-type: none;
     padding-inline-start: 0;
   }
+
+  .logo {
+    /* ${mq({ height: ['20px', , , '24px', , , ,] })} */
+    filter: invert(1);
+    margin-top: 9px;
+    /* border-radius: 10px; */
+  }
 `;
 
 const FlexContainerResponsive = (props) => {
@@ -250,22 +257,31 @@ const Tabs = (props) => {
 
 const DrawRowComponent = (props) => {
   const { row, key, isMobile, times } = props;
-  const { type, path, text, desc, items, tabs } = row;
+  const { type, path, text, desc, items, tabs, classNames, style } = row;
+
   console.log('rows');
   const ui = {
-    title: <PageTitle text={text} key={key} isMobile={isMobile} />,
+    title: (
+      <PageTitle text={text} key={key} isMobile={isMobile} style={style} />
+    ),
     image: (
-      <img src={path} className="title-image margin-tb" alt={desc} key={key} />
+      <img
+        src={path}
+        className={classNames || 'margin-tb'}
+        style={style}
+        alt={desc}
+        key={key}
+      />
     ),
     flexContainerResponsive: (
       <FlexContainerResponsive items={items} key={key} times={times} />
     ),
     text: (
-      <p className="text" key={key}>
+      <p className="text" key={key} style={style}>
         {ReactHtmlParser(text)}
       </p>
     ),
-    tabs: <Tabs isMobile={isMobile} tabs={tabs} key={key} />,
+    tabs: <Tabs isMobile={isMobile} tabs={tabs} key={key} style={style} />,
     sectionTitle: (
       <h2 className="section-title" key={key}>
         {text}

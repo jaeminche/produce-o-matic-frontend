@@ -15,6 +15,7 @@ import {
   RENTALCAR2,
   RENTALCAR3,
   TEMPTABLEINRENTAL,
+  LOGO_1ROW,
 } from '../../assets';
 
 const uiData = {
@@ -508,7 +509,7 @@ const uiData = {
         Once an application is submitted, it takes no more than a couple of days to maximum a couple of weeks to get permission to shoot in most public locations and it is also not hard to get permits from privately owned properties as long as they are commercially managed. Prices and conditions for the permit in most public locations are straightforward and clearly stated upfront most of the time so no room for bullshit.
         Below is the list of some of the most popular and frequently requested filming locations and necessary information on requesting filming permission.`,
       },
-      { id: 3, type: 'image', path: GYEONGBOKGUNG },
+      // { id: 3, type: 'image', path: GYEONGBOKGUNG },
       {
         id: 4,
         type: 'flexContainerResponsive',
@@ -602,9 +603,9 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
 
 <ul><strong>Here is the list of some of the most popular insurance service providers.</strong></ul>
 <li>Hyundai Marine and Fire Insurance Co., Ltd.
-<a href='https://www.hi.co.kr'>https://www.hi.co.kr/</a></li>
+<a href='https://www.hi.co.kr' target='_blank'>https://www.hi.co.kr/</a></li>
 <li>DB Insurance Co., Ltd.
-<a href='https://www.idbins.com/'>https://www.idbins.com/</a></li>
+<a href='https://www.idbins.com/' target='_blank'>https://www.idbins.com/</a></li>
 `,
       },
     ],
@@ -615,7 +616,7 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
     parent: 'produce-o-manual',
     rows: [
       { id: 1, type: 'title', text: 'Rental' },
-      { id: 2, type: 'image', path: RENTALIMAGE1 },
+      // { id: 2, type: 'image', path: RENTALIMAGE1 },
       {
         id: 3,
         type: 'sectionTitle',
@@ -715,11 +716,26 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
     parent: 'produce-o-people',
     rows: [
       { id: 1, type: 'title', text: 'Contact Us' },
-      { id: 2, type: 'image', path: GYEONGBOKGUNG },
+      {
+        id: 2,
+        type: 'image',
+        path: LOGO_1ROW,
+        classNames: 'logo',
+        style: {
+          display: 'block',
+          marginTop: '30px',
+          width: '50%',
+        },
+      },
       {
         id: 3,
         type: 'text',
         text: `Contact us at <a href="mailto:produceomatic@gmail.com">produceomatic@gmail.com</a>`,
+        style: {
+          textAlign: 'center',
+          marginTop: '100px',
+          marginBottom: '80px',
+        },
       },
     ],
   },

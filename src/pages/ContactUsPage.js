@@ -10,6 +10,7 @@ import palette from '../lib/styles/palette';
 const ContactUsPageBlock = styled.div`
   background: ${palette.background[0]};
   color: white;
+  min-height: 100vh;
 `;
 
 const ContactUsPage = () => {
