@@ -84,7 +84,7 @@ const Wrapper = styled(Responsive)`
     line-height: 46px;
     letter-spacing: 0em;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
   }
   .text {
     color: ${palette.textgray[0]};
@@ -195,13 +195,13 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FlexContainerResponsive = (props) => {
-  const { items, times, key, className, style } = props;
+  const { items, times, key, classNames, style } = props;
   console.log('스타일', style);
   const customcss = times ? 'time-numbers' : null;
   return (
     <ul
       key={key}
-      className={className ? className : 'flex-container-responsive'}
+      className={classNames ? classNames : 'flex-container-responsive'}
     >
       {items.map((item, key) => (
         <li
@@ -216,7 +216,7 @@ const FlexContainerResponsive = (props) => {
             <img
               src={item.path}
               alt={item.desc}
-              className={className || null}
+              className={item.classNames || null}
               style={style || null}
             />
           ) : item.type === 'imageWithTextInside' ? (
@@ -242,7 +242,9 @@ const FlexContainerResponsive = (props) => {
               )}
             </>
           ) : (
-            <p>{item.text}</p>
+            <p key={key} className={item.classNames || 'text'} style={style}>
+              {ReactHtmlParser(item.text)}
+            </p>
           )}
         </li>
       ))}
@@ -277,7 +279,7 @@ const Tabs = (props) => {
 
 const DrawRowComponent = (props) => {
   const { row, key, isMobile, times } = props;
-  const { type, path, text, desc, items, tabs, className, style } = row;
+  const { type, path, text, desc, items, tabs, classNames, style } = row;
 
   console.log('rows');
   const ui = {
@@ -286,14 +288,14 @@ const DrawRowComponent = (props) => {
         text={text}
         key={key}
         isMobile={isMobile}
-        className={className}
+        className={classNames}
         style={style}
       />
     ),
     image: (
       <img
         src={path}
-        className={className || 'margin-tb'}
+        className={classNames || 'margin-tb'}
         style={style}
         alt={desc}
         key={key}
@@ -304,12 +306,12 @@ const DrawRowComponent = (props) => {
         items={items}
         key={key}
         times={times}
-        className={className}
+        classNames={classNames}
         style={style}
       />
     ),
     text: (
-      <p key={key} className={className || 'text'} style={style}>
+      <p key={key} className={classNames || 'text'} style={style}>
         {ReactHtmlParser(text)}
       </p>
     ),
@@ -318,12 +320,12 @@ const DrawRowComponent = (props) => {
         isMobile={isMobile}
         tabs={tabs}
         key={key}
-        className={className}
+        classNames={classNames}
         style={style}
       />
     ),
     sectionTitle: (
-      <h2 className={className || 'section-title'} style={style} key={key}>
+      <h2 className={classNames || 'section-title'} style={style} key={key}>
         {text}
       </h2>
     ),

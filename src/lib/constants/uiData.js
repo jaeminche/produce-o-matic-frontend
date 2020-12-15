@@ -219,12 +219,19 @@ const uiData = {
         },
         {
           id: 8,
-          type: 'text',
-          text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
-
-            For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
+    
+                For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+              classNames: 'text',
+            },
+            { id: 2, type: 'image', path: GENERALK_LANGUAGE, desc: 'language' },
+          ],
         },
-        { id: 9, type: 'image', path: GENERALK_LANGUAGE, desc: 'language' },
       ],
       'security-health': [
         {
@@ -365,7 +372,7 @@ const uiData = {
 
         //     },
         //   ],
-        //   className: 'flex-container-responsive width80percent',
+        //   classNames: 'flex-container-responsive width80percent',
         // },
         {
           id: 4,
@@ -431,7 +438,7 @@ const uiData = {
               type: 'text',
               text: `Reservations can be made online, at the ticket counters in stations, via travel agents, or through automatic ticketing machines. 
 
-              The passenger’s reservation number and passport are required to pick up tickets at a Korail ticketing counter before departure. For more information and to book your ticket, visit the <a href='https://www.ktxtrains.com/'>KTX website</a>.`,
+              The passenger’s reservation number and passport are required to pick up tickets at a Korail ticketing counter before departure. For more information and to book your ticket, visit the <a href='https://www.ktxtrains.com'>KTX website</a>`,
             },
           ],
         },
@@ -658,10 +665,8 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
 <li> - Value</li></ul>
 
 <ul><strong>Here is the list of some of the most popular insurance service providers.</strong>
-<li><a href='https://www.hi.co.kr' target='_blank'>Hyundai Marine and Fire Insurance Co., Ltd.
-https://www.hi.co.kr/</a></li>
-<li><a href='https://www.idbins.com/' target='_blank'>DB Insurance Co., Ltd. 
-https://www.idbins.com/</a></li></ul>`,
+<li><a href='https://www.hi.co.kr' target='_blank'> - Hyundai Marine and Fire Insurance Co., Ltd. ( https://www.hi.co.kr/ )</a></li>
+<li><a href='https://www.idbins.com/' target='_blank'> - DB Insurance Co., Ltd.  ( https://www.idbins.com/ )</a></li></ul>`,
       },
       {
         id: 3,
@@ -672,34 +677,17 @@ https://www.idbins.com/</a></li></ul>`,
             type: 'image',
             path: INSURANCE_HYUNDAI,
             desc: 'Insurance Hyundai',
+            classNames: 'width80percent',
           },
           {
             id: 2,
             type: 'image',
             path: INSURANCE_DB,
             desc: 'Insurance Dongbu',
+            classNames: 'width80percent',
           },
         ],
-        className: 'flex-container-responsive width80percent',
-      },
-      {
-        id: 15,
-        type: 'flexContainerResponsive',
-        items: [
-          {
-            id: 1,
-            type: 'image',
-            path: MAP_KTX,
-            desc: 'KTX map',
-          },
-          {
-            id: 2,
-            type: 'text',
-            text: `Reservations can be made online, at the ticket counters in stations, via travel agents, or through automatic ticketing machines. 
-
-            The passenger’s reservation number and passport are required to pick up tickets at a Korail ticketing counter before departure. For more information and to book your ticket, visit the <a href='https://www.ktxtrains.com/'>KTX website</a>.`,
-          },
-        ],
+        classNames: 'flex-container-responsive width80percent',
       },
     ],
   },
@@ -812,7 +800,7 @@ https://www.idbins.com/</a></li></ul>`,
             desc: 'produce-o-matic messenger',
           },
         ],
-        className: 'flex-container-responsive width80percent',
+        classNames: 'flex-container-responsive width80percent',
       },
       {
         id: 3,
@@ -831,7 +819,7 @@ https://www.idbins.com/</a></li></ul>`,
         id: 2,
         type: 'image',
         path: LOGO_1ROW,
-        className: 'logo',
+        classNames: 'logo',
         style: {
           display: 'block',
           marginTop: '30px',
