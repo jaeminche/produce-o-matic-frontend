@@ -19,7 +19,13 @@ function NextArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, zIndex: '5', display: 'block', right: '10px' }}
+      style={{
+        ...style,
+        zIndex: '5',
+        display: 'block',
+        right: '10px',
+        padding: '50px 30px ',
+      }}
       onClick={onClick}
     />
   );
@@ -30,7 +36,13 @@ function PrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, zIndex: '5', display: 'block', left: '10px' }}
+      style={{
+        ...style,
+        zIndex: '5',
+        display: 'block',
+        left: '0',
+        padding: '50px 30px',
+      }}
       onClick={onClick}
     />
   );
@@ -86,19 +98,6 @@ const ImagesBlock = (props) => {
   );
 };
 
-// const ImagesBlock = (props) => {
-//   const { title, imgpath, subtitle } = props;
-//   return (
-//     <ImgBlock>
-//       <img src={imgpath} alt="click to watch Youtube" />
-//       <div className="textbox">
-//         <div className="title">{title}</div>
-//         <div className="subtitle">{subtitle}</div>
-//       </div>
-//     </ImgBlock>
-//   );
-// };
-
 const CustomSlide = (props) => {
   return (
     <div>
@@ -111,11 +110,11 @@ const Locations = ({ items }) => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 2500,
+    speed: 200,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5500,
     pauseOnHover: true,
     swipeToSlide: true,
     appendDots: (dots) => (
