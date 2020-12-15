@@ -1,4 +1,4 @@
-const LOGO = require('./templogo.png');
+const LOGO = require('./templogo.svg');
 const LOGO_1ROW = require('./templogo1row.svg');
 const SEARCH = require('./search.svg');
 const GYEONGBOKGUNG = require('./gyeongbokgung.jpg');

@@ -34,18 +34,25 @@ const Wrapper = styled(Responsive)`
   align-items: center;
   color: ${palette.textgray[1]};
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
+
+  .absolute-left {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    transform: translateY(35%);
+  }
   .logo {
-    /* ${mq({
-      fontSize: ['26px', , , , , '32px', ,],
-    })}
-    font-weight: 800;
-    letter-spacing: 2px; */
     img {
       ${mq({ height: ['20px', , , '24px', , , ,] })}
       filter: invert(1);
       margin-top: 9px;
-      /* border-radius: 10px; */
     }
+  }
+  .menublock {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
   }
   .center {
     margin: 0 auto;
@@ -75,21 +82,20 @@ const Wrapper = styled(Responsive)`
 const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  function takeOutPrefix(word, prefix) {
-    return word.replace(prefix, '');
-  }
-
   return (
     <HeaderBlock isFixed={isFixed}>
       <Wrapper>
         {isMobile && <Hamburger />}
         {isMobile && <HamburgersideContainer activeMenu={activeMenu} />}
 
-        <Link to="/" className={isMobile ? 'logo center' : 'logo'}>
+        <Link
+          to="/"
+          className={isMobile ? 'logo center' : 'logo absolute-left'}
+        >
           <img src={LOGO} alt="로고" />
         </Link>
         {!isMobile && (
-          <span style={{ marginLeft: '25px' }}>
+          <span className="menublock">
             {menus.map((menu, key) => (
               <Link
                 to={menu.path}
@@ -100,8 +106,7 @@ const Header = ({ menus, isFixed, activeMenu /*, user, onLogout*/ }) => {
                 }
                 key={key}
               >
-                <span className="smalltext">Produce-</span>
-                {takeOutPrefix(menu.text, 'Produce-')}
+                {menu.text}
               </Link>
             ))}
           </span>

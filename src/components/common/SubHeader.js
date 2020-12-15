@@ -44,10 +44,15 @@ const Wrapper = styled.div`
     margin: 0 -0.11765em;
     padding: 0 5px;
   }
+
   .menuitem {
     font-size: 16px;
     margin-right: 15px;
   }
+  .menuitem:last-child {
+    margin-right: -15px;
+  }
+
   a {
     &:hover {
       color: white;
@@ -64,17 +69,15 @@ const SubHeader = ({ submenus, activeSubMenu }) => {
       <Wrapper>
         <ul>
           {submenus.map((submenu, key) => (
-            <li key={key}>
-              <Link
-                to={submenu.path}
-                className={
-                  submenu.path.includes(activeSubMenu)
-                    ? 'isActive menuitem'
-                    : 'menuitem'
-                }
-              >
-                {submenu.text}
-              </Link>
+            <li
+              key={key}
+              className={
+                submenu.path.includes(activeSubMenu)
+                  ? 'isActive menuitem'
+                  : 'menuitem'
+              }
+            >
+              <Link to={submenu.path}>{submenu.text}</Link>
             </li>
           ))}
         </ul>

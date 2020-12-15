@@ -41,7 +41,7 @@ const terms = [
 const menus = [
   {
     id: 1,
-    text: 'Produce-In-Korea',
+    text: 'Korea',
     path: '/produce-in-korea',
     submenus: [
       {
@@ -63,7 +63,7 @@ const menus = [
   },
   {
     id: 2,
-    text: 'Produce-O-Manual',
+    text: 'Manual',
     path: '/produce-o-manual',
     submenus: [
       {
@@ -112,7 +112,7 @@ const menus = [
   },
   {
     id: 4,
-    text: 'Produce-O-People',
+    text: 'People',
     path: '/produce-o-people',
     submenus: [
       {
