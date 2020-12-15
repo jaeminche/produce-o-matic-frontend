@@ -64,6 +64,7 @@ const Wrapper = styled(Responsive)`
   }
   .isActive {
     color: white;
+    font-weight: bold;
   }
   a {
     &:hover {

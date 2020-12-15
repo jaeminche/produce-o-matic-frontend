@@ -66,7 +66,7 @@ const SubHeaderTabWrapper = styled.div`
   }
   .isActive {
     color: white;
-    font-style: bold;
+    font-weight: bold;
   }
 `;
 

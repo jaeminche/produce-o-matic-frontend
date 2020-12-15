@@ -641,29 +641,65 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
     parent: 'produce-o-manual',
     rows: [
       { id: 1, type: 'title', text: 'Insurance' },
-      { id: 2, type: 'image', path: GYEONGBOKGUNG },
       {
-        id: 3,
+        id: 2,
         type: 'text',
         text: `Production insurance is one of the most crucial yet easily omitted items when filming in foreign countries. South Korea’s insurance industry is well developed and therefore it’s easy and quick to get your precious film crews and partners covered in the country. The fee for insurance varies depending on which service provider you’re getting insurance from and also conditions of the insured such as the age but getting insurance for regular film production is a straight forward job so no reason not to get one in South Korea. Most popular type of accident insurance costs around 1 dollar per person daily and the price for equipment insurance against fire and theft is approximately 0.18% of the equipment's’ value for a period of a week.
 
         You need to contract and pay usually 48 hours before the insurance becomes effective and provide the following information.
         
-<ul><strong>For accident insurance</strong></ul>
-<li>Full name in passport</li>
-<li>Date of birth</li>
-<li>Passport No. (or social ID No for Koreans)</li>
+<ul><strong>For accident insurance</strong>
+<li> - Full name in passport</li>
+<li> - Date of birth</li>
+<li> - Passport No. (or social ID No for Koreans)</li></ul>
 
-<ul><strong>For equipment insurance</strong></ul>
-<li>Serial No.</li>
-<li>Value</li>
+<ul><strong>For equipment insurance</strong>
+<li> - Serial No.</li>
+<li> - Value</li></ul>
 
-<ul><strong>Here is the list of some of the most popular insurance service providers.</strong></ul>
-<li>Hyundai Marine and Fire Insurance Co., Ltd.
-<a href='https://www.hi.co.kr' target='_blank'>https://www.hi.co.kr/</a></li>
-<li>DB Insurance Co., Ltd.
-<a href='https://www.idbins.com/' target='_blank'>https://www.idbins.com/</a></li>
-`,
+<ul><strong>Here is the list of some of the most popular insurance service providers.</strong>
+<li><a href='https://www.hi.co.kr' target='_blank'>Hyundai Marine and Fire Insurance Co., Ltd.
+https://www.hi.co.kr/</a></li>
+<li><a href='https://www.idbins.com/' target='_blank'>DB Insurance Co., Ltd. 
+https://www.idbins.com/</a></li></ul>`,
+      },
+      {
+        id: 3,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'image',
+            path: INSURANCE_HYUNDAI,
+            desc: 'Insurance Hyundai',
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: INSURANCE_DB,
+            desc: 'Insurance Dongbu',
+          },
+        ],
+        className: 'flex-container-responsive width80percent',
+      },
+      {
+        id: 15,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'image',
+            path: MAP_KTX,
+            desc: 'KTX map',
+          },
+          {
+            id: 2,
+            type: 'text',
+            text: `Reservations can be made online, at the ticket counters in stations, via travel agents, or through automatic ticketing machines. 
+
+            The passenger’s reservation number and passport are required to pick up tickets at a Korail ticketing counter before departure. For more information and to book your ticket, visit the <a href='https://www.ktxtrains.com/'>KTX website</a>.`,
+          },
+        ],
       },
     ],
   },
