@@ -11,13 +11,14 @@ const PopularLocationsBlock = styled.div`
 
 const Wrapper = styled(Responsive)`
   .title {
-    font-size: ${mq({
-      fontSize: ['24px', '32px', , '42px', , '60px', ,],
+    ${mq({
+      fontSize: ['28px', '32px', , '42px', , '60px', ,],
     })};
     text-align: center;
     padding-top: ${(props) => (props.isMobile ? '130px' : '80px')};
     margin-bottom: ${(props) => (props.isMobile ? '10px' : '40px')};
   }
+
   .title-image {
     width: 100%;
   }
@@ -65,37 +66,38 @@ const ImgLinkBlock = styled.div`
   }
   .textbox {
     position: absolute;
-    transform: translateX(-50%) translateY(-60%);
+    transform: translateX(-50%) translateY(-50%);
+
     left: 50%;
     top: 50%;
     color: white;
     width: 80%;
     text-align: center;
   }
-  .title {
+  .textbox-title {
     ${mq({
-      fontSize: ['26px', '32px', , '40px', , , , '50px'],
+      fontSize: ['24px', '32px', , '40px', , , , '50px'],
     })}
   }
   .subtitle {
     ${mq({
-      fontSize: ['10px', '12px', , '18px', , '24px', ,],
+      fontSize: ['8px', '12px', , '18px', , '24px', ,],
     })}
   }
 `;
 
 const ImageBlock = ({ data, history, isMobile }) => {
-  const { id, title, subtitle, thumbnail, baseUrl } = data;
-  const handleClick = () => history.push(`${baseUrl}/${id}`);
+  const { contentId, title, subtitle, thumbnail, baseUrl } = data;
+  const handleClick = () => history.push(`${baseUrl}/${contentId}`);
   const shortenStr = (str) => {
     const upto = isMobile ? 50 : 80;
     return `${str.slice(0, upto)}...`;
   };
   return (
-    <ImgLinkBlock onClick={() => handleClick()}>
+    <ImgLinkBlock onClick={() => handleClick()} isMobile={isMobile}>
       <img src={thumbnail} alt="click to go to the page" />
       <div className="textbox">
-        <div className="title">{title}</div>
+        <div className="textbox-title">{title}</div>
         <div>{shortenStr(subtitle)}</div>
       </div>
     </ImgLinkBlock>
@@ -122,12 +124,6 @@ const PopularLocations = ({ data, history, isMobile }) => {
               history={history}
               key={key}
             />
-
-            // <div key={card.id}>
-            //   <img src={card.thumbnail} alt={card.title} />
-            //   <div>{card.title}</div>
-            //   <div>{card.subtitle}</div>
-            // </div>
           ))}
         </Masonry>
       </Wrapper>
