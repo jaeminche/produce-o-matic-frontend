@@ -61,7 +61,7 @@ const Wrapper = styled.div`
   }
   .isActive {
     color: white;
-    font-weight: bold;
+    font-weight: bolder;
   }
 `;
 

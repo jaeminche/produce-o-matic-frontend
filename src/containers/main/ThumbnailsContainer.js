@@ -13,8 +13,8 @@ const ThumbnailsContainer = () => {
   const data = [
     {
       id: 1,
-      title: 'General Knowledge',
-      to: '/produce-in-korea/general-knowledge/korea',
+      title: 'Korea',
+      to: '/produce-in-korea',
       imgpath: THUMB1_GENERAL,
     },
     {
@@ -25,13 +25,13 @@ const ThumbnailsContainer = () => {
     },
     {
       id: 3,
-      title: 'Produce-O-Manual',
+      title: 'Manual',
       to: '/produce-o-manual',
       imgpath: THUMB3_OMANUAL,
     },
     {
       id: 4,
-      title: ' Produce-O-People',
+      title: 'People',
       to: '/produce-o-people',
       imgpath: THUMB4_OPEOPLE,
     },

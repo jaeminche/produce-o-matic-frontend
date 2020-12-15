@@ -37,6 +37,7 @@ const ImgLinkBlock = styled(Link)`
     }
   }
   .textbox {
+    width: 90%;
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
     left: 50%;
