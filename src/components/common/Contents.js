@@ -189,6 +189,9 @@ const Wrapper = styled(Responsive)`
     width: 80%;
     margin: 20px auto;
   }
+  .colorblue {
+    color: rgba(37, 168, 209, 1);
+  }
 `;
 
 const FlexContainerResponsive = (props) => {
@@ -305,7 +308,7 @@ const DrawRowComponent = (props) => {
       />
     ),
     text: (
-      <p className={className || 'text'} key={key} style={style}>
+      <p key={key} className={className || 'text'} style={style}>
         {ReactHtmlParser(text)}
       </p>
     ),
