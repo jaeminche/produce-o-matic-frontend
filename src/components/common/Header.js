@@ -42,7 +42,9 @@ const Wrapper = styled(Responsive)`
     letter-spacing: 2px; */
     img {
       ${mq({ height: ['20px', , , '24px', , , ,] })}
-      border-radius: 10px;
+      filter: invert(1);
+      margin-top: 9px;
+      /* border-radius: 10px; */
     }
   }
   .center {

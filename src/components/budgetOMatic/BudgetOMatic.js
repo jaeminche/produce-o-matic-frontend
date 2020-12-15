@@ -599,15 +599,8 @@ const Calculator = (props) => {
 };
 
 const IntroText = (isMobile) => {
-  const text = ReactHtmlParser(`<strong>Budget-O-Matic™</strong><br /> is a web software that helps filmmakers and producers
-  <br />
-  to get estimated costs for filming based on local price data collected
-  on a daily basis
-  <br /> and it shows the average rental price of some of the most
-  frequently rented equipment
-  <br /> in South Korea today.
-  <br />
-  <br /> <em>Try it now.</em>`);
+  const text = ReactHtmlParser(`<strong>Budget-O-Matic™</strong><br /> is a web-based budget calculator 
+  to get estimated costs for filming in South Korea today.`);
   return isMobile ? <h3>{text}</h3> : <h2>{text}</h2>;
 };
 
