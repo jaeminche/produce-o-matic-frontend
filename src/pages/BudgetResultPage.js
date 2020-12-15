@@ -7,24 +7,24 @@ import FooterContainer from '../containers/common/FooterContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
-const BudgetOMaticPageBlock = styled.div`
+const BudgetResultPageBlock = styled.div`
   background: ${palette.background[0]};
   color: white;
 `;
 
-const BudgetOMaticPage = () => {
+const BudgetResultPage = () => {
   const pagekey = 'budget-result';
   return (
-    <BudgetOMaticPageBlock>
+    <BudgetResultPageBlock>
       <Helmet>
-        <title>Your_Result_PRODUCE-O-MATIC</title>
+        <title>Your_Budget_Result_PRODUCE-O-MATIC</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={2} />
       <BudgetResultContainer />
       <FooterContainer />
-    </BudgetOMaticPageBlock>
+    </BudgetResultPageBlock>
   );
 };
 
-export default BudgetOMaticPage;
+export default BudgetResultPage;

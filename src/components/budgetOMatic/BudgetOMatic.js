@@ -9,6 +9,7 @@ import { XMARK, PLUSMARK } from '../../assets';
 import { ConfirmButton } from '../../components/common/Button';
 import { Spacer } from '../common/styledCss';
 import ReactHtmlParser from 'react-html-parser';
+import { formatCurrency } from '../../lib/format';
 
 const BudgetOMaticBlock = styled.div`
   height: auto;
@@ -477,10 +478,11 @@ const Calculator = (props) => {
                             <div className="right-item budgetItem-contents">
                               <div className="vertically-center">
                                 Rate:{' '}
-                                {(budgetItem.rate[0] / currencyRate).toFixed(
-                                  currency !== 'KRW' ? 0 : 0,
-                                )}
-                                {`(${currency})`}
+                                {formatCurrency({
+                                  num: budgetItem.rate[0],
+                                  currency,
+                                  currencyRate,
+                                })}
                               </div>
                               <div className="vertically-center">
                                 <div className="flex-row">
@@ -578,12 +580,11 @@ const Calculator = (props) => {
                       <div className="right-item right-contents">
                         <div style={{ display: 'flex' }}>
                           <span className="vertically-center ">
-                            {(group.subtotal / currencyRate).toFixed(
-                              currency !== 'KRW' ? 0 : 0,
-                            )}
-                          </span>
-                          <span className="vertically-center margin-l">
-                            {currency}
+                            {formatCurrency({
+                              num: group.subtotal,
+                              currency,
+                              currencyRate,
+                            })}
                           </span>
                         </div>
                       </div>

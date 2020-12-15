@@ -385,6 +385,8 @@ const BudgetOMaticContainer = ({ location }) => {
     history.push(`/produce-o-matic/budget-o-matic/result/${id}`, {
       data: dataSetInstance,
       categoryTotals: getCategoryTotals(),
+      currency,
+      currencyRate,
     });
     // 5. 아이템 소팅, 토탈 & 그랜드토탈 계산 >
     // getCategoryTotals()

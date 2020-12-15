@@ -38,4 +38,15 @@ function removeSpaceAndUnderbar(str) {
   return str.replace(regex, '');
 }
 
-export { formatTime, toLowerCase, removeSpaceAndUnderbar };
+const formatCurrency = ({ num, currency = false, currencyRate = 1 }) => {
+  const formatter = !currency
+    ? new Intl.NumberFormat()
+    : new Intl.NumberFormat('ko-KR', {
+        style: 'currency',
+        currency,
+      });
+
+  return formatter.format((num / currencyRate).toFixed(0));
+};
+
+export { formatTime, toLowerCase, removeSpaceAndUnderbar, formatCurrency };

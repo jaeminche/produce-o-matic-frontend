@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { ConfirmButton } from '../../components/common/Button';
 import { useTable } from 'react-table';
+import { formatCurrency } from '../../lib/format';
 
 const BudgetOMaticBlock = styled.div`
   padding: 80px 0;
@@ -413,7 +414,15 @@ function ResultTable({ columns, data }) {
 }
 
 const ResultTables = (props) => {
-  const { data, categoryTotals, grandtotal, isMobile } = props;
+  const {
+    data,
+    categoryTotals,
+    grandtotal,
+    currency,
+    currencyRate,
+    isMobile,
+  } = props;
+  console.log('====레이', currencyRate);
   const columns = React.useMemo(
     () => [
       {
@@ -510,8 +519,15 @@ const ResultTables = (props) => {
                       <div className="flex-between subtotal">
                         <div>subtotal</div>
                         <div>
-                          {group.subtotal} KRW{' '}
-                          {`(${(group.subtotal / 1100).toFixed(0)} USD)`}
+                          {formatCurrency({
+                            num: group.subtotal,
+                            currency: 'KRW',
+                          })}
+                          {`(${formatCurrency({
+                            num: group.subtotal,
+                            currency,
+                            currencyRate,
+                          })})`}
                         </div>
                       </div>
                     </div>

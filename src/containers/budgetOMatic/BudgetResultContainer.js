@@ -29,7 +29,7 @@ const BudgetResultContainer = ({ history }) => {
     }),
   );
 
-  let { data, categoryTotals } = history.location.state;
+  let { data, categoryTotals, currency, currencyRate } = history.location.state;
   console.log('===888', categoryTotals);
   //   TODO: 프로덕션 때 지울것
   if (data) {
@@ -54,6 +54,8 @@ const BudgetResultContainer = ({ history }) => {
     <BudgetResult
       data={data}
       categoryTotals={categoryTotals}
+      currency={currency}
+      currencyRate={currencyRate}
       isMobile={isMobile}
     />
   );
