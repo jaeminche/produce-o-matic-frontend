@@ -28,7 +28,7 @@ const ContentsContainer = ({ pagekey, location }) => {
 
   // *** Activate Clock starts
   // ! USE MEMO AND CALLBACK FOR TIMER!
-  const [time, setTime] = useState(shouldActivateClock ? new Date() : false);
+  const [time, setTime] = useState(shouldActivateClock ? new Date() : '');
   useEffect(() => {
     if (shouldActivateClock) {
       const interval = setInterval(() => setTime(new Date()), 1000);
@@ -45,7 +45,7 @@ const ContentsContainer = ({ pagekey, location }) => {
         rows={rows}
         tabRows={_tabRows}
         isMobile={isMobile}
-        times={time && [formatTime(time, true), formatTime(time)]}
+        times={time ? [formatTime(time, true), formatTime(time)] : null}
       />
     </>
   );

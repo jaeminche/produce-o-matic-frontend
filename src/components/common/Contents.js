@@ -100,7 +100,7 @@ const Wrapper = styled(Responsive)`
   }
   .textInImage {
     position: absolute;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-31%);
     left: 50%;
     top: ${(props) => (props.isMobile ? '35%' : '23%')};
     color: white;
@@ -217,14 +217,17 @@ const FlexContainerResponsive = (props) => {
                 className={item.customCssForImage}
               />
               {item.text && (
-                <p className={`textInImage ${item.customCssForText}`}>
-                  {item.text}
+                <div
+                  style={{ width: '100%' }}
+                  className={`textInImage ${item.customCssForText}`}
+                >
+                  <span>{item.text}</span>
                   <br />
                   <span className={customcss}>
                     {times.length > 0 &&
                       (item.text === 'Korea Time' ? times[0] : times[1])}
                   </span>
-                </p>
+                </div>
               )}
             </>
           ) : (
