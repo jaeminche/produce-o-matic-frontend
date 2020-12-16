@@ -87,7 +87,7 @@ const PopularLocation = ({ data, history, isMobile }) => {
         {text && <p className="text">{text}</p>}
 
         <CenteredButton onClick={history.goBack} bigBlue>
-          {'< List'}
+          {'Go Back'}
         </CenteredButton>
       </Wrapper>
     </PopularLocationBlock>

@@ -69,6 +69,7 @@ const ImgBlock = styled.div`
     top: 50%;
     color: white;
     text-align: center;
+    width: 80%;
   }
   .title {
     ${mq({
