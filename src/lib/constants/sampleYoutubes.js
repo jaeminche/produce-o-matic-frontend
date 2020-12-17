@@ -13,7 +13,7 @@ const SAMPLEYOUTUBES = [
     id: 1,
     name: 'PopularLocations',
     title: 'Taekwondowon, a versatile location for film and TV',
-    url: 'https://www.youtube.com/embed/ZkltYzK6q-k',
+    url: 'https://www.youtube.com/embed/joiGm8xre04',
     subtitle:
       'Discover the charms of Muju Taekwondowon a special filming location of South Korea',
     text: `Discover the charms of Muju Taekwondowon a special filming location of South Korea`,
