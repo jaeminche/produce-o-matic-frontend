@@ -6,6 +6,7 @@ import palette from '../../lib/styles/palette';
 import { ConfirmButton } from '../../components/common/Button';
 import { useTable } from 'react-table';
 import { formatCurrency } from '../../lib/format';
+import { CSVLink, CSVDownload } from 'react-csv';
 
 const BudgetOMaticBlock = styled.div`
   padding: 80px 0;
@@ -656,6 +657,17 @@ const BudgetResult = (props) => {
           <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
             Download
           </ConfirmButton>
+          <CSVLink
+            data={[
+              ['firstname', 'lastname', 'email'],
+              ['Ahmed', 'Tomi', 'ah@smthing.co.com'],
+              ['Raed', 'Labes', 'rl@smthing.co.com'],
+              ['Yezzi', 'Min l3b', 'ymin@cocococo.com'],
+            ]}
+          >
+            Download me
+          </CSVLink>
+          ;
         </div>
       </Wrapper>
     </BudgetOMaticBlock>

@@ -67,3 +67,5 @@ class Download extends React.Component {
     );
   }
 }
+
+export default Download;
