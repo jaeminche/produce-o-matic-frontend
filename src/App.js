@@ -40,7 +40,18 @@ const App = () => {
       <Helmet>
         <title>PRODUCE-O-MATIC</title>
       </Helmet>
-      {/* ----- Admin Pages starts ----- */}
+      {/* ----- Async request test pages starts ----- */}
+      <Route
+        component={PostsListPage}
+        path={['/posttest/@:username', '/posttest']}
+        exact
+      />
+      <Route component={LoginPage} path="/posttest/login" />
+      <Route component={SignupPage} path="/posttest/signup" />
+      <Route component={WritePage} path="/posttest/write" />
+      <Route component={PostPage} path="/posttest/@:username/:postId" />
+      {/* ----- Async request test pages ends ----- */}
+      {/* ----- admin pages starts ----- */}
       <Route
         component={PostsListPage}
         path={['/firstavenue/@:username', '/firstavenue']}
@@ -50,7 +61,7 @@ const App = () => {
       <Route component={SignupPage} path="/firstavenue/signup" />
       <Route component={WritePage} path="/firstavenue/write" />
       <Route component={PostPage} path="/firstavenue/@:username/:postId" />
-      {/* ----- Admin Pages ends ----- */}
+      {/* ----- admin pages ends ----- */}
 
       <Route component={MainPage} exact path="/" />
       <Route component={SummaryInKoreaPage} exact path="/produce-in-korea" />

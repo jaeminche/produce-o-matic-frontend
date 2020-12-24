@@ -48,7 +48,7 @@ const FirstAvnHeader = ({ user, onLogout }) => {
       <FirstAvnHeaderBlock>
         <Wrapper>
           <Link to="/firstavenue" className="logo">
-            ADMIN PAGE
+            ADMIN
           </Link>
           {user ? (
             <div className="right">
