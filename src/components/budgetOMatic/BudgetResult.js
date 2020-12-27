@@ -124,92 +124,83 @@ const FooterRow = styled.div`
   } */
 `;
 
-const ResultTableStyles = styled.div`
+const ResultTableStyles = styled.table`
   width: 100%;
-  /* border: 1px solid #a5a5a5 !important; */
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  width: 100% !important;
+  border-spacing: 0;
+
+  table {
+    width: inherit;
+    border-collapse: collapse;
+  }
+  table,
+  tr {
+    border: 1px solid rgb(165, 165, 165);
+  }
+
   .group-table {
     margin-bottom: 5px;
   }
   [class~='group-table']:last-of-type {
     margin-bottom: 0;
   }
-  table {
-    font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    width: 100% !important;
-    border-spacing: 0;
 
-    .flex-between {
-      width: 100%;
-      /* padding: ${(props) => (props.isMobile ? '8px 20px' : '19px 40px')}; */
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      height: 60px;
-      background: #1b1b1b;
-      color: white;
-      th,
-      td {
-        padding: ${(props) => (props.isMobile ? '0 20px' : '0 40px')};
-        border-right: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-      }
-    }
-
-    .groupname {
-      width: 100%;
+  .flex-between {
+    width: 100%;
+    /* padding: ${(props) => (props.isMobile ? '8px 20px' : '19px 40px')}; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 60px;
+    background: #1b1b1b;
+    color: white;
+    th,
+    td {
+      padding: ${(props) => (props.isMobile ? '0 20px' : '0 40px')};
+      border-right: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      text-align: ${(props) => (props.isMobile ? 'center' : 'center')};
-      color: rgba(0, 32, 51, 1);
-      border: 1px solid #a5a5a5;
     }
+  }
 
-    .subtotal {
-      width: 100%;
-      background: #ecf3ff;
-      color: black;
-    }
+  .groupname {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: ${(props) => (props.isMobile ? 'center' : 'center')};
+    color: rgba(0, 32, 51, 1);
+  }
 
-    tr {
-      height: 60px;
+  .subtotal {
+    width: 100%;
+    background: #ecf3ff;
+    color: black;
+  }
 
-      /* &:first-child {
-        td {
-          border-top: 1px solid black;
-        } 
-    
+  tr {
+    height: 60px;
+  }
+  tr th,
+  td {
+    margin: 0;
+    border-right: 1px solid #a5a5a5;
 
-      &:last-child {
-        td {
-          border-bottom: 0;
-        }
-      } */
-    }
-    tr th,
-    td {
-      margin: 0;
-      /* padding: 0.5rem; */
-      /* border: 1px solid #a5a5a5; */
-      /* border-bottom: 1px solid #a5a5a5; */
-      border-right: 1px solid #a5a5a5;
-
-      :last-child {
-        border-right: 0;
-      }
-    }
-    .groupname th {
+    :last-child {
       border-right: 0;
     }
-    tbody {
-      tr {
-        background: white;
-      }
+  }
+  .groupname th {
+    border-right: 0;
+  }
+  tbody {
+    tr {
+      background: white;
     }
   }
 `;
@@ -229,7 +220,7 @@ function ResultTable({ subtotal, columns, data, currency, currencyRate }) {
 
   // Render the UI for your table
   return (
-    <table style={{ border: '1px solid #a5a5a5' }} {...getTableProps()}>
+    <table {...getTableProps()}>
       <thead style={{ width: '100%' }}>
         {headerGroups.map(
           (group, key) =>
@@ -351,12 +342,17 @@ const ResultTables = (props) => {
           }
         };
         return (
-          <ResultTableStyles
-            style={{ width: '100%', marginTop: '50px' }}
-            key={key}
-            isMobile={isMobile}
-          >
-            <table className="category-table" style={{ width: '100%' }}>
+          <>
+            <ResultTableStyles
+              className="category-table"
+              style={{
+                width: '100%',
+                marginTop: '50px',
+                border: '1px solid rgb(165, 165, 165)',
+              }}
+              key={key}
+              isMobile={isMobile}
+            >
               <thead style={{ width: '100%' }}>
                 <tr className="flex-between">
                   <th>{categoryname.toUpperCase()}</th>
@@ -384,7 +380,6 @@ const ResultTables = (props) => {
                       className="group-table"
                       style={{
                         width: '100%',
-                        border: '1px solid rgb(165, 165, 165)',
                       }}
                     >
                       <thead style={{ width: '100%', display: 'block' }}>
@@ -394,7 +389,6 @@ const ResultTables = (props) => {
                         </tr>
                       </thead>
                       <ResultTable
-                        style={{ border: '1px solid #a5a5a5' }}
                         columns={columns}
                         subtotal={group.subtotal}
                         data={group.budgetItems}
@@ -404,7 +398,7 @@ const ResultTables = (props) => {
                       <table
                         style={{
                           width: '100%',
-                          border: '0.1px solid rgb(165, 165, 165)',
+                          border: '0',
                         }}
                       >
                         <tfoot>
@@ -435,16 +429,16 @@ const ResultTables = (props) => {
                     </table>
                   ),
               )}
+              <div className="spacer" />
+            </ResultTableStyles>
+            <table>
               <tfoot>
-                <tr
-                  style={{ width: '100%', display: 'none' }}
-                  className="flex-between"
-                ></tr>
+                <tr>
+                  <CellSpacer type="td" iterateNo={4} />
+                </tr>
               </tfoot>
             </table>
-
-            <div className="spacer" />
-          </ResultTableStyles>
+          </>
         );
       })}
       <FooterRow isMobile={isMobile}>
