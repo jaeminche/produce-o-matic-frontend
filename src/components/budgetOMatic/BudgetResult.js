@@ -265,15 +265,15 @@ function ResultTable({ subtotal, columns, data, currency, currencyRate }) {
 }
 
 const CellSpacer = ({ type, iterateNo }) => {
-  const cell =
+  const Cell = (key) =>
     type === 'td' ? (
-      <td style={{ display: 'none' }} />
+      <td style={{ display: 'none' }} key={key} />
     ) : (
-      <th style={{ display: 'none' }} />
+      <th style={{ display: 'none' }} key={key} />
     );
   return Array(iterateNo)
     .fill()
-    .map((item, key) => cell);
+    .map((item, key) => <Cell key={key} />);
 };
 
 const ResultTables = (props) => {
@@ -387,7 +387,6 @@ const ResultTables = (props) => {
                         border: '1px solid rgb(165, 165, 165)',
                       }}
                     >
-                      <colgroup span="6"></colgroup>
                       <thead style={{ width: '100%', display: 'block' }}>
                         <tr style={{ width: '100%' }} className="groupname">
                           <th>{`${group.name.toUpperCase()}`}</th>
@@ -408,37 +407,40 @@ const ResultTables = (props) => {
                           border: '0.1px solid rgb(165, 165, 165)',
                         }}
                       >
-                        <tr
-                          style={{ width: '100%' }}
-                          className="flex-between subtotal"
-                        >
-                          <td>{`subtotal`}</td>
-                          <CellSpacer type="td" iterateNo={4} />
-                          <td>
-                            {formatCurrency({
-                              num: group.subtotal,
-                              currency: 'KRW',
-                            })}
-                            {currency !== 'KRW'
-                              ? ` (${formatCurrency({
-                                  num: group.subtotal,
-                                  currency,
-                                  currencyRate,
-                                })})`
-                              : null}
-                          </td>
-                        </tr>
+                        <tfoot>
+                          <tr
+                            style={{ width: '100%' }}
+                            className="flex-between subtotal"
+                          >
+                            <td>{`subtotal`}</td>
+                            <CellSpacer type="td" iterateNo={4} />
+                            <td>
+                              {formatCurrency({
+                                num: group.subtotal,
+                                currency: 'KRW',
+                              })}
+                              {currency !== 'KRW'
+                                ? ` (${formatCurrency({
+                                    num: group.subtotal,
+                                    currency,
+                                    currencyRate,
+                                  })})`
+                                : null}
+                            </td>
+                          </tr>
+                        </tfoot>
                       </table>
 
                       <div className="spacer" />
                     </table>
                   ),
               )}
-
-              <tr
-                style={{ width: '100%', display: 'none' }}
-                className="flex-between"
-              ></tr>
+              <tfoot>
+                <tr
+                  style={{ width: '100%', display: 'none' }}
+                  className="flex-between"
+                ></tr>
+              </tfoot>
             </table>
 
             <div className="spacer" />
