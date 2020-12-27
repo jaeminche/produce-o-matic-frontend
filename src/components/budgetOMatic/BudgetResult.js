@@ -123,7 +123,9 @@ const ResultTableStyles = styled.table`
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  ${mq({
+    fontSize: ['13px', '16px', , '18px', , , ,],
+  })}
   width: 100% !important;
   border-spacing: 0;
 
