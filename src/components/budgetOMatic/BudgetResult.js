@@ -101,16 +101,10 @@ const FooterRow = styled.div`
     display: flex;
     flex-direction: row;
     width: 50%;
-    div {
-      padding: 18px 14px;
-    }
   }
   .footer-child-first {
     background: #1b1b1b;
     color: white;
-    div {
-      padding: 18px 14px;
-    }
   }
   .footer-grandtotal-value {
     background: aliceblue;
@@ -453,17 +447,17 @@ const ResultTables = (props) => {
             GRAND TOTAL
           </div>
           <div
-            style={{ width: isMobile ? '60%' : '50%', paddingTop: '9px' }}
+            style={{ width: isMobile ? '60%' : '50%' }}
             className="vertical-center footer-grandtotal-value"
           >
-            <div style={{ padding: '1px 14px' }}>
+            <div style={{ padding: '10px 14px' }}>
               {formatCurrency({
                 num: grandtotal,
                 currency: 'KRW',
               })}
             </div>
             {currency !== 'KRW' ? (
-              <div style={{ padding: '1px 14px' }}>
+              <div style={{ padding: '10px 14px' }}>
                 {` (
                   ${formatCurrency({
                     num: grandtotal,
