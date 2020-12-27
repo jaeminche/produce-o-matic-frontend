@@ -32,6 +32,43 @@ const Wrapper = styled(Responsive)`
   padding-top: 80pxdiv className= 'spacer' {
     padding-top: ${(props) => (props.width ? props.width : '80px')};
   }
+  .styled-centered {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 80px 0;
+    .download-table-xls-button {
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 0.24rem 1rem;
+      color: white;
+      outline: none;
+      cursor: pointer;
+
+      background: ${palette.gray[8]};
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background: ${palette.gray[6]};
+        }
+      }
+
+      &:disabled {
+        background: ${palette.gray[3]};
+        color: ${palette.gray[5]};
+        cursor: not-allowed;
+      }
+      max-width: 300px;
+      width: 100%;
+      height: 84px;
+      background: ${palette.button[1]};
+      border-radius: 100px;
+      align-self: center;
+      margin: 0 auto;
+    }
+  }
   .text {
     color: ${palette.budgetomatic.text[1]};
     font-family: Lato;
@@ -47,209 +84,6 @@ const Wrapper = styled(Responsive)`
   }
 `;
 
-const StyledTable = styled.div`
-  box-sizing: border-box;
-  /* border: 1px solid ${palette.budgetomatic.border[0]}; */
-  border-radius: 13px;
-  margin-bottom: 20px;
-
-  .row-container {
-    border-bottom: 1px solid ${palette.budgetomatic.border[0]};
-    width: 100%;
-    ${mq({
-      padding: ['9px 18px', '10px 20px', , '20px 40px', , , ,],
-    })};
-    background: ${palette.budgetomatic.table[2]};
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    min-height: 100px;
-  }
-  .row-container:first-child {
-    border-radius: 13px 13px 0 0;
-  }
-  .row-container:last-child {
-    border-radius: 0 0 13px 13px;
-    border-bottom: none;
-  }
-  .solo-container {
-    border-radius: 13px !important;
-  }
-  .wrap-evenly {
-    flex-wrap: wrap;
-  }
-  .flex-row {
-    display: flex;
-    flex-direction: row;
-    padding: 5px 0;
-  }
-  .left-item {
-    flex: 1;
-    text-align: right;
-    ${mq({
-      minWidth: ['80px', '90px', , '150px', , , ,],
-    })};
-    ${mq({
-      marginRight: ['40px', '45px', , '70px', , '90px', ,],
-    })};
-  }
-  .left-left-item {
-    flex: 2;
-    text-align: left;
-    ${mq({
-      minWidth: ['70px', '90px', '140px', , , '300px', ,],
-    })};
-    ${mq({
-      marginRight: ['10px', '45px', , '70px', , '90px', ,],
-    })};
-  }
-  .vertically-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .align-center {
-    align-items: center;
-  }
-  .horizontally-center {
-    margin: 0 auto;
-  }
-  .gap {
-    margin: 6px;
-  }
-  .checkbox {
-    display: none;
-  }
-  .checked {
-    background: ${palette.gray[8]};
-  }
-  .category-name {
-    border: none;
-    font-size: 16px;
-    flex: 1 0 auto;
-  }
-  .right-item {
-    flex: 7;
-  }
-  .radio-box,
-  .budgetItem-contents {
-    text-align: ${(props) => (props.isMobile ? 'left' : 'right')};
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
-    justify-content: space-between;
-  }
-  .budgetItem-contents {
-    flex-wrap: nowrap;
-  }
-  .right-contents {
-    text-align: right;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-  .radio-item {
-    display: inline-block;
-  }
-  .checkbox-item {
-    display: inline-block;
-    cursor: pointer;
-  }
-  i {
-    flex: 1 0 auto;
-  }
-  .title-row {
-    ${mq({
-      fontSize: ['13px', '14px', , '16px', , '18px', ,],
-    })};
-  }
-  .content-row {
-    ${mq({
-      fontSize: ['12px', '12px', , '16px', , '18px', ,],
-    })};
-  }
-  .margin-l {
-    margin-left: 20px;
-  }
-  .plus-parent {
-    border-radius: 50%;
-    ${mq({
-      width: ['35px', , , '50px', , , ,],
-      height: ['35px', , , '50px', , , ,],
-      marginRight: ['-8px', '-10px', , '-20px', , , ,],
-    })};
-    position: relative;
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .plus-parent:hover {
-      background: ${palette.budgetomatic.table[1]};
-    }
-  }
-  @media (hover: none) {
-    .plus-parent {
-      background: ${palette.budgetomatic.table[1]};
-    }
-  }
-  .plus-child-circle {
-    position: absolute;
-    ${mq({
-      top: ['50%', , , , , , ,],
-      left: ['50%', , , , , , ,],
-    })};
-  }
-  .plus-child-mark {
-    position: absolute;
-    ${mq({
-      top: ['18%', , , '25%', , , ,],
-      left: ['18%', , , '25%', , , ,],
-    })};
-  }
-`;
-
-const CategoryTitle = styled.div`
-  ${mq({
-    fontSize: ['24px', '28px', , '31px', , '34px', ,],
-    margin: ['40px 0 20px', , , '50px 0 30px', , '60px 0 30px', ,],
-  })};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 44px;
-  text-align: center;
-  color: ${palette.budgetomatic.text[2]};
-  letter-spacing: normal;
-`;
-
-const ButtonStyledCheckbox = styled.span`
-  border: none;
-  border-radius: 13px;
-  font-size: 16px;
-  max-height: 36px;
-  /* font-weight: bold; */
-  padding: 4px 16px 7px 16px;
-  color: white;
-  outline: none;
-  cursor: pointer;
-  flex: 1 0 auto;
-
-  background: ${palette.gray[5]};
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      background: ${palette.gray[7]};
-    }
-  }
-
-  &:disabled {
-    background: ${palette.gray[3]};
-    color: ${palette.gray[5]};
-    cursor: not-allowed;
-  }
-`;
-
 const FooterRow = styled.div`
   height: ${(props) => (props.isMobile ? 'auto' : '60px')};
   border: 1px solid #a5a5a5;
@@ -258,6 +92,11 @@ const FooterRow = styled.div`
   flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
   justify-content: space-between;
   margin-bottom: 80px;
+  .vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
   .footer-block {
     display: flex;
     flex-direction: row;
@@ -301,20 +140,8 @@ const ResultTableStyles = styled.div`
     font-size: 18px;
     width: 100% !important;
     border-spacing: 0;
-    /* border-top: 1px solid black; */
-    /* border-left: 1px solid #a5a5a5;
-    border-right: 1px solid #a5a5a5;
-    border: 1px solid #a5a5a5; */
 
-    thead,
-    tfoot {
-      width: inherit;
-      tr {
-        /* border: 1px solid #a5a5a5; */
-      }
-    }
     .flex-between {
-      /* border: 1px solid #a5a5a5; */
       width: 100%;
       /* padding: ${(props) => (props.isMobile ? '8px 20px' : '19px 40px')}; */
       display: flex;
@@ -339,7 +166,6 @@ const ResultTableStyles = styled.div`
       flex-direction: column;
       justify-content: space-evenly;
       text-align: ${(props) => (props.isMobile ? 'center' : 'center')};
-      /* background: #f5f5f5; */
       color: rgba(0, 32, 51, 1);
       border: 1px solid #a5a5a5;
     }
@@ -348,9 +174,6 @@ const ResultTableStyles = styled.div`
       width: 100%;
       background: #ecf3ff;
       color: black;
-      /* border-left: 1px solid #a5a5a5;
-      border-right: 1px solid #a5a5a5;
-      border-bottom: 1px solid #a5a5a5; */
     }
 
     tr {
@@ -533,10 +356,7 @@ const ResultTables = (props) => {
             key={key}
             isMobile={isMobile}
           >
-            <table
-              className="category-table"
-              style={{ width: '100%', border: '1px solid rgb(165, 165, 165)' }}
-            >
+            <table className="category-table" style={{ width: '100%' }}>
               <thead style={{ width: '100%' }}>
                 <tr className="flex-between">
                   <th>{categoryname.toUpperCase()}</th>
@@ -632,13 +452,13 @@ const ResultTables = (props) => {
         >
           <div
             style={{ width: isMobile ? '40%' : '50%' }}
-            className="footer-child-first footer-grandtotal-key"
+            className="vertical-center footer-child-first footer-grandtotal-key"
           >
             GRAND TOTAL
           </div>
           <div
             style={{ width: isMobile ? '60%' : '50%', paddingTop: '9px' }}
-            className="footer-child footer-grandtotal-value"
+            className="vertical-center footer-grandtotal-value"
           >
             <div style={{ padding: '1px 14px' }}>
               {formatCurrency({
@@ -665,13 +485,13 @@ const ResultTables = (props) => {
         >
           <div
             style={{ width: isMobile ? '40%' : '50%' }}
-            className="footer-child-first footer-incentive-key"
+            className="vertical-center footer-child-first footer-incentive-key"
           >
             LOCATION INCENTIVE ADVICE
           </div>
           <div
             style={{ width: isMobile ? '60%' : '50%', padding: '10px 14px' }}
-            className="footer-child footer-incentive-value"
+            className="footer-incentive-value"
           >
             <span>Claim your reimbursement of </span>
             <span className="incentive-number">
@@ -719,18 +539,17 @@ const BudgetResult = (props) => {
           <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
             Send To Your Email
           </ConfirmButton>
-          <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
-            Download
-          </ConfirmButton>
-          <ReactHTMLTableToExcel
-            id="mytableButton"
-            className="download-table-xls-button"
-            table="mytable"
-            filename="tablexls"
-            sheet="tablexls"
-            buttonText="Download as XLS"
-          />
-          <CSVLink
+          <div className="styled-centered">
+            <ReactHTMLTableToExcel
+              id="mytableButton"
+              className="download-table-xls-button"
+              table="mytable"
+              filename="budgetomatic"
+              sheet="budgetomatic"
+              buttonText="Download"
+            />
+          </div>
+          {/* <CSVLink
             data={[
               ['firstname', 'lastname', 'email'],
               ['Ahmed', 'Tomi', 'ah@smthing.co.com'],
@@ -739,8 +558,7 @@ const BudgetResult = (props) => {
             ]}
           >
             Download me
-          </CSVLink>
-          ;
+          </CSVLink> */}
         </div>
       </Wrapper>
     </BudgetOMaticBlock>
