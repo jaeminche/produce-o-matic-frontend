@@ -341,7 +341,7 @@ const ResultTables = (props) => {
             }
           }
         };
-        return (
+        return categoryTotal() ? (
           <>
             <ResultTableStyles
               className="category-table"
@@ -439,7 +439,7 @@ const ResultTables = (props) => {
               </tfoot>
             </table>
           </>
-        );
+        ) : null;
       })}
       <FooterRow isMobile={isMobile}>
         <div
