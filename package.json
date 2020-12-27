@@ -16,6 +16,7 @@
     "react-dom": "^16.13.1",
     "react-helmet-async": "^1.0.7",
     "react-html-parser": "^2.0.2",
+    "react-html-table-to-excel": "^2.0.0",
     "react-masonry-css": "^1.0.14",
     "react-redux": "^7.2.1",
     "react-responsive": "^8.1.0",

@@ -7,6 +7,7 @@ import { ConfirmButton } from '../../components/common/Button';
 import { useTable } from 'react-table';
 import { formatCurrency } from '../../lib/format';
 import { CSVLink, CSVDownload } from 'react-csv';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const BudgetOMaticBlock = styled.div`
   padding: 80px 0;
@@ -285,7 +286,14 @@ const FooterRow = styled.div`
 `;
 
 const ResultTableStyles = styled.div`
+  width: 100%;
   /* border: 1px solid #a5a5a5 !important; */
+  .group-table {
+    margin-bottom: 5px;
+  }
+  [class~='group-table']:last-of-type {
+    margin-bottom: 0;
+  }
   table {
     font-family: Lato;
     font-style: normal;
@@ -298,41 +306,51 @@ const ResultTableStyles = styled.div`
     border-right: 1px solid #a5a5a5;
     border: 1px solid #a5a5a5; */
 
-    thead {
+    thead,
+    tfoot {
       width: inherit;
       tr {
-        border: 1px solid #a5a5a5;
+        /* border: 1px solid #a5a5a5; */
       }
     }
     .flex-between {
       /* border: 1px solid #a5a5a5; */
       width: 100%;
-      padding: ${(props) => (props.isMobile ? '8px 20px' : '19px 40px')};
+      /* padding: ${(props) => (props.isMobile ? '8px 20px' : '19px 40px')}; */
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       height: 60px;
       background: #1b1b1b;
       color: white;
+      th,
+      td {
+        padding: ${(props) => (props.isMobile ? '0 20px' : '0 40px')};
+        border-right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+      }
     }
 
     .groupname {
       width: 100%;
-      display: block;
-      padding: ${(props) => (props.isMobile ? '19px 20px' : '19px 40px')};
-      text-align: ${(props) => (props.isMobile ? 'center' : 'left')};
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      text-align: ${(props) => (props.isMobile ? 'center' : 'center')};
       /* background: #f5f5f5; */
       color: rgba(0, 32, 51, 1);
       border: 1px solid #a5a5a5;
     }
 
     .subtotal {
+      width: 100%;
       background: #ecf3ff;
       color: black;
       border-left: 1px solid #a5a5a5;
       border-right: 1px solid #a5a5a5;
       border-bottom: 1px solid #a5a5a5;
-      margin-bottom: 10px;
     }
 
     tr {
@@ -353,9 +371,9 @@ const ResultTableStyles = styled.div`
     tr th,
     td {
       margin: 0;
-      padding: 0.5rem;
+      /* padding: 0.5rem; */
       /* border: 1px solid #a5a5a5; */
-      border-bottom: 1px solid #a5a5a5;
+      /* border-bottom: 1px solid #a5a5a5; */
       border-right: 1px solid #a5a5a5;
 
       :last-child {
@@ -370,7 +388,7 @@ const ResultTableStyles = styled.div`
   }
 `;
 
-function ResultTable({ columns, data, currency, currencyRate }) {
+function ResultTable({ subtotal, columns, data, currency, currencyRate }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -386,7 +404,7 @@ function ResultTable({ columns, data, currency, currencyRate }) {
   // Render the UI for your table
   return (
     <table style={{ border: '1px solid #a5a5a5' }} {...getTableProps()}>
-      <thead>
+      <thead style={{ width: '100%' }}>
         {headerGroups.map(
           (group, key) =>
             key > 0 && (
@@ -419,6 +437,18 @@ function ResultTable({ columns, data, currency, currencyRate }) {
     </table>
   );
 }
+
+const CellSpacer = ({ type, iterateNo }) => {
+  const cell =
+    type === 'td' ? (
+      <td style={{ display: 'none' }} />
+    ) : (
+      <th style={{ display: 'none' }} />
+    );
+  return Array(iterateNo)
+    .fill()
+    .map((item, key) => cell);
+};
 
 const ResultTables = (props) => {
   const {
@@ -484,7 +514,7 @@ const ResultTables = (props) => {
   );
 
   return (
-    <>
+    <table id="mytable" style={{ width: '100%' }}>
       {Object.entries(data).map(([key, value]) => {
         const categoryname = key;
         const categoryTotal = () => {
@@ -500,11 +530,15 @@ const ResultTables = (props) => {
             key={key}
             isMobile={isMobile}
           >
-            <table style={{ width: '100%' }}>
+            <table
+              className="category-table"
+              style={{ width: '100%', border: '1px solid rgb(165, 165, 165)' }}
+            >
               <thead style={{ width: '100%' }}>
                 <tr className="flex-between">
-                  <div>{categoryname.toUpperCase()}</div>
-                  <div>
+                  <th>{categoryname.toUpperCase()}</th>
+                  <CellSpacer type="th" iterateNo={4} />
+                  <th>
                     {formatCurrency({
                       num: categoryTotal(),
                       currency: 'KRW',
@@ -516,45 +550,67 @@ const ResultTables = (props) => {
                           currencyRate,
                         })})`
                       : null}
-                  </div>
+                  </th>
                 </tr>
               </thead>
               {value.map(
                 (group, key) =>
                   group.checked && (
-                    <div key={key}>
+                    <table
+                      key={key}
+                      className="group-table"
+                      style={{
+                        width: '100%',
+                        border: '1px solid rgb(165, 165, 165)',
+                      }}
+                    >
+                      <colgroup span="6"></colgroup>
                       <thead style={{ width: '100%', display: 'block' }}>
-                        <tr
-                          style={{ width: '100%' }}
-                          className="groupname"
-                        >{`${group.name.toUpperCase()}`}</tr>
+                        <tr style={{ width: '100%' }} className="groupname">
+                          <th>{`${group.name.toUpperCase()}`}</th>
+                          <CellSpacer type="th" iterateNo={5} />
+                        </tr>
                       </thead>
                       <ResultTable
                         style={{ border: '1px solid #a5a5a5' }}
                         columns={columns}
+                        subtotal={group.subtotal}
                         data={group.budgetItems}
                         currency={currency}
                         currencyRate={currencyRate}
-                      />
-                      <div className="flex-between subtotal">
-                        <div>subtotal</div>
-                        <div>
-                          {formatCurrency({
-                            num: group.subtotal,
-                            currency: 'KRW',
-                          })}
-                          {currency !== 'KRW'
-                            ? ` (${formatCurrency({
-                                num: group.subtotal,
-                                currency,
-                                currencyRate,
-                              })})`
-                            : null}
-                        </div>
-                      </div>
-                    </div>
+                      ></ResultTable>
+                      <tfoot style={{ width: '100%' }}>
+                        <tr
+                          style={{ width: '100%' }}
+                          className="flex-between subtotal"
+                        >
+                          <td>{`subtotal`}</td>
+                          <CellSpacer type="td" iterateNo={4} />
+                          <td>
+                            {formatCurrency({
+                              num: group.subtotal,
+                              currency: 'KRW',
+                            })}
+                            {currency !== 'KRW'
+                              ? ` (${formatCurrency({
+                                  num: group.subtotal,
+                                  currency,
+                                  currencyRate,
+                                })})`
+                              : null}
+                          </td>
+                        </tr>
+                      </tfoot>
+
+                      <div className="spacer" />
+                    </table>
                   ),
               )}
+
+              <tr
+                style={{ width: '100%', display: 'none' }}
+                className="flex-between"
+              ></tr>
             </table>
 
             <div className="spacer" />
@@ -622,7 +678,7 @@ const ResultTables = (props) => {
           </div>
         </div>
       </FooterRow>
-    </>
+    </table>
   );
 };
 
@@ -644,6 +700,7 @@ const BudgetResult = (props) => {
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
         <StyledPageTitle>Calculation Result</StyledPageTitle>
+
         <ResultTables {...props} grandtotal={grandtotal} />
         <div
           style={{
@@ -657,6 +714,14 @@ const BudgetResult = (props) => {
           <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
             Download
           </ConfirmButton>
+          <ReactHTMLTableToExcel
+            id="mytableButton"
+            className="download-table-xls-button"
+            table="mytable"
+            filename="tablexls"
+            sheet="tablexls"
+            buttonText="Download as XLS"
+          />
           <CSVLink
             data={[
               ['firstname', 'lastname', 'email'],
