@@ -348,9 +348,9 @@ const ResultTableStyles = styled.div`
       width: 100%;
       background: #ecf3ff;
       color: black;
-      border-left: 1px solid #a5a5a5;
+      /* border-left: 1px solid #a5a5a5;
       border-right: 1px solid #a5a5a5;
-      border-bottom: 1px solid #a5a5a5;
+      border-bottom: 1px solid #a5a5a5; */
     }
 
     tr {
@@ -379,6 +379,9 @@ const ResultTableStyles = styled.div`
       :last-child {
         border-right: 0;
       }
+    }
+    .groupname th {
+      border-right: 0;
     }
     tbody {
       tr {
@@ -579,7 +582,12 @@ const ResultTables = (props) => {
                         currency={currency}
                         currencyRate={currencyRate}
                       ></ResultTable>
-                      <tfoot style={{ width: '100%' }}>
+                      <table
+                        style={{
+                          width: '100%',
+                          border: '0.1px solid rgb(165, 165, 165)',
+                        }}
+                      >
                         <tr
                           style={{ width: '100%' }}
                           className="flex-between subtotal"
@@ -600,7 +608,7 @@ const ResultTables = (props) => {
                               : null}
                           </td>
                         </tr>
-                      </tfoot>
+                      </table>
 
                       <div className="spacer" />
                     </table>
