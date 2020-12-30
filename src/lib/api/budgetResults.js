@@ -9,8 +9,8 @@ import client from './client';
 
 // export const listItemsGroups = () => client.get(`/api/itemsGroups`);
 
-export const postBudgetResult = ({ data }) =>
-  client.post('/api/budgetResults', { data });
+export const postBudgetResult = ({ uuid, result }) =>
+  client.post('/api/budgetResults', { uuid, result });
 
 // export const updateGroup = ({ id, title, body, tags }) =>
 //   client.patch(`/api/itemGroups/${id}`, { title, body, tags });

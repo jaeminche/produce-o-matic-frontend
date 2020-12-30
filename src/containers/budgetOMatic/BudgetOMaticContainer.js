@@ -12,7 +12,8 @@ import {
   moveItemBeforeAnotherInArr,
   defaultCurrencyRates,
 } from '../../lib/constants/budgetomatic';
-import { listItemsGroups, postItemsGroups } from '../../modules/itemsGroups';
+import { listItemsGroups } from '../../modules/itemsGroups';
+import { postBudgetResult } from '../../modules/budgetResult';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 import { v1 } from 'uuid';
@@ -21,9 +22,10 @@ const BudgetOMaticContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
-  const { DATASETS, error, loading } = useSelector(
-    ({ itemsGroups, loading }) => ({
+  const { DATASETS, RES, error, loading } = useSelector(
+    ({ itemsGroups, budgetResult, loading }) => ({
       DATASETS: itemsGroups.dataSets,
+      RES: budgetResult.res,
       error: itemsGroups.error,
       loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
     }),
@@ -38,6 +40,7 @@ const BudgetOMaticContainer = ({ location }) => {
   const [currencyRate, setCurrencyRate] = useState(
     defaultCurrencyRates[currency],
   );
+  const [isSavedSuccess, setIsSavedSuccess] = useState(RES);
 
   const history = useHistory();
 
@@ -375,24 +378,34 @@ const BudgetOMaticContainer = ({ location }) => {
     console.log('onsubmit', e, e.target);
     //==결과 페이지 가는 과정
     // budgetomatic 페이지 컨펌 누르면>
-
     // 1. 데이터 post  >
-    // dispatch(postItemsGroups({ data: dataSetInstance }));
+    dispatch(postBudgetResult({ uuid: v1(), result: dataSetInstance }));
     // 2. backend: db 저장 > 성공이면 > 아이디 반환 >
-    // 3. 아이디를 받아서 스토어에 저장. 있으면!! >
-    // 4. 결과 페이지로 이동.
-    const id = v1(); // TODO:
-    history.push(`/produce-o-matic/budget-o-matic/result/${id}`, {
-      data: dataSetInstance,
-      categoryTotals: getCategoryTotals(),
-      currency,
-      currencyRate,
-    });
-    // 5. 아이템 소팅, 토탈 & 그랜드토탈 계산 >
-    // getCategoryTotals()
-    // 6. 결과 페이지는 스토어에 아이디가 있으면>
-    // 7. 결과 테이블 표시
   };
+
+  useEffect(() => {
+    RES && setIsSavedSuccess(true);
+  }, [RES]);
+
+  useEffect(() => {
+    if (isSavedSuccess) {
+      // 3. 아이디를 받아서 스토어에 저장. 있으면!! >
+      // 4. 결과 페이지로 이동.
+
+      // 5. 아이템 소팅, 토탈 & 그랜드토탈 계산 >
+      // getCategoryTotals()
+      // 6. 결과 페이지는 스토어에 아이디가 있으면>
+      // 7. 결과 테이블 표시
+      // const id = v1(); // TODO:
+      const { uuid } = RES;
+      history.push(`/produce-o-matic/budget-o-matic/result/${uuid}`, {
+        data: dataSetInstance,
+        categoryTotals: getCategoryTotals(),
+        currency,
+        currencyRate,
+      });
+    }
+  }, [isSavedSuccess]);
 
   return (
     <BudgetOMatic

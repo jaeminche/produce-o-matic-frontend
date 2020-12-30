@@ -16,6 +16,7 @@ import { listItemsGroups, postItemsGroups } from '../../modules/itemsGroups';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 import { v1 } from 'uuid';
+import { postBudgetResult } from '../../modules/budgetResult';
 
 const BudgetResultContainer = ({ history }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
