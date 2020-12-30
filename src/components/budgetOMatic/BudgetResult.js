@@ -328,115 +328,116 @@ const ResultTables = (props) => {
 
   return (
     <table id="mytable" style={{ width: '100%' }}>
-      {Object.entries(data).map(([key, value]) => {
-        const categoryname = key;
-        const categoryTotal = () => {
-          for (const item of categoryTotals) {
-            for (const name in item) {
-              if (name === categoryname) return item[name];
+      {data &&
+        Object.entries(data).map(([key, value]) => {
+          const categoryname = key;
+          const categoryTotal = () => {
+            for (const item of categoryTotals) {
+              for (const name in item) {
+                if (name === categoryname) return item[name];
+              }
             }
-          }
-        };
-        return categoryTotal() ? (
-          <>
-            <ResultTableStyles
-              className="category-table"
-              style={{
-                width: '100%',
-                marginTop: '50px',
-                border: '1px solid rgb(165, 165, 165)',
-              }}
-              key={key}
-              isMobile={isMobile}
-            >
-              <thead style={{ width: '100%' }}>
-                <tr className="flex-between">
-                  <th>{categoryname.toUpperCase()}</th>
-                  <CellSpacer type="th" iterateNo={4} />
-                  <th>
-                    {formatCurrency({
-                      num: categoryTotal(),
-                      currency: 'KRW',
-                    })}
-                    {currency !== 'KRW'
-                      ? ` (${formatCurrency({
-                          num: categoryTotal(),
-                          currency,
-                          currencyRate,
-                        })})`
-                      : null}
-                  </th>
-                </tr>
-              </thead>
-              {value.map(
-                (group, key) =>
-                  group.checked && (
-                    <table
-                      key={key}
-                      className="group-table"
-                      style={{
-                        width: '100%',
-                      }}
-                    >
-                      <thead style={{ width: '100%', display: 'block' }}>
-                        <tr style={{ width: '100%' }} className="groupname">
-                          <th>{`${group.name.toUpperCase()}`}</th>
-                          <CellSpacer type="th" iterateNo={5} />
-                        </tr>
-                      </thead>
-                      <ResultTable
-                        columns={columns}
-                        subtotal={group.subtotal}
-                        data={group.budgetItems}
-                        currency={currency}
-                        currencyRate={currencyRate}
-                      ></ResultTable>
+          };
+          return categoryTotal() ? (
+            <>
+              <ResultTableStyles
+                className="category-table"
+                style={{
+                  width: '100%',
+                  marginTop: '50px',
+                  border: '1px solid rgb(165, 165, 165)',
+                }}
+                key={key}
+                isMobile={isMobile}
+              >
+                <thead style={{ width: '100%' }}>
+                  <tr className="flex-between">
+                    <th>{categoryname.toUpperCase()}</th>
+                    <CellSpacer type="th" iterateNo={4} />
+                    <th>
+                      {formatCurrency({
+                        num: categoryTotal(),
+                        currency: 'KRW',
+                      })}
+                      {currency && currency !== 'KRW'
+                        ? ` (${formatCurrency({
+                            num: categoryTotal(),
+                            currency,
+                            currencyRate,
+                          })})`
+                        : null}
+                    </th>
+                  </tr>
+                </thead>
+                {value.map(
+                  (group, key) =>
+                    group.checked && (
                       <table
+                        key={key}
+                        className="group-table"
                         style={{
                           width: '100%',
-                          border: '0',
                         }}
                       >
-                        <tfoot>
-                          <tr
-                            style={{ width: '100%' }}
-                            className="flex-between subtotal"
-                          >
-                            <td>{`subtotal`}</td>
-                            <CellSpacer type="td" iterateNo={4} />
-                            <td>
-                              {formatCurrency({
-                                num: group.subtotal,
-                                currency: 'KRW',
-                              })}
-                              {currency !== 'KRW'
-                                ? ` (${formatCurrency({
-                                    num: group.subtotal,
-                                    currency,
-                                    currencyRate,
-                                  })})`
-                                : null}
-                            </td>
+                        <thead style={{ width: '100%', display: 'block' }}>
+                          <tr style={{ width: '100%' }} className="groupname">
+                            <th>{`${group.name.toUpperCase()}`}</th>
+                            <CellSpacer type="th" iterateNo={5} />
                           </tr>
-                        </tfoot>
-                      </table>
+                        </thead>
+                        <ResultTable
+                          columns={columns}
+                          subtotal={group.subtotal}
+                          data={group.budgetItems}
+                          currency={currency}
+                          currencyRate={currencyRate}
+                        ></ResultTable>
+                        <table
+                          style={{
+                            width: '100%',
+                            border: '0',
+                          }}
+                        >
+                          <tfoot>
+                            <tr
+                              style={{ width: '100%' }}
+                              className="flex-between subtotal"
+                            >
+                              <td>{`subtotal`}</td>
+                              <CellSpacer type="td" iterateNo={4} />
+                              <td>
+                                {formatCurrency({
+                                  num: group.subtotal,
+                                  currency: 'KRW',
+                                })}
+                                {currency !== 'KRW'
+                                  ? ` (${formatCurrency({
+                                      num: group.subtotal,
+                                      currency,
+                                      currencyRate,
+                                    })})`
+                                  : null}
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
 
-                      <div className="spacer" />
-                    </table>
-                  ),
-              )}
-              <div className="spacer" />
-            </ResultTableStyles>
-            <table>
-              <tfoot>
-                <tr>
-                  <CellSpacer type="td" iterateNo={4} />
-                </tr>
-              </tfoot>
-            </table>
-          </>
-        ) : null;
-      })}
+                        <div className="spacer" />
+                      </table>
+                    ),
+                )}
+                <div className="spacer" />
+              </ResultTableStyles>
+              <table>
+                <tfoot>
+                  <tr>
+                    <CellSpacer type="td" iterateNo={4} />
+                  </tr>
+                </tfoot>
+              </table>
+            </>
+          ) : null;
+        })}
       <FooterRow isMobile={isMobile}>
         <div
           className="footer-block footer-grandtotal"
