@@ -85,7 +85,7 @@ const ImgBlock = styled.div`
 
 const ImagesBlock = (props) => {
   const { key, title, imgpath, subtitle, url } = props;
-  console.log('-s-s', url);
+  console.log('-s-s', url, imgpath);
   return (
     <ImgBlock key={key}>
       <a href={url}>
@@ -108,6 +108,7 @@ const CustomSlide = (props) => {
 };
 
 const Locations = ({ items }) => {
+  console.log('아이템', items);
   const settings = {
     dots: true,
     infinite: true,
