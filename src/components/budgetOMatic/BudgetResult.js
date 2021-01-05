@@ -272,7 +272,7 @@ const ResultTables = (props) => {
     currencyRate,
     isMobile,
   } = props;
-  console.log('====레이', currency, currencyRate);
+  console.log('====레이', data, currency, currencyRate);
   const columns = React.useMemo(
     () => [
       {
@@ -329,6 +329,7 @@ const ResultTables = (props) => {
   return (
     <table id="mytable" style={{ width: '100%' }}>
       {data &&
+        data.hasOwnProperty('labor') &&
         Object.entries(data).map(([key, value]) => {
           const categoryname = key;
           const categoryTotal = () => {
