@@ -14,6 +14,55 @@ const _nav = [
   },
   {
     _tag: 'CSidebarNavTitle',
+    _children: ['Budget-O-Matic 관리'],
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '결과 페이지 내역 보기',
+    to: '/firstavenue/budgetomatic-page/results-history',
+    icon: 'cil-pencil',
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '템플릿 관리',
+    to: '/firstavenue/budgetomatic-page/templates',
+    icon: 'cil-pencil',
+  },
+  {
+    _tag: 'CSidebarNavTitle',
+    _children: ['메인 페이지 관리'],
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '배너 관리',
+    to: '/firstavenue/main-page/banners',
+    icon: 'cil-pencil',
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '노출 관리',
+    to: '/firstavenue/main-page/show',
+    icon: 'cil-pencil',
+  },
+  {
+    _tag: 'CSidebarNavTitle',
+    _children: ['컨텐츠 관리'],
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Popular Locations 페이지 관리',
+    to: '/firstavenue/popularlocations-page',
+    icon: 'cil-pencil',
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'People 페이지 관리',
+    to: '/firstavenue/people-page',
+    icon: 'cil-pencil',
+  },
+  // TODO: REMOVE ALL THE ITEMS BELOW ON PRODUCTION
+  {
+    _tag: 'CSidebarNavTitle',
     _children: ['Theme'],
   },
   {

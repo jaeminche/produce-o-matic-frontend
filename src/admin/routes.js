@@ -61,8 +61,36 @@ const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 
 const routes = [
-  { path: '/firstavenue/', exact: true, name: 'Home' },
+  { path: '/firstavenue', exact: true, name: 'Home' },
   { path: '/firstavenue/dashboard', name: 'Dashboard', component: Dashboard },
+  {
+    path: '/firstavenue/budgetomatic-page/results-history',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+  {
+    path: '/firstavenue/budgetomatic-page/templates',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+  {
+    path: '/firstavenue/main-page/banners',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+  {
+    path: '/firstavenue/main-page/show',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+  {
+    path: '/firstavenue/popularlocations-page',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+  { path: '/firstavenue/people-page', name: 'Dashboard', component: Dashboard },
+
+  // TODO: REMOVE ALL THE ITEMS BELOW ON PRODUCTION
   { path: '/firstavenue/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/firstavenue/theme/colors', name: 'Colors', component: Colors },
   {
