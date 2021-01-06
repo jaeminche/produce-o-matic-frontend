@@ -15,7 +15,7 @@ import {
   RENTALCAR2,
   RENTALCAR3,
   TEMPTABLEINRENTAL,
-  LOGO_1ROW,
+  LOGO1ROW,
   PRODUCEOMATIC01,
   PRODUCEOMATIC02,
   CONTRACT01,
@@ -818,7 +818,7 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
       {
         id: 2,
         type: 'image',
-        path: LOGO_1ROW,
+        path: LOGO1ROW,
         classNames: 'logo',
         style: {
           display: 'block',

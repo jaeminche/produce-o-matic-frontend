@@ -1,5 +1,5 @@
 const LOGO = require('./templogo.svg');
-const LOGO_1ROW = require('./templogo1row.svg');
+const LOGO1ROW = require('./templogo1row.svg');
 const SEARCH = require('./search.svg');
 const GYEONGBOKGUNG = require('./gyeongbokgung.jpg');
 const GYEONGBOKGUNG02 = require('./gyeongbokgung02.jpg');
@@ -96,7 +96,7 @@ export {
   CONTRACT01,
   KOREA02,
   LOGO,
-  LOGO_1ROW,
+  LOGO1ROW,
   SEARCH,
   FACEBOOK_ICON,
   INSTAGRAM_ICON,

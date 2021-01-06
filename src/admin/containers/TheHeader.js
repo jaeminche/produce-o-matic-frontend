@@ -10,6 +10,7 @@ import {
   CSubheader,
   CBreadcrumbRouter,
   CLink,
+  CImg,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
@@ -22,6 +23,8 @@ import {
   // TheHeaderDropdownNotif,
   // TheHeaderDropdownTasks,
 } from './index';
+
+import { LOGO1ROW } from '../../assets';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
@@ -54,7 +57,12 @@ const TheHeader = () => {
         onClick={toggleSidebar}
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/firstavenue/">
-        <CIcon name="logo" height="48" alt="Logo" />
+        {/* <CIcon name="logo" height="48" alt="Logo" /> */}
+        <CImg
+          src={LOGO1ROW}
+          className="c-sidebar-brand-full"
+          alt="produce-o-matic logo"
+        />
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">

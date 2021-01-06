@@ -10,12 +10,15 @@ import {
   CSidebarMinimizer,
   CSidebarNavDropdown,
   CSidebarNavItem,
+  CImg,
 } from '@coreui/react';
 
 import CIcon from '@coreui/icons-react';
 
 // sidebar nav config
 import navigation from './_nav';
+
+import { LOGO1ROW } from '../../assets';
 
 const TheSidebar = () => {
   const dispatch = useDispatch();
@@ -29,10 +32,11 @@ const TheSidebar = () => {
       }
     >
       <CSidebarBrand className="d-md-down-none" to="/">
-        <CIcon
+        <CImg
+          src={LOGO1ROW}
           className="c-sidebar-brand-full"
-          name="logo-negative"
-          height={35}
+          style={{ filter: 'invert(1)' }}
+          alt="produce-o-matic logo"
         />
         <CIcon
           className="c-sidebar-brand-minimized"
