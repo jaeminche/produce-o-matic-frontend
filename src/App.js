@@ -70,6 +70,7 @@ const App = () => {
         path="/posttest/@:username/:postId"
       />
       {/* ----- Async request test pages ends ----- */}
+
       {/* ----- admin pages starts ----- */}
       {/* <Route component={PostsListPage} path="/firstavenue" exact /> */}
       <Route

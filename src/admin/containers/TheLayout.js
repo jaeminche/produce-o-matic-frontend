@@ -1,6 +1,5 @@
 import React from 'react';
 import { TheContent, TheSidebar, TheFooter, TheHeader } from './index';
-import { BrowserRouter } from 'react-router-dom';
 import '../scss/style.scss';
 
 const TheLayout = () => {
