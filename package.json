@@ -35,8 +35,7 @@
     "react-redux": "^7.2.1",
     "react-responsive": "^8.1.0",
     "react-router-dom": "^5.2.0",
-    "react-router-scroll": "^0.4.4",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^3.4.3",
     "react-slick": "^0.27.12",
     "react-table": "^7.6.2",
     "redux": "^4.0.5",
@@ -71,7 +70,6 @@
     ]
   },
   "devDependencies": {
-    "auto-changelog": "~2.2.1",
     "babel-plugin-styled-components": "^1.11.1"
   },
   "proxy": "http://localhost:4000"
