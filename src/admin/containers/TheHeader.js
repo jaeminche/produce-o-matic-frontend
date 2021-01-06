@@ -18,9 +18,9 @@ import routes from '../routes';
 
 import {
   TheHeaderDropdown,
-  TheHeaderDropdownMssg,
-  TheHeaderDropdownNotif,
-  TheHeaderDropdownTasks,
+  // TheHeaderDropdownMssg,
+  // TheHeaderDropdownNotif,
+  // TheHeaderDropdownTasks,
 } from './index';
 
 const TheHeader = () => {
@@ -53,16 +53,16 @@ const TheHeader = () => {
         className="ml-3 d-md-down-none"
         onClick={toggleSidebar}
       />
-      <CHeaderBrand className="mx-auto d-lg-none" to="/">
+      <CHeaderBrand className="mx-auto d-lg-none" to="/firstavenue/">
         <CIcon name="logo" height="48" alt="Logo" />
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
+          <CHeaderNavLink to="/firstavenue/dashboard">Dashboard</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/users">Users</CHeaderNavLink>
+          <CHeaderNavLink to="/firstavenue/users">Users</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
           <CHeaderNavLink>Settings</CHeaderNavLink>
@@ -70,9 +70,9 @@ const TheHeader = () => {
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
-        <TheHeaderDropdownNotif />
+        {/* <TheHeaderDropdownNotif />
         <TheHeaderDropdownTasks />
-        <TheHeaderDropdownMssg />
+        <TheHeaderDropdownMssg /> */}
         <TheHeaderDropdown />
       </CHeaderNav>
 
@@ -88,7 +88,7 @@ const TheHeader = () => {
           <CLink
             className="c-subheader-nav-link"
             aria-current="page"
-            to="/dashboard"
+            to="/firstavenue/dashboard"
           >
             <CIcon name="cil-graph" alt="Dashboard" />
             &nbsp;Dashboard
