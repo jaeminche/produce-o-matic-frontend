@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../modules/user';
+
 import {
   CBadge,
   CDropdown,
@@ -10,6 +13,7 @@ import {
 import CIcon from '@coreui/icons-react';
 
 const TheHeaderDropdown = () => {
+  const dispatch = useDispatch();
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
@@ -87,6 +91,10 @@ const TheHeaderDropdown = () => {
         <CDropdownItem>
           <CIcon name="cil-lock-locked" className="mfe-2" />
           Lock Account
+        </CDropdownItem>
+        <CDropdownItem onClick={() => dispatch(logout())}>
+          <CIcon name="cil-account-logout" className="mfe-2" />
+          LOG OUT
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

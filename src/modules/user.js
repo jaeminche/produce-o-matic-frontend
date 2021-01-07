@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-import { takeLatest, call } from 'redux-saga/effects';
+import { takeLatest, call, all } from 'redux-saga/effects';
 import * as authAPI from '../lib/api/auth';
 import createRequestSaga, {
   createRequestActionTypes,
@@ -61,10 +61,12 @@ export default handleActions(
       user: null,
       checkError: error,
     }),
-    [LOGOUT]: (state) => ({
-      ...state,
-      user: null,
-    }),
+    [LOGOUT]: (state) => {
+      return {
+        ...state,
+        user: null,
+      };
+    },
   },
   initialState,
 );

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { logout } from '../../modules/user';
@@ -14,14 +14,15 @@ const TheLayout = ({ history }) => {
   const { user } = useSelector(({ user }) => ({
     user: user.user,
   }));
+
   useEffect(() => {
     if (!user) {
-      history.push('/posttest/login');
+      history.push('/firstavenue/login');
     } else if (user && user.username !== 'proadmin') {
       confirmAlert({
         title:
-          'You are logged in, but not as admin user. Log out first, and then log in as admin user to access this page.',
-        message: 'Do you want proceed to log in as admin user?',
+          'You are logged in as non-admin user. You need to log out first, and then log in as admin user to access this page.',
+        message: 'Would you like to proceed to log in as admin user?',
         buttons: [
           {
             label: 'Yes',

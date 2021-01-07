@@ -90,6 +90,8 @@ const App = () => {
         name="Home"
         render={(props) => <TheLayout {...props} />}
       />
+      <ScrollToTopRoute component={LoginPage} path="/firstavenue/login" />
+
       {/* <Route component={LoginPage} path="/firstavenue/login" />
       <Route component={SignupPage} path="/firstavenue/signup" />
       <Route component={WritePage} path="/firstavenue/write" />
