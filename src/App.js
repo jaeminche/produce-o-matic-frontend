@@ -32,6 +32,7 @@ import BeOurPeoplePage from './pages/BeOurPeoplePage';
 import ContactUsPage from './pages/ContactUsPage';
 
 import { Helmet } from 'react-helmet-async';
+import { ToastContainer } from 'react-toastify';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -56,6 +57,17 @@ const App = () => {
       <Helmet>
         <title>PRODUCE-O-MATIC</title>
       </Helmet>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {/* ----- Async request test pages starts ----- */}
       <ScrollToTopRoute
         component={PostsListPage}
@@ -78,10 +90,10 @@ const App = () => {
         name="Home"
         render={(props) => <TheLayout {...props} />}
       />
-      <Route component={LoginPage} path="/firstavenue/login" />
+      {/* <Route component={LoginPage} path="/firstavenue/login" />
       <Route component={SignupPage} path="/firstavenue/signup" />
       <Route component={WritePage} path="/firstavenue/write" />
-      <Route component={PostPage} path="/firstavenue/@:username/:postId" />
+      <Route component={PostPage} path="/firstavenue/@:username/:postId" /> */}
       {/* ----- admin pages ends ----- */}
 
       <ScrollToTopRoute component={MainPage} exact path="/" />
