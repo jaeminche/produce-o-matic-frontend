@@ -115,7 +115,7 @@ const Wrapper = styled(Responsive)`
   }
   li {
     ${mq({
-      minHeight: ['400px', , , '520px', , , ,],
+      minHeight: ['400px', '430px', , '520px', , , ,],
     })}
     ${(props) => props.isMobile && `margin-bottom: 50px;`}
   }
@@ -136,7 +136,8 @@ const Wrapper = styled(Responsive)`
     font-style: normal;
     font-weight: bold;
   }
-  .current-0-2-11 {
+  .current-0-2-11,
+  current-0-2-9 {
     ${(props) => props.isMobile && `font-size: 25px`};
   }
   .left-0-2-4 {
