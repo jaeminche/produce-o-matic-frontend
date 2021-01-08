@@ -99,32 +99,53 @@ const Wrapper = styled(Responsive)`
     white-space: pre-wrap;
   }
   .textInImage {
-    position: absolute;
-    transform: translateX(-50%) translateY(-31%);
-    left: 50%;
-    top: ${(props) => (props.isMobile ? '35%' : '23%')};
     color: white;
     text-align: center;
+    margin-top: inherit;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .time-backgroundimage {
-    ${(props) => props.isMobile && `height: 200px`};
+    /* position: absolute; */
+    /* top: 0; */
+    /* ${(props) => props.isMobile && `height: 200px`}; */
+  }
+  li {
+    ${mq({
+      minHeight: ['400px', , , '520px', , , ,],
+    })}
+    ${(props) => props.isMobile && `margin-bottom: 50px;`}
   }
   .time-title {
     ${mq({
-      fontSize: ['26px', '30px', , '40px', , , ,],
-    })}
+      fontSize: ['20px', '25px', , '40px', , , ,],
+    })};
     font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
-    opacity: 0.6;
+    opacity: 1;
   }
   .time-numbers {
     ${mq({
-      fontSize: ['30px', '40px', , '70px', , , ,],
+      fontSize: ['15px', '20px', , '30px', '50px', '70px', ,],
     })}
     font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
+  }
+  .current-0-2-11 {
+    ${(props) => props.isMobile && `font-size: 25px`};
+  }
+  .left-0-2-4 {
+    ${(props) => props.isMobile && `padding: 10px`};
+  }
+  .vertical-center {
+    ${mq({
+      marginBottom: ['5px', '15px', '15px', '15px', , , ,],
+    })}
   }
   img {
     width: 100%;
@@ -139,7 +160,7 @@ const Wrapper = styled(Responsive)`
     display: flex;
     flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
     justify-content: space-between;
-    ${(props) => !props.isMobile && `margin: -20px;`}// space between
+    /* ${(props) => !props.isMobile && `margin: -20px;`}// space between */
   }
   .flex-item-responsive {
     width: ${(props) => (props.isMobile ? '100%' : '50%')};
@@ -192,11 +213,15 @@ const Wrapper = styled(Responsive)`
   .colorblue {
     color: rgba(37, 168, 209, 1);
   }
+
+  .header-0-2-3 {
+    display: none;
+  }
 `;
 
 const FlexContainerResponsive = (props) => {
   const { items, times, key, classNames, style } = props;
-  console.log('스타일', style);
+  // console.log('스타일', style);
   const customcss = times ? 'time-numbers' : null;
   return (
     <ul
@@ -221,31 +246,59 @@ const FlexContainerResponsive = (props) => {
             />
           ) : item.type === 'imageWithTextInside' ? (
             <>
-              <img
-                src={item.path}
-                alt={item.desc}
-                className={item.customCssForImage}
-              />
               {item.text && (
                 <div
                   style={{ width: '100%' }}
                   className={`textInImage ${item.customCssForText}`}
                 >
-                  <span>{item.text}</span>
-                  <br />
-                  <span className={customcss}>
-                    {times &&
-                      times.length > 0 &&
-                      (item.text === 'Korea Time' ? times[0] : times[1])}
-                  </span>
+                  <div className={'vertical-center'}>
+                    <>
+                      <div>{item.text}</div>
+                      {/* <br /> */}
+                      <div className={customcss}>
+                        {times &&
+                          times.length > 0 &&
+                          (item.text === 'Seoul' ? times[0] : times[1])}
+                      </div>
+                    </>
+                  </div>
+                  {item.customComponent && item.customComponent}
                 </div>
               )}
+              <img
+                src={item.path}
+                alt={item.desc}
+                className={item.customCssForImage}
+              />
             </>
           ) : (
             <p key={key} className={item.classNames || 'text'} style={style}>
               {ReactHtmlParser(item.text)}
             </p>
           )}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const CustomComponentsInflexContainer = (props) => {
+  const { items, key, classNames, style } = props;
+  return (
+    <ul
+      key={key}
+      className={classNames ? classNames : 'flex-container-responsive'}
+    >
+      {items.map((item, key) => (
+        <li
+          key={key}
+          className={
+            item.type === 'imageWithTextInside'
+              ? 'flex-item-responsive positionRelative'
+              : 'flex-item-responsive'
+          }
+        >
+          {item.customComponent && item.customComponent}
         </li>
       ))}
     </ul>
@@ -281,7 +334,7 @@ const DrawRowComponent = (props) => {
   const { row, key, isMobile, times } = props;
   const { type, path, text, desc, items, tabs, classNames, style } = row;
 
-  console.log('rows');
+  // console.log('rows');
   const ui = {
     title: (
       <PageTitle
@@ -306,6 +359,14 @@ const DrawRowComponent = (props) => {
         items={items}
         key={key}
         times={times}
+        classNames={classNames}
+        style={style}
+      />
+    ),
+    customComponentsInflexContainer: (
+      <CustomComponentsInflexContainer
+        items={items}
+        key={key}
         classNames={classNames}
         style={style}
       />

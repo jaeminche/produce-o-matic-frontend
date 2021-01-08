@@ -5,8 +5,11 @@ function formatTime(date, koreatime = false, where) {
   let sec = koreatime ? date.getUTCSeconds() : date.getSeconds();
   let midday = 'AM';
   // console.log('시간', koreatime, where, hour, midday);
-  hour = hour === 0 ? 12 : hour > 24 ? hour - 24 : hour > 12 ? hour - 12 : hour;
+  console.log('====hour전', hour);
   midday = hour >= 12 ? 'PM' : 'AM';
+  hour = hour === 0 ? 12 : hour > 24 ? hour - 24 : hour > 12 ? hour - 12 : hour;
+  console.log('====hour후', hour);
+
   hour = addZero(hour);
   min = addZero(min);
   sec = addZero(sec);

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   GYEONGBOKGUNG03,
   GRAPH01_LOCATIONINCENTIVES,
@@ -44,6 +45,7 @@ import {
   TMONEY,
   NAVERMAP,
 } from '../../assets';
+import WeatherWidget from '../../components/weather/WeatherWidget';
 
 const uiData = {
   locationIncentives: {
@@ -174,29 +176,62 @@ const uiData = {
           text:
             'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
         },
+        // {
+        //   id: 3,
+        //   type: 'customComponentsInflexContainer',
+        //   items: [
+        //     {
+        //       id: 1,
+        //       type: 'customComponent',
+        //       desc: 'Korea',
+        //       text: 'Korea',
+        //       customComponent: <WeatherWidget locationLabel={'Seoul'} />,
+        //       // ? specify customcss for it is a particular case for clocks UI
+        //       // customCssForImage: 'time-backgroundimage',
+        //       // customCssForText: 'time-title',
+        //     },
+        //     {
+        //       id: 2,
+        //       type: 'customComponent',
+        //       desc: 'Where You Are',
+        //       text: 'Where You Are',
+        //       customComponent: (
+        //         <WeatherWidget locationLabel={'Where You Are'} />
+        //       ),
+
+        //       // ? specify customcss for it is a particular case for clocks UI
+        //       // customCssForImage: 'time-backgroundimage',
+        //       // customCssForText: 'time-title',
+        //     },
+        //   ],
+        // },
         {
-          id: 3,
+          id: 4,
           type: 'flexContainerResponsive',
           items: [
             {
               id: 1,
               type: 'imageWithTextInside',
               path: TIME_KOREA,
-              desc: 'Korea Time',
-              text: 'Korea Time',
+              desc: 'Seoul',
+              text: 'Seoul',
               // ? specify customcss for it is a particular case for clocks UI
               customCssForImage: 'time-backgroundimage',
               customCssForText: 'time-title',
+              customComponent: <WeatherWidget locationLabel={'Seoul'} />,
             },
             {
               id: 2,
               type: 'imageWithTextInside',
               path: TIME_YOUR,
-              desc: 'Your Time',
-              text: 'Your Time',
+              desc: 'Where You Are',
+              text: 'Where You Are',
               // ? specify customcss for it is a particular case for clocks UI
               customCssForImage: 'time-backgroundimage',
               customCssForText: 'time-title',
+              customComponent: (
+                <WeatherWidget locationLabel={'Where You Are'} />
+              ),
             },
           ],
         },
