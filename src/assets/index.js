@@ -64,6 +64,7 @@ const TMONEY02 = require('./tmoney.jpeg');
 const GENERALK_TELESIMCARD = require('./gktelesimcard.png');
 const YOGIYO = require('./yogiyo.png');
 const BAEMIN = require('./baemin.png');
+const YOGIYO_BAEMIN = require('./yogiyo_baemin.png');
 const KAKAOT = require('./kakaot.png');
 const TMONEY = require('./tmoney.png');
 const NAVERMAP = require('./navermap.png');
@@ -71,6 +72,7 @@ const GENERALK_SUBWAY = require('./gksubway.jpg');
 const GENERALK_FOOD = require('./gkfood.jpg');
 
 export {
+  YOGIYO_BAEMIN,
   GENERALK_FOOD,
   GENERALK_SUBWAY,
   GENERALK_TELEKTRENTAL,

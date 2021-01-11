@@ -41,6 +41,7 @@ import {
   GENERALK_TELESIMCARD,
   YOGIYO,
   BAEMIN,
+  YOGIYO_BAEMIN,
   KAKAOT,
   TMONEY,
   NAVERMAP,
@@ -448,13 +449,20 @@ const uiData = {
           text: 'Subway & Bus Fares',
         },
         {
-          id: 8,
-          type: 'text',
-          text: `Adults pay 1,250 won per subway ride within a radius of 10km. An additional 100 won is charged for every 5km. A bus ride with a Blue Bus (mainline bus) or Green Bus (branch bus) will cost 1,200 won or 1,300 won per adult.
+          id: 5,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `Adults pay 1,250 won per subway ride within a radius of 10km. An additional 100 won is charged for every 5km. A bus ride with a Blue Bus (mainline bus) or Green Bus (branch bus) will cost 1,200 won or 1,300 won per adult.
           
-          You can find more detailed information regarding public transportation in Seoul on the <a href='http://english.seoul.go.kr/life-information/transportation-information/public-transportation/2-subway/'>Seoul Metropolitan Government website</a> and the <a href='https://english.visitkorea.or.kr/enu/TRP/TRP_MAIN.jsp'>Korea Tourism Organization website</a>.`,
+              You can find more detailed information regarding public transportation in Seoul on the <a href='http://english.seoul.go.kr/life-information/transportation-information/public-transportation/2-subway/'>Seoul Metropolitan Government website</a> and the <a href='https://english.visitkorea.or.kr/enu/TRP/TRP_MAIN.jsp'>Korea Tourism Organization website</a>.`,
+              classNames: 'text',
+            },
+            { id: 2, type: 'image', path: GENERALK_SUBWAY, desc: 'subway' },
+          ],
         },
-        { id: 9, type: 'image', path: GENERALK_SUBWAY, desc: 'subway' },
         {
           id: 10,
           type: 'sectionTitle',
@@ -530,22 +538,34 @@ const uiData = {
           type: 'sectionTitle',
           text: 'Vegetarian, vegan and halal food',
         },
+
         {
           id: 3,
-          type: 'text',
-          text: `Many Korean dishes and meals are centred around vegetables, but sometimes it can be hard to find dishes that are 100% vegetarian or vegan (meat or seafood may be used as soup stock and in some vegetable side dishes). 
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `Many Korean dishes and meals are centred around vegetables, but sometimes it can be hard to find dishes that are 100% vegetarian or vegan (meat or seafood may be used as soup stock and in some vegetable side dishes). 
 
-            A great source for vegan- and vegetarian-friendly dining options in Seoul is <a href='https://www.happycow.net/asia/south_korea/seoul/'>Happycow</a>. Be sure to check it out.
-            
-            Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea. These are certified under four categories:
-            Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
-            Self-certified as halal
-            Muslim-friendly restaurants with a halal menu
-            Pork-free
-            
-            The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
+              A great source for vegan- and vegetarian-friendly dining options in Seoul is <a href='https://www.happycow.net/asia/south_korea/seoul/'>Happycow</a>. Be sure to check it out.
+              
+              Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea. These are certified under four categories:
+              Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
+              Self-certified as halal
+              Muslim-friendly restaurants with a halal menu
+              Pork-free
+              
+              The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: GENERALK_FOOD,
+              desc: 'Korean dishes',
+            },
+          ],
         },
-        { id: 4, type: 'image', path: GENERALK_FOOD, desc: 'Korean dishes' },
         {
           id: 5,
           type: 'sectionTitle',
@@ -553,25 +573,19 @@ const uiData = {
         },
         {
           id: 6,
-          type: 'text',
-          text: `Korea is one of the most advanced countries when it comes to restaurant food deliveries. It doesn’t matter whether you are in a park, at the river or in an office building - the food will be delivered to wherever you are. This is particularly convenient for production crews, as there is no need to rely solely on catering services.
-          
-          Baedal Minjok/Baemin (<a href='https://apps.apple.com/us/app/%EB%B0%B0%EB%8B%AC%EC%9D%98%EB%AF%BC%EC%A1%B1/id378084485'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.sampleapp&hl=en_US'>Android</a>) and Yogiyo (<a href='https://apps.apple.com/us/app/id543831532'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.fineapp.yogiyo&hl=en_US'>Android</a>) are the two biggest and most popular food delivery apps. Both operate 24/7, with each store having its own business hours. Daily changing coupons, an ETA, and a real-time food tracking system make these delivery apps very convenient to use.`,
-        },
-        {
-          id: 7,
           type: 'flexContainerResponsive',
           items: [
             {
               id: 1,
-              type: 'image',
-              path: YOGIYO,
-              desc: 'Yogiyo',
+              type: 'text',
+              text: `Korea is one of the most advanced countries when it comes to restaurant food deliveries. It doesn’t matter whether you are in a park, at the river or in an office building - the food will be delivered to wherever you are. This is particularly convenient for production crews, as there is no need to rely solely on catering services.
+          
+            Baedal Minjok/Baemin (<a href='https://apps.apple.com/us/app/%EB%B0%B0%EB%8B%AC%EC%9D%98%EB%AF%BC%EC%A1%B1/id378084485'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.sampleapp&hl=en_US'>Android</a>) and Yogiyo (<a href='https://apps.apple.com/us/app/id543831532'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.fineapp.yogiyo&hl=en_US'>Android</a>) are the two biggest and most popular food delivery apps. Both operate 24/7, with each store having its own business hours. Daily changing coupons, an ETA, and a real-time food tracking system make these delivery apps very convenient to use.`,
             },
             {
               id: 2,
               type: 'image',
-              path: BAEMIN,
+              path: YOGIYO_BAEMIN,
               desc: 'Baemin',
             },
           ],
@@ -621,6 +635,7 @@ const uiData = {
           id: 4,
           type: 'flexContainerResponsive',
           items: [
+            { id: 2, type: 'image', path: GENERALK_WIFIEGG, desc: 'wifiegg' },
             {
               id: 1,
               type: 'text',
@@ -628,7 +643,6 @@ const uiData = {
               `,
               classNames: 'text',
             },
-            { id: 2, type: 'image', path: GENERALK_WIFIEGG, desc: 'wifiegg' },
           ],
         },
         {
@@ -664,17 +678,17 @@ const uiData = {
           type: 'flexContainerResponsive',
           items: [
             {
+              id: 2,
+              type: 'image',
+              path: GENERALK_WIFIACCESS,
+              desc: 'wifi access',
+            },
+            {
               id: 1,
               type: 'text',
               text: `Internet access is nearly omnipresent in Seoul. There are almost 10,000 free WiFi hotspots in the capital alone. You’ll find these at many restaurants and cafes, at airports, hotels and tourist information centres, at public facilities such as subway and railway stations, and on the high-speed KTX trains as well. Libraries, hospitals, universities, tourists spots, and even taxis offer complimentary WiFi access. Sometimes you’ll have to ask for the password (bimil beonho 비밀 번호) or log in to their system.
               `,
               classNames: 'text',
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: GENERALK_WIFIACCESS,
-              desc: 'wifi access',
             },
           ],
         },
