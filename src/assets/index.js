@@ -67,8 +67,12 @@ const BAEMIN = require('./baemin.png');
 const KAKAOT = require('./kakaot.png');
 const TMONEY = require('./tmoney.png');
 const NAVERMAP = require('./navermap.png');
+const GENERALK_SUBWAY = require('./gksubway.jpg');
+const GENERALK_FOOD = require('./gkfood.jpg');
 
 export {
+  GENERALK_FOOD,
+  GENERALK_SUBWAY,
   GENERALK_TELEKTRENTAL,
   GENERALK_WIFIACCESS,
   GENERALK_WIFIEGG,

@@ -113,10 +113,12 @@ const Wrapper = styled(Responsive)`
     /* top: 0; */
     /* ${(props) => props.isMobile && `height: 200px`}; */
   }
-  li {
+  .itemsLiHasMinWidth {
     ${mq({
       minHeight: ['400px', '430px', , '520px', , , ,],
     })}
+  }
+  li {
     ${(props) => props.isMobile && `margin-bottom: 50px;`}
   }
   .time-title {
@@ -221,7 +223,7 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FlexContainerResponsive = (props) => {
-  const { items, times, key, classNames, style } = props;
+  const { items, times, key, classNames, style, itemsLiHasMinWidth } = props;
   // console.log('스타일', style);
   const customcss = times ? 'time-numbers' : null;
   return (
@@ -232,11 +234,11 @@ const FlexContainerResponsive = (props) => {
       {items.map((item, key) => (
         <li
           key={key}
-          className={
+          className={`${itemsLiHasMinWidth ? 'itemsLiHasMinWidth' : null} ${
             item.type === 'imageWithTextInside'
               ? 'flex-item-responsive positionRelative'
               : 'flex-item-responsive'
-          }
+          }`}
         >
           {item.type === 'image' ? (
             <img
