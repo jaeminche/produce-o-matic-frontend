@@ -70,12 +70,12 @@ const ImgLinkBlock = styled.div`
     left: 50%;
     top: 50%;
     color: white;
-    width: 80%;
+    width: 90%;
     text-align: center;
   }
   .textbox-title {
     ${mq({
-      fontSize: ['24px', '32px', , '40px', , , , '50px'],
+      fontSize: ['22px', '26px', , '28px', '30px', '40px', ,],
     })}
   }
   .subtitle {
@@ -89,7 +89,7 @@ const ImageBlock = ({ data, history, isMobile }) => {
   const { contentId, title, subtitle, thumbnail, baseUrl } = data;
   const handleClick = () => history.push(`${baseUrl}/${contentId}`);
   const shortenStr = (str) => {
-    const upto = isMobile ? 50 : 80;
+    const upto = isMobile ? 50 : 60;
     return `${str.slice(0, upto)}...`;
   };
   return (

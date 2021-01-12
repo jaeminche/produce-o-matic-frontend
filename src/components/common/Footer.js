@@ -10,7 +10,7 @@ import palette from '../../lib/styles/palette';
 const FooterBlock = styled.div`
   padding-top: 85px;
   padding-bottom: 10px;
-  margin-bottom: -68px; // offset as much as the header's height
+  margin-bottom: -44px; // offset as much as the header's height
 `;
 
 const Wrapper = styled(Responsive)`
@@ -18,7 +18,7 @@ const Wrapper = styled(Responsive)`
   display: flex;
   flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
   justify-content: space-between;
-  font-size: ${(props) => (props.isMobile ? '12px' : '15px')};
+  font-size: ${(props) => (props.isMobile ? '12px' : '14px')};
   color: ${palette.textgray[0]};
 
   .logo {
@@ -35,7 +35,7 @@ const Wrapper = styled(Responsive)`
     }
   }
   .menuitem {
-    font-size: 18px;
+    font-size: 14px;
     margin-right: 15px;
   }
   .smalltext {

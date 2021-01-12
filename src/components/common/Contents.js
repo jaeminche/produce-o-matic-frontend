@@ -14,12 +14,12 @@ const ContentsBlock = styled.div`
 
 const SubHeaderTabBlock = styled.nav`
   position: sticky;
-  top: ${(props) => (props.isMobile ? '0' : '68px')};
+  top: 44px; // header's height
   z-index: 10;
   ${(props) => props.isMobile && `margin-top: 30px`};
   /* padding-bottom: 20px; */
   text-align: center;
-  height: 68px;
+  height: 48px; //header's height
   z-index: 10;
   width: 100%;
   overflow: hidden;
@@ -47,7 +47,7 @@ const SubHeaderTabWrapper = styled.div`
   .tab-bar {
     /* border-top: 1px solid white;
     border-bottom: 1px solid white; */
-    padding: ${(props) => (props.isMobile ? '20px 30px' : '20px 30px')};
+    padding: ${(props) => (props.isMobile ? '11px 30px' : '11px 30px')};
   }
   li {
     display: inline-block;
@@ -56,7 +56,7 @@ const SubHeaderTabWrapper = styled.div`
     padding: 0 5px;
   }
   .menuitem {
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 15px;
   }
   a {

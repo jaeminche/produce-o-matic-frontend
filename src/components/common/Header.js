@@ -10,7 +10,7 @@ import Hamburger from '../hamburger/Hamburger';
 import HamburgersideContainer from '../../containers/hamburger/HamburgersideContainer';
 
 const HeaderBlock = styled.div`
-  ${(props) => props.isFixed && `position: fixed;`}
+  /* ${(props) => props.isFixed && `position: fixed;`} */
   z-index: 60;
   width: 100%;
   background: white;
@@ -29,7 +29,7 @@ const HeaderBlock = styled.div`
  */
 const Wrapper = styled(Responsive)`
   position: relative;
-  height: 68px;
+  height: 44px; //header's height
   display: flex;
   align-items: center;
   color: ${palette.textgray[1]};
@@ -44,7 +44,7 @@ const Wrapper = styled(Responsive)`
   .logo {
     img {
       display: block;
-      ${mq({ height: ['35px', , , '35px', , , ,] })}
+      ${mq({ height: ['25px', , , , , , ,] })}
       filter: invert(1);
     }
   }
@@ -59,7 +59,7 @@ const Wrapper = styled(Responsive)`
   }
   .menuitem {
     color: rgba(165, 165, 165, 1);
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 15px;
   }
   .isActive {
@@ -90,7 +90,7 @@ const Header = ({
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
-    <HeaderBlock isFixed={isFixed}>
+    <HeaderBlock>
       <Wrapper>
         {isMobile && <Hamburger />}
         {isMobile && (
