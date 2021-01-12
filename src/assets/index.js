@@ -1,5 +1,5 @@
 const LOGO = require('./templogo.svg');
-const LOGO_1ROW = require('./templogo1row.svg');
+const LOGO1ROW = require('./templogo1row.svg');
 const SEARCH = require('./search.svg');
 const GYEONGBOKGUNG = require('./gyeongbokgung.jpg');
 const GYEONGBOKGUNG02 = require('./gyeongbokgung02.jpg');
@@ -64,11 +64,17 @@ const TMONEY02 = require('./tmoney.jpeg');
 const GENERALK_TELESIMCARD = require('./gktelesimcard.png');
 const YOGIYO = require('./yogiyo.png');
 const BAEMIN = require('./baemin.png');
+const YOGIYO_BAEMIN = require('./yogiyo_baemin.png');
 const KAKAOT = require('./kakaot.png');
 const TMONEY = require('./tmoney.png');
 const NAVERMAP = require('./navermap.png');
+const GENERALK_SUBWAY = require('./gksubway.jpg');
+const GENERALK_FOOD = require('./gkfood.jpg');
 
 export {
+  YOGIYO_BAEMIN,
+  GENERALK_FOOD,
+  GENERALK_SUBWAY,
   GENERALK_TELEKTRENTAL,
   GENERALK_WIFIACCESS,
   GENERALK_WIFIEGG,
@@ -96,7 +102,7 @@ export {
   CONTRACT01,
   KOREA02,
   LOGO,
-  LOGO_1ROW,
+  LOGO1ROW,
   SEARCH,
   FACEBOOK_ICON,
   INSTAGRAM_ICON,

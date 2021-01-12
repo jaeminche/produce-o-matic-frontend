@@ -1,3 +1,7 @@
+import 'react-app-polyfill/ie11'; // For IE 11 support
+import 'react-app-polyfill/stable';
+import 'core-js';
+import './polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -12,7 +16,7 @@ import rootReducer, { rootSaga } from './modules';
 import { tempSetUser, check } from './modules/user';
 import { createLogger } from 'redux-logger';
 import { HelmetProvider } from 'react-helmet-async';
-import ScrollToTop from 'react-router-scroll-to-top';
+import { icons } from './admin/assets/icons';
 
 const sagaMiddleware = createSagaMiddleware();
 const logger = createLogger();
@@ -39,18 +43,17 @@ function loadUser() {
 sagaMiddleware.run(rootSaga);
 loadUser();
 
+React.icons = icons;
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <ScrollToTop>
-          <HelmetProvider>
-            <App />
-          </HelmetProvider>
-        </ScrollToTop>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </BrowserRouter>
     </Provider>
-    ,
   </React.StrictMode>,
   document.getElementById('root'),
 );
