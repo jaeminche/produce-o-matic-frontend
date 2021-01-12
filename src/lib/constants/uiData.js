@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   GYEONGBOKGUNG03,
   GRAPH01_LOCATIONINCENTIVES,
@@ -40,10 +41,14 @@ import {
   GENERALK_TELESIMCARD,
   YOGIYO,
   BAEMIN,
+  YOGIYO_BAEMIN,
   KAKAOT,
   TMONEY,
   NAVERMAP,
+  GENERALK_SUBWAY,
+  GENERALK_FOOD,
 } from '../../assets';
+import WeatherWidget from '../../components/weather/WeatherWidget';
 
 const uiData = {
   locationIncentives: {
@@ -174,29 +179,63 @@ const uiData = {
           text:
             'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
         },
+        // {
+        //   id: 3,
+        //   type: 'customComponentsInflexContainer',
+        //   items: [
+        //     {
+        //       id: 1,
+        //       type: 'customComponent',
+        //       desc: 'Korea',
+        //       text: 'Korea',
+        //       customComponent: <WeatherWidget locationLabel={'Seoul'} />,
+        //       // ? specify customcss for it is a particular case for clocks UI
+        //       // customCssForImage: 'time-backgroundimage',
+        //       // customCssForText: 'time-title',
+        //     },
+        //     {
+        //       id: 2,
+        //       type: 'customComponent',
+        //       desc: 'Where You Are',
+        //       text: 'Where You Are',
+        //       customComponent: (
+        //         <WeatherWidget locationLabel={'Where You Are'} />
+        //       ),
+
+        //       // ? specify customcss for it is a particular case for clocks UI
+        //       // customCssForImage: 'time-backgroundimage',
+        //       // customCssForText: 'time-title',
+        //     },
+        //   ],
+        // },
         {
-          id: 3,
+          id: 4,
           type: 'flexContainerResponsive',
+          itemsLiHasMinWidth: true,
           items: [
             {
               id: 1,
               type: 'imageWithTextInside',
               path: TIME_KOREA,
-              desc: 'Korea Time',
-              text: 'Korea Time',
+              desc: 'Seoul',
+              text: 'Seoul',
               // ? specify customcss for it is a particular case for clocks UI
               customCssForImage: 'time-backgroundimage',
               customCssForText: 'time-title',
+              customComponent: <WeatherWidget locationLabel={'Seoul'} />,
             },
             {
               id: 2,
               type: 'imageWithTextInside',
               path: TIME_YOUR,
-              desc: 'Your Time',
-              text: 'Your Time',
+              desc: 'Where You Are',
+              text: 'Where You Are',
               // ? specify customcss for it is a particular case for clocks UI
               customCssForImage: 'time-backgroundimage',
               customCssForText: 'time-title',
+              customComponent: (
+                <WeatherWidget locationLabel={'Where You Are'} />
+              ),
             },
           ],
         },
@@ -349,14 +388,22 @@ const uiData = {
           text: 'Maps',
         },
         {
-          id: 2,
-          type: 'text',
-          text: `To get around in the capital and elsewhere, a well-functioning map is essential. Since Google Maps hasn’t legally been allowed to map South Korea in many years, it’s not a viable option. Instead, make sure to download the app Naver Map (iOS or Android) for accurate directions and locations.
+          id: 1,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `To get around in the capital and elsewhere, a well-functioning map is essential. Since Google Maps hasn’t legally been allowed to map South Korea in many years, it’s not a viable option. Instead, make sure to download the app Naver Map (iOS or Android) for accurate directions and locations.
             
-            Popular places of interest can easily be found on Naver Map when typing in English, but often there won’t be any English results for restaurants or cafes. If the spot is listed on Google, the roundabout way is to copy the Korean name from there and paste it into Naver Map in order to find the location.
-            
-            You can download the most up-to-date subway map on the Seoul Metro website. It’s available in Korean, English, Chinese and Japanese.
-            `,
+              Popular places of interest can easily be found on Naver Map when typing in English, but often there won’t be any English results for restaurants or cafes. If the spot is listed on Google, the roundabout way is to copy the Korean name from there and paste it into Naver Map in order to find the location.
+              
+              You can download the most up-to-date subway map on the Seoul Metro website. It’s available in Korean, English, Chinese and Japanese.
+              `,
+              classNames: 'text',
+            },
+            { id: 2, type: 'image', path: NAVERMAP, desc: 'Naver Map' },
+          ],
         },
         // { id: 3, type: 'image', path: NAVERMAP, desc: 'maps' },
         // {
@@ -381,37 +428,59 @@ const uiData = {
         },
         {
           id: 5,
-          type: 'text',
-          text: `It’s most cost-effective to use a T-Money card when using public transportation such as the subway, bus or taxi. It is contactless and reloadable and can also be used for purchases at convenience stores, cafes and fast food outlets such as McDonald’s.
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `It’s most cost-effective to use a T-Money card when using public transportation such as the subway, bus or taxi. It is contactless and reloadable and can also be used for purchases at convenience stores, cafes and fast food outlets such as McDonald’s.
           
-          T-Money can be purchased at convenience stores or subway stations (price: KRW 2,500), but all reloads must be paid for with cash. T-Money can be shared between two people on Seoul public buses, but not on the subway.
-          `,
+              T-Money can be purchased at convenience stores or subway stations (price: KRW 2,500), but all reloads must be paid for with cash. T-Money can be shared between two people on Seoul public buses, but not on the subway.
+              `,
+              classNames: 'text',
+            },
+            { id: 2, type: 'image', path: TMONEY01, desc: 'T-Money' },
+          ],
         },
-        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
+
         {
           id: 7,
           type: 'sectionTitle',
           text: 'Subway & Bus Fares',
         },
         {
-          id: 8,
-          type: 'text',
-          text: `Adults pay 1,250 won per subway ride within a radius of 10km. An additional 100 won is charged for every 5km. A bus ride with a Blue Bus (mainline bus) or Green Bus (branch bus) will cost 1,200 won or 1,300 won per adult.
+          id: 5,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `Adults pay 1,250 won per subway ride within a radius of 10km. An additional 100 won is charged for every 5km. A bus ride with a Blue Bus (mainline bus) or Green Bus (branch bus) will cost 1,200 won or 1,300 won per adult.
           
-          You can find more detailed information regarding public transportation in Seoul on the <a href='http://english.seoul.go.kr/life-information/transportation-information/public-transportation/2-subway/'>Seoul Metropolitan Government website</a> and the <a href='https://english.visitkorea.or.kr/enu/TRP/TRP_MAIN.jsp'>Korea Tourism Organization website</a>.`,
+              You can find more detailed information regarding public transportation in Seoul on the <a href='http://english.seoul.go.kr/life-information/transportation-information/public-transportation/2-subway/'>Seoul Metropolitan Government website</a> and the <a href='https://english.visitkorea.or.kr/enu/TRP/TRP_MAIN.jsp'>Korea Tourism Organization website</a>.`,
+              classNames: 'text',
+            },
+            { id: 2, type: 'image', path: GENERALK_SUBWAY, desc: 'subway' },
+          ],
         },
-        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 10,
           type: 'sectionTitle',
           text: 'Kakao T',
         },
         {
-          id: 11,
-          type: 'text',
-          text: `Kakao T (<a href='https://apps.apple.com/us/app/kakao-t/id981110422'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.kakao.taxi&hl=en_US'>Android</a>) is the Korean equivalent of UBER or LYFT and is widely used to call a taxi, especially during night time. `,
+          id: 5,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `Kakao T (<a href='https://apps.apple.com/us/app/kakao-t/id981110422'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.kakao.taxi&hl=en_US'>Android</a>) is the Korean equivalent of UBER or LYFT and is widely used to call a taxi, especially during night time. `,
+              classNames: 'text',
+            },
+            { id: 2, type: 'image', path: KAKAOT, desc: 'Kakao T' },
+          ],
         },
-        { id: 12, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 13,
           type: 'sectionTitle',
@@ -453,7 +522,6 @@ const uiData = {
           text: `Quick-service is a quick delivery system available in Korea’s urban areas that can be very useful for a film production crew. Anything from documents to packages to food can be delivered via motorcycle at lightning speed from point A to point B for around 20-40 US dollars. You’ll often hear crew members say “let’s use Quick” to get things delivered.
           `,
         },
-        { id: 18, type: 'image', path: WEATHER, desc: 'weather' },
       ],
       food: [
         {
@@ -470,22 +538,34 @@ const uiData = {
           type: 'sectionTitle',
           text: 'Vegetarian, vegan and halal food',
         },
+
         {
           id: 3,
-          type: 'text',
-          text: `Many Korean dishes and meals are centred around vegetables, but sometimes it can be hard to find dishes that are 100% vegetarian or vegan (meat or seafood may be used as soup stock and in some vegetable side dishes). 
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `Many Korean dishes and meals are centred around vegetables, but sometimes it can be hard to find dishes that are 100% vegetarian or vegan (meat or seafood may be used as soup stock and in some vegetable side dishes). 
 
-            A great source for vegan- and vegetarian-friendly dining options in Seoul is <a href='https://www.happycow.net/asia/south_korea/seoul/'>Happycow</a>. Be sure to check it out.
-            
-            Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea. These are certified under four categories:
-            Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
-            Self-certified as halal
-            Muslim-friendly restaurants with a halal menu
-            Pork-free
-            
-            The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
+              A great source for vegan- and vegetarian-friendly dining options in Seoul is <a href='https://www.happycow.net/asia/south_korea/seoul/'>Happycow</a>. Be sure to check it out.
+              
+              Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea. These are certified under four categories:
+              Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
+              Self-certified as halal
+              Muslim-friendly restaurants with a halal menu
+              Pork-free
+              
+              The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: GENERALK_FOOD,
+              desc: 'Korean dishes',
+            },
+          ],
         },
-        { id: 4, type: 'image', path: WEATHER, desc: 'weather' },
         {
           id: 5,
           type: 'sectionTitle',
@@ -493,12 +573,23 @@ const uiData = {
         },
         {
           id: 6,
-          type: 'text',
-          text: `Korea is one of the most advanced countries when it comes to restaurant food deliveries. It doesn’t matter whether you are in a park, at the river or in an office building - the food will be delivered to wherever you are. This is particularly convenient for production crews, as there is no need to rely solely on catering services.
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `Korea is one of the most advanced countries when it comes to restaurant food deliveries. It doesn’t matter whether you are in a park, at the river or in an office building - the food will be delivered to wherever you are. This is particularly convenient for production crews, as there is no need to rely solely on catering services.
           
-          Baedal Minjok/Baemin (<a href='https://apps.apple.com/us/app/%EB%B0%B0%EB%8B%AC%EC%9D%98%EB%AF%BC%EC%A1%B1/id378084485'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.sampleapp&hl=en_US'>Android</a>) and Yogiyo (<a href='https://apps.apple.com/us/app/id543831532'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.fineapp.yogiyo&hl=en_US'>Android</a>) are the two biggest and most popular food delivery apps. Both operate 24/7, with each store having its own business hours. Daily changing coupons, an ETA, and a real-time food tracking system make these delivery apps very convenient to use.`,
+            Baedal Minjok/Baemin (<a href='https://apps.apple.com/us/app/%EB%B0%B0%EB%8B%AC%EC%9D%98%EB%AF%BC%EC%A1%B1/id378084485'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.sampleapp&hl=en_US'>Android</a>) and Yogiyo (<a href='https://apps.apple.com/us/app/id543831532'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.fineapp.yogiyo&hl=en_US'>Android</a>) are the two biggest and most popular food delivery apps. Both operate 24/7, with each store having its own business hours. Daily changing coupons, an ETA, and a real-time food tracking system make these delivery apps very convenient to use.`,
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: YOGIYO_BAEMIN,
+              desc: 'Baemin',
+            },
+          ],
         },
-        { id: 7, type: 'image', path: WEATHER, desc: 'weather' },
       ],
       telecommunication: [
         {
@@ -508,54 +599,99 @@ const uiData = {
         },
         {
           id: 2,
-          type: 'text',
-          text: `4G LTE is available in almost every part of the country.
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `4G LTE is available in almost every part of the country.
 
-          Prior to arrival in South Korea, it’s important to check:
-          Your phone is unlocked 
-          Your device supports GSM network frequencies
-           
-          It’s easy and convenient to buy a SIM card online before arriving in Korea, but they can also be purchased at Incheon Airport, at major convenience stores such as GS25, CU and Seven Eleven, and at outlets run by Korean mobile service providers KT, SKT, and LG U+.
-          
-          Purchasing a universal type USIM Card will ensure it’s compatible with all types of phones. There are many payment plans available, from unlimited data for a certain amount of days, without the option to make or receive calls, to all-inclusive monthly plans. Travel shop <a href='https://blog.trazy.com/survival-tip-all-about-sim-card-prepaid-sim-card-for-foreigners/'>Trazy</a> provides more information.
-          `,
+              Prior to arrival in South Korea, it’s important to check:
+              Your phone is unlocked 
+              Your device supports GSM network frequencies`,
+              classNames: 'text',
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: GENERALK_TELESIMCARD,
+              desc: 'simcard',
+            },
+          ],
         },
-        { id: 3, type: 'image', path: WEATHER, desc: 'weather' },
         {
-          id: 4,
+          id: 3,
+          type: 'text',
+          text: `It’s easy and convenient to buy a SIM card online before arriving in Korea, but they can also be purchased at Incheon Airport, at major convenience stores such as GS25, CU and Seven Eleven, and at outlets run by Korean mobile service providers KT, SKT, and LG U+.
+          
+          Purchasing a universal type USIM Card will ensure it’s compatible with all types of phones. There are many payment plans available, from unlimited data for a certain amount of days, without the option to make or receive calls, to all-inclusive monthly plans. Travel shop <a href='https://blog.trazy.com/survival-tip-all-about-sim-card-prepaid-sim-card-for-foreigners/'>Trazy</a> provides more information.`,
+        },
+        {
+          id: 3,
           type: 'sectionTitle',
           text: 'WiFi egg',
         },
         {
-          id: 5,
-          type: 'text',
-          text: `An alternative to getting a SIM card is renting a WiFi egg or WiFi router. If all you need is access to the internet without making phone calls or sending text messages, then a WiFi egg is a hassle-free option. It also means that other crew members can connect to the WiFi with their phones, iPads and laptops, without incurring an additional charge.
-          `,
+          id: 4,
+          type: 'flexContainerResponsive',
+          items: [
+            { id: 2, type: 'image', path: GENERALK_WIFIEGG, desc: 'wifiegg' },
+            {
+              id: 1,
+              type: 'text',
+              text: `An alternative to getting a SIM card is renting a WiFi egg or WiFi router. If all you need is access to the internet without making phone calls or sending text messages, then a WiFi egg is a hassle-free option. It also means that other crew members can connect to the WiFi with their phones, iPads and laptops, without incurring an additional charge.
+              `,
+              classNames: 'text',
+            },
+          ],
         },
-        { id: 6, type: 'image', path: WEATHER, desc: 'weather' },
         {
-          id: 7,
+          id: 5,
           type: 'sectionTitle',
           text: 'Mobile rental',
         },
         {
-          id: 8,
-          type: 'text',
-          text: `If you prefer to rent a mobile phone, this service is offered by major telecom companies such as LG, SK, and KT in the arrivals lobby at Incheon and Gimpo International Airports. Your passport and a credit card are required upon pick-up and the rental phone must be returned to the same counter from which it was rented.`,
+          id: 6,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `If you prefer to rent a mobile phone, this service is offered by major telecom companies such as LG, SK, and KT in the arrivals lobby at Incheon and Gimpo International Airports. Your passport and a credit card are required upon pick-up and the rental phone must be returned to the same counter from which it was rented.`,
+              classNames: 'text',
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: GENERALK_TELEKTRENTAL,
+              desc: 'mobile rental',
+            },
+          ],
         },
-        { id: 9, type: 'image', path: WEATHER, desc: 'weather' },
         {
-          id: 10,
+          id: 7,
           type: 'sectionTitle',
           text: 'WiFi access',
         },
         {
-          id: 11,
-          type: 'text',
-          text: `Internet access is nearly omnipresent in Seoul. There are almost 10,000 free WiFi hotspots in the capital alone. You’ll find these at many restaurants and cafes, at airports, hotels and tourist information centres, at public facilities such as subway and railway stations, and on the high-speed KTX trains as well. Libraries, hospitals, universities, tourists spots, and even taxis offer complimentary WiFi access. Sometimes you’ll have to ask for the password (bimil beonho 비밀 번호) or log in to their system.
-          `,
+          id: 8,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 2,
+              type: 'image',
+              path: GENERALK_WIFIACCESS,
+              desc: 'wifi access',
+            },
+            {
+              id: 1,
+              type: 'text',
+              text: `Internet access is nearly omnipresent in Seoul. There are almost 10,000 free WiFi hotspots in the capital alone. You’ll find these at many restaurants and cafes, at airports, hotels and tourist information centres, at public facilities such as subway and railway stations, and on the high-speed KTX trains as well. Libraries, hospitals, universities, tourists spots, and even taxis offer complimentary WiFi access. Sometimes you’ll have to ask for the password (bimil beonho 비밀 번호) or log in to their system.
+              `,
+              classNames: 'text',
+            },
+          ],
         },
-        { id: 12, type: 'image', path: WEATHER, desc: 'weather' },
       ],
     },
   },
