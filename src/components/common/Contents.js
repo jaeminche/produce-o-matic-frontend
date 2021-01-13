@@ -154,6 +154,7 @@ const Wrapper = styled(Responsive)`
     width: 100%;
     object-fit: cover;
     margin: 0 auto;
+    margin-top: 25px;
   }
   .margin-tb {
     margin-top: 40px;
