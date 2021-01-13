@@ -129,7 +129,7 @@ const Wrapper = styled(Responsive)`
     font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
-    opacity: 1;
+    opacity: 0.8;
     position: relative;
   }
   .time-numbers {
