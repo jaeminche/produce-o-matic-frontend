@@ -77,8 +77,8 @@ const Wrapper = styled(Responsive)`
   .section-title {
     font-family: Lato;
     ${mq({
-      fontSize: ['22px', '28px', , '36px', , '46px', ,],
-    })}
+      fontSize: ['22px', '28px', , '32px', , '32px', '40px'],
+    })};
     font-style: normal;
     font-weight: 700;
     line-height: 46px;
@@ -389,9 +389,9 @@ const DrawRowComponent = (props) => {
       />
     ),
     sectionTitle: (
-      <h2 className={classNames || 'section-title'} style={style} key={key}>
+      <h3 className={classNames || 'section-title'} style={style} key={key}>
         {text}
-      </h2>
+      </h3>
     ),
   };
 
