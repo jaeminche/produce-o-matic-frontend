@@ -14,8 +14,8 @@ const ResponsiveBlock = styled.div`
   }
   @media (max-width: 768px) {
     width: 100%;
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 
