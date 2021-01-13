@@ -44,7 +44,7 @@ const Wrapper = styled(Responsive)`
   .logo {
     img {
       display: block;
-      ${mq({ height: ['25px', , , , , , ,] })}
+      ${mq({ height: ['23px', , , , , , ,] })}
       filter: invert(1);
     }
   }
@@ -100,10 +100,7 @@ const Header = ({
           />
         )}
 
-        <Link
-          to="/"
-          className={isMobile ? 'logo center' : 'logo absolute-left'}
-        >
+        <Link to="/" className={isMobile ? 'logo center' : 'logo'}>
           <img src={LOGO} alt="로고" />
         </Link>
         {!isMobile && (
