@@ -57,13 +57,19 @@ const Wrapper = styled(Responsive)`
     position: relative;
     overflow: hidden;
     img {
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      height: 100%;
-      width: auto;
-      transform: translate(-50%, -50%);
+      ${(props) =>
+        !props.isMobile &&
+        `
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 100%;
+        width: auto;
+        transform: translate(-50%, -50%);
+      `}
+
+      border-radius: inherit;
     }
   }
   .radius-round {
@@ -94,26 +100,22 @@ const Summary = ({ uiData, isMobile }) => {
         )} */}
         {flexBoxes && (
           <div className="text">
-            {flexBoxes.map((item, key) => (
-              <ul key={key}>
-                <li className="flex-container">
+            <ul>
+              {flexBoxes.map((item, key) => (
+                <li key={key} className="flex-container">
                   <div
                     className={
                       !isMobile && isOdd(key)
-                        ? 'flex-item reverse-order'
-                        : 'flex-item'
+                        ? 'flex-item radius-round reverse-order'
+                        : 'flex-item radius-round'
                     }
                   >
-                    <img
-                      src={item.image}
-                      alt={item.desc}
-                      className={'radius-round'}
-                    />
+                    <img src={item.image} alt={item.desc} />
                   </div>
                   <p className="flex-item">{ReactHtmlParser(item.text)}</p>
                 </li>
-              </ul>
-            ))}
+              ))}
+            </ul>
           </div>
         )}
       </Wrapper>
