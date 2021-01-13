@@ -10,7 +10,7 @@ import Hamburger from '../hamburger/Hamburger';
 import HamburgersideContainer from '../../containers/hamburger/HamburgersideContainer';
 
 const HeaderBlock = styled.div`
-  /* ${(props) => props.isFixed && `position: fixed;`} */
+  ${(props) => props.isFixed && `position: fixed;`}
   z-index: 60;
   width: 100%;
   background: white;
@@ -90,7 +90,7 @@ const Header = ({
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
-    <HeaderBlock>
+    <HeaderBlock isFixed={isFixed}>
       <Wrapper>
         {isMobile && <Hamburger />}
         {isMobile && (

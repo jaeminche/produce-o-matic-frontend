@@ -7,12 +7,9 @@ import { useMediaQuery } from 'react-responsive';
 const HeaderContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  // ? will give header a fixed position only on MainPage on desktop, always on mobile
-  const isFixed =
-    isMobile && !location.pathname.includes('general-knowledge')
-      ? true
-      : location.pathname === '/';
-  // const isFixed = true;
+  // ? will give Header a fixed position only on MainPage.
+  const isFixed = location.pathname === '/';
+  // const isFixed = isMobile && !location.pathname.includes('general-knowledge') ? true : location.pathname === '/';
   const activeMenu = location.pathname.split('/')[1];
   const activeSubMenu = location.pathname.split('/')[2];
 
