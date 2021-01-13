@@ -29,7 +29,7 @@ const HeaderBlock = styled.div`
  */
 const Wrapper = styled(Responsive)`
   position: relative;
-  height: 68px;
+  height: 44px; //header's height
   display: flex;
   align-items: center;
   color: ${palette.textgray[1]};
@@ -44,7 +44,7 @@ const Wrapper = styled(Responsive)`
   .logo {
     img {
       display: block;
-      ${mq({ height: ['35px', , , '35px', , , ,] })}
+      ${mq({ height: ['23px', , , , , , ,] })}
       filter: invert(1);
     }
   }
@@ -59,7 +59,7 @@ const Wrapper = styled(Responsive)`
   }
   .menuitem {
     color: rgba(165, 165, 165, 1);
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 15px;
   }
   .isActive {
@@ -100,10 +100,7 @@ const Header = ({
           />
         )}
 
-        <Link
-          to="/"
-          className={isMobile ? 'logo center' : 'logo absolute-left'}
-        >
+        <Link to="/" className={isMobile ? 'logo center' : 'logo'}>
           <img src={LOGO} alt="로고" />
         </Link>
         {!isMobile && (

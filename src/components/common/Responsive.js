@@ -4,13 +4,13 @@ import styled from 'styled-components/macro';
 const ResponsiveBlock = styled.div`
   padding-left: 30px;
   padding-right: 30px;
-  width: 1200px;
+  width: 1040px;
   margin: 0 auto;
 
   /* todo: change it mobile-first */
   @media (max-width: 1200px) {
     /* width: 768px; */
-    width: 100%;
+    width: 74%;
   }
   @media (max-width: 768px) {
     width: 100%;

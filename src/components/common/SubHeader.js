@@ -7,10 +7,10 @@ const SubHeaderBlock = styled.nav`
   position: sticky;
   top: 0;
   z-index: 10;
-  padding-top: 20px;
+  padding-top: 11px;
   padding-bottom: 20px;
   text-align: center;
-  height: 68px;
+  height: 44px; // header's height
   z-index: 9;
   width: 100%;
   overflow: hidden;
@@ -47,7 +47,7 @@ const Wrapper = styled.div`
 
   .menuitem {
     color: rgba(165, 165, 165, 1);
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 15px;
   }
   .menuitem:last-child {

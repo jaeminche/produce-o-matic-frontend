@@ -117,9 +117,9 @@ const Hamburgerside = (props) => {
                     : 'menuitem'
                 }
               >
-                {/* TODO: CANNOT PLACE AN <A> IN AN <A> */}
                 {menu.text}
-                <Submenu>
+                {/* TODO: CANNOT PLACE AN <A> IN AN <A> */}
+                {/* <Submenu>
                   {menu.submenus.map((submenu, key) => (
                     <li
                       key={key}
@@ -132,7 +132,7 @@ const Hamburgerside = (props) => {
                       <NavLink to={submenu.path}>{submenu.text}</NavLink>
                     </li>
                   ))}
-                </Submenu>
+                </Submenu> */}
               </NavLink>
             </li>
           ))}

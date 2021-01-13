@@ -85,7 +85,7 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FooterRow = styled.div`
-  height: ${(props) => (props.isMobile ? 'auto' : '60px')};
+  height: 'auto';
   border: 1px solid #a5a5a5;
   box-sizing: border-box;
   display: flex;
@@ -124,7 +124,7 @@ const ResultTableStyles = styled.table`
   font-style: normal;
   font-weight: normal;
   ${mq({
-    fontSize: ['13px', '16px', , '18px', , , ,],
+    fontSize: ['13px', '16px', , '17px', , , ,],
   })}
   width: 100% !important;
   border-spacing: 0;
