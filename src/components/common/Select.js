@@ -2,16 +2,18 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
 import { ARROW_OPTION } from '../../assets';
-import { disabledDefault } from '../../lib/constants/budgetomatic';
+import { useMediaQuery } from 'react-responsive';
 
 const StyledSelect = styled.select`
   ${(props) => props.maxWidth && `max-width: ${props.maxWidth}`};
   ${(props) => props.width && `width: ${props.width}`};
   /* ${(props) => (props.width ? 'width: 100px' : 'max-width: 300px')}; */
-  height: 48px;
+  height: 30px;
   border: 1px solid ${palette.budgetomatic.border[1]};
   border-radius: 5px;
-  padding: 13px;
+  padding: 5px;
+  font-size: ${(props) => (props.isMobile ? '12px' : '18px')};
+  text-align-last: ${(props) => (props.textLeft ? 'left' : 'center')};
 
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -23,6 +25,7 @@ const StyledSelect = styled.select`
   option {
     width: inherit;
     max-width: inherit;
+    font-size: 14px;
     line-height: 20px;
   }
   option:checked {
@@ -42,7 +45,9 @@ const Select = (props) => {
     options,
     maxWidth,
     width = 'false',
+    textLeft,
   } = props;
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const selectedItemCodes = function () {
     return items.map((item) => item.checked && item.code);
@@ -57,7 +62,8 @@ const Select = (props) => {
       required={required}
       maxWidth={maxWidth}
       width={width}
-      // {...props}
+      isMobile={isMobile}
+      textLeft={textLeft}
     >
       {options.map((option, key) => (
         <option

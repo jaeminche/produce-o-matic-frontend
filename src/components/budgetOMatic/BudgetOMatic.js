@@ -51,13 +51,13 @@ const StyledTable = styled.div`
     border-bottom: 1px solid ${palette.budgetomatic.border[0]};
     width: 100%;
     ${mq({
-      padding: ['9px 18px', '10px 20px', , '20px 40px', , , ,],
+      padding: ['9px 18px', '10px 20px', , '10px 40px', , , ,],
     })};
     background: ${palette.budgetomatic.table[2]};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    min-height: 100px;
+    min-height: 61px;
   }
   .row-container:first-child {
     border-radius: 13px 13px 0 0;
@@ -84,17 +84,17 @@ const StyledTable = styled.div`
       minWidth: ['80px', '90px', , '150px', , , ,],
     })};
     ${mq({
-      marginRight: ['40px', '45px', , '70px', , '90px', ,],
+      marginRight: ['40px', '45px', , '55px', , '90px', ,],
     })};
   }
   .left-left-item {
     flex: 2;
     text-align: left;
     ${mq({
-      minWidth: ['70px', '90px', '140px', , , '300px', ,],
+      minWidth: ['130px', '150px', '160px', , , '300px', ,],
     })};
     ${mq({
-      marginRight: ['10px', '45px', , '70px', , '90px', ,],
+      marginRight: ['10px', '20px', '45px', , , '90px', ,],
     })};
   }
   .vertically-center {
@@ -168,8 +168,8 @@ const StyledTable = styled.div`
   .plus-parent {
     border-radius: 50%;
     ${mq({
-      width: ['35px', , , '50px', , , ,],
-      height: ['35px', , , '50px', , , ,],
+      width: ['35px', , , '40px', , , ,],
+      height: ['35px', , , '40px', , , ,],
       marginRight: ['-8px', '-10px', , '-20px', , , ,],
     })};
     position: relative;
@@ -194,8 +194,8 @@ const StyledTable = styled.div`
   .plus-child-mark {
     position: absolute;
     ${mq({
-      top: ['18%', , , '25%', , , ,],
-      left: ['18%', , , '25%', , , ,],
+      top: ['18%', , , '20%', , , ,],
+      left: ['18%', , , '20%', , , ,],
     })};
   }
 `;
@@ -306,6 +306,7 @@ const Controller1 = (props) => {
             id="controller02-daysOfShooting"
             name="daysOfShooting"
             required={true}
+            width={'35px'}
             maxWidth={'300px'}
             options={OPTIONS.daysOfShooting}
           />
@@ -323,6 +324,7 @@ const Controller1 = (props) => {
             id="controller03-currency"
             name="currency"
             required={true}
+            width={'55px'}
             maxWidth={'300px'}
             options={OPTIONS.currency}
           />
@@ -471,6 +473,7 @@ const Calculator = (props) => {
                                   items={group.budgetItems}
                                   itemNamesNextToOption={itemNamesNextToOption}
                                   options={options}
+                                  textLeft
                                 />
                               </div>
                             </div>
@@ -492,8 +495,8 @@ const Calculator = (props) => {
                                     id="calculator-amnt"
                                     name={`[${group.code}, ${budgetItem.code}, "amnt"]`}
                                     required={true}
-                                    width={'70px'}
-                                    maxWidth={'70px'}
+                                    width={'35px'}
+                                    maxWidth={'55px'}
                                     options={OPTIONS.amnt}
                                   />
                                   <div className="vertically-center margin-l">
@@ -509,8 +512,8 @@ const Calculator = (props) => {
                                     id="calculator-days"
                                     name={`[${group.code}, ${budgetItem.code}, "days"]`}
                                     required={true}
-                                    width={'70px'}
-                                    maxWidth={'70px'}
+                                    width={'35px'}
+                                    maxWidth={'55px'}
                                     options={OPTIONS.days}
                                   />
                                   <div className="vertically-center margin-l">
