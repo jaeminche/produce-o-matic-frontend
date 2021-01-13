@@ -14,12 +14,12 @@ const ContentsBlock = styled.div`
 
 const SubHeaderTabBlock = styled.nav`
   position: sticky;
-  top: ${(props) => (props.isMobile ? '0' : '68px')};
+  top: 44px; // header's height
   z-index: 10;
   ${(props) => props.isMobile && `margin-top: 30px`};
   /* padding-bottom: 20px; */
   text-align: center;
-  height: 68px;
+  height: 48px; //header's height
   z-index: 10;
   width: 100%;
   overflow: hidden;
@@ -47,7 +47,7 @@ const SubHeaderTabWrapper = styled.div`
   .tab-bar {
     /* border-top: 1px solid white;
     border-bottom: 1px solid white; */
-    padding: ${(props) => (props.isMobile ? '20px 30px' : '20px 30px')};
+    padding: ${(props) => (props.isMobile ? '11px 30px' : '11px 30px')};
   }
   li {
     display: inline-block;
@@ -56,7 +56,7 @@ const SubHeaderTabWrapper = styled.div`
     padding: 0 5px;
   }
   .menuitem {
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 15px;
   }
   a {
@@ -77,8 +77,8 @@ const Wrapper = styled(Responsive)`
   .section-title {
     font-family: Lato;
     ${mq({
-      fontSize: ['22px', '28px', , '36px', , '46px', ,],
-    })}
+      fontSize: ['22px', '28px', , '32px', , '32px', '40px'],
+    })};
     font-style: normal;
     font-weight: 700;
     line-height: 46px;
@@ -90,8 +90,8 @@ const Wrapper = styled(Responsive)`
     color: ${palette.textgray[0]};
     font-family: Lato;
     ${mq({
-      fontSize: ['16px', '18px', , '24px', , , ,],
-    })}
+      fontSize: ['17px', '17px', , '17px', , '21px', ,],
+    })};
     font-style: normal;
     font-weight: 400;
     line-height: 31px;
@@ -103,12 +103,13 @@ const Wrapper = styled(Responsive)`
     text-align: center;
     margin-top: inherit;
     position: absolute;
-    bottom: 0;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .time-backgroundimage {
+    height: 130px;
     /* position: absolute; */
     /* top: 0; */
     /* ${(props) => props.isMobile && `height: 200px`}; */
@@ -123,17 +124,18 @@ const Wrapper = styled(Responsive)`
   }
   .time-title {
     ${mq({
-      fontSize: ['20px', '25px', , '40px', , , ,],
+      fontSize: ['22px', '28px', , '32px', , '32px', '40px'],
     })};
     font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
-    opacity: 1;
+    opacity: 0.8;
+    position: relative;
   }
   .time-numbers {
     ${mq({
-      fontSize: ['15px', '20px', , '30px', '50px', '70px', ,],
-    })}
+      fontSize: ['22px', '28px', , '32px', , '32px', '40px'],
+    })};
     font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
@@ -146,14 +148,20 @@ const Wrapper = styled(Responsive)`
     ${(props) => props.isMobile && `padding: 10px`};
   }
   .vertical-center {
+    width: 100%;
     ${mq({
       marginBottom: ['5px', '15px', '15px', '15px', , , ,],
-    })}
+    })};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
   }
   img {
     width: 100%;
     object-fit: cover;
     margin: 0 auto;
+    margin-top: 10px;
   }
   .margin-tb {
     margin-top: 40px;
@@ -166,8 +174,9 @@ const Wrapper = styled(Responsive)`
     /* ${(props) => !props.isMobile && `margin: -20px;`}// space between */
   }
   .flex-item-responsive {
-    width: ${(props) => (props.isMobile ? '100%' : '50%')};
-    ${(props) => !props.isMobile && `margin: 20px;`}// space between
+    width: ${(props) => (props.isMobile ? '100%' : '45%')};
+    /* ${(props) => !props.isMobile && `margin: 20px;`} // space between
+    ${(props) => props.key === 1 && `margin-left: 0;`} */
   }
   .positionRelative {
     position: relative;
@@ -220,6 +229,11 @@ const Wrapper = styled(Responsive)`
   .header-0-2-3 {
     display: none;
   }
+
+  .smaller-image {
+    ${(props) => !props.isMobile && `width: 75%;`}
+    display: block;
+  }
 `;
 
 const FlexContainerResponsive = (props) => {
@@ -234,7 +248,7 @@ const FlexContainerResponsive = (props) => {
       {items.map((item, key) => (
         <li
           key={key}
-          className={`${itemsLiHasMinWidth ? 'itemsLiHasMinWidth' : null} ${
+          className={`${itemsLiHasMinWidth ? 'itemsLiHasMinWidth' : ''} ${
             item.type === 'imageWithTextInside'
               ? 'flex-item-responsive positionRelative'
               : 'flex-item-responsive'
@@ -254,10 +268,14 @@ const FlexContainerResponsive = (props) => {
                   style={{ width: '100%' }}
                   className={`textInImage ${item.customCssForText}`}
                 >
+                  <img
+                    src={item.path}
+                    alt={item.desc}
+                    className={item.customCssForImage}
+                  />
                   <div className={'vertical-center'}>
                     <>
                       <div>{item.text}</div>
-                      {/* <br /> */}
                       <div className={customcss}>
                         {times &&
                           times.length > 0 &&
@@ -265,19 +283,15 @@ const FlexContainerResponsive = (props) => {
                       </div>
                     </>
                   </div>
-                  {item.customComponent && item.customComponent}
                 </div>
               )}
-              <img
-                src={item.path}
-                alt={item.desc}
-                className={item.customCssForImage}
-              />
+
+              {item.customComponent && item.customComponent}
             </>
           ) : (
-            <p key={key} className={item.classNames || 'text'} style={style}>
+            <div key={key} className={item.classNames || 'text'} style={style}>
               {ReactHtmlParser(item.text)}
-            </p>
+            </div>
           )}
         </li>
       ))}
@@ -285,28 +299,28 @@ const FlexContainerResponsive = (props) => {
   );
 };
 
-const CustomComponentsInflexContainer = (props) => {
-  const { items, key, classNames, style } = props;
-  return (
-    <ul
-      key={key}
-      className={classNames ? classNames : 'flex-container-responsive'}
-    >
-      {items.map((item, key) => (
-        <li
-          key={key}
-          className={
-            item.type === 'imageWithTextInside'
-              ? 'flex-item-responsive positionRelative'
-              : 'flex-item-responsive'
-          }
-        >
-          {item.customComponent && item.customComponent}
-        </li>
-      ))}
-    </ul>
-  );
-};
+// const CustomComponentsInflexContainer = (props) => {
+//   const { items, key, classNames, style } = props;
+//   return (
+//     <ul
+//       key={key}
+//       className={classNames ? classNames : 'flex-container-responsive'}
+//     >
+//       {items.map((item, key) => (
+//         <li
+//           key={key}
+//           className={
+//             item.type === 'imageWithTextInside'
+//               ? 'flex-item-responsive positionRelative'
+//               : 'flex-item-responsive'
+//           }
+//         >
+//           {item.customComponent && item.customComponent}
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// };
 
 const Tabs = (props) => {
   const { tabs, isMobile, key } = props;
@@ -366,18 +380,18 @@ const DrawRowComponent = (props) => {
         style={style}
       />
     ),
-    customComponentsInflexContainer: (
-      <CustomComponentsInflexContainer
-        items={items}
-        key={key}
-        classNames={classNames}
-        style={style}
-      />
-    ),
+    // customComponentsInflexContainer: (
+    //   <CustomComponentsInflexContainer
+    //     items={items}
+    //     key={key}
+    //     classNames={classNames}
+    //     style={style}
+    //   />
+    // ),
     text: (
-      <p key={key} className={classNames || 'text'} style={style}>
+      <div key={key} className={classNames || 'text'} style={style}>
         {ReactHtmlParser(text)}
-      </p>
+      </div>
     ),
     tabs: (
       <Tabs
@@ -389,9 +403,9 @@ const DrawRowComponent = (props) => {
       />
     ),
     sectionTitle: (
-      <h2 className={classNames || 'section-title'} style={style} key={key}>
+      <h3 className={classNames || 'section-title'} style={style} key={key}>
         {text}
-      </h2>
+      </h3>
     ),
   };
 

@@ -45,7 +45,14 @@ const ContentsContainer = ({ pagekey, location }) => {
         rows={rows}
         tabRows={_tabRows}
         isMobile={isMobile}
-        times={time ? [formatTime(time, true), formatTime(time)] : null}
+        times={
+          time
+            ? [
+                formatTime({ date: time, koreatime: true }),
+                formatTime({ date: time, koreatime: false }),
+              ]
+            : null
+        }
       />
     </>
   );

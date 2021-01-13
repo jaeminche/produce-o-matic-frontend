@@ -11,7 +11,8 @@ const StyledPageTitle = styled.h1`
     fontSize: ['26px', '32px', , '40px', , '50px', ,],
   })};
   margin-bottom: 0;
-  margin-top: ${(props) => (props.minusmargin ? '0' : '68px')};
+  margin-top: ${(props) =>
+    props.minusmargin ? '0' : '44px'}; // header's height
   text-align: center;
 `;
 

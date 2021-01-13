@@ -73,7 +73,7 @@ const ImgBlock = styled.div`
   }
   .title {
     ${mq({
-      fontSize: ['28px', '34px', , '46px', , '60px', ,],
+      fontSize: ['28px', '34px', , '46px', , , ,],
     })}
   }
   .subtitle {

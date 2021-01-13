@@ -1,14 +1,14 @@
-function formatTime(date, koreatime = false, where) {
+function formatTime({ date, koreatime }) {
   const offset = 9;
   let hour = koreatime ? date.getUTCHours() + offset : date.getHours();
   let min = koreatime ? date.getUTCMinutes() : date.getMinutes();
   let sec = koreatime ? date.getUTCSeconds() : date.getSeconds();
   let midday = 'AM';
   // console.log('시간', koreatime, where, hour, midday);
-  console.log('====hour전', hour);
-  midday = hour >= 12 ? 'PM' : 'AM';
+  console.log('====hour전', koreatime, hour);
+  midday = hour >= 12 && hour < 24 ? 'PM' : 'AM';
   hour = hour === 0 ? 12 : hour > 24 ? hour - 24 : hour > 12 ? hour - 12 : hour;
-  console.log('====hour후', hour);
+  console.log('====hour후', koreatime, hour);
 
   hour = addZero(hour);
   min = addZero(min);

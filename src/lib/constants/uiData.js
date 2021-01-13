@@ -246,30 +246,42 @@ const uiData = {
         },
         {
           id: 5,
-          type: 'text',
-          text:
-            'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+          type: 'flexContainerResponsive',
+          items: [
+            { id: 2, type: 'image', path: GENERALK_WEATHER, desc: 'weather' },
+            {
+              id: 1,
+              type: 'text',
+              text:
+                'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+              classNames: 'text',
+            },
+          ],
         },
-        { id: 6, type: 'image', path: GENERALK_WEATHER, desc: 'weather' },
         {
-          id: 7,
+          id: 6,
           type: 'sectionTitle',
           text: 'Language',
         },
         {
-          id: 8,
+          id: 7,
           type: 'flexContainerResponsive',
           items: [
             {
               id: 1,
               type: 'text',
-              text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.
-    
-                For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.`,
+              text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.`,
               classNames: 'text',
             },
             { id: 2, type: 'image', path: GENERALK_LANGUAGE, desc: 'language' },
           ],
+        },
+        {
+          id: 8,
+          type: 'text',
+          text:
+            'For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.',
+          classNames: 'text',
         },
       ],
       'security-health': [
@@ -280,64 +292,103 @@ const uiData = {
         },
         {
           id: 2,
-          type: 'text',
-          text: `A valid passport is required to enter the Republic of Korea (ROK). Nationals of non-visa waiver countries need to apply for visas at a Korean embassy or consulate before entering South Korea. A visa is not required for nationals of visa waiver or visa-free countries who wish to enter the country for tourism purposes only. You can find more detailed information on the <a href='https://www.visa.go.kr/'>government website</a>.
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `A valid passport is required to enter the Republic of Korea (ROK). Nationals of non-visa waiver countries need to apply for visas at a Korean embassy or consulate before entering South Korea. A visa is not required for nationals of visa waiver or visa-free countries who wish to enter the country for tourism purposes only. You can find more detailed information on the <a href='https://www.visa.go.kr/'>government website</a>.
             `,
+              classNames: 'text',
+            },
+            { id: 2, type: 'image', path: GENERALK_VISA, desc: 'visa' },
+          ],
         },
-        { id: 3, type: 'image', path: GENERALK_VISA, desc: 'visa' },
         {
-          id: 4,
+          id: 3,
           type: 'sectionTitle',
           text: 'Health',
         },
         {
-          id: 5,
-          type: 'text',
-          text: `The CDC (Centers for Disease Control and Prevention) and WHO (World Health Organization) recommend the following vaccinations for travellers to South Korea:
+          id: 4,
+          type: 'flexContainerResponsive',
+          items: [
+            { id: 1, type: 'image', path: GENERALK_HEALTH, desc: 'health' },
+            {
+              id: 2,
+              type: 'text',
+              text: `The CDC (Centers for Disease Control and Prevention) and WHO (World Health Organization) recommend the following vaccinations for travellers to South Korea:
             Hepatitis A
             Hepatitis B
             Japanese Encephalitis
-            Rabies
-            
-            Currently the COVID-19 situation is well managed and under control. South Korea introduced what is considered one of the best-organised epidemic control programs in the world. It is for this reason that the country’s daily virus cases remain in the mere dozens. As Netflix has pointed out, Korea is one of the few countries worldwide that is able to safely produce movies and TV series right now.
-            `,
+            Rabies`,
+              classNames: 'text',
+            },
+          ],
         },
-        { id: 6, type: 'image', path: GENERALK_HEALTH, desc: 'health' },
         {
-          id: 7,
+          id: 4,
+          type: 'text',
+          classNames: 'text',
+          text:
+            'Currently the COVID-19 situation is well managed and under control. South Korea introduced what is considered one of the best-organised epidemic control programs in the world. It is for this reason that the country’s daily virus cases remain in the mere dozens. As Netflix has pointed out, Korea is one of the few countries worldwide that is able to safely produce movies and TV series right now.',
+        },
+        {
+          id: 5,
           type: 'sectionTitle',
           text: 'Security',
         },
         {
-          id: 8,
-          type: 'text',
-          text: `South Korea is considered one of the safest countries in the world when it comes to crimes, including pickpocketing. It’s better to be safe than sorry, but it may reassure you to know that in cafes and restaurants many individuals leave their bags, notebooks and even cellphones to reserve a seat or when they use the restroom, because theft is so rare. Guns and drugs are illegal in Korea and it is a rarity to see any kind of violence from the public or the police.
-
-          Although the relations between North and South Korea is often a hotly contested topic in the media, South Koreans themselves rarely worry about an actual attack. In the 70 years since the North and South were divided as a consequence of the Korean War, there has never been a major attack or conflict between the two.
-          `,
+          id: 6,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `South Korea is considered one of the safest countries in the world when it comes to crimes, including pickpocketing. It’s better to be safe than sorry, but it may reassure you to know that in cafes and restaurants many individuals leave their bags, notebooks and even cellphones to reserve a seat or when they use the restroom, because theft is so rare.`,
+              classNames: 'text',
+            },
+            { id: 2, type: 'image', path: GENERALK_SECURITY, desc: 'security' },
+          ],
         },
-        { id: 9, type: 'image', path: GENERALK_SECURITY, desc: 'security' },
         {
-          id: 10,
+          id: 7,
+          type: 'text',
+          classNames: 'text',
+          text: `Guns and drugs are illegal in Korea and it is a rarity to see any kind of violence from the public or the police.
+
+          Although the relations between North and South Korea is often a hotly contested topic in the media, South Koreans themselves rarely worry about an actual attack. In the 70 years since the North and South were divided as a consequence of the Korean War, there has never been a major attack or conflict between the two.`,
+        },
+        {
+          id: 8,
           type: 'sectionTitle',
           text: 'Emergency numbers',
         },
         {
-          id: 11,
-          type: 'text',
-          text: `To call an ambulance or the fire department, dial 119. For the police, it’s 112. In case of a medical emergency, calling 1339 will connect to Seoul’s medical information centre aimed specifically at foreigners.
-
-          111 is the number to call for the National Intelligence Service, 1330 for the Tourism and Translation Service, and 122 for the coast guard.
-           
-          Another useful number to be aware of is 120, <a href='https://www.120dasan.or.kr/static/lang/lang1.html'>Dasan Call Center</a>. It is a helpline offering general information on living and tourism in Seoul.
-          
-          `,
+          id: 9,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'image',
+              path: GENERALK_EMERGENCYNUMBERS01,
+              desc: 'emergency numbers',
+            },
+            {
+              id: 2,
+              type: 'text',
+              text: `To call an ambulance or the fire department, dial 119. For the police, it’s 112. In case of a medical emergency, calling 1339 will connect to Seoul’s medical information centre aimed specifically at foreigners.`,
+              classNames: 'text',
+            },
+          ],
         },
         {
-          id: 12,
-          type: 'image',
-          path: GENERALK_EMERGENCYNUMBERS01,
-          desc: 'emergency numbers',
+          id: 10,
+          type: 'text',
+          classNames: 'text',
+          text: `111 is the number to call for the National Intelligence Service, 1330 for the Tourism and Translation Service, and 122 for the coast guard.
+           
+          Another useful number to be aware of is 120, <a href='https://www.120dasan.or.kr/static/lang/lang1.html'>Dasan Call Center</a>. It is a helpline offering general information on living and tourism in Seoul.`,
         },
       ],
       money: [
@@ -348,37 +399,58 @@ const uiData = {
         },
         {
           id: 2,
-          type: 'text',
-          text: `The Korean currency is called Won. Coins range from 10 to 500 KRW, while bills range from 1,000 to 50,000 KRW.
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'text',
+              text: `The Korean currency is called Won. Coins range from 10 to 500 KRW, while bills range from 1,000 to 50,000 KRW.
  
-            As of 24th Aug 2020, 1 KRW = 0.00084 USD or 1 USD = 1187,47 KRW.
-            
-            South Korea’s major banks offer currency exchange: Kookmin, Woori, Shinhan, etc. Currency exchange offices with good exchange rates can also be found in Seoul districts Itaewon and Myeongdong.`,
+              As of 24th Aug 2020, 1 KRW = 0.00084 USD or 1 USD = 1187,47 KRW.`,
+              classNames: 'text',
+            },
+            {
+              id: 2,
+              type: 'image',
+              path: GENERALK_CURRENCY,
+              desc: 'Currency & Money Exchange',
+            },
+          ],
+        },
+        {
+          id: 2,
+          type: 'text',
+          text: `South Korea’s major banks offer currency exchange: Kookmin, Woori, Shinhan, etc. Currency exchange offices with good exchange rates can also be found in Seoul districts Itaewon and Myeongdong.`,
+          classNames: 'text',
         },
         {
           id: 3,
-          type: 'image',
-          path: GENERALK_CURRENCY,
-          desc: 'Currency & Money Exchange',
-        },
-        {
-          id: 4,
           type: 'sectionTitle',
           text: 'Banking & Payment',
         },
         {
-          id: 5,
-          type: 'text',
-          text: `Banks are open in Seoul from 9:00am to 4:00pm, Monday to Friday. At Incheon International Airport they are open daily from 6:00am to 9:00pm. Don’t be surprised if you’re unable to draw money from an ATM between 11:30pm and midnight on a Sunday - for many ATMs this half-hour time slot is their maintenance time. 
-            
-            In South Korea it is very common to pay by credit card and many individuals also use Samsung Pay and Zero Pay. Micropayments can be made in convenience stores, taxis and at subway stations.
-            `,
+          id: 4,
+          type: 'flexContainerResponsive',
+          items: [
+            {
+              id: 1,
+              type: 'image',
+              path: GENERALK_BANKINGPAYMENT01,
+              desc: 'banking & payment',
+            },
+            {
+              id: 2,
+              type: 'text',
+              text: `Banks are open in Seoul from 9:00am to 4:00pm, Monday to Friday. At Incheon International Airport they are open daily from 6:00am to 9:00pm. Don’t be surprised if you’re unable to draw money from an ATM between 11:30pm and midnight on a Sunday - for many ATMs this half-hour time slot is their maintenance time.`,
+              classNames: 'text',
+            },
+          ],
         },
         {
-          id: 6,
-          type: 'image',
-          path: GENERALK_BANKINGPAYMENT01,
-          desc: 'banking & payment',
+          id: 2,
+          type: 'text',
+          text: `In South Korea it is very common to pay by credit card and many individuals also use Samsung Pay and Zero Pay. Micropayments can be made in convenience stores, taxis and at subway stations.`,
+          classNames: 'text',
         },
       ],
       transportation: [
@@ -396,14 +468,19 @@ const uiData = {
               type: 'text',
               text: `To get around in the capital and elsewhere, a well-functioning map is essential. Since Google Maps hasn’t legally been allowed to map South Korea in many years, it’s not a viable option. Instead, make sure to download the app Naver Map (iOS or Android) for accurate directions and locations.
             
-              Popular places of interest can easily be found on Naver Map when typing in English, but often there won’t be any English results for restaurants or cafes. If the spot is listed on Google, the roundabout way is to copy the Korean name from there and paste it into Naver Map in order to find the location.
-              
-              You can download the most up-to-date subway map on the Seoul Metro website. It’s available in Korean, English, Chinese and Japanese.
-              `,
+              Popular places of interest can easily be found on Naver Map when typing in English, but often there won’t be any English results for restaurants or cafes.`,
               classNames: 'text',
             },
             { id: 2, type: 'image', path: NAVERMAP, desc: 'Naver Map' },
           ],
+        },
+        {
+          id: 2,
+          type: 'text',
+          text: `If the spot is listed on Google, the roundabout way is to copy the Korean name from there and paste it into Naver Map in order to find the location.
+              
+          You can download the most up-to-date subway map on the Seoul Metro website. It’s available in Korean, English, Chinese and Japanese.`,
+          classNames: 'text',
         },
         // { id: 3, type: 'image', path: NAVERMAP, desc: 'maps' },
         // {
@@ -526,12 +603,18 @@ const uiData = {
       food: [
         {
           id: 1,
+          type: 'sectionTitle',
+          text: ' ',
+        },
+        {
+          id: 1,
           type: 'text',
           text: `Korean food culture is diverse and marked by innovation. Many cafes will serve the latest drink that everyone is talking about, while restaurants serve their own specialties that quickly become trendy spots, attracting Seoul’s novelty food seekers.
 
             In contrast to this, there are everyday affordable eateries such as Kimbab Cheonguk or Bonjuk and Bibimbap Cafe, as well as more traditional restaurants with a range of different banchan (side dishes). Some restaurants even specialise in Buddhist temple food, a great place to find vegan food.
             
             Tap water is drinkable, but for convenience it’s the norm to use filter machines. You’ll find filtered water available for free in most restaurants, cafes, libraries, etc. Restrooms are safe and free to use everywhere and most importantly, they’re ubiquitous. They can be found in restaurants, cafes, public buildings and at every subway station.`,
+          classNames: 'text',
         },
         {
           id: 2,
@@ -550,13 +633,7 @@ const uiData = {
 
               A great source for vegan- and vegetarian-friendly dining options in Seoul is <a href='https://www.happycow.net/asia/south_korea/seoul/'>Happycow</a>. Be sure to check it out.
               
-              Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea. These are certified under four categories:
-              Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
-              Self-certified as halal
-              Muslim-friendly restaurants with a halal menu
-              Pork-free
-              
-              The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
+              Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea.`,
             },
             {
               id: 2,
@@ -565,6 +642,18 @@ const uiData = {
               desc: 'Korean dishes',
             },
           ],
+        },
+        {
+          id: 2,
+          type: 'text',
+          text: `These are certified under four categories:
+          Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
+          Self-certified as halal
+          Muslim-friendly restaurants with a halal menu
+          Pork-free
+          
+          The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
+          classNames: 'text',
         },
         {
           id: 5,
@@ -639,11 +728,16 @@ const uiData = {
             {
               id: 1,
               type: 'text',
-              text: `An alternative to getting a SIM card is renting a WiFi egg or WiFi router. If all you need is access to the internet without making phone calls or sending text messages, then a WiFi egg is a hassle-free option. It also means that other crew members can connect to the WiFi with their phones, iPads and laptops, without incurring an additional charge.
-              `,
+              text: `An alternative to getting a SIM card is renting a WiFi egg or WiFi router. If all you need is access to the internet without making phone calls or sending text messages, then a WiFi egg is a hassle-free option.`,
               classNames: 'text',
             },
           ],
+        },
+        {
+          id: 2,
+          type: 'text',
+          text: `It also means that other crew members can connect to the WiFi with their phones, iPads and laptops, without incurring an additional charge.`,
+          classNames: 'text',
         },
         {
           id: 5,
@@ -686,11 +780,16 @@ const uiData = {
             {
               id: 1,
               type: 'text',
-              text: `Internet access is nearly omnipresent in Seoul. There are almost 10,000 free WiFi hotspots in the capital alone. You’ll find these at many restaurants and cafes, at airports, hotels and tourist information centres, at public facilities such as subway and railway stations, and on the high-speed KTX trains as well. Libraries, hospitals, universities, tourists spots, and even taxis offer complimentary WiFi access. Sometimes you’ll have to ask for the password (bimil beonho 비밀 번호) or log in to their system.
-              `,
+              text: `Internet access is nearly omnipresent in Seoul. There are almost 10,000 free WiFi hotspots in the capital alone. You’ll find these at many restaurants and cafes, at airports, hotels and tourist information centres, at public facilities such as subway and railway stations, and on the high-speed KTX trains as well.`,
               classNames: 'text',
             },
           ],
+        },
+        {
+          id: 2,
+          type: 'text',
+          text: `Libraries, hospitals, universities, tourists spots, and even taxis offer complimentary WiFi access. Sometimes you’ll have to ask for the password (bimil beonho 비밀 번호) or log in to their system.`,
+          classNames: 'text',
         },
       ],
     },
@@ -739,23 +838,17 @@ const uiData = {
         type: 'text',
         text: `General Drone Rules in Korea 
         - (Source:  <a href='http://jasonteale.com/blog/2019/03/flying-a-drone-in-south-korea'>http://jasonteale.com/blog/2019/03/flying-a-drone-in-south-korea/</a>) 
-            Source: UAV Systems International. *edited to add more clarity for Korea.
+            Source: UAV Systems International. 
+            *edited to add more clarity for Korea.
 
-            You cannot fly higher than 150 meters (492 feet). You can set the limit in your DJI Go4 app.
-You cannot fly within 5.5km of airfields or in areas where aircraft are operating. These will be regulated
- in the app but also keep an eye out for hospital helipads (there are more here than you may realize).
-You must fly during daylight hours and only fly in good weather conditions. Use UAV Forecast to let you know the conditions.
-Avoid flying over crowds and respect the privacy of others. This goes double for places like Haeundae beach and other areas. There are police that will patrol these areas due to a higher rate of people taking pictures of sunbathers without permission.
-You cannot fly near Seoul Plaza, military installations, government facilities, power plants, or areas of facilities related to national security
-You cannot fly when there is low visibility or yellow dust. This is a particular issue this year and will continue to be a problem. Fly with caution.
-Do not fly your drone beyond line of sight. This can be an issue for smaller drones but keep it in mind when flying.`,
+            You cannot fly higher than 150 meters (492 feet). You can set the limit in your DJI Go4 app. You cannot fly within 5.5km of airfields or in areas where aircraft are operating. These will be regulated in the app but also keep an eye out for hospital helipads (there are more here than you may realize). You must fly during daylight hours and only fly in good weather conditions. Use UAV Forecast to let you know the conditions. Avoid flying over crowds and respect the privacy of others. This goes double for places like Haeundae beach and other areas. There are police that will patrol these areas due to a higher rate of people taking pictures of sunbathers without permission. You cannot fly near Seoul Plaza, military installations, government facilities, power plants, or areas of facilities related to national security. You cannot fly when there is low visibility or yellow dust. This is a particular issue this year and will continue to be a problem. Fly with caution. Do not fly your drone beyond line of sight. This can be an issue for smaller drones but keep it in mind when flying.`,
       },
       {
         id: 7,
         type: 'sectionTitle',
         text: 'Drone Zone Maps (Seoul)',
       },
-      { id: 8, type: 'image', path: MAP_DRONE },
+      { id: 8, type: 'image', path: MAP_DRONE, classNames: 'smaller-image' },
     ],
   },
   contract: {
@@ -764,17 +857,30 @@ Do not fly your drone beyond line of sight. This can be an issue for smaller dro
     parent: 'produce-o-manual',
     rows: [
       { id: 1, type: 'title', text: 'Contract' },
-      { id: 2, type: 'image', path: CONTRACT01 },
+      {
+        id: 7,
+        type: 'flexContainerResponsive',
+        items: [
+          { id: 2, type: 'image', path: CONTRACT01, desc: 'contract' },
+          {
+            id: 1,
+            type: 'text',
+            text: `Long before Bong Joonho’s Parasite winning the Oscars, South Korea’s film industry has long been known outside the world for its unique community culture, work ethics and high quality but also for the notorious excessive overtime on the other hand.`,
+            classNames: 'text',
+          },
+        ],
+      },
       {
         id: 3,
         type: 'text',
-        text: `Long before Bong Joonho’s Parasite winning the Oscars, South Korea’s film industry has long been known outside the world for its unique community culture, work ethics and high quality but also for the notorious excessive overtime on the other hand. Korean film crews are generally motivated and hard working people with a sense of pride. Since the introduction of the Labor Standard Act in 2012 that states weekly work hours and overtime regulations, the industry players have worked hard together to settle it down and now most employers in the industry commonly practice it. The hourly minimum wage of 2020 is confirmed at 8,590 KRW (USD 7.10) and the work hours are limited to 52 hours per week. Global movement of #Metoo campaign had a great influence on Korea’s film industry and made critical changes in the culture as well as in the system. It is now a compulsory condition to take an education session on sexual harassment for any project that receives grants or supports from Korea Film Council and other regional film funds including KOFIC’s location incentive program.
+        text: `Korean film crews are generally motivated and hard working people with a sense of pride. Since the introduction of the Labor Standard Act in 2012 that states weekly work hours and overtime regulations, the industry players have worked hard together to settle it down and now most employers in the industry commonly practice it. The hourly minimum wage of 2020 is confirmed at 8,590 KRW (USD 7.10) and the work hours are limited to 52 hours per week. Global movement of #Metoo campaign had a great influence on Korea’s film industry and made critical changes in the culture as well as in the system. It is now a compulsory condition to take an education session on sexual harassment for any project that receives grants or supports from Korea Film Council and other regional film funds including KOFIC’s location incentive program.
 
         Download sample contracts here:
 
         Local producer / fixer
         Drone operator
         Sound mixer`,
+        classNames: 'text',
       },
     ],
   },
