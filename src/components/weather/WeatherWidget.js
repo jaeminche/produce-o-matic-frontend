@@ -11,7 +11,6 @@ const MyReactWeather = (props) => {
     lang: 'en',
     unit: 'metric', // values are (metric, standard, imperial)
   });
-  console.log('데이타데이타', data);
   return (
     <ReactWeather
       isLoading={isLoading}
@@ -41,7 +40,6 @@ const WeatherWidget = (props) => {
   }
 
   function showPosition(position) {
-    console.log('포지션', position.coords);
     setUsersLatAndLong([
       JSON.stringify(position.coords.latitude),
       JSON.stringify(position.coords.longitude),

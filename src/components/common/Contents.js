@@ -103,12 +103,13 @@ const Wrapper = styled(Responsive)`
     text-align: center;
     margin-top: inherit;
     position: absolute;
-    bottom: 0;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .time-backgroundimage {
+    height: 130px;
     /* position: absolute; */
     /* top: 0; */
     /* ${(props) => props.isMobile && `height: 200px`}; */
@@ -123,17 +124,18 @@ const Wrapper = styled(Responsive)`
   }
   .time-title {
     ${mq({
-      fontSize: ['20px', '25px', , '40px', , , ,],
+      fontSize: ['22px', '28px', , '32px', , '32px', '40px'],
     })};
     font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
     opacity: 1;
+    position: relative;
   }
   .time-numbers {
     ${mq({
-      fontSize: ['15px', '20px', , '30px', '50px', '70px', ,],
-    })}
+      fontSize: ['22px', '28px', , '32px', , '32px', '40px'],
+    })};
     font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
@@ -146,9 +148,14 @@ const Wrapper = styled(Responsive)`
     ${(props) => props.isMobile && `padding: 10px`};
   }
   .vertical-center {
+    width: 100%;
     ${mq({
       marginBottom: ['5px', '15px', '15px', '15px', , , ,],
-    })}
+    })};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
   }
   img {
     width: 100%;
@@ -241,7 +248,7 @@ const FlexContainerResponsive = (props) => {
       {items.map((item, key) => (
         <li
           key={key}
-          className={`${itemsLiHasMinWidth ? 'itemsLiHasMinWidth' : null} ${
+          className={`${itemsLiHasMinWidth ? 'itemsLiHasMinWidth' : ''} ${
             item.type === 'imageWithTextInside'
               ? 'flex-item-responsive positionRelative'
               : 'flex-item-responsive'
@@ -261,10 +268,14 @@ const FlexContainerResponsive = (props) => {
                   style={{ width: '100%' }}
                   className={`textInImage ${item.customCssForText}`}
                 >
+                  <img
+                    src={item.path}
+                    alt={item.desc}
+                    className={item.customCssForImage}
+                  />
                   <div className={'vertical-center'}>
                     <>
                       <div>{item.text}</div>
-                      {/* <br /> */}
                       <div className={customcss}>
                         {times &&
                           times.length > 0 &&
@@ -272,14 +283,10 @@ const FlexContainerResponsive = (props) => {
                       </div>
                     </>
                   </div>
-                  {item.customComponent && item.customComponent}
                 </div>
               )}
-              <img
-                src={item.path}
-                alt={item.desc}
-                className={item.customCssForImage}
-              />
+
+              {item.customComponent && item.customComponent}
             </>
           ) : (
             <div key={key} className={item.classNames || 'text'} style={style}>
@@ -292,28 +299,28 @@ const FlexContainerResponsive = (props) => {
   );
 };
 
-const CustomComponentsInflexContainer = (props) => {
-  const { items, key, classNames, style } = props;
-  return (
-    <ul
-      key={key}
-      className={classNames ? classNames : 'flex-container-responsive'}
-    >
-      {items.map((item, key) => (
-        <li
-          key={key}
-          className={
-            item.type === 'imageWithTextInside'
-              ? 'flex-item-responsive positionRelative'
-              : 'flex-item-responsive'
-          }
-        >
-          {item.customComponent && item.customComponent}
-        </li>
-      ))}
-    </ul>
-  );
-};
+// const CustomComponentsInflexContainer = (props) => {
+//   const { items, key, classNames, style } = props;
+//   return (
+//     <ul
+//       key={key}
+//       className={classNames ? classNames : 'flex-container-responsive'}
+//     >
+//       {items.map((item, key) => (
+//         <li
+//           key={key}
+//           className={
+//             item.type === 'imageWithTextInside'
+//               ? 'flex-item-responsive positionRelative'
+//               : 'flex-item-responsive'
+//           }
+//         >
+//           {item.customComponent && item.customComponent}
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// };
 
 const Tabs = (props) => {
   const { tabs, isMobile, key } = props;
@@ -373,14 +380,14 @@ const DrawRowComponent = (props) => {
         style={style}
       />
     ),
-    customComponentsInflexContainer: (
-      <CustomComponentsInflexContainer
-        items={items}
-        key={key}
-        classNames={classNames}
-        style={style}
-      />
-    ),
+    // customComponentsInflexContainer: (
+    //   <CustomComponentsInflexContainer
+    //     items={items}
+    //     key={key}
+    //     classNames={classNames}
+    //     style={style}
+    //   />
+    // ),
     text: (
       <div key={key} className={classNames || 'text'} style={style}>
         {ReactHtmlParser(text)}
