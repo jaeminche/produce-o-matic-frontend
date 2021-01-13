@@ -33,9 +33,6 @@ const Wrapper = styled(Responsive)`
   }
   img {
     width: 100%;
-    /* ${mq({
-      height: ['320px', '360px', , '380px', , '400px', '640px'],
-    })} */
     object-fit: cover;
     margin: 0 auto;
   }
@@ -47,11 +44,27 @@ const Wrapper = styled(Responsive)`
     display: flex;
     flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
     justify-content: space-between;
-    ${(props) => !props.isMobile && `margin: -20px;`}// space between
+    ${(props) => !props.isMobile && `margin: -20px;`}// space
   }
   .flex-item {
     width: ${(props) => (props.isMobile ? '100%' : '44%')};
-    ${(props) => !props.isMobile && `margin: 20px;`}// space between
+    ${(props) =>
+      !props.isMobile &&
+      `margin: 20px;`} //space
+
+    /* Set image size relative to parent height */
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    img {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 100%;
+      width: auto;
+      transform: translate(-50%, -50%);
+    }
   }
   .radius-round {
     border-radius: 30px;
@@ -84,15 +97,19 @@ const Summary = ({ uiData, isMobile }) => {
             {flexBoxes.map((item, key) => (
               <ul key={key}>
                 <li className="flex-container">
-                  <img
-                    src={item.image}
-                    alt={item.desc}
+                  <div
                     className={
                       !isMobile && isOdd(key)
-                        ? 'flex-item radius-round reverse-order'
-                        : 'flex-item radius-round'
+                        ? 'flex-item reverse-order'
+                        : 'flex-item'
                     }
-                  />
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.desc}
+                      className={'radius-round'}
+                    />
+                  </div>
                   <p className="flex-item">{ReactHtmlParser(item.text)}</p>
                 </li>
               </ul>
