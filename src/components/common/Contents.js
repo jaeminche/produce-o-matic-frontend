@@ -222,6 +222,11 @@ const Wrapper = styled(Responsive)`
   .header-0-2-3 {
     display: none;
   }
+
+  .smaller-image {
+    ${(props) => !props.isMobile && `width: 75%;`}
+    display: block;
+  }
 `;
 
 const FlexContainerResponsive = (props) => {
