@@ -90,8 +90,8 @@ const Wrapper = styled(Responsive)`
     color: ${palette.textgray[0]};
     font-family: Lato;
     ${mq({
-      fontSize: ['16px', '18px', , '24px', , , ,],
-    })}
+      fontSize: ['17px', '17px', , '17px', , '21px', ,],
+    })};
     font-style: normal;
     font-weight: 400;
     line-height: 31px;

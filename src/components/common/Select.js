@@ -12,7 +12,7 @@ const StyledSelect = styled.select`
   border: 1px solid ${palette.budgetomatic.border[1]};
   border-radius: 5px;
   padding: 5px;
-  font-size: ${(props) => (props.isMobile ? '12px' : '18px')};
+  font-size: ${(props) => (props.isMobile ? '12px' : '17px')};
   text-align-last: ${(props) => (props.textLeft ? 'left' : 'center')};
 
   -webkit-appearance: none;

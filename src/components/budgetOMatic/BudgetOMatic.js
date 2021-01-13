@@ -154,12 +154,12 @@ const StyledTable = styled.div`
   }
   .title-row {
     ${mq({
-      fontSize: ['13px', '14px', , '16px', , '18px', ,],
+      fontSize: ['13px', '14px', , '16px', , '17px', ,],
     })};
   }
   .content-row {
     ${mq({
-      fontSize: ['12px', '12px', , '16px', , '18px', ,],
+      fontSize: ['12px', '12px', , '16px', , '17px', ,],
     })};
   }
   .margin-l {
@@ -170,7 +170,7 @@ const StyledTable = styled.div`
     ${mq({
       width: ['35px', , , '40px', , , ,],
       height: ['35px', , , '40px', , , ,],
-      marginRight: ['-8px', '-10px', , '-20px', , , ,],
+      marginRight: ['-8px', '-10px', , '-13px', , , ,],
     })};
     position: relative;
   }

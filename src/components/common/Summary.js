@@ -23,7 +23,9 @@ const Wrapper = styled(Responsive)`
   .text {
     color: ${palette.textgray[0]};
     font-family: Lato;
-    font-size: 24px;
+    ${mq({
+      fontSize: ['17px', '17px', , '17px', , '21px', ,],
+    })};
     font-style: normal;
     font-weight: 400;
     line-height: 31px;
