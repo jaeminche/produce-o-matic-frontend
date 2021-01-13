@@ -154,7 +154,7 @@ const Wrapper = styled(Responsive)`
     width: 100%;
     object-fit: cover;
     margin: 0 auto;
-    margin-top: 25px;
+    margin-top: 10px;
   }
   .margin-tb {
     margin-top: 40px;
@@ -167,8 +167,9 @@ const Wrapper = styled(Responsive)`
     /* ${(props) => !props.isMobile && `margin: -20px;`}// space between */
   }
   .flex-item-responsive {
-    width: ${(props) => (props.isMobile ? '100%' : '50%')};
-    ${(props) => !props.isMobile && `margin: 20px;`}// space between
+    width: ${(props) => (props.isMobile ? '100%' : '45%')};
+    /* ${(props) => !props.isMobile && `margin: 20px;`} // space between
+    ${(props) => props.key === 1 && `margin-left: 0;`} */
   }
   .positionRelative {
     position: relative;
@@ -276,9 +277,9 @@ const FlexContainerResponsive = (props) => {
               />
             </>
           ) : (
-            <p key={key} className={item.classNames || 'text'} style={style}>
+            <div key={key} className={item.classNames || 'text'} style={style}>
               {ReactHtmlParser(item.text)}
-            </p>
+            </div>
           )}
         </li>
       ))}
@@ -376,9 +377,9 @@ const DrawRowComponent = (props) => {
       />
     ),
     text: (
-      <p key={key} className={classNames || 'text'} style={style}>
+      <div key={key} className={classNames || 'text'} style={style}>
         {ReactHtmlParser(text)}
-      </p>
+      </div>
     ),
     tabs: (
       <Tabs
