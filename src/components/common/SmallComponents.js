@@ -1,12 +1,11 @@
 /* eslint-disable no-sparse-arrays */
 import React from 'react';
-import Responsive from './Responsive';
+// import Responsive from './Responsive';
 import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 
 const StyledPageTitle = styled.h1`
-  /* display: none; */
-  ${(props) => !props.isMobile && `display: none;`}
+  display: none;
   ${mq({
     fontSize: ['26px', '32px', , '40px', , '50px', ,],
   })};
@@ -19,7 +18,9 @@ const StyledPageTitle = styled.h1`
 const PageTitle = (props) => {
   const { text, key, isMobile } = props;
   // TODO: 나중에 수정
-  return (
+  return true ? (
+    <></>
+  ) : (
     <StyledPageTitle
       minusmargin={isMobile && text === 'General Knowledge'}
       className="title"

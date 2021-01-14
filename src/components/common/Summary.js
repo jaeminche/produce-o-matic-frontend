@@ -84,7 +84,7 @@ const Wrapper = styled(Responsive)`
 `;
 
 const Summary = ({ uiData, isMobile }) => {
-  const { title, text, titleImage, flexBoxes } = uiData;
+  const { /*title, titleImage, */ text, flexBoxes } = uiData;
 
   function isOdd(num) {
     return num % 2;
@@ -93,7 +93,7 @@ const Summary = ({ uiData, isMobile }) => {
   return (
     <SummaryBlock>
       <Wrapper isMobile={isMobile}>
-        {isMobile && title && <h1 className="title">{title}</h1>}
+        {/* {isMobile && title && <h1 className="title">{title}</h1>} */}
         {text && <p className="text">{ReactHtmlParser(text)}</p>}
         {/* {title && (
           <img src={titleImage} alt={title} className="title-image margin-tb" />

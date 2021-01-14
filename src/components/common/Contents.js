@@ -16,7 +16,7 @@ const SubHeaderTabBlock = styled.nav`
   position: sticky;
   top: 44px; // header's height
   z-index: 10;
-  ${(props) => props.isMobile && `margin-top: 30px`};
+  margin-top: -60px;
   /* padding-bottom: 20px; */
   text-align: center;
   height: 48px; //header's height

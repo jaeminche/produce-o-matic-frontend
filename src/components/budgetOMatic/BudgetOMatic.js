@@ -3,7 +3,7 @@ import Responsive from '../../components/common/Responsive';
 import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
-import { PageTitle } from '../common/SmallComponents';
+// import { PageTitle } from '../common/SmallComponents';
 import Select from '../common/Select';
 import { XMARK, PLUSMARK } from '../../assets';
 import { ConfirmButton } from '../../components/common/Button';

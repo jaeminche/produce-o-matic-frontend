@@ -104,11 +104,11 @@ const ImageBlock = ({ data, history, isMobile }) => {
 };
 
 const PopularLocations = ({ data, history, isMobile }) => {
-  const { title, titleImage, cards } = data;
+  const { cards } = data;
   return (
     <PopularLocationsBlock>
       <Wrapper isMobile={isMobile}>
-        {isMobile && <div className="title">{title}</div>}
+        {/* {isMobile && <div className="title">{title}</div>} */}
         {/* <img src={titleImage} alt={`${title} image`} className="title-image" /> */}
         {!isMobile && <Spacer />}
         <Masonry
