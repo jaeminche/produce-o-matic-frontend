@@ -74,6 +74,7 @@ const SubHeader = ({ submenus, activeSubMenu }) => {
             <li
               key={key}
               className={
+                activeSubMenu &&
                 submenu.path.split('/')[2].includes(activeSubMenu)
                   ? 'isActive menuitem'
                   : 'menuitem'

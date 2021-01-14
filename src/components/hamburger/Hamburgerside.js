@@ -112,7 +112,7 @@ const Hamburgerside = (props) => {
               <NavLink
                 to={menu.path}
                 className={
-                  menu.path.includes(activeMenu)
+                  activeMenu && menu.path.includes(activeMenu)
                     ? 'isActive menuitem'
                     : 'menuitem'
                 }
