@@ -29,7 +29,8 @@ const Wrapper = styled(Responsive)`
   font-family: Lato;
   font-style: normal;
   text-align: center;
-  padding-top: 80pxdiv className= 'spacer' {
+  /* padding-top: 80px; */
+  .spacer {
     padding-top: ${(props) => (props.width ? props.width : '80px')};
   }
   .styled-centered {
@@ -423,11 +424,11 @@ const ResultTables = (props) => {
                           </tfoot>
                         </table>
 
-                        <div className="spacer" />
+                        {/* <div className="spacer" /> */}
                       </table>
                     ),
                 )}
-                <div className="spacer" />
+                {/* <div className="spacer" /> */}
               </ResultTableStyles>
               <table>
                 <tfoot>
