@@ -73,13 +73,18 @@ const ImgBlock = styled.div`
   }
   .title {
     ${mq({
-      fontSize: ['28px', '34px', , '46px', , , ,],
-    })}
+      fontSize: ['28px', '28px', , '38px', , , ,],
+    })};
   }
   .subtitle {
     ${mq({
-      fontSize: ['12px', '14px', , '18px', , '24px', ,],
-    })}
+      fontSize: ['12px', '14px', , '21px', , , ,],
+    })};
+  }
+  .text-shadow {
+    text-shadow: 0 0 1px #444444, 0 0 2px #444444, 0 0 3px #444444,
+      0 0 4px #444444, 0 0 7px #444444, 0 0 10px #444444, 0 0 13px #444444,
+      0 0 18px #444444;
   }
 `;
 
@@ -91,7 +96,7 @@ const ImagesBlock = (props) => {
       <a href={url}>
         <img src={imgpath} alt="click to watch Youtube" />
         <div className="textbox">
-          <div className="title">{title}</div>
+          <div className="title text-shadow">{title}</div>
           <div className="subtitle">{subtitle}</div>
         </div>
       </a>
