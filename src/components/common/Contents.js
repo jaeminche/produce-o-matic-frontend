@@ -7,6 +7,7 @@ import styled from 'styled-components/macro';
 import ReactHtmlParser from 'react-html-parser';
 import palette from '../../lib/styles/palette';
 import { useParams } from 'react-router-dom';
+// import maxmind, { CityResponse } from 'maxmind';
 
 const ContentsBlock = styled.div`
   height: auto;
@@ -414,6 +415,8 @@ const DrawRowComponent = (props) => {
 
 const Contents = (props) => {
   const { rows, isMobile, tabRows = false, times = false } = props;
+  // console.log('===700', maxmind && maxmind, maxmind && maxmind.CityResponse);
+  // geoip2.city( onSuccess, onError );
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>

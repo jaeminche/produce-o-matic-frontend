@@ -233,9 +233,7 @@ const uiData = {
               // ? specify customcss for it is a particular case for clocks UI
               customCssForImage: 'time-backgroundimage',
               customCssForText: 'time-title',
-              customComponent: (
-                <WeatherWidget locationLabel={'Where You Are'} />
-              ),
+              customComponent: <WeatherWidget locationLabel={'Current City'} />,
             },
           ],
         },
