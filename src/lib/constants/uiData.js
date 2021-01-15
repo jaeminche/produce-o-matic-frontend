@@ -196,10 +196,10 @@ const uiData = {
         //     {
         //       id: 2,
         //       type: 'customComponent',
-        //       desc: 'Where You Are',
-        //       text: 'Where You Are',
+        //       desc: 'Current City',
+        //       text: 'Current City',
         //       customComponent: (
-        //         <WeatherWidget locationLabel={'Where You Are'} />
+        //         <WeatherWidget locationLabel={'Current City'} />
         //       ),
 
         //       // ? specify customcss for it is a particular case for clocks UI
@@ -228,8 +228,8 @@ const uiData = {
               id: 2,
               type: 'imageWithTextInside',
               path: TIME_YOUR,
-              desc: 'Where You Are',
-              text: 'Where You Are',
+              desc: 'Current City',
+              text: 'Current City',
               // ? specify customcss for it is a particular case for clocks UI
               customCssForImage: 'time-backgroundimage',
               customCssForText: 'time-title',
