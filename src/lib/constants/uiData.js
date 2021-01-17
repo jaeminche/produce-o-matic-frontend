@@ -995,7 +995,7 @@ const uiData = {
     uiType: 'default',
     parent: 'produce-o-people',
     rows: [
-      { id: 1, type: 'title', text: 'Contact Us' },
+      { id: 1, type: 'title', text: 'Contact' },
       {
         id: 2,
         type: 'image',

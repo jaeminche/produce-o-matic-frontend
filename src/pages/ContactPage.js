@@ -7,16 +7,16 @@ import FooterContainer from '../containers/common/FooterContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
-const ContactUsPageBlock = styled.div`
+const ContactPageBlock = styled.div`
   background: ${palette.background[0]};
   color: white;
   min-height: 100vh;
 `;
 
-const ContactUsPage = () => {
-  const pagekey = 'contact_us';
+const ContactPage = () => {
+  const pagekey = 'contact';
   return (
-    <ContactUsPageBlock>
+    <ContactPageBlock>
       <Helmet>
         <title>{pagekey}</title>
       </Helmet>
@@ -24,8 +24,8 @@ const ContactUsPage = () => {
       <SubHeaderContainer menuIndex={3} />
       <ContentsContainer pagekey={pagekey} />
       <FooterContainer />
-    </ContactUsPageBlock>
+    </ContactPageBlock>
   );
 };
 
-export default ContactUsPage;
+export default ContactPage;

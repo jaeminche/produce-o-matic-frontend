@@ -74,7 +74,7 @@ const menus = [
       {
         id: 1,
         text: 'Location Incentive',
-        path: `/produce-in-korea/location-incentives`,
+        path: `/produce-o-manual/location-incentives`,
       },
       {
         id: 2,
@@ -143,7 +143,7 @@ const menus = [
       {
         id: 4,
         text: 'Contact',
-        path: '/produce-o-people/contact-us',
+        path: '/produce-o-people/contact',
       },
     ],
   },

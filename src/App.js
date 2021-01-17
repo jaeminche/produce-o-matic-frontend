@@ -31,7 +31,7 @@ import AccountOMaticPage from './pages/AccountOMaticPage';
 import OurVisionPage from './pages/OurVisionPage';
 import PeopleOfTheMonthPage from './pages/PeopleOfTheMonthPage';
 import BeOurPeoplePage from './pages/BeOurPeoplePage';
-import ContactUsPage from './pages/ContactUsPage';
+import ContactPage from './pages/ContactPage';
 
 import { Helmet } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
@@ -150,7 +150,7 @@ const App = () => {
       <ScrollToTopRoute
         component={LocationIncentivesPage}
         exact
-        path="/produce-in-korea/location-incentives"
+        path="/produce-o-manual/location-incentives"
       />
       <ScrollToTopRoute
         component={PermitPage}
@@ -208,9 +208,9 @@ const App = () => {
         path="/produce-o-people/be-our-people"
       />
       <ScrollToTopRoute
-        component={ContactUsPage}
+        component={ContactPage}
         exact
-        path="/produce-o-people/contact-us"
+        path="/produce-o-people/contact"
       />
 
       <ScrollToTopRoute
