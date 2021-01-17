@@ -22,7 +22,7 @@ const LocationIncentivesPage = () => {
         <title>{pagekey}</title>
       </Helmet>
       <HeaderContainer />
-      <SubHeaderContainer menuIndex={0} />
+      <SubHeaderContainer menuIndex={1} />
       <ContentsContainer pagekey={pagekey} />
       <IntroTextContainer />
       <FooterContainer />
