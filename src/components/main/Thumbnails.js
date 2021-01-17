@@ -59,7 +59,7 @@ const ImgLinkBlock = styled(Link)`
 
 const ImageBlock = ({ data }) => {
   const { title, imgpath, to } = data;
-  console.log('props', data);
+  // console.log('props', data);
   return (
     <ImgLinkBlock to={to}>
       <img src={imgpath} alt="click to go to the page" />

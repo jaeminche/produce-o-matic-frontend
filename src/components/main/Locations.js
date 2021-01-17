@@ -90,7 +90,7 @@ const ImgBlock = styled.div`
 
 const ImagesBlock = (props) => {
   const { key, title, imgpath, subtitle, url } = props;
-  console.log('-s-s', url, imgpath);
+  // console.log('-s-s', url, imgpath);
   return (
     <ImgBlock key={key}>
       <a href={url}>
