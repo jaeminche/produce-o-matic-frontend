@@ -415,8 +415,7 @@ const DrawRowComponent = (props) => {
 
 const Contents = (props) => {
   const { rows, isMobile, tabRows = false, times = false } = props;
-  // console.log('===700', maxmind && maxmind, maxmind && maxmind.CityResponse);
-  // geoip2.city( onSuccess, onError );
+
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>

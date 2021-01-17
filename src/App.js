@@ -14,10 +14,12 @@ import SummaryInKoreaPage from './pages/SummaryInKoreaPage';
 import SummaryOManualPage from './pages/SummaryOManualPage';
 import SummaryOMaticPage from './pages/SummaryOMaticPage';
 import SummaryOPeoplePage from './pages/SummaryOPeoplePage';
+import KoreaInANutshellPage from './pages/KoreaInANutshellPage';
 import PopularLocationsPage from './pages/PopularLocationsPage';
 import PopularLocationPage from './pages/PopularLocationPage';
+import SecurityHealthFoodPage from './pages/SecurityHealthFoodPage';
+import TransportCommunicationPage from './pages/TransportCommunicationPage';
 import LocationIncentivesPage from './pages/LocationIncentivesPage';
-import GeneralKnowledgePage from './pages/GeneralKnowledgePage';
 import PermitPage from './pages/PermitPage';
 import ContractPage from './pages/ContractPage';
 import InsurancePage from './pages/InsurancePage';
@@ -119,6 +121,12 @@ const App = () => {
         exact
         path="/produce-o-people"
       />
+
+      <ScrollToTopRoute
+        component={KoreaInANutshellPage}
+        exact
+        path="/produce-in-korea/korea-in-a-nutshell"
+      />
       <ScrollToTopRoute
         component={PopularLocationsPage}
         exact
@@ -130,13 +138,19 @@ const App = () => {
         path="/produce-in-korea/popular-locations/:id"
       />
       <ScrollToTopRoute
+        component={SecurityHealthFoodPage}
+        exact
+        path="/produce-in-korea/security-health-food"
+      />
+      <ScrollToTopRoute
+        component={TransportCommunicationPage}
+        exact
+        path="/produce-in-korea/transport-communication"
+      />
+      <ScrollToTopRoute
         component={LocationIncentivesPage}
         exact
         path="/produce-in-korea/location-incentives"
-      />
-      <ScrollToTopRoute
-        component={GeneralKnowledgePage}
-        path="/produce-in-korea/general-knowledge/:active_tab?"
       />
       <ScrollToTopRoute
         component={PermitPage}

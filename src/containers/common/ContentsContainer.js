@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { withRouter, useParams, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { uiData } from '../../lib/constants/uiData';
 import Contents from '../../components/common/Contents';
 import { formatTime } from '../../lib/format';
+import { getIp } from '../../modules/thirdPartyApis';
 
 const ContentsContainer = ({ pagekey, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const history = useHistory();
   const { active_tab } = useParams();
+  const dispatch = useDispatch();
 
-  const isGeneralKnowledge = pagekey === 'generalKnowledge';
-  const shouldActivateClock = isGeneralKnowledge && active_tab === 'korea';
+  console.log('==876', active_tab);
+  const shouldActivateClock = active_tab === 'korea-in-a-nutshell';
 
   const DEFAULT_ACTIVE_TAB = 'korea';
   const { pathname } = location;
@@ -20,10 +23,9 @@ const ContentsContainer = ({ pagekey, location }) => {
   const { rows, tabRows } = uiData[pagekey];
 
   const _tabRows = tabRows && tabRows[active_tab];
+
   useEffect(() => {
-    if (isGeneralKnowledge && tabRows && !active_tab) {
-      history.push(`${pathname}/${DEFAULT_ACTIVE_TAB}`);
-    }
+    dispatch(getIp());
   }, []);
 
   // *** Activate Clock starts

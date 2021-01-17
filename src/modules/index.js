@@ -9,6 +9,7 @@ import budgetResult, { budgetResultSaga } from './budgetResult';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
+import thirdPartyApis, { thirdParyApisSaga } from './thirdPartyApis';
 
 const rootReducer = combineReducers({
   main,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   write,
   post,
   posts,
+  thirdPartyApis,
 });
 
 export function* rootSaga() {
@@ -31,6 +33,7 @@ export function* rootSaga() {
     writeSaga(),
     postSaga(),
     postsSaga(),
+    thirdParyApisSaga(),
   ]); // todo: compare with 'fork'
 }
 
