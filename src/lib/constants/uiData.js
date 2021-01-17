@@ -118,6 +118,7 @@ const uiData = {
             path: TIME_YOUR,
             desc: 'Current City',
             text: 'Current City',
+            asyncText: true,
             // ? specify customcss for it is a particular case for clocks UI
             customCssForImage: 'time-backgroundimage',
             customCssForText: 'time-title',

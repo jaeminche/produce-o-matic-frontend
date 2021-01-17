@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { withRouter, useParams, useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { uiData } from '../../lib/constants/uiData';
 import Contents from '../../components/common/Contents';
 import { formatTime } from '../../lib/format';
-import { getIp } from '../../modules/thirdPartyApis';
+import { getIp, getUsersLocation } from '../../modules/thirdPartyApis';
 
 const ContentsContainer = ({ pagekey, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
   const { pathname } = location;
   const shouldActivateClock = pathname.includes('korea-in-a-nutshell');
-
+  const {
+    IP,
+    USERSLOCATION,
+    ipError,
+    usersLocationError,
+    loading,
+  } = useSelector(({ thirdPartyApis, loading }) => ({
+    IP: thirdPartyApis.ip,
+    USERSLOCATION: thirdPartyApis.usersLocation,
+    ipError: thirdPartyApis.ipError,
+    usersLocationError: thirdPartyApis.usersLocationError,
+    loading:
+      loading['thirdPartyApis/GET_IP'] ||
+      loading['thirdPartyApis/GET_USERSLOCATION'],
+  }));
   // ? set rows for ui data
   const { rows } = uiData[pagekey];
 
@@ -20,7 +34,11 @@ const ContentsContainer = ({ pagekey, location }) => {
     if (shouldActivateClock) dispatch(getIp());
   }, []);
 
-  // *** Activate Clock starts
+  useEffect(() => {
+    if (IP) dispatch(getUsersLocation({ ip: IP }));
+  }, [IP]);
+
+  // *======= Activate Clock starts =======
   // ! USE MEMO AND CALLBACK FOR TIMER!
   const [time, setTime] = useState(shouldActivateClock ? new Date() : '');
   useEffect(() => {
@@ -31,7 +49,7 @@ const ContentsContainer = ({ pagekey, location }) => {
       };
     }
   }, []);
-  // *** Activate Clock ends
+  // *======= Activate Clock ends =======
 
   return (
     <>
@@ -46,6 +64,7 @@ const ContentsContainer = ({ pagekey, location }) => {
               ]
             : null
         }
+        cityName={USERSLOCATION && USERSLOCATION.city}
       />
     </>
   );
