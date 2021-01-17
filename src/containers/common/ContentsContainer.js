@@ -9,23 +9,15 @@ import { getIp } from '../../modules/thirdPartyApis';
 
 const ContentsContainer = ({ pagekey, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  const history = useHistory();
-  const { active_tab } = useParams();
   const dispatch = useDispatch();
-
-  console.log('==876', active_tab);
-  const shouldActivateClock = active_tab === 'korea-in-a-nutshell';
-
-  const DEFAULT_ACTIVE_TAB = 'korea';
   const { pathname } = location;
+  const shouldActivateClock = pathname.includes('korea-in-a-nutshell');
 
-  // ? set rows for ui data, tabRows as well if any
-  const { rows, tabRows } = uiData[pagekey];
-
-  const _tabRows = tabRows && tabRows[active_tab];
+  // ? set rows for ui data
+  const { rows } = uiData[pagekey];
 
   useEffect(() => {
-    dispatch(getIp());
+    if (shouldActivateClock) dispatch(getIp());
   }, []);
 
   // *** Activate Clock starts
@@ -45,7 +37,6 @@ const ContentsContainer = ({ pagekey, location }) => {
     <>
       <Contents
         rows={rows}
-        tabRows={_tabRows}
         isMobile={isMobile}
         times={
           time

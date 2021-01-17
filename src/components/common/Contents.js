@@ -414,23 +414,19 @@ const DrawRowComponent = (props) => {
 };
 
 const Contents = (props) => {
-  const { rows, isMobile, tabRows = false, times = false } = props;
+  const { rows, isMobile, times = false } = props;
 
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>
         {rows.map((row, key) => (
-          <DrawRowComponent row={row} key={key} isMobile={isMobile} />
+          <DrawRowComponent
+            row={row}
+            key={key}
+            isMobile={isMobile}
+            times={times}
+          />
         ))}
-        {tabRows &&
-          tabRows.map((row, key) => (
-            <DrawRowComponent
-              row={row}
-              key={key}
-              isMobile={isMobile}
-              times={times}
-            />
-          ))}
       </Wrapper>
     </ContentsBlock>
   );
