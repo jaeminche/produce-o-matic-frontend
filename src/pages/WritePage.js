@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet-async';
 
 const WritePage = () => {
   const pagekey = '새 글 작성';
+
   return (
     <Responsive>
       <Helmet>
