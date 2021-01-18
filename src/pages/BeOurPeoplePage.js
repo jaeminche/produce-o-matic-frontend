@@ -16,7 +16,7 @@ const BeOurPeoplePage = () => {
   return (
     <BeOurPeoplePageBlock>
       <Helmet>
-        <title>BeOurPeople_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_BeOurPeople</title>
       </Helmet>
       <HeaderContainer />
       <></>

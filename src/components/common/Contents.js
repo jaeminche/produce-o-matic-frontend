@@ -238,7 +238,15 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FlexContainerResponsive = (props) => {
-  const { items, times, key, classNames, style, itemsLiHasMinWidth } = props;
+  const {
+    items,
+    times,
+    cityName,
+    key,
+    classNames,
+    style,
+    itemsLiHasMinWidth,
+  } = props;
   // console.log('스타일', style);
   const customcss = times ? 'time-numbers' : null;
   return (
@@ -276,7 +284,9 @@ const FlexContainerResponsive = (props) => {
                   />
                   <div className={'vertical-center'}>
                     <>
-                      <div>{item.text}</div>
+                      <div>
+                        {item.asyncText && cityName ? cityName : item.text}
+                      </div>
                       <div className={customcss}>
                         {times &&
                           times.length > 0 &&
@@ -349,7 +359,7 @@ const Tabs = (props) => {
 };
 
 const DrawRowComponent = (props) => {
-  const { row, key, isMobile, times } = props;
+  const { row, key, isMobile, times, cityName } = props;
   const { type, path, text, desc, items, tabs, classNames, style } = row;
 
   // console.log('rows');
@@ -377,6 +387,7 @@ const DrawRowComponent = (props) => {
         items={items}
         key={key}
         times={times}
+        cityName={cityName}
         classNames={classNames}
         style={style}
       />
@@ -414,24 +425,20 @@ const DrawRowComponent = (props) => {
 };
 
 const Contents = (props) => {
-  const { rows, isMobile, tabRows = false, times = false } = props;
-  // console.log('===700', maxmind && maxmind, maxmind && maxmind.CityResponse);
-  // geoip2.city( onSuccess, onError );
+  const { rows, isMobile, times = false, cityName = false } = props;
+
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>
         {rows.map((row, key) => (
-          <DrawRowComponent row={row} key={key} isMobile={isMobile} />
+          <DrawRowComponent
+            row={row}
+            key={key}
+            isMobile={isMobile}
+            times={times}
+            cityName={cityName}
+          />
         ))}
-        {tabRows &&
-          tabRows.map((row, key) => (
-            <DrawRowComponent
-              row={row}
-              key={key}
-              isMobile={isMobile}
-              times={times}
-            />
-          ))}
       </Wrapper>
     </ContentsBlock>
   );

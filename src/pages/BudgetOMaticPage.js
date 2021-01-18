@@ -17,7 +17,7 @@ const BudgetOMaticPage = () => {
   return (
     <BudgetOMaticPageBlock>
       <Helmet>
-        <title>BudgetOMatic_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_BudgetOMatic</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={2} />

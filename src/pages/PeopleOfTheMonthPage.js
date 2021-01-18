@@ -13,10 +13,11 @@ const PeopleOfTheMonthPageBlock = styled.div`
 `;
 
 const PeopleOfTheMonthPage = () => {
+  const pagekey = 'peopleOfTheMonth';
   return (
     <PeopleOfTheMonthPageBlock>
       <Helmet>
-        <title>PeopleOfTheMonth_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <></>

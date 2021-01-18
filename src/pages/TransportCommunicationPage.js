@@ -3,30 +3,31 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import SubHeaderContainer from '../containers/common/SubHeaderContainer';
-import SummaryContainer from '../containers/common/SummaryContainer';
+import ContentsContainer from '../containers/common/ContentsContainer';
+import IntroTextContainer from '../containers/common/IntroTextContainer';
 import FooterContainer from '../containers/common/FooterContainer';
-// import LocationsContainer from '../containers/main/LocationsContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
-const SummaryOManualPageBlock = styled.div`
+const TransportCommunicationPageBlock = styled.div`
   background: ${palette.background[0]};
   color: white;
 `;
 
-const SummaryOManualPage = () => {
-  const pagekey = 'productionHandbook';
+const TransportCommunicationPage = () => {
+  const pagekey = 'transportCommunication';
   return (
-    <SummaryOManualPageBlock>
+    <TransportCommunicationPageBlock>
       <Helmet>
         <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
-      <SubHeaderContainer menuIndex={1} />
-      <SummaryContainer />
+      <SubHeaderContainer menuIndex={0} />
+      <ContentsContainer pagekey={pagekey} />
+      <IntroTextContainer />
       <FooterContainer />
-    </SummaryOManualPageBlock>
+    </TransportCommunicationPageBlock>
   );
 };
 
-export default SummaryOManualPage;
+export default TransportCommunicationPage;

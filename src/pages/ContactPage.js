@@ -1,32 +1,31 @@
 import React from 'react';
-// import Responsive from '../components/common/Responsive';
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import SubHeaderContainer from '../containers/common/SubHeaderContainer';
-import SummaryContainer from '../containers/common/SummaryContainer';
+import ContentsContainer from '../containers/common/ContentsContainer';
 import FooterContainer from '../containers/common/FooterContainer';
-// import LocationsContainer from '../containers/main/LocationsContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
-const SummaryOManualPageBlock = styled.div`
+const ContactPageBlock = styled.div`
   background: ${palette.background[0]};
   color: white;
+  min-height: 100vh;
 `;
 
-const SummaryOManualPage = () => {
-  const pagekey = 'productionHandbook';
+const ContactPage = () => {
+  const pagekey = 'contact';
   return (
-    <SummaryOManualPageBlock>
+    <ContactPageBlock>
       <Helmet>
         <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
-      <SubHeaderContainer menuIndex={1} />
-      <SummaryContainer />
+      <SubHeaderContainer menuIndex={3} />
+      <ContentsContainer pagekey={pagekey} />
       <FooterContainer />
-    </SummaryOManualPageBlock>
+    </ContactPageBlock>
   );
 };
 
-export default SummaryOManualPage;
+export default ContactPage;

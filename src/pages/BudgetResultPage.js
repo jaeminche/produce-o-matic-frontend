@@ -17,7 +17,7 @@ const BudgetResultPage = () => {
   return (
     <BudgetResultPageBlock>
       <Helmet>
-        <title>Your_Budget_Result_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_Your_Budget_Result</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={2} />

@@ -14,10 +14,12 @@ import SummaryInKoreaPage from './pages/SummaryInKoreaPage';
 import SummaryOManualPage from './pages/SummaryOManualPage';
 import SummaryOMaticPage from './pages/SummaryOMaticPage';
 import SummaryOPeoplePage from './pages/SummaryOPeoplePage';
+import KoreaInANutshellPage from './pages/KoreaInANutshellPage';
 import PopularLocationsPage from './pages/PopularLocationsPage';
 import PopularLocationPage from './pages/PopularLocationPage';
+import SecurityHealthFoodPage from './pages/SecurityHealthFoodPage';
+import TransportCommunicationPage from './pages/TransportCommunicationPage';
 import LocationIncentivesPage from './pages/LocationIncentivesPage';
-import GeneralKnowledgePage from './pages/GeneralKnowledgePage';
 import PermitPage from './pages/PermitPage';
 import ContractPage from './pages/ContractPage';
 import InsurancePage from './pages/InsurancePage';
@@ -29,7 +31,7 @@ import AccountOMaticPage from './pages/AccountOMaticPage';
 import OurVisionPage from './pages/OurVisionPage';
 import PeopleOfTheMonthPage from './pages/PeopleOfTheMonthPage';
 import BeOurPeoplePage from './pages/BeOurPeoplePage';
-import ContactUsPage from './pages/ContactUsPage';
+import ContactPage from './pages/ContactPage';
 
 import { Helmet } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
@@ -119,6 +121,12 @@ const App = () => {
         exact
         path="/produce-o-people"
       />
+
+      <ScrollToTopRoute
+        component={KoreaInANutshellPage}
+        exact
+        path="/produce-in-korea/korea-in-a-nutshell"
+      />
       <ScrollToTopRoute
         component={PopularLocationsPage}
         exact
@@ -130,13 +138,19 @@ const App = () => {
         path="/produce-in-korea/popular-locations/:id"
       />
       <ScrollToTopRoute
-        component={LocationIncentivesPage}
+        component={SecurityHealthFoodPage}
         exact
-        path="/produce-in-korea/location-incentives"
+        path="/produce-in-korea/security-health-food"
       />
       <ScrollToTopRoute
-        component={GeneralKnowledgePage}
-        path="/produce-in-korea/general-knowledge/:active_tab?"
+        component={TransportCommunicationPage}
+        exact
+        path="/produce-in-korea/transport-communication"
+      />
+      <ScrollToTopRoute
+        component={LocationIncentivesPage}
+        exact
+        path="/produce-o-manual/location-incentives"
       />
       <ScrollToTopRoute
         component={PermitPage}
@@ -194,9 +208,9 @@ const App = () => {
         path="/produce-o-people/be-our-people"
       />
       <ScrollToTopRoute
-        component={ContactUsPage}
+        component={ContactPage}
         exact
-        path="/produce-o-people/contact-us"
+        path="/produce-o-people/contact"
       />
 
       <ScrollToTopRoute
