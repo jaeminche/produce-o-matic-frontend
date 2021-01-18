@@ -6,10 +6,11 @@ import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsC
 import { Helmet } from 'react-helmet-async';
 
 const WritePage = () => {
+  const pagekey = '새 글 작성';
   return (
     <Responsive>
       <Helmet>
-        <title>새 글 작성 - PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <EditorContainer />
       <TagBoxContainer />

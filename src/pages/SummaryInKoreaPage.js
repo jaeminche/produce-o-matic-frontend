@@ -15,10 +15,11 @@ const SummaryInKoreaPageBlock = styled.div`
 `;
 
 const SummaryInKoreaPage = () => {
+  const pagekey = 'filmInKorea';
   return (
     <SummaryInKoreaPageBlock>
       <Helmet>
-        <title>Produce-In-Korea_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={0} />

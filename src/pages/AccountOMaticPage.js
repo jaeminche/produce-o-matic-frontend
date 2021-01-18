@@ -16,7 +16,7 @@ const AccountOMaticPage = () => {
   return (
     <AccountOMaticPageBlock>
       <Helmet>
-        <title>AccountOMatic_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_AccountOMatic</title>
       </Helmet>
       <HeaderContainer />
       <></>

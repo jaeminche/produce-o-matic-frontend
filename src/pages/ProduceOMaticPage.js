@@ -19,7 +19,7 @@ const ProduceOMaticPage = () => {
   return (
     <ProduceOMaticPageBlock>
       <Helmet>
-        <title>ProduceOMatic_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={2} />

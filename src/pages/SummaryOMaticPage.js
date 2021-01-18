@@ -15,10 +15,11 @@ const SummaryOMaticPageBlock = styled.div`
 `;
 
 const SummaryOMaticPage = () => {
+  const pagekey = 'produceOMatic';
   return (
     <SummaryOMaticPageBlock>
       <Helmet>
-        <title>Produce-O-Matic_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={2} />

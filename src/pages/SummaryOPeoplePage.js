@@ -15,10 +15,11 @@ const SummaryOPeoplePageBlock = styled.div`
 `;
 
 const SummaryOPeoplePage = () => {
+  const pagekey = 'aboutUs';
   return (
     <SummaryOPeoplePageBlock>
       <Helmet>
-        <title>Produce-O-People_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={3} />

@@ -15,10 +15,11 @@ const SummaryOManualPageBlock = styled.div`
 `;
 
 const SummaryOManualPage = () => {
+  const pagekey = 'productionHandbook';
   return (
     <SummaryOManualPageBlock>
       <Helmet>
-        <title>Produce-O-Manual_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={1} />
