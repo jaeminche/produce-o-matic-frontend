@@ -64,7 +64,11 @@ const ContentsContainer = ({ pagekey, location }) => {
               ]
             : null
         }
-        cityName={USERSLOCATION && USERSLOCATION.city}
+        cityName={
+          USERSLOCATION &&
+          USERSLOCATION.status === 'success' &&
+          USERSLOCATION.city
+        }
       />
     </>
   );
