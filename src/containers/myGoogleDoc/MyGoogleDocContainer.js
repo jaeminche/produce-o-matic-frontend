@@ -10,7 +10,11 @@ import { mq } from '../../lib/util/device';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../lib/styles/customCssToOverrideBootstrap.css';
-import { THUMBNAIL_LOCALPRODUCTIONCREWAGREEMENT } from '../../assets';
+import {
+  THUMBNAIL_CONTRACT_SOUNDRECORDIST_MIXER,
+  THUMBNAIL_PRODUCTIONSERVICEAGREEMENT,
+  THUMBNAIL_CONTRACT_DRONEOPERATOR,
+} from '../../assets';
 
 const MyGoogleDocContainerBlock = styled.div`
   height: auto;
@@ -60,22 +64,22 @@ const MyCard = (props) => {
   return (
     <div style={{ width: '300px', height: 'auto', position: 'relative' }}>
       <Card style={{ width: '95%', margin: '0 auto' }}>
-        <div
-          style={{
-            backgroundColor: '#f5f5f5',
-            padding: '1.25rem 1.25rem 1px 1.25rem',
-          }}
-        >
-          <Card.Img
-            variant="top"
-            src={imgUrl}
+        <a href={redirectTo} rel="noopener noreferrer" target="_blank">
+          <div
             style={{
-              boxShadow: '0 0 6px 0 rgba(0,0,0,0.12)',
+              backgroundColor: '#f5f5f5',
+              padding: '1.25rem 1.25rem 1px 1.25rem',
             }}
-          />
-        </div>
-        <Card.Body style={{ color: 'black' }}>
-          <a href={redirectTo} rel="noopener noreferrer" target="_blank">
+          >
+            <Card.Img
+              variant="top"
+              src={imgUrl}
+              style={{
+                boxShadow: '0 0 6px 0 rgba(0,0,0,0.12)',
+              }}
+            />
+          </div>
+          <Card.Body style={{ color: 'black' }}>
             <Card.Title>
               <img
                 src="https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document"
@@ -83,8 +87,8 @@ const MyCard = (props) => {
               />
               <MyCardTitle>{title}</MyCardTitle>
             </Card.Title>
-          </a>
-        </Card.Body>
+          </Card.Body>
+        </a>
       </Card>
 
       {/* <button onClick={() => dispatch(postCopyContractSample({ fileId }))}>
@@ -99,22 +103,22 @@ const MyGoogleDocContainer = ({ history }) => {
   const fileId = '12O4bV8sJj43LAtMXY3FRknaHs56eZqJyju5d9i2JKBQ';
   const SAMPLES = [
     {
-      title: 'LOCAL PRODUCTION CREW AGREEMENT SAMPLE',
-      imgUrl: THUMBNAIL_LOCALPRODUCTIONCREWAGREEMENT,
+      title: 'CONTRACT SAMPLE - SOUND RECORDIST/MIXER',
+      imgUrl: THUMBNAIL_CONTRACT_SOUNDRECORDIST_MIXER,
       redirectTo:
-        'https://docs.google.com/document/d/1hdQDYfiNGHOTDiEPUSsOmVBRYEBjPWNihSrsmza3WSU/edit?usp=sharing',
+        'https://docs.google.com/document/d/12O4bV8sJj43LAtMXY3FRknaHs56eZqJyju5d9i2JKBQ/edit?usp=sharing',
     },
     {
-      title: 'LOCAL PRODUCTION CREW AGREEMENT SAMPLE',
-      imgUrl: THUMBNAIL_LOCALPRODUCTIONCREWAGREEMENT,
+      title: 'PRODUCTION SERVICE AGREEMENT',
+      imgUrl: THUMBNAIL_PRODUCTIONSERVICEAGREEMENT,
       redirectTo:
-        'https://docs.google.com/document/d/1hdQDYfiNGHOTDiEPUSsOmVBRYEBjPWNihSrsmza3WSU/edit?usp=sharing',
+        'https://docs.google.com/document/d/1-xVF_6tzC2hLf2eNzHMmDB4EvuAEmHeOrCJLEpTRMvs/edit?usp=sharing',
     },
     {
-      title: 'LOCAL PRODUCTION CREW AGREEMENT SAMPLE',
-      imgUrl: THUMBNAIL_LOCALPRODUCTIONCREWAGREEMENT,
+      title: 'CONTRACT SAMPLE - DRONE OPERATOR',
+      imgUrl: THUMBNAIL_CONTRACT_DRONEOPERATOR,
       redirectTo:
-        'https://docs.google.com/document/d/1hdQDYfiNGHOTDiEPUSsOmVBRYEBjPWNihSrsmza3WSU/edit?usp=sharing',
+        'https://docs.google.com/document/d/1-o8ddUermBx6cNYtiCfZyRNLPcY357j3EzCFWTjZqJY/edit?usp=sharing',
     },
   ];
   return (
