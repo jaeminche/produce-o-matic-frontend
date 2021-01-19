@@ -10,11 +10,6 @@ body {
   min-height: 100%;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 .menuitem {
   color: rgba(165, 165, 165, 1);
   font-size: 14px;
@@ -22,8 +17,11 @@ a {
 }
 
 a {
-  /* color: rgba(165, 165, 165, 1) !important; */
+  color: inherit;
   text-decoration: none !important;
+}
+a:hover {
+  color: white;
 }
 
 h3 {
