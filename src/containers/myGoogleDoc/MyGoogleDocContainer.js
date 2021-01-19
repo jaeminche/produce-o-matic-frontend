@@ -10,7 +10,6 @@ import {
   getUsersLocation,
   postCopyContractSample,
 } from '../../modules/thirdPartyApis';
-import { DOC } from '../../assets';
 import GoogleDocsViewer from 'react-google-docs-viewer';
 
 const DocIframe = ({ source }) => {
@@ -34,7 +33,6 @@ const DocIframe = ({ source }) => {
 const MyGoogleDocContainer = ({ history }) => {
   const dispatch = useDispatch();
   const fileId = '12O4bV8sJj43LAtMXY3FRknaHs56eZqJyju5d9i2JKBQ';
-  console.log('===922', DOC);
   return (
     <>
       <div>
