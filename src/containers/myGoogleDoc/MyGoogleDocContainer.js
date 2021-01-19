@@ -51,18 +51,29 @@ const RowWrap = styled.div`
   justify-content: space-between;
 `;
 
+const CardBlock = styled.div`
+  ${mq({
+    width: ['145px', '170px', , '230px', , '300px'],
+  })};
+  height: auto;
+  position: relative;
+  margin-bottom: 10px;
+`;
+
 const MyCardTitle = styled.span`
   color: rgba(0, 0, 0, 0.72);
   line-height: 20px;
   margin-left: 8px;
   padding-bottom: 4px;
-  font-size: 18px;
+  ${mq({
+    fontSize: ['11px', '14px', , '18px', , ,],
+  })};
 `;
 
 const MyCard = (props) => {
   const { title, imgUrl, redirectTo } = props;
   return (
-    <div style={{ width: '300px', height: 'auto', position: 'relative' }}>
+    <CardBlock>
       <Card style={{ width: '95%', margin: '0 auto' }}>
         <a href={redirectTo} rel="noopener noreferrer" target="_blank">
           <div
@@ -94,7 +105,7 @@ const MyCard = (props) => {
       {/* <button onClick={() => dispatch(postCopyContractSample({ fileId }))}>
   계약서 샘플 복사하기
 </button> */}
-    </div>
+    </CardBlock>
   );
 };
 
