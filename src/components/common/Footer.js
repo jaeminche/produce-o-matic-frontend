@@ -35,7 +35,7 @@ const Wrapper = styled(Responsive)`
     }
   }
   .menuitem {
-    font-size: 14px;
+    font-size: 17px;
     margin-right: 15px;
   }
   .smalltext {
@@ -91,6 +91,7 @@ const Submenus = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   ${(props) => props.isMobile && `margin-left: 26px;`}
+  font-size: 14px;
 `;
 
 const Footer = ({ menus, socialMedia, terms }) => {

@@ -85,6 +85,7 @@ const Wrapper = styled(Responsive)`
     line-height: 46px;
     letter-spacing: 0em;
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 25px;
   }
   .text {
