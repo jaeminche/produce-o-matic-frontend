@@ -798,22 +798,10 @@ const uiData = {
     rows: [
       { id: 1, type: 'title', text: 'Contract' },
       {
-        id: 7,
-        type: 'flexContainerResponsive',
-        items: [
-          { id: 2, type: 'image', path: CONTRACT01, desc: 'contract' },
-          {
-            id: 1,
-            type: 'text',
-            text: `Long before Bong Joonho’s Parasite winning the Oscars, South Korea’s film industry has long been known outside the world for its unique community culture, work ethics and high quality but also for the notorious excessive overtime on the other hand.`,
-            classNames: 'text',
-          },
-        ],
-      },
-      {
         id: 3,
         type: 'text',
-        text: `Korean film crews are generally motivated and hard working people with a sense of pride. Since the introduction of the Labor Standard Act in 2012 that states weekly work hours and overtime regulations, the industry players have worked hard together to settle it down and now most employers in the industry commonly practice it. The hourly minimum wage of 2020 is confirmed at 8,590 KRW (USD 7.10) and the work hours are limited to 52 hours per week. Global movement of #Metoo campaign had a great influence on Korea’s film industry and made critical changes in the culture as well as in the system. It is now a compulsory condition to take an education session on sexual harassment for any project that receives grants or supports from Korea Film Council and other regional film funds including KOFIC’s location incentive program.
+        text: `Long before Bong Joonho’s Parasite winning the Oscars, South Korea’s film industry has long been known outside the world for its unique community culture, work ethics and high quality but also for the notorious excessive overtime on the other hand.
+        Korean film crews are generally motivated and hard working people with a sense of pride. Since the introduction of the Labor Standard Act in 2012 that states weekly work hours and overtime regulations, the industry players have worked hard together to settle it down and now most employers in the industry commonly practice it. The hourly minimum wage of 2020 is confirmed at 8,590 KRW (USD 7.10) and the work hours are limited to 52 hours per week. Global movement of #Metoo campaign had a great influence on Korea’s film industry and made critical changes in the culture as well as in the system. It is now a compulsory condition to take an education session on sexual harassment for any project that receives grants or supports from Korea Film Council and other regional film funds including KOFIC’s location incentive program.
 
         Download sample contracts here:
 

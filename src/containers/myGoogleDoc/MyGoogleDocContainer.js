@@ -6,13 +6,8 @@ import { uiData } from '../../lib/constants/uiData';
 import Contents from '../../components/common/Contents';
 import styled from 'styled-components/macro';
 import Responsive from '../../components/common/Responsive';
-import {
-  getIp,
-  getUsersLocation,
-  postCopyContractSample,
-} from '../../modules/thirdPartyApis';
-// import { Card } from '@coreui/icons';
-import { Card, Button } from 'react-bootstrap';
+import { mq } from '../../lib/util/device';
+import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../lib/styles/customCssToOverrideBootstrap.css';
 import { THUMBNAIL_LOCALPRODUCTIONCREWAGREEMENT } from '../../assets';
@@ -24,6 +19,19 @@ const MyGoogleDocContainerBlock = styled.div`
 const Wrapper = styled(Responsive)`
   text-align: left;
   padding-top: 80px;
+
+  .section-title {
+    font-family: Lato;
+    ${mq({
+      fontSize: ['22px', '28px', , '32px', , '32px', '40px'],
+    })};
+    font-style: normal;
+    font-weight: 700;
+    line-height: 46px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 50px;
+  }
 `;
 
 const RowWrap = styled.div`
@@ -50,7 +58,7 @@ const MyCardTitle = styled.span`
 const MyCard = (props) => {
   const { title, imgUrl, redirectTo } = props;
   return (
-    <div style={{ width: '300px', height: '218px', position: 'relative' }}>
+    <div style={{ width: '300px', height: 'auto', position: 'relative' }}>
       <Card style={{ width: '95%', margin: '0 auto' }}>
         <div
           style={{
@@ -112,6 +120,7 @@ const MyGoogleDocContainer = ({ history }) => {
   return (
     <MyGoogleDocContainerBlock>
       <Wrapper>
+        <div className="section-title">Contract Samples</div>
         <RowWrap>
           {SAMPLES.map((sample) => (
             <MyCard
