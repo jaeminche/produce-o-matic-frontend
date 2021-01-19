@@ -70,8 +70,9 @@ const TMONEY = require('./tmoney.png');
 const NAVERMAP = require('./navermap.png');
 const GENERALK_SUBWAY = require('./gksubway.jpg');
 const GENERALK_FOOD = require('./gkfood.jpg');
-
+const THUMBNAIL_LOCALPRODUCTIONCREWAGREEMENT = require('./thumbnail_localProductionCrewAgreement.png');
 export {
+  THUMBNAIL_LOCALPRODUCTIONCREWAGREEMENT,
   YOGIYO_BAEMIN,
   GENERALK_FOOD,
   GENERALK_SUBWAY,
