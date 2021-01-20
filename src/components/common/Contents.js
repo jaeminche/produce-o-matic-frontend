@@ -361,7 +361,17 @@ const Tabs = (props) => {
 
 const DrawRowComponent = (props) => {
   const { row, key, isMobile, times, cityName } = props;
-  const { type, path, text, desc, items, tabs, classNames, style } = row;
+  const {
+    type,
+    path,
+    text,
+    desc,
+    items,
+    tabs,
+    classNames,
+    style,
+    customComponent,
+  } = row;
 
   // console.log('rows');
   const ui = {
@@ -420,6 +430,7 @@ const DrawRowComponent = (props) => {
         {text}
       </h3>
     ),
+    customComponent: <>{customComponent}</>,
   };
 
   return ui[type];
