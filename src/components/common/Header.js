@@ -59,6 +59,9 @@ const Wrapper = styled(Responsive)`
   }
   .menuitem {
     color: rgba(165, 165, 165, 1);
+    a {
+      color: rgba(165, 165, 165, 1);
+    }
     font-size: 14px;
     margin-right: 15px;
   }

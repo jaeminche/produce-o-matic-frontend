@@ -22,7 +22,8 @@ const socialMedia = [
     id: 1,
     name: 'Youtube',
     icon: YOUTUBE_ICON,
-    path: 'https://www.youtube.com',
+    path:
+      'https://www.youtube.com/channel/UC118oCP9Fo9L4VTJtFIVBHw?feature=emb_ch_name_ex',
   },
   {
     id: 1,

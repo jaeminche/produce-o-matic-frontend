@@ -85,6 +85,7 @@ const Wrapper = styled(Responsive)`
     line-height: 46px;
     letter-spacing: 0em;
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 25px;
   }
   .text {
@@ -360,7 +361,17 @@ const Tabs = (props) => {
 
 const DrawRowComponent = (props) => {
   const { row, key, isMobile, times, cityName } = props;
-  const { type, path, text, desc, items, tabs, classNames, style } = row;
+  const {
+    type,
+    path,
+    text,
+    desc,
+    items,
+    tabs,
+    classNames,
+    style,
+    customComponent,
+  } = row;
 
   // console.log('rows');
   const ui = {
@@ -418,6 +429,9 @@ const DrawRowComponent = (props) => {
       <h3 className={classNames || 'section-title'} style={style} key={key}>
         {text}
       </h3>
+    ),
+    customComponent: (
+      <div className={classNames || null}>{customComponent}</div>
     ),
   };
 

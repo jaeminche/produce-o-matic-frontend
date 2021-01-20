@@ -49,6 +49,7 @@ import {
   GENERALK_FOOD,
 } from '../../assets';
 import WeatherWidget from '../../components/weather/WeatherWidget';
+import IframedVideo from '../../components/common/IframedVideo';
 
 const uiData = {
   koreaInANutshell: {
@@ -690,22 +691,31 @@ const uiData = {
     parent: 'produce-in-korea',
     rows: [
       { id: 1, type: 'title', text: 'Location Incentive' },
-      // TODO: 영상 게시 예정
-      // {
-      //   id: 2,
-      //   type: 'image',
-      //   path: GYEONGBOKGUNG03,
-      //   desc: 'Gyeuongokgung palace',
-      // },
+      {
+        id: 2,
+        type: 'text',
+        text: `South Korea today welcomes filmmakers and TV producers from overseas more than ever before. Encouraged by the current success of Korean films and TV series, South Korea is now attracting foreign productions of all budgets and sizes from high profiled studio films to Youtube virals and documentaries. Besides the popular images of the vibrant country, a large pool of well-trained production laborers and advanced technologies and infrastructure that the country can offer, what makes South Korea an increasingly popular destination for filming is the highly beneficial location incentive programs and the production support system. You can save a lot by filming in South Korea and this is partly why you can see an increasing number of movies filmed in the country like Avengers: Age of Ultron (2015), Black Panther (2018) and TV series like Sense 8 (2016).`,
+      },
       {
         id: 3,
+        type: 'customComponent',
+        classNames: 'margin-tb',
+        customComponent: (
+          <IframedVideo
+            title={'Seoul Film Commission & Korean Film Commissions'}
+            url={'https://www.youtube.com/embed/G5AQGM22Xa8'}
+          />
+        ),
+      },
+      {
+        id: 4,
         type: 'text',
         text: ` Apart from the uniquely beautiful locations that will make your film look different, there are many more reasons why you must consider South Korea as your next filming destination. One of the reasons is the economic one. You can save a lot by filming in South Korea and this is partly why you see South Korea more often in movies like Avengers: Age of Ultron (2015) and Black Panther (2018).  
     The KOFIC Location Incentive program, launched in 2011 by Korean Film Council (KOFIC), covers a part of the expenses of "foreign feature films, television series and documentaries" shot in South Korea. KOFIC grants up to 30% cash rebate on “foreign audio-visual works production expenditure incurred for goods and services in Korea”. The grant amount is subject to change depending on the numbers of days taken to shoot the film and the remaining grant program budget as of the date of application. (from Korea Film Council)
     `,
       },
       {
-        id: 4,
+        id: 5,
         type: 'flexContainerResponsive',
         items: [
           {
@@ -723,7 +733,7 @@ const uiData = {
         ],
       },
       {
-        id: 5,
+        id: 6,
         type: 'text',
         text: ` Besides commercial feature films with high budget, documentary and indie feature films can also enjoy South Korea’s location incentive program because the required amount of local spending is a lot less than existing incentive programs of neighboring countries in Asia such as Japan, Taiwan, the Philippines and Thailand. Compared to Japan’s pilot incentive program (1.8M), Thailand (1.4M), Taiwan (1M) or the Philippines (157K), KOFIC’s location incentive requires only USD 44K and it makes South Korea pretty much the only country that support non commercial feature films of small medium sizes with location incentive. There are a few requirements you must meet in order to access the program. You must have minimum shooting days of 3 days and spend 50 million KRW (approx. USD 44K) or more locally in South Korea. You also need to have a registered local producer partner on board to be able to apply for it. 
 
@@ -798,28 +808,15 @@ const uiData = {
     rows: [
       { id: 1, type: 'title', text: 'Contract' },
       {
-        id: 7,
-        type: 'flexContainerResponsive',
-        items: [
-          { id: 2, type: 'image', path: CONTRACT01, desc: 'contract' },
-          {
-            id: 1,
-            type: 'text',
-            text: `Long before Bong Joonho’s Parasite winning the Oscars, South Korea’s film industry has long been known outside the world for its unique community culture, work ethics and high quality but also for the notorious excessive overtime on the other hand.`,
-            classNames: 'text',
-          },
-        ],
-      },
-      {
-        id: 3,
+        id: 2,
         type: 'text',
-        text: `Korean film crews are generally motivated and hard working people with a sense of pride. Since the introduction of the Labor Standard Act in 2012 that states weekly work hours and overtime regulations, the industry players have worked hard together to settle it down and now most employers in the industry commonly practice it. The hourly minimum wage of 2020 is confirmed at 8,590 KRW (USD 7.10) and the work hours are limited to 52 hours per week. Global movement of #Metoo campaign had a great influence on Korea’s film industry and made critical changes in the culture as well as in the system. It is now a compulsory condition to take an education session on sexual harassment for any project that receives grants or supports from Korea Film Council and other regional film funds including KOFIC’s location incentive program.
+        text: `Despite the short history of the standard labor contract which was created and released in 2011, the standard labor contract is now being widely practiced in Korea’s film industry. Although it may not yet be compulsory for foreign productions to apply the rules, knowing the local industry standard can only be beneficial when hiring local production crews is necessary. 
 
-        Download sample contracts here:
-
-        Local producer / fixer
-        Drone operator
-        Sound mixer`,
+        The standard labor contract details some of the most important conditions for working in film and video production such as work hours, wage, overtime rules, insurance and credit. According to the standard rules, a film crew must not work longer than 52 hours a week.
+        
+        One of the easiest ways to earn trust from local crews and build a strong production team is to sign proper labor contract with them. As we understand the importance of team building and therefore of signing professional contracts, we have created sample labor contracts to be used for international productions.
+        
+        Feel free to download and modify any of the sample contracts above based on your needs and don’t hesitate to contact us if you need any further advice or consultancies on issues regarding your (future) production in South Korea.`,
         classNames: 'text',
       },
     ],
