@@ -74,7 +74,7 @@ const MyCard = (props) => {
   const { title, imgUrl, redirectTo } = props;
   return (
     <CardBlock>
-      <Card style={{ width: '95%', margin: '0 auto' }}>
+      <Card style={{ width: '97%', margin: '0 auto' }}>
         <a href={redirectTo} rel="noopener noreferrer" target="_blank">
           <div
             style={{
@@ -90,7 +90,7 @@ const MyCard = (props) => {
               }}
             />
           </div>
-          <Card.Body style={{ color: 'black' }}>
+          <Card.Body style={{ color: 'black', maxHeight: '120px' }}>
             <Card.Title>
               <img
                 src="https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document"
@@ -114,28 +114,28 @@ const MyGoogleDocContainer = ({ history }) => {
   const fileId = '12O4bV8sJj43LAtMXY3FRknaHs56eZqJyju5d9i2JKBQ';
   const SAMPLES = [
     {
-      title: 'CONTRACT SAMPLE - SOUND RECORDIST/MIXER',
-      imgUrl: THUMBNAIL_CONTRACT_SOUNDRECORDIST_MIXER,
-      redirectTo:
-        'https://docs.google.com/document/d/12O4bV8sJj43LAtMXY3FRknaHs56eZqJyju5d9i2JKBQ/edit?usp=sharing',
-    },
-    {
-      title: 'PRODUCTION SERVICE AGREEMENT',
+      title: 'Production Service Agreement',
       imgUrl: THUMBNAIL_PRODUCTIONSERVICEAGREEMENT,
       redirectTo:
         'https://docs.google.com/document/d/1-xVF_6tzC2hLf2eNzHMmDB4EvuAEmHeOrCJLEpTRMvs/edit?usp=sharing',
     },
     {
-      title: 'CONTRACT SAMPLE - DRONE OPERATOR',
+      title: 'Crew Agreement (Drone Operator)',
       imgUrl: THUMBNAIL_CONTRACT_DRONEOPERATOR,
       redirectTo:
         'https://docs.google.com/document/d/1-o8ddUermBx6cNYtiCfZyRNLPcY357j3EzCFWTjZqJY/edit?usp=sharing',
+    },
+    {
+      title: 'Crew Agreement (Sound Mixer)',
+      imgUrl: THUMBNAIL_CONTRACT_SOUNDRECORDIST_MIXER,
+      redirectTo:
+        'https://docs.google.com/document/d/12O4bV8sJj43LAtMXY3FRknaHs56eZqJyju5d9i2JKBQ/edit?usp=sharing',
     },
   ];
   return (
     <MyGoogleDocContainerBlock>
       <Wrapper>
-        <div className="section-title">Contract Samples</div>
+        <div className="section-title">Contract Sample Download</div>
         <RowWrap>
           {SAMPLES.map((sample) => (
             <MyCard

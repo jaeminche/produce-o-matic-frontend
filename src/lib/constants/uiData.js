@@ -808,16 +808,15 @@ const uiData = {
     rows: [
       { id: 1, type: 'title', text: 'Contract' },
       {
-        id: 3,
+        id: 2,
         type: 'text',
-        text: `Long before Bong Joonho’s Parasite winning the Oscars, South Korea’s film industry has long been known outside the world for its unique community culture, work ethics and high quality but also for the notorious excessive overtime on the other hand.
-        Korean film crews are generally motivated and hard working people with a sense of pride. Since the introduction of the Labor Standard Act in 2012 that states weekly work hours and overtime regulations, the industry players have worked hard together to settle it down and now most employers in the industry commonly practice it. The hourly minimum wage of 2020 is confirmed at 8,590 KRW (USD 7.10) and the work hours are limited to 52 hours per week. Global movement of #Metoo campaign had a great influence on Korea’s film industry and made critical changes in the culture as well as in the system. It is now a compulsory condition to take an education session on sexual harassment for any project that receives grants or supports from Korea Film Council and other regional film funds including KOFIC’s location incentive program.
+        text: `Despite the short history of the standard labor contract which was created and released in 2011, the standard labor contract is now being widely practiced in Korea’s film industry. Although it may not yet be compulsory for foreign productions to apply the rules, knowing the local industry standard can only be beneficial when hiring local production crews is necessary. 
 
-        Download sample contracts here:
-
-        Local producer / fixer
-        Drone operator
-        Sound mixer`,
+        The standard labor contract details some of the most important conditions for working in film and video production such as work hours, wage, overtime rules, insurance and credit. According to the standard rules, a film crew must not work longer than 52 hours a week.
+        
+        One of the easiest ways to earn trust from local crews and build a strong production team is to sign proper labor contract with them. As we understand the importance of team building and therefore of signing professional contracts, we have created sample labor contracts to be used for international productions.
+        
+        Feel free to download and modify any of the sample contracts above based on your needs and don’t hesitate to contact us if you need any further advice or consultancies on issues regarding your (future) production in South Korea.`,
         classNames: 'text',
       },
     ],
