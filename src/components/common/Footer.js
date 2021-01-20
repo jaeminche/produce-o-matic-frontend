@@ -16,7 +16,7 @@ const FooterBlock = styled.div`
 const Wrapper = styled(Responsive)`
   /* min-height: 506px; */
   display: flex;
-  flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
+  flex-direction: ${(props) => (props.isTabletL ? 'column' : 'row')};
   justify-content: space-between;
   font-size: ${(props) => (props.isMobile ? '12px' : '14px')};
   color: ${palette.textgray[0]};
@@ -50,7 +50,7 @@ const LogoBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  ${(props) => props.isMobile && `align-items: center;`}
+  ${(props) => props.isTabletL && `align-items: center;`}
   .title {
     font-size: 25px;
     font-weight: 700;
@@ -62,7 +62,7 @@ const LogoBox = styled.div`
 `;
 
 const RowWithMarginTop = styled.div`
-  margin-top: ${(props) => (props.isMobile ? '17px' : '30px')};
+  margin-top: ${(props) => (props.isTabletL ? '17px' : '30px')};
 `;
 
 const CopyrightsTextBox = styled.div`
@@ -83,7 +83,7 @@ const MenusBox = styled.div`
   justify-content: space-between;
   .menu {
     margin-right: 10px;
-    ${(props) => props.isMobile && `margin-top: 27px;`}
+    ${(props) => props.isTabletL && `margin-top: 27px;`}
   }
 `;
 const Submenus = styled.div`
@@ -96,15 +96,16 @@ const Submenus = styled.div`
 
 const Footer = ({ menus, socialMedia, terms }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const isTabletL = useMediaQuery({ query: '(max-width: 1199px)' });
 
   return (
     <FooterBlock>
-      <Wrapper isMobile={isMobile}>
-        <LogoBox isMobile={isMobile}>
+      <Wrapper isMobile={isMobile} isTabletL={isTabletL}>
+        <LogoBox isMobile={isMobile} isTabletL={isTabletL}>
           <Link to="/" className="logo title">
             <img src={LOGO} alt="logo" />
           </Link>
-          <RowWithMarginTop isMobile={isMobile}>
+          <RowWithMarginTop isMobile={isMobile} isTabletL={isTabletL}>
             {socialMedia.map((media, key) => (
               <span key={key}>
                 <Link to={media.path} className="icon">
@@ -115,13 +116,13 @@ const Footer = ({ menus, socialMedia, terms }) => {
             ))}
           </RowWithMarginTop>
         </LogoBox>
-        <MenusBox isMobile={isMobile}>
+        <MenusBox isMobile={isMobile} isTabletL={isTabletL}>
           {menus.map((menu, key) => (
             <div className="title menu" key={key}>
               <Link to={menu.path} className="menuitem ">
                 {menu.text}
               </Link>
-              <RowWithMarginTop isMobile={isMobile}>
+              <RowWithMarginTop isMobile={isMobile} isTabletL={isTabletL}>
                 <Submenus isMobile={isMobile}>
                   {menu.submenus.map((submenu, key) => (
                     <Link to={submenu.path} key={key}>
