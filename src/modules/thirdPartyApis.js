@@ -18,6 +18,11 @@ const [
   POST_COPYCONTRACTSAMPLE_SUCCESS,
   POST_COPYCONTRACTSAMPLE_FAILURE,
 ] = createRequestActionTypes('thirdPartyApis/POST_COPYCONTRACTSAMPLE');
+const [
+  GET_CURRENCYSET,
+  GET_CURRENCYSET_SUCCESS,
+  GET_CURRENCYSET_FAILURE,
+] = createRequestActionTypes('thirdPartyApis/GET_CURRENCYSET');
 
 export const getIp = createAction(GET_IP);
 export const getUsersLocation = createAction(GET_USERSLOCATION, ({ ip }) => ({
@@ -29,6 +34,9 @@ export const postCopyContractSample = createAction(
     fileId,
   }),
 );
+export const getCurrencySet = createAction(GET_CURRENCYSET, ({ apikey }) => ({
+  apikey,
+}));
 
 const getIpSaga = createRequestSaga(GET_IP, thirdParyApis.getIp);
 const getUsersLocationSaga = createRequestSaga(
@@ -39,10 +47,15 @@ const postCopyContractSampleSaga = createRequestSaga(
   POST_COPYCONTRACTSAMPLE,
   thirdParyApis.postCopyContractSample,
 );
+const getCurrencySetSaga = createRequestSaga(
+  GET_CURRENCYSET,
+  thirdParyApis.getCurrencySet,
+);
 export function* thirdParyApisSaga() {
   yield takeLatest(GET_IP, getIpSaga);
   yield takeLatest(GET_USERSLOCATION, getUsersLocationSaga);
   yield takeLatest(POST_COPYCONTRACTSAMPLE, postCopyContractSampleSaga);
+  yield takeLatest(GET_CURRENCYSET, getCurrencySetSaga);
 }
 
 const initialState = {
@@ -52,6 +65,8 @@ const initialState = {
   usersLocationError: null,
   copyContractResult: null,
   copyContractResultError: null,
+  currencySet: null,
+  currencySetError: null,
 };
 
 const thirdPartyApis = handleActions(
@@ -88,6 +103,16 @@ const thirdPartyApis = handleActions(
     [POST_COPYCONTRACTSAMPLE_FAILURE]: (state, { payload: error }) => ({
       ...state,
       copyContractResultError: error,
+    }),
+    [GET_CURRENCYSET_SUCCESS]: (state, { payload: currencySet }) => {
+      return {
+        ...state,
+        currencySet,
+      };
+    },
+    [GET_CURRENCYSET_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      currencySetError: error,
     }),
   },
   initialState,

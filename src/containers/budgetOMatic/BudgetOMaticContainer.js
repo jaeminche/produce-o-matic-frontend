@@ -12,24 +12,39 @@ import {
   moveItemBeforeAnotherInArr,
   defaultCurrencyRates,
 } from '../../lib/constants/budgetomatic';
+import { getIp, getUsersLocation } from '../../modules/thirdPartyApis';
 import { listItemsGroups } from '../../modules/itemsGroups';
 import { postBudgetResult } from '../../modules/budgetResult';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 import { v1 } from 'uuid';
+import CurrencyFixer from '../currencyFixer/CurrencyFixer';
 
 const BudgetOMaticContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
-  const { DATASETS, RES, error, loading } = useSelector(
-    ({ itemsGroups, budgetResult, loading }) => ({
-      DATASETS: itemsGroups.dataSets,
-      RES: budgetResult.res,
-      error: itemsGroups.error,
-      loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
-    }),
-  );
+  const {
+    IP,
+    USERSLOCATION,
+    ipError,
+    usersLocationError,
+
+    DATASETS,
+    RES,
+    error,
+    loading,
+  } = useSelector(({ thirdPartyApis, itemsGroups, budgetResult, loading }) => ({
+    IP: thirdPartyApis.ip,
+    USERSLOCATION: thirdPartyApis.usersLocation,
+    ipError: thirdPartyApis.ipError,
+    usersLocationError: thirdPartyApis.usersLocationError,
+
+    DATASETS: itemsGroups.dataSets,
+    RES: budgetResult.res,
+    error: itemsGroups.error,
+    loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
+  }));
 
   // ? 1. request dataSetInstance data and full dataset
   const [myDataSets, setMyDataSets] = useState('');
@@ -43,6 +58,19 @@ const BudgetOMaticContainer = ({ location }) => {
   const [isSavedSuccess, setIsSavedSuccess] = useState(RES);
 
   const history = useHistory();
+
+  useEffect(() => {
+    if (!USERSLOCATION || (USERSLOCATION && USERSLOCATION.status !== 'success'))
+      dispatch(getIp());
+  }, []);
+
+  useEffect(() => {
+    if (
+      !USERSLOCATION ||
+      (USERSLOCATION && USERSLOCATION.status !== 'success' && IP)
+    )
+      dispatch(getUsersLocation({ ip: IP }));
+  }, [IP]);
 
   useEffect(() => {
     // ? 1. API request for all data
@@ -408,25 +436,27 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [isSavedSuccess]);
 
   return (
-    <BudgetOMatic
-      typeOfProduction={typeOfProduction}
-      daysOfShooting={daysOfShooting}
-      currency={currency}
-      currencyRate={currencyRate}
-      OPTIONS={OPTIONS}
-      dataSetInstance={dataSetInstance}
-      onChangeTypeOfProduction={onChangeTypeOfProduction}
-      onChangeDaysOfShooting={onChangeDaysOfShooting}
-      onChangeCurrency={onChangeCurrency}
-      onChangeToggleGroup={onChangeToggleGroup}
-      onChangeSelect={onChangeSelect}
-      onChangeReplace={onChangeReplace}
-      onClickRemove={onClickRemove}
-      onClickAdd={onClickAdd}
-      onSubmit={onSubmit}
-      uiData={BUDGETOMATIC_UIDATA}
-      isMobile={isMobile}
-    />
+    <CurrencyFixer>
+      <BudgetOMatic
+        typeOfProduction={typeOfProduction}
+        daysOfShooting={daysOfShooting}
+        currency={currency}
+        currencyRate={currencyRate}
+        OPTIONS={OPTIONS}
+        dataSetInstance={dataSetInstance}
+        onChangeTypeOfProduction={onChangeTypeOfProduction}
+        onChangeDaysOfShooting={onChangeDaysOfShooting}
+        onChangeCurrency={onChangeCurrency}
+        onChangeToggleGroup={onChangeToggleGroup}
+        onChangeSelect={onChangeSelect}
+        onChangeReplace={onChangeReplace}
+        onClickRemove={onClickRemove}
+        onClickAdd={onClickAdd}
+        onSubmit={onSubmit}
+        uiData={BUDGETOMATIC_UIDATA}
+        isMobile={isMobile}
+      />
+    </CurrencyFixer>
   );
 };
 
