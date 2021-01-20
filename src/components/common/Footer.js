@@ -108,9 +108,14 @@ const Footer = ({ menus, socialMedia, terms }) => {
           <RowWithMarginTop isMobile={isMobile} isTabletL={isTabletL}>
             {socialMedia.map((media, key) => (
               <span key={key}>
-                <Link to={media.path} className="icon">
+                <a
+                  href={media.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="icon"
+                >
                   <img src={media.icon} alt={`${media.name} icon`} />
-                </Link>
+                </a>
                 <span className="icon-spacer" />
               </span>
             ))}
