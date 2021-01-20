@@ -430,7 +430,9 @@ const DrawRowComponent = (props) => {
         {text}
       </h3>
     ),
-    customComponent: <>{customComponent}</>,
+    customComponent: (
+      <div className={classNames || null}>{customComponent}</div>
+    ),
   };
 
   return ui[type];

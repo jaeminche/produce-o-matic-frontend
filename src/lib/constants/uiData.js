@@ -699,6 +699,7 @@ const uiData = {
       {
         id: 3,
         type: 'customComponent',
+        classNames: 'margin-tb',
         customComponent: (
           <IframedVideo
             title={'Seoul Film Commission & Korean Film Commissions'}
