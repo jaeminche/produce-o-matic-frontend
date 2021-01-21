@@ -5,7 +5,9 @@ export const getIp = () =>
   clientForExternalApi.get(`https://api.ipify.org?format=json`);
 
 export const getUsersLocation = ({ ip }) =>
-  clientForExternalApi.get(`http://ip-api.com/json/${ip}`);
+  // clientForExternalApi.get(`http://ip-api.com/json/${ip}`);
+  // clientForExternalApi.get(`https://geolocation-db.com/json`);
+  clientForExternalApi.get(`http://extreme-ip-lookup.com/json`);
 
 export const postCopyContractSample = ({ fileId }) =>
   clientForExternalApi.post(
