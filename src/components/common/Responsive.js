@@ -1,22 +1,15 @@
 import React from 'react';
+import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 
 const ResponsiveBlock = styled.div`
-  padding-left: 30px;
-  padding-right: 30px;
   width: 1040px;
   margin: 0 auto;
-
-  /* todo: change it mobile-first */
-  @media (max-width: 1200px) {
-    /* width: 768px; */
-    width: 74%;
-  }
-  @media (max-width: 768px) {
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+  ${mq({
+    width: ['100%', , , , '74%', '1040px', ,],
+    paddingLeft: ['20px', , , '30px', , , ,],
+    paddingRight: ['20px', , , '30px', , , ,],
+  })};
 `;
 
 const ResponsiveBlockFull = styled.div`
