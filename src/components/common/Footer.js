@@ -141,7 +141,10 @@ const Footer = ({ menus, socialMedia, terms }) => {
         </MenusBox>
       </Wrapper>
 
-      <Wrapper style={{ marginTop: '90px' }} isMobile={isMobile}>
+      <Wrapper
+        style={{ marginTop: '90px', fontSize: '13px' }}
+        isMobile={isMobile}
+      >
         <CopyrightsTextBox>
           Ⓒ Copyright 2020 Produce-O-Matic. All rights reserved.
         </CopyrightsTextBox>
