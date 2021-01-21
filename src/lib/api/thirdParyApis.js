@@ -5,9 +5,9 @@ export const getIp = () =>
   clientForExternalApi.get(`https://api.ipify.org?format=json`);
 
 export const getUsersLocation = ({ ip }) =>
-  // clientForExternalApi.get(`http://ip-api.com/json/${ip}`);
-  // clientForExternalApi.get(`https://geolocation-db.com/json`);
-  clientForExternalApi.get(`http://extreme-ip-lookup.com/json`);
+  // clientForExternalApi.get(`http://ip-api.com/json/${ip}`); // insecure request
+  // clientForExternalApi.get(`https://geolocation-db.com/json`); // returns city: null
+  clientForExternalApi.get(`https://extreme-ip-lookup.com/json`); // returns incorrect, but nearest city name
 
 export const postCopyContractSample = ({ fileId }) =>
   clientForExternalApi.post(
