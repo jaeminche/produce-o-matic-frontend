@@ -27,7 +27,9 @@ const BudgetOMaticContainer = ({ location }) => {
   const {
     IP,
     USERSLOCATION,
+    CURRENCYSET,
     ipError,
+    currencySetError,
     usersLocationError,
 
     DATASETS,
@@ -37,6 +39,8 @@ const BudgetOMaticContainer = ({ location }) => {
   } = useSelector(({ thirdPartyApis, itemsGroups, budgetResult, loading }) => ({
     IP: thirdPartyApis.ip,
     USERSLOCATION: thirdPartyApis.usersLocation,
+    CURRENCYSET: thirdPartyApis.currencySet,
+    currencySetError: thirdPartyApis.currencySetError,
     ipError: thirdPartyApis.ipError,
     usersLocationError: thirdPartyApis.usersLocationError,
 
@@ -52,20 +56,40 @@ const BudgetOMaticContainer = ({ location }) => {
   const [typeOfProduction, setTypeOfProduction] = useState('DO');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
-  const [currencyRate, setCurrencyRate] = useState(
-    defaultCurrencyRates[currency],
-  );
+  const [currencyRates, setCurrencyRates] = useState(defaultCurrencyRates);
+  const [currencyRate, setCurrencyRate] = useState(currencyRates[currency]);
   const [isSavedSuccess, setIsSavedSuccess] = useState(RES);
-
+  const [addedOptions, setAddedOptions] = useState(OPTIONS);
   const history = useHistory();
 
   useEffect(() => {
-    if (
-      !USERSLOCATION
-      // || (USERSLOCATION && USERSLOCATION.status !== 'success')
-    )
-      dispatch(getUsersLocation());
-  }, []);
+    if (USERSLOCATION && addedOptions) {
+      const usersCurrencyCode = USERSLOCATION.currency;
+      if (!OPTIONS.currency.includes(usersCurrencyCode)) {
+        const tempOptions = JSON.parse(JSON.stringify(OPTIONS));
+        tempOptions.currency.push(usersCurrencyCode);
+        setAddedOptions(tempOptions);
+        console.log('hahahahah');
+      }
+    }
+  }, [CURRENCYSET, USERSLOCATION, addedOptions]);
+
+  useEffect(() => {
+    if (CURRENCYSET && CURRENCYSET.success) {
+      const { rates } = CURRENCYSET;
+      const myCurrency = rates[currency];
+      const base = rates['KRW'];
+      let tempCurrencyRates = {
+        KRW: 1,
+        USD: 1 / (rates['USD'] / base),
+        EUR: 1 / (rates['EUR'] / base),
+        CNY: 1 / (rates['CNY'] / base),
+      };
+      tempCurrencyRates[currency] = 1 / (myCurrency / base);
+      console.log('===234', tempCurrencyRates);
+      setCurrencyRates(tempCurrencyRates);
+    }
+  }, [CURRENCYSET, currency]);
 
   useEffect(() => {
     // ? 1. API request for all data
@@ -85,7 +109,8 @@ const BudgetOMaticContainer = ({ location }) => {
 
   useEffect(() => {
     if (currency) {
-      setCurrencyRate(defaultCurrencyRates[currency]);
+      // setCurrencyRate(defaultCurrencyRates[currency]);
+      setCurrencyRate(currencyRates[currency]);
     }
   }, [currency]);
 
@@ -437,7 +462,7 @@ const BudgetOMaticContainer = ({ location }) => {
         daysOfShooting={daysOfShooting}
         currency={currency}
         currencyRate={currencyRate}
-        OPTIONS={OPTIONS}
+        OPTIONS={addedOptions}
         dataSetInstance={dataSetInstance}
         onChangeTypeOfProduction={onChangeTypeOfProduction}
         onChangeDaysOfShooting={onChangeDaysOfShooting}
