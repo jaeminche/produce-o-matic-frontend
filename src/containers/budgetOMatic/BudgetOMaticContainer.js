@@ -60,7 +60,10 @@ const BudgetOMaticContainer = ({ location }) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (!USERSLOCATION || (USERSLOCATION && USERSLOCATION.status !== 'success'))
+    if (
+      !USERSLOCATION
+      // || (USERSLOCATION && USERSLOCATION.status !== 'success')
+    )
       dispatch(getUsersLocation());
   }, []);
 

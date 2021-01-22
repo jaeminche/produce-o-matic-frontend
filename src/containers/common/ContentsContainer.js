@@ -33,7 +33,8 @@ const ContentsContainer = ({ pagekey, location }) => {
   useEffect(() => {
     if (
       shouldActivateClock &&
-      (!USERSLOCATION || (USERSLOCATION && USERSLOCATION.status !== 'success'))
+      !USERSLOCATION
+      // || (USERSLOCATION && USERSLOCATION.status !== 'success')
     )
       dispatch(getUsersLocation());
   }, []);
@@ -66,7 +67,7 @@ const ContentsContainer = ({ pagekey, location }) => {
         }
         cityName={
           USERSLOCATION &&
-          USERSLOCATION.status === 'success' &&
+          // USERSLOCATION.status === 'success' &&
           USERSLOCATION.city
         }
       />
