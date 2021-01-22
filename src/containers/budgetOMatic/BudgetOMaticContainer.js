@@ -12,7 +12,7 @@ import {
   moveItemBeforeAnotherInArr,
   defaultCurrencyRates,
 } from '../../lib/constants/budgetomatic';
-import { getIp, getUsersLocation } from '../../modules/thirdPartyApis';
+import { getUsersLocation } from '../../modules/thirdPartyApis';
 import { listItemsGroups } from '../../modules/itemsGroups';
 import { postBudgetResult } from '../../modules/budgetResult';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
@@ -61,16 +61,8 @@ const BudgetOMaticContainer = ({ location }) => {
 
   useEffect(() => {
     if (!USERSLOCATION || (USERSLOCATION && USERSLOCATION.status !== 'success'))
-      dispatch(getIp());
+      dispatch(getUsersLocation());
   }, []);
-
-  useEffect(() => {
-    if (
-      !USERSLOCATION ||
-      (USERSLOCATION && USERSLOCATION.status !== 'success' && IP)
-    )
-      dispatch(getUsersLocation({ ip: IP }));
-  }, [IP]);
 
   useEffect(() => {
     // ? 1. API request for all data

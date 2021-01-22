@@ -25,9 +25,7 @@ const [
 ] = createRequestActionTypes('thirdPartyApis/GET_CURRENCYSET');
 
 export const getIp = createAction(GET_IP);
-export const getUsersLocation = createAction(GET_USERSLOCATION, ({ ip }) => ({
-  ip,
-}));
+export const getUsersLocation = createAction(GET_USERSLOCATION);
 export const postCopyContractSample = createAction(
   POST_COPYCONTRACTSAMPLE,
   ({ fileId }) => ({

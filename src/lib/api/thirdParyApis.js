@@ -4,7 +4,7 @@ import clientForExternalApi from './clientForExternalApi';
 export const getIp = () =>
   clientForExternalApi.get(`https://api.ipify.org?format=json`);
 
-export const getUsersLocation = ({ ip }) =>
+export const getUsersLocation = () =>
   // clientForExternalApi.get(`http://ip-api.com/json/${ip}`); // insecure request
   // clientForExternalApi.get(`https://geolocation-db.com/json`); // returns city: null
   clientForExternalApi.get(`https://extreme-ip-lookup.com/json`); // returns incorrect, but nearest city name
