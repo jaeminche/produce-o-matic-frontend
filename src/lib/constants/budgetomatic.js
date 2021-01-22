@@ -14,7 +14,7 @@ const generateQt = (num) => {
 const OPTIONS = {
   typeOfProduction: ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'],
   daysOfShooting: generateQt(30),
-  currency: ['KRW', 'EUR', 'USD'],
+  currency: ['KRW', 'EUR', 'USD', 'CNY'],
   amnt: generateQt(15),
   days: generateQt(40),
 };
@@ -45,7 +45,8 @@ const moveItemBeforeAnotherInArr = (arr, newIndex, oldIndex) => {
 const defaultCurrencyRates = {
   KRW: 1,
   USD: 1100,
-  EUR: 1300,
+  EUR: 1350,
+  CNY: 171,
 };
 
 export {

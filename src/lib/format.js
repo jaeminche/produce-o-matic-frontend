@@ -43,6 +43,7 @@ const formatCurrency = ({
   currencyRate = 1,
   incentiveRate = 1,
 }) => {
+  console.log('==399', currency, currencyRate);
   const formatter = !currency
     ? new Intl.NumberFormat()
     : new Intl.NumberFormat('ko-KR', {
