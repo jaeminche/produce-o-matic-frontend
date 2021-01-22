@@ -63,7 +63,7 @@ const BudgetOMaticContainer = ({ location }) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (USERSLOCATION && addedOptions) {
+    if (USERSLOCATION && OPTIONS) {
       const usersCurrencyCode = USERSLOCATION.currency;
       if (!OPTIONS.currency.includes(usersCurrencyCode)) {
         const tempOptions = JSON.parse(JSON.stringify(OPTIONS));
@@ -72,7 +72,7 @@ const BudgetOMaticContainer = ({ location }) => {
         console.log('hahahahah');
       }
     }
-  }, [CURRENCYSET, USERSLOCATION, addedOptions]);
+  }, [USERSLOCATION]);
 
   useEffect(() => {
     if (CURRENCYSET && CURRENCYSET.success) {
