@@ -75,6 +75,7 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [USERSLOCATION]);
 
   useEffect(() => {
+    // ? 환율세트 정보를 가져오고 사용자가 환율을 특정했을 때, 환율정보를 업뎃
     if (CURRENCYSET && CURRENCYSET.success) {
       const { rates } = CURRENCYSET;
       const myCurrency = rates[currency];
@@ -86,7 +87,7 @@ const BudgetOMaticContainer = ({ location }) => {
         CNY: 1 / (rates['CNY'] / base),
       };
       tempCurrencyRates[currency] = 1 / (myCurrency / base);
-      console.log('===234', tempCurrencyRates);
+      console.log('===234', myCurrency, tempCurrencyRates);
       setCurrencyRates(tempCurrencyRates);
     }
   }, [CURRENCYSET, currency]);
@@ -108,11 +109,18 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [DATASETS]);
 
   useEffect(() => {
-    if (currency) {
+    // ? 특정된 환 & 환율 설정 : 초기 환율정보세트가 세팅되거나 사용자가 환율을 새로 특정할 때마다.
+    if (currencyRates) {
       // setCurrencyRate(defaultCurrencyRates[currency]);
       setCurrencyRate(currencyRates[currency]);
     }
-  }, [currency]);
+  }, [currencyRates]);
+
+  useEffect(() => {
+    if (currencyRate) {
+      console.log('==235', currencyRate);
+    }
+  }, [currencyRate]);
 
   // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
   // * update dataSetInstance 1/3
