@@ -27,7 +27,9 @@ const BudgetOMaticContainer = ({ location }) => {
   const {
     IP,
     USERSLOCATION,
+    CURRENCYSET,
     ipError,
+    currencySetError,
     usersLocationError,
 
     DATASETS,
@@ -37,6 +39,8 @@ const BudgetOMaticContainer = ({ location }) => {
   } = useSelector(({ thirdPartyApis, itemsGroups, budgetResult, loading }) => ({
     IP: thirdPartyApis.ip,
     USERSLOCATION: thirdPartyApis.usersLocation,
+    CURRENCYSET: thirdPartyApis.currencySet,
+    currencySetError: thirdPartyApis.currencySetError,
     ipError: thirdPartyApis.ipError,
     usersLocationError: thirdPartyApis.usersLocationError,
 
@@ -52,17 +56,41 @@ const BudgetOMaticContainer = ({ location }) => {
   const [typeOfProduction, setTypeOfProduction] = useState('DO');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
-  const [currencyRate, setCurrencyRate] = useState(
-    defaultCurrencyRates[currency],
-  );
+  const [currencyRates, setCurrencyRates] = useState(defaultCurrencyRates);
+  const [currencyRate, setCurrencyRate] = useState(currencyRates[currency]);
   const [isSavedSuccess, setIsSavedSuccess] = useState(RES);
-
+  const [addedOptions, setAddedOptions] = useState(OPTIONS);
   const history = useHistory();
 
   useEffect(() => {
-    if (!USERSLOCATION || (USERSLOCATION && USERSLOCATION.status !== 'success'))
-      dispatch(getUsersLocation());
-  }, []);
+    if (USERSLOCATION && OPTIONS) {
+      const usersCurrencyCode = USERSLOCATION.currency;
+      if (!OPTIONS.currency.includes(usersCurrencyCode)) {
+        const tempOptions = JSON.parse(JSON.stringify(OPTIONS));
+        tempOptions.currency.push(usersCurrencyCode);
+        setAddedOptions(tempOptions);
+        console.log('hahahahah');
+      }
+    }
+  }, [USERSLOCATION]);
+
+  useEffect(() => {
+    // ? 환율세트 정보를 가져오고 사용자가 환율을 특정했을 때, 환율정보를 업뎃
+    if (CURRENCYSET && CURRENCYSET.success) {
+      const { rates } = CURRENCYSET;
+      const myCurrency = rates[currency];
+      const base = rates['KRW'];
+      let tempCurrencyRates = {
+        KRW: 1,
+        USD: 1 / (rates['USD'] / base),
+        EUR: 1 / (rates['EUR'] / base),
+        CNY: 1 / (rates['CNY'] / base),
+      };
+      tempCurrencyRates[currency] = 1 / (myCurrency / base);
+      console.log('===234', myCurrency, tempCurrencyRates);
+      setCurrencyRates(tempCurrencyRates);
+    }
+  }, [CURRENCYSET, currency]);
 
   useEffect(() => {
     // ? 1. API request for all data
@@ -81,10 +109,18 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [DATASETS]);
 
   useEffect(() => {
-    if (currency) {
-      setCurrencyRate(defaultCurrencyRates[currency]);
+    // ? 특정된 환 & 환율 설정 : 초기 환율정보세트가 세팅되거나 사용자가 환율을 새로 특정할 때마다.
+    if (currencyRates) {
+      // setCurrencyRate(defaultCurrencyRates[currency]);
+      setCurrencyRate(currencyRates[currency]);
     }
-  }, [currency]);
+  }, [currencyRates]);
+
+  useEffect(() => {
+    if (currencyRate) {
+      console.log('==235', currencyRate);
+    }
+  }, [currencyRate]);
 
   // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
   // * update dataSetInstance 1/3
@@ -434,7 +470,7 @@ const BudgetOMaticContainer = ({ location }) => {
         daysOfShooting={daysOfShooting}
         currency={currency}
         currencyRate={currencyRate}
-        OPTIONS={OPTIONS}
+        OPTIONS={addedOptions}
         dataSetInstance={dataSetInstance}
         onChangeTypeOfProduction={onChangeTypeOfProduction}
         onChangeDaysOfShooting={onChangeDaysOfShooting}
