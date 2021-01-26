@@ -44,6 +44,9 @@ const ButtonGroups = React.lazy(() =>
 const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/charts/Charts'));
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
+const BudgetomaticResultsList = React.lazy(() =>
+  import('./views/budgetomatic/BudgetomaticResultsList'),
+);
 const CoreUIIcons = React.lazy(() =>
   import('./views/icons/coreui-icons/CoreUIIcons'),
 );
@@ -64,9 +67,9 @@ const routes = [
   { path: '/firstavenue', exact: true, name: 'Home' },
   { path: '/firstavenue/dashboard', name: 'Dashboard', component: Dashboard },
   {
-    path: '/firstavenue/budgetomatic-page/results-history',
-    name: 'Dashboard',
-    component: Dashboard,
+    path: '/firstavenue/budgetomatic-page/results-list',
+    name: 'BudgetomaticResultsList',
+    component: BudgetomaticResultsList,
   },
   {
     path: '/firstavenue/budgetomatic-page/templates',

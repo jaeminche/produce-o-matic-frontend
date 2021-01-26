@@ -19,7 +19,7 @@ const _nav = [
   {
     _tag: 'CSidebarNavItem',
     name: '결과 페이지 내역 보기',
-    to: '/firstavenue/budgetomatic-page/results-history',
+    to: '/firstavenue/budgetomatic-page/results-list',
     icon: 'cil-pencil',
   },
   {
