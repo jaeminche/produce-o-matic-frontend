@@ -6,6 +6,7 @@ import loading from './loading';
 import user, { userSaga } from './user';
 import itemsGroups, { itemsGroupsSaga } from './itemsGroups';
 import budgetResult, { budgetResultSaga } from './budgetResult';
+import budgetResults, { budgetResultsSaga } from './budgetResults';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
@@ -18,10 +19,11 @@ const rootReducer = combineReducers({
   user,
   itemsGroups,
   budgetResult,
+  budgetResults,
+  thirdPartyApis,
   write,
   post,
   posts,
-  thirdPartyApis,
 });
 
 export function* rootSaga() {
@@ -30,10 +32,11 @@ export function* rootSaga() {
     userSaga(),
     itemsGroupsSaga(),
     budgetResultSaga(),
+    budgetResultsSaga(),
+    thirdParyApisSaga(),
     writeSaga(),
     postSaga(),
     postsSaga(),
-    thirdParyApisSaga(),
   ]); // todo: compare with 'fork'
 }
 

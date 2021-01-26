@@ -12,6 +12,8 @@ import client from './client';
 export const postBudgetResult = ({ uuid, result }) =>
   client.post('/api/budgetResults', { uuid, result });
 
+export const listBudgetResults = () => client.get(`/api/budgetResults`);
+
 // export const updateGroup = ({ id, title, body, tags }) =>
 //   client.patch(`/api/itemGroups/${id}`, { title, body, tags });
 
