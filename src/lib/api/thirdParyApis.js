@@ -18,5 +18,6 @@ export const postCopyContractSample = ({ fileId }) =>
 
 export const getCurrencySet = ({ apikey }) =>
   clientForExternalApi.get(
-    `http://data.fixer.io/api/latest?access_key=${apikey}`,
+    // `http://data.fixer.io/api/latest?access_key=${apikey}`,
+    `https://api.exchangeratesapi.io/latest`,
   );

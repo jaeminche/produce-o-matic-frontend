@@ -75,10 +75,11 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [USERSLOCATION]);
 
   useEffect(() => {
-    // ? 환율세트 정보를 가져오고 사용자가 환율을 특정했을 때, 환율정보를 업뎃
-    if (CURRENCYSET && CURRENCYSET.success) {
-      const { rates } = CURRENCYSET;
-      const myCurrency = rates[currency];
+    // ? if currency rates data are retrieved and the user specifies a currency, we update our 5 currencies rates set.
+    if (CURRENCYSET /* && CURRENCYSET.success*/) {
+      let { rates } = CURRENCYSET;
+      if (!rates['EUR']) rates = { ...rates, EUR: 1 }; // provide EUR's rate, for exchangeratesapi.io doesn't provide the base currency rate.
+      const userSelectedCurrencyRate = rates[currency];
       const base = rates['KRW'];
       let tempCurrencyRates = {
         KRW: 1,
@@ -86,8 +87,8 @@ const BudgetOMaticContainer = ({ location }) => {
         EUR: 1 / (rates['EUR'] / base),
         CNY: 1 / (rates['CNY'] / base),
       };
-      tempCurrencyRates[currency] = 1 / (myCurrency / base);
-      console.log('===234', myCurrency, tempCurrencyRates);
+      tempCurrencyRates[currency] = 1 / (userSelectedCurrencyRate / base);
+      console.log('===234', userSelectedCurrencyRate, tempCurrencyRates);
       setCurrencyRates(tempCurrencyRates);
     }
   }, [CURRENCYSET, currency]);
