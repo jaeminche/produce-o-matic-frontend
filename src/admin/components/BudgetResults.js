@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import Table from '../components/common/Table';
 
 const BudgetResults = (props) => {
-  const { budgetResults } = props;
-  console.log('==755', budgetResults);
+  //   console.log('==7979', props.budgetResults);
   return (
     <div>
-      {budgetResults && budgetResults.map((result) => <div>{result._id}</div>)}
+      <Table {...props} />
     </div>
   );
 };
