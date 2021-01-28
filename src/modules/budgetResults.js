@@ -4,6 +4,7 @@ import createRequestSaga, {
 } from '../lib/createRequestSaga';
 import * as budgetResultsAPI from '../lib/api/budgetResults';
 import { takeLatest } from 'redux-saga/effects';
+import { formatBudgetResults } from '../lib/format';
 
 const [
   LIST_BUDGETRESULTS,
@@ -42,7 +43,7 @@ const budgetResults = handleActions(
     ) => {
       return {
         ...state,
-        budgetResults,
+        budgetResults: formatBudgetResults({ data: budgetResults }),
         lastPage: parseInt(response.headers['last-page'], 10), // 문자열을 숫자로 변환
       };
     },

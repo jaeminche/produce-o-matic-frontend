@@ -24,15 +24,14 @@ const getBadge = (status) => {
       return 'primary';
   }
 };
-const fields = ['_id', 'uuid', 'createdAt', 'email'];
+const fields = ['_id', 'uuid', 'createdAt_local', 'createdAt_utc', 'email'];
 
 const Table = (props) => {
   const { budgetResults } = props;
-  // {budgetResults && budgetResults.map((result) => <div>{result._id}</div>)}
   return (
     <>
       <CRow>
-        <CCol xs="12" lg="6">
+        <CCol xs="12" lg="12">
           <CCard>
             <CCardHeader>
               Budget-O-Matic Results List
