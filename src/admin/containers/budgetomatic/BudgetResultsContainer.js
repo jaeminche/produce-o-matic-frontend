@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { listBudgetResults } from '../../../modules/budgetResults';
+import BudgetResults from '../../components/BudgetResults';
 
-const BudgetResultsList = () => {
-  console.log('==255', 'hahaha');
+const BudgetResultsContainer = () => {
   const dispatch = useDispatch();
+  const { BUDGETRESULTS } = useSelector(({ budgetResults }) => ({
+    BUDGETRESULTS: budgetResults.budgetResults,
+  }));
 
   useEffect(() => {
-    console.log('==9393');
     dispatch(listBudgetResults());
   }, []);
 
-  return <div>haha</div>;
+  return <BudgetResults budgetResults={BUDGETRESULTS} />;
 };
 
-export default withRouter(BudgetResultsList);
+export default withRouter(BudgetResultsContainer);
