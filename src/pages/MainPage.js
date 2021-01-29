@@ -18,7 +18,7 @@ const MainPage = () => {
   return (
     <MainPageBlock>
       <Helmet>
-        <title>PRODUCE-O-MATIC_main</title>
+        <title>Produce-O-Matic</title>
       </Helmet>
       {/* possible props: Spacer, reverse-color */}
       <HeaderContainer />
