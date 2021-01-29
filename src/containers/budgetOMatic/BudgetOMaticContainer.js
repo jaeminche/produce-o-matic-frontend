@@ -436,7 +436,14 @@ const BudgetOMaticContainer = ({ location }) => {
     //==결과 페이지 가는 과정
     // budgetomatic 페이지 컨펌 누르면>
     // 1. 데이터 post  >
-    dispatch(postBudgetResult({ uuid: v1(), result: dataSetInstance }));
+    dispatch(
+      postBudgetResult({
+        uuid: v1(),
+        result: dataSetInstance,
+        currency,
+        currencyRate,
+      }),
+    );
     // 2. backend: db 저장 > 성공이면 > 아이디 반환 >
   };
 

@@ -9,8 +9,8 @@ import client from './client';
 
 // export const listItemsGroups = () => client.get(`/api/itemsGroups`);
 
-export const postBudgetResult = ({ uuid, result }) =>
-  client.post('/api/budgetResults', { uuid, result });
+export const postBudgetResult = ({ uuid, result, currency, currencyRate }) =>
+  client.post('/api/budgetResults', { uuid, result, currency, currencyRate });
 
 export const listBudgetResults = () => client.get(`/api/budgetResults`);
 
