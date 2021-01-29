@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { listBudgetResults } from '../../../modules/budgetResults';
 import BudgetResults from '../../components/BudgetResults';
 
-const BudgetResultsContainer = (history) => {
+const BudgetResultsContainer = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { BUDGETRESULTS } = useSelector(({ budgetResults }) => ({
     BUDGETRESULTS: budgetResults.budgetResults,
   }));

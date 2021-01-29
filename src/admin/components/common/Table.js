@@ -44,7 +44,11 @@ const Table = (props) => {
                 itemsPerPage={10}
                 pagination
                 // todo:
-                // onRowClick={(item) => history.push(`../`)}
+                onRowClick={(item) =>
+                  history.push(
+                    `/firstavenue/budgetomatic-page/results-list/${item._id}`,
+                  )
+                }
                 scopedSlots={{
                   status: (item) => (
                     <td>

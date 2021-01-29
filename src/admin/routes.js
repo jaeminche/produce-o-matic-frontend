@@ -71,6 +71,7 @@ const routes = [
   { path: '/firstavenue/dashboard', name: 'Dashboard', component: Dashboard },
   {
     path: '/firstavenue/budgetomatic-page/results-list',
+    exact: true,
     name: 'BudgetResultsView',
     component: BudgetResultsView,
   },
