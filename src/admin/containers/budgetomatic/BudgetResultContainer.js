@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { listBudgetResults } from '../../../modules/budgetResults';
-import BudgetResults from '../../components/BudgetResults';
+import BudgetResult from '../../components/BudgetResult';
 
-const BudgetResultsContainer = (history) => {
+const BudgetResultContainer = () => {
   const dispatch = useDispatch();
   const { BUDGETRESULTS } = useSelector(({ budgetResults }) => ({
     BUDGETRESULTS: budgetResults.budgetResults,
@@ -14,9 +14,7 @@ const BudgetResultsContainer = (history) => {
     dispatch(listBudgetResults());
   }, []);
 
-  // const onRowClick = (e) => history.push()
-
-  return <BudgetResults budgetResults={BUDGETRESULTS} history={history} />;
+  return <BudgetResult budgetResults={BUDGETRESULTS} />;
 };
 
-export default withRouter(BudgetResultsContainer);
+export default withRouter(BudgetResultContainer);

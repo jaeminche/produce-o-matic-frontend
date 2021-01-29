@@ -27,7 +27,7 @@ const getBadge = (status) => {
 const fields = ['_id', 'uuid', 'createdAt_local', 'createdAt_utc', 'email'];
 
 const Table = (props) => {
-  const { budgetResults } = props;
+  const { budgetResults, history } = props;
   return (
     <>
       <CRow>
@@ -43,6 +43,8 @@ const Table = (props) => {
                 fields={fields}
                 itemsPerPage={10}
                 pagination
+                // todo:
+                // onRowClick={(item) => history.push(`../`)}
                 scopedSlots={{
                   status: (item) => (
                     <td>
