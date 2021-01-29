@@ -6,7 +6,7 @@ import palette from '../../lib/styles/palette';
 import { ConfirmButton } from '../../components/common/Button';
 import { useTable } from 'react-table';
 import { formatCurrency } from '../../lib/format';
-import { CSVLink, CSVDownload } from 'react-csv';
+import { getGrandTotal } from '../../lib/helper/calculation';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const BudgetOMaticBlock = styled.div`
@@ -507,18 +507,7 @@ const ResultTables = (props) => {
 
 const BudgetResult = (props) => {
   const { isMobile, categoryTotals } = props;
-  const getGrandtotal = () => {
-    let sum = 0;
-    for (const item of categoryTotals) {
-      console.log('aaaa', item);
-      for (const key in item) {
-        console.log('8888', item[key]);
-        sum = sum + item[key];
-      }
-    }
-    return sum;
-  };
-  const grandtotal = getGrandtotal();
+  const grandtotal = getGrandTotal(categoryTotals);
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>

@@ -24,7 +24,16 @@ const getBadge = (status) => {
       return 'primary';
   }
 };
-const fields = ['_id', 'uuid', 'createdAt_local', 'createdAt_utc', 'email'];
+const fields = [
+  '_id',
+  'uuid',
+  'grandTotal',
+  'currency',
+  'currencyRate',
+  'createdAt_local',
+  'createdAt_utc',
+  'email',
+];
 
 const Table = (props) => {
   const { budgetResults, history } = props;

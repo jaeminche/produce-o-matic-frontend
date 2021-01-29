@@ -19,6 +19,7 @@ import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 import { v1 } from 'uuid';
 import CurrencyFixer from '../currencyFixer/CurrencyFixer';
+import { getGrandTotal } from '../../lib/helper/calculation';
 
 const BudgetOMaticContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -60,6 +61,9 @@ const BudgetOMaticContainer = ({ location }) => {
   const [currencyRate, setCurrencyRate] = useState(currencyRates[currency]);
   const [isSavedSuccess, setIsSavedSuccess] = useState(RES);
   const [addedOptions, setAddedOptions] = useState(OPTIONS);
+  const [categoryTotals, setCategoryTotals] = useState(null);
+  const [grandTotal, setGrandTotal] = useState(null);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -427,6 +431,7 @@ const BudgetOMaticContainer = ({ location }) => {
       }
       totals.push({ [key]: categorytotal });
     }
+    console.log('==229', totals);
     return totals;
   };
 
@@ -435,11 +440,17 @@ const BudgetOMaticContainer = ({ location }) => {
     console.log('onsubmit', e, e.target);
     //==결과 페이지 가는 과정
     // budgetomatic 페이지 컨펌 누르면>
+    const _categoryTotals = getCategoryTotals();
+    const _grandTotal = getGrandTotal(_categoryTotals);
+    setCategoryTotals(_categoryTotals);
+    setGrandTotal(_grandTotal);
     // 1. 데이터 post  >
     dispatch(
       postBudgetResult({
         uuid: v1(),
         result: dataSetInstance,
+        categoryTotals: _categoryTotals,
+        grandTotal: _grandTotal,
         currency,
         currencyRate,
       }),
@@ -452,7 +463,7 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [RES]);
 
   useEffect(() => {
-    if (isSavedSuccess) {
+    if (isSavedSuccess && grandTotal && categoryTotals) {
       // 3. 아이디를 받아서 스토어에 저장. 있으면!! >
       // 4. 결과 페이지로 이동.
 
@@ -464,12 +475,12 @@ const BudgetOMaticContainer = ({ location }) => {
       const { uuid } = RES;
       history.push(`/produce-o-matic/budget-o-matic/result/${uuid}`, {
         data: dataSetInstance,
-        categoryTotals: getCategoryTotals(),
+        categoryTotals: categoryTotals,
         currency,
         currencyRate,
       });
     }
-  }, [isSavedSuccess]);
+  }, [isSavedSuccess, grandTotal, categoryTotals]);
 
   return (
     <CurrencyFixer>
