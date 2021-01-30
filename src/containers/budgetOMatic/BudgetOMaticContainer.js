@@ -68,6 +68,10 @@ const BudgetOMaticContainer = ({ location }) => {
 
   const history = useHistory();
 
+  // * MAJOR FEATURES
+  // * 1. on page load, get any saved data in localStorage, and ask user if she/he wants to load the data
+  // * 2. automatic save on any dataSetInstance change (currently not saving type of production, days of shooting, currency)
+  // * 3. initialize button
   useEffect(() => {
     dispatch(initialize());
     try {
