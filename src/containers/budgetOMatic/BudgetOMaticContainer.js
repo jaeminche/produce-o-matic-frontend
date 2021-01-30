@@ -20,6 +20,9 @@ import produce from 'immer';
 import { v1 } from 'uuid';
 import CurrencyFixer from '../currencyFixer/CurrencyFixer';
 import { getGrandTotal } from '../../lib/helper/calculation';
+import { myToast } from '../../lib/util/myToast';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const BudgetOMaticContainer = ({ location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -67,6 +70,38 @@ const BudgetOMaticContainer = ({ location }) => {
 
   useEffect(() => {
     dispatch(initialize());
+    try {
+      const _dataSetInstance = localStorage.getItem('_dataSetInstance');
+      if (_dataSetInstance) {
+        console.log('==319로컬스토리지', _dataSetInstance);
+        confirmAlert({
+          title: 'Saved data found!',
+          message:
+            'We found a saved data in your system. Would you like to load it?',
+          buttons: [
+            {
+              label: 'Yes!',
+              onClick: () => {
+                setDataSetInstance(JSON.parse(_dataSetInstance));
+              },
+            },
+            {
+              label: "No, I'd like to start from the scratch.",
+              onClick: () => {},
+            },
+          ],
+          childrenElement: () => <div />,
+          closeOnEscape: true,
+          closeOnClickOutside: true,
+          willUnmount: () => {},
+          afterClose: () => {},
+          onClickOutside: () => {},
+          onKeypressEscape: () => {},
+        });
+      }
+    } catch (e) {
+      console.log('localStorage is not working');
+    }
   }, []);
 
   useEffect(() => {
@@ -229,7 +264,20 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [daysOfShooting]);
 
   useEffect(() => {
-    !!dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
+    if (!!dataSetInstance) {
+      try {
+        localStorage.setItem(
+          '_dataSetInstance',
+          JSON.stringify(dataSetInstance),
+        );
+        myToast('saving...');
+      } catch (e) {
+        console.log('LocalStorage is not working!');
+        myToast(
+          'LocalStorage is not working! We could not save your data in your local storage.',
+        );
+      }
+    }
   }, [dataSetInstance]);
 
   // * update dataSetInstance 2/3

@@ -34,7 +34,7 @@ import BeOurPeoplePage from './pages/BeOurPeoplePage';
 import ContactPage from './pages/ContactPage';
 
 import { Helmet } from 'react-helmet-async';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, Slide } from 'react-toastify';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -60,6 +60,7 @@ const App = () => {
         <title>PRODUCE-O-MATIC</title>
       </Helmet>
       <ToastContainer
+        transition={Slide}
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
