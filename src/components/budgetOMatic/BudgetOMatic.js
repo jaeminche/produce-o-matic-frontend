@@ -259,7 +259,7 @@ const InitializeButton = (props) => {
             name={'Reset Data'}
             value={'Reset Data'}
             className="checkbox"
-            onChange={() => initializeDataSetInstance()}
+            onChange={() => initializeDataSetInstance({ totalReset: true })}
           />
           Reset Data
         </label>

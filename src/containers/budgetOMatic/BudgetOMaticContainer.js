@@ -124,17 +124,17 @@ const BudgetOMaticContainer = ({ location }) => {
     }
   }, [currencyRates]);
 
-  useEffect(() => {
-    if (currencyRate) {
-      console.log('==235', currencyRate);
-    }
-  }, [currencyRate]);
+  // useEffect(() => {
+  //   if (currencyRate) {
+  //     console.log('==235', currencyRate);
+  //   }
+  // }, [currencyRate]);
 
   // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
   // * update dataSetInstance 1/3
-  const initializeDataSetInstance = () => {
-    console.log('update type: 1. 초기화');
-    const tempDataSet = dataSetInstance || myDataSets;
+  const initializeDataSetInstance = ({ totalReset }) => {
+    // * when totalReset is true, get (initial) myDataSets instead of dataSetInstance being used
+    const tempDataSet = totalReset ? myDataSets : dataSetInstance || myDataSets;
 
     const defaultAmnt = 1;
     const baseState = { ...tempDataSet };
@@ -145,7 +145,7 @@ const BudgetOMaticContainer = ({ location }) => {
           group.options = [];
           for (let budgetItem of group.budgetItems) {
             budgetItem.checked = budgetItem.tags.includes(typeOfProduction);
-            // todo: if there's data, leave it, but may change
+            // ? if there's data, leave it, but may change
             if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
             if (!budgetItem.days) budgetItem.days = daysOfShooting;
 
@@ -185,7 +185,7 @@ const BudgetOMaticContainer = ({ location }) => {
   };
   useEffect(() => {
     if (myDataSets && typeOfProduction) {
-      initializeDataSetInstance();
+      initializeDataSetInstance({ totalReset: false });
     }
   }, [myDataSets, typeOfProduction]);
 
