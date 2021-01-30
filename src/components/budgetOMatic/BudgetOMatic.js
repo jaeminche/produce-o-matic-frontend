@@ -148,6 +148,7 @@ const StyledTable = styled.div`
   .checkbox-item {
     display: inline-block;
     cursor: pointer;
+    margin-bottom: 0;
   }
   i {
     flex: 1 0 auto;
@@ -250,7 +251,11 @@ const InitializeButton = (props) => {
     <StyledTable isMobile={isMobile} style={{ border: '0', minHeight: '40px' }}>
       <ButtonStyledCheckbox
         className="vertically-center"
-        style={{ width: '170px', float: 'right' }}
+        style={{
+          width: '170px',
+          float: 'right',
+          border: '1px solid darkslategray',
+        }}
       >
         <label htmlFor={'Reset Data'} className="checkbox-item">
           <input
@@ -371,7 +376,7 @@ const Controller2 = (props) => {
     <StyledTable isMobile={isMobile}>
       <div
         className="row-container solo-container wrap-evenly"
-        style={{ minHeight: '76px' }}
+        style={{ minHeight: '67px' }}
       >
         {D.map((group, key) => (
           <ButtonStyledCheckbox
