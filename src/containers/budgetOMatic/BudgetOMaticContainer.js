@@ -490,6 +490,7 @@ const BudgetOMaticContainer = ({ location }) => {
         currencyRate={currencyRate}
         OPTIONS={addedOptions}
         dataSetInstance={dataSetInstance}
+        initializeDataSetInstance={initializeDataSetInstance}
         onChangeTypeOfProduction={onChangeTypeOfProduction}
         onChangeDaysOfShooting={onChangeDaysOfShooting}
         onChangeCurrency={onChangeCurrency}

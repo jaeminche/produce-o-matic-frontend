@@ -244,6 +244,34 @@ const ButtonStyledCheckbox = styled.span`
   }
 `;
 
+const InitializeButton = (props) => {
+  const { isMobile, initializeDataSetInstance } = props;
+  return (
+    <StyledTable isMobile={isMobile} style={{ border: '0', minHeight: '40px' }}>
+      <ButtonStyledCheckbox
+        className="vertically-center"
+        style={{ width: '170px', float: 'right' }}
+      >
+        <label htmlFor={'Reset Data'} className="checkbox-item">
+          <input
+            type="checkbox"
+            id={'Reset Data'}
+            name={'Reset Data'}
+            value={'Reset Data'}
+            className="checkbox"
+            onChange={() => initializeDataSetInstance()}
+          />
+          Reset Data
+        </label>
+      </ButtonStyledCheckbox>
+
+      {[...Array(10).keys()].map((i, key) => (
+        <i aria-hidden={true} key={key} />
+      ))}
+    </StyledTable>
+  );
+};
+
 const formatType = {
   DO: 'Documentary',
   IN: 'Indie Feature',
@@ -617,7 +645,7 @@ const BudgetOMatic = (props) => {
         <IntroText isMobile={isMobile} />
         <div className="spacer" />
         <Controller1 {...props} />
-
+        <InitializeButton {...props} />
         <Calculator {...props} />
 
         <ConfirmButton onClick={onSubmit} bigGray>
