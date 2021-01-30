@@ -268,7 +268,7 @@ const ResultTables = (props) => {
   const {
     data,
     categoryTotals,
-    grandtotal,
+    grandTotal,
     currency,
     currencyRate,
     isMobile,
@@ -457,7 +457,7 @@ const ResultTables = (props) => {
           >
             <div style={{ padding: '10px 14px' }}>
               {formatCurrency({
-                num: grandtotal,
+                num: grandTotal,
                 currency: 'KRW',
               })}
             </div>
@@ -465,7 +465,7 @@ const ResultTables = (props) => {
               <div style={{ padding: '10px 14px' }}>
                 {` (
                   ${formatCurrency({
-                    num: grandtotal,
+                    num: grandTotal,
                     currency,
                     currencyRate,
                   })}
@@ -491,7 +491,7 @@ const ResultTables = (props) => {
             <span>Claim your reimbursement of </span>
             <span className="incentive-number">
               {formatCurrency({
-                num: grandtotal,
+                num: grandTotal,
                 currency,
                 currencyRate,
                 incentiveRate: 0.3,
@@ -506,14 +506,13 @@ const ResultTables = (props) => {
 };
 
 const BudgetResult = (props) => {
-  const { isMobile, categoryTotals } = props;
-  const grandtotal = getGrandTotal(categoryTotals);
+  const { isMobile, categoryTotals, grandTotal } = props;
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
         <StyledPageTitle>Calculation Result</StyledPageTitle>
 
-        <ResultTables {...props} grandtotal={grandtotal} />
+        <ResultTables {...props} grandTotal={grandTotal} />
         <div
           style={{
             display: 'flex',

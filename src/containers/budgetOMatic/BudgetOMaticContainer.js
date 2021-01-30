@@ -14,7 +14,7 @@ import {
 } from '../../lib/constants/budgetomatic';
 import { getUsersLocation } from '../../modules/thirdPartyApis';
 import { listItemsGroups } from '../../modules/itemsGroups';
-import { postBudgetResult } from '../../modules/budgetResult';
+import { postBudgetResult, initialize } from '../../modules/budgetResult';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 import { v1 } from 'uuid';
@@ -59,12 +59,15 @@ const BudgetOMaticContainer = ({ location }) => {
   const [currency, setCurrency] = useState('KRW');
   const [currencyRates, setCurrencyRates] = useState(defaultCurrencyRates);
   const [currencyRate, setCurrencyRate] = useState(currencyRates[currency]);
-  const [isSavedSuccess, setIsSavedSuccess] = useState(RES);
   const [addedOptions, setAddedOptions] = useState(OPTIONS);
-  const [categoryTotals, setCategoryTotals] = useState(null);
-  const [grandTotal, setGrandTotal] = useState(null);
+  // const [categoryTotals, setCategoryTotals] = useState(null);
+  // const [grandTotal, setGrandTotal] = useState(null);
 
   const history = useHistory();
+
+  useEffect(() => {
+    dispatch(initialize());
+  }, []);
 
   useEffect(() => {
     if (USERSLOCATION && OPTIONS) {
@@ -442,9 +445,11 @@ const BudgetOMaticContainer = ({ location }) => {
     // budgetomatic 페이지 컨펌 누르면>
     const _categoryTotals = getCategoryTotals();
     const _grandTotal = getGrandTotal(_categoryTotals);
-    setCategoryTotals(_categoryTotals);
-    setGrandTotal(_grandTotal);
+    // setCategoryTotals(_categoryTotals);
+    // setGrandTotal(_grandTotal);
     // 1. 데이터 post  >
+    console.log('==305', history);
+
     dispatch(
       postBudgetResult({
         uuid: v1(),
@@ -459,11 +464,7 @@ const BudgetOMaticContainer = ({ location }) => {
   };
 
   useEffect(() => {
-    RES && setIsSavedSuccess(true);
-  }, [RES]);
-
-  useEffect(() => {
-    if (isSavedSuccess && grandTotal && categoryTotals) {
+    if (RES) {
       // 3. 아이디를 받아서 스토어에 저장. 있으면!! >
       // 4. 결과 페이지로 이동.
 
@@ -472,15 +473,13 @@ const BudgetOMaticContainer = ({ location }) => {
       // 6. 결과 페이지는 스토어에 아이디가 있으면>
       // 7. 결과 테이블 표시
       // const id = v1(); // TODO:
+      console.log('==306', location);
+      // if () {
       const { uuid } = RES;
-      history.push(`/produce-o-matic/budget-o-matic/result/${uuid}`, {
-        data: dataSetInstance,
-        categoryTotals: categoryTotals,
-        currency,
-        currencyRate,
-      });
+      history.push(`/produce-o-matic/budget-o-matic/result/${uuid}`);
+      // }
     }
-  }, [isSavedSuccess, grandTotal, categoryTotals]);
+  }, [RES]);
 
   return (
     <CurrencyFixer>
