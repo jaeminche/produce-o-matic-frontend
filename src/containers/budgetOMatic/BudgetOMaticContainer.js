@@ -75,11 +75,12 @@ const BudgetOMaticContainer = ({ history, location }) => {
   useEffect(() => {
     try {
       const _dataSetInstance = localStorage.getItem('_dataSetInstance');
-      // ? if user is from Calculation Result Page, display the page without showing confirm message modal.
+      // ? Do not show confirm message modal : 1. when user clicks '< Back' button in Calculation Result Page, 2. when user is from any other page but has recently checked out Calculation Result Page already
       const prevPath = location.state && location.state.from;
-      if (prevPath && prevPath.includes('budget-o-matic/result')) {
+      if (RES || (prevPath && prevPath.includes('budget-o-matic/result'))) {
         _dataSetInstance && setDataSetInstance(JSON.parse(_dataSetInstance));
       } else {
+        // ? Show confirm-alert modal: only when user has not recently checked out Calculation Result page, or user has no RES data.
         if (_dataSetInstance) {
           confirmAlert({
             title: 'Saved data found!',
