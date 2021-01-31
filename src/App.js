@@ -174,14 +174,14 @@ const App = () => {
         path="/produce-o-manual/rental"
       />
       <ScrollToTopRoute
-        component={BudgetOMaticPage}
-        exact
-        path="/produce-o-matic/budget-o-matic"
-      />
-      <ScrollToTopRoute
         component={BudgetResultPage}
         exact
         path="/produce-o-matic/budget-o-matic/result/:id"
+      />
+      <ScrollToTopRoute
+        component={BudgetOMaticPage}
+        exact
+        path="/produce-o-matic/budget-o-matic"
       />
       <ScrollToTopRoute
         component={ProduceOMaticPage}

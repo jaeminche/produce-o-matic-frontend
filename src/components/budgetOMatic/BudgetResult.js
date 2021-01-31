@@ -3,10 +3,9 @@ import Responsive from '../../components/common/Responsive';
 import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
-import { ConfirmButton } from '../../components/common/Button';
+import { ConfirmButton, CenteredButton } from '../../components/common/Button';
 import { useTable } from 'react-table';
 import { formatCurrency } from '../../lib/format';
-import { getGrandTotal } from '../../lib/helper/calculation';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const BudgetOMaticBlock = styled.div`
@@ -506,12 +505,20 @@ const ResultTables = (props) => {
 };
 
 const BudgetResult = (props) => {
-  const { isMobile, categoryTotals, grandTotal } = props;
+  const {
+    isMobile,
+    categoryTotals,
+    grandTotal,
+    history,
+    onClickGoBack,
+  } = props;
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
         <StyledPageTitle>Calculation Result</StyledPageTitle>
-
+        <CenteredButton onClick={() => onClickGoBack()} bigBlue>
+          {'< Back'}
+        </CenteredButton>
         <ResultTables {...props} grandTotal={grandTotal} />
         <div
           style={{

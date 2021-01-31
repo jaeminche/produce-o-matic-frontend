@@ -3,6 +3,8 @@ import { useMediaQuery } from 'react-responsive';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import BudgetResult from '../../components/budgetOMatic/BudgetResult';
+import { initialize } from '../../modules/budgetResult';
+
 import {
   BUDGETOMATIC_UIDATA,
   _INITIAL_CODES_SET,
@@ -18,11 +20,12 @@ import produce from 'immer';
 import { v1 } from 'uuid';
 import { postBudgetResult } from '../../modules/budgetResult';
 
-const BudgetResultContainer = ({ history }) => {
+const BudgetResultContainer = ({ history, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
   const {
+    RES,
     data,
     categoryTotals,
     currency,
@@ -31,14 +34,30 @@ const BudgetResultContainer = ({ history }) => {
     error,
     loading,
   } = useSelector(({ budgetResult, itemsGroups, loading }) => ({
-    data: budgetResult.res.result,
-    categoryTotals: budgetResult.res.categoryTotals,
-    currency: budgetResult.res.currency,
-    currencyRate: budgetResult.res.currencyRate,
-    grandTotal: budgetResult.res.grandTotal,
+    RES: budgetResult.res,
+    data: budgetResult.res && budgetResult.res.result,
+    categoryTotals: budgetResult.res && budgetResult.res.categoryTotals,
+    currency: budgetResult.res && budgetResult.res.currency,
+    currencyRate: budgetResult.res && budgetResult.res.currencyRate,
+    grandTotal: budgetResult.res && budgetResult.res.grandTotal,
     error: itemsGroups.error,
     loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
   }));
+
+  const onClickGoBack = () => {
+    dispatch(initialize());
+  };
+
+  useEffect(() => {
+    if (RES === null) {
+      history.push({
+        pathname: '/produce-o-matic/budget-o-matic/',
+        state: {
+          from: location.pathname,
+        },
+      });
+    }
+  }, [RES]);
 
   //   TODO: 프로덕션 때 지울것
   // if (data) {
@@ -61,6 +80,8 @@ const BudgetResultContainer = ({ history }) => {
 
   return (
     <BudgetResult
+      history={history}
+      onClickGoBack={onClickGoBack}
       data={data}
       categoryTotals={categoryTotals}
       currency={currency}

@@ -14,7 +14,7 @@ import {
 } from '../../lib/constants/budgetomatic';
 import { getUsersLocation } from '../../modules/thirdPartyApis';
 import { listItemsGroups } from '../../modules/itemsGroups';
-import { postBudgetResult, initialize } from '../../modules/budgetResult';
+import { postBudgetResult } from '../../modules/budgetResult';
 import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 import { v1 } from 'uuid';
@@ -24,7 +24,7 @@ import { myToast } from '../../lib/util/myToast';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const BudgetOMaticContainer = ({ location }) => {
+const BudgetOMaticContainer = ({ history, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
@@ -66,42 +66,46 @@ const BudgetOMaticContainer = ({ location }) => {
   // const [categoryTotals, setCategoryTotals] = useState(null);
   // const [grandTotal, setGrandTotal] = useState(null);
 
-  const history = useHistory();
+  // const history = useHistory();
 
   // * MAJOR FEATURES
   // * 1. on page load, get any saved data in localStorage, and ask user if she/he wants to load the data
   // * 2. automatic save on any dataSetInstance change (currently not saving type of production, days of shooting, currency)
   // * 3. initialize button
   useEffect(() => {
-    dispatch(initialize());
     try {
       const _dataSetInstance = localStorage.getItem('_dataSetInstance');
-      if (_dataSetInstance) {
-        console.log('==319로컬스토리지', _dataSetInstance);
-        confirmAlert({
-          title: 'Saved data found!',
-          message:
-            'We found a saved data in your system. Would you like to load it?',
-          buttons: [
-            {
-              label: 'Yes!',
-              onClick: () => {
-                setDataSetInstance(JSON.parse(_dataSetInstance));
+      // ? if user is from Calculation Result Page, display the page without showing confirm message modal.
+      const prevPath = location.state && location.state.from;
+      if (prevPath && prevPath.includes('budget-o-matic/result')) {
+        _dataSetInstance && setDataSetInstance(JSON.parse(_dataSetInstance));
+      } else {
+        if (_dataSetInstance) {
+          confirmAlert({
+            title: 'Saved data found!',
+            message:
+              'We found a saved data in your system. Would you like to load it?',
+            buttons: [
+              {
+                label: 'Yes!',
+                onClick: () => {
+                  setDataSetInstance(JSON.parse(_dataSetInstance));
+                },
               },
-            },
-            {
-              label: "No, I'd like to start from the scratch.",
-              onClick: () => {},
-            },
-          ],
-          childrenElement: () => <div />,
-          closeOnEscape: true,
-          closeOnClickOutside: true,
-          willUnmount: () => {},
-          afterClose: () => {},
-          onClickOutside: () => {},
-          onKeypressEscape: () => {},
-        });
+              {
+                label: "No, I'd like to start from the scratch.",
+                onClick: () => {},
+              },
+            ],
+            childrenElement: () => <div />,
+            closeOnEscape: true,
+            closeOnClickOutside: true,
+            willUnmount: () => {},
+            afterClose: () => {},
+            onClickOutside: () => {},
+            onKeypressEscape: () => {},
+          });
+        }
       }
     } catch (e) {
       console.log('localStorage is not working');
