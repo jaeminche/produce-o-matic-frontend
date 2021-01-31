@@ -57,6 +57,17 @@ const buttonStyle = css`
     `}
 
     ${(props) =>
+    props.smallBlue &&
+    css`
+      width: 126px;
+      height: 48px;
+      background: ${palette.button[0]};
+      border-radius: 100px;
+      align-self: center;
+      margin: 0 auto;
+    `}
+
+    ${(props) =>
     props.bigGray &&
     css`
       width: 100%;

@@ -3,7 +3,8 @@ import Responsive from '../../components/common/Responsive';
 import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
-import { ConfirmButton, CenteredButton } from '../../components/common/Button';
+import { Button, ConfirmButton } from '../../components/common/Button';
+import { Spacer } from '../../components/common/styledCss';
 import { useTable } from 'react-table';
 import { formatCurrency } from '../../lib/format';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
@@ -345,7 +346,7 @@ const ResultTables = (props) => {
                 className="category-table"
                 style={{
                   width: '100%',
-                  marginTop: '50px',
+                  marginTop: '21px',
                   border: '1px solid rgb(165, 165, 165)',
                 }}
                 key={key}
@@ -516,9 +517,14 @@ const BudgetResult = (props) => {
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
         <StyledPageTitle>Calculation Result</StyledPageTitle>
-        <CenteredButton onClick={() => onClickGoBack()} bigBlue>
+        <Spacer height="70px" />
+        <Button
+          onClick={() => onClickGoBack()}
+          smallBlue
+          style={{ float: 'left' }}
+        >
           {'< Back'}
-        </CenteredButton>
+        </Button>
         <ResultTables {...props} grandTotal={grandTotal} />
         <div
           style={{

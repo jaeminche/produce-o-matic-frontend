@@ -656,7 +656,7 @@ const BudgetOMatic = (props) => {
         <ConfirmButton onClick={onSubmit} bigGray>
           Get Result
         </ConfirmButton>
-        <Spacer width="1px" />
+        <Spacer height="1px" />
       </Wrapper>
     </BudgetOMaticBlock>
   );
