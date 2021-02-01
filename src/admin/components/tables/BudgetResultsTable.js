@@ -24,43 +24,39 @@ const getBadge = (status) => {
       return 'primary';
   }
 };
-// const fields = [
-//   '_id',
-//   'uuid',
-//   'grandTotal',
-//   'currency',
-//   'currencyRate',
-//   'createdAt_local',
-//   'createdAt_utc',
-//   'email',
-// ];
+const fields = [
+  '_id',
+  'uuid',
+  'grandTotal',
+  'currency',
+  'currencyRate',
+  'createdAt_local',
+  'createdAt_utc',
+  'email',
+];
 
-const Table = (props) => {
-  const {
-    title,
-    itemsData, // * [{}, {}...]
-    fields,
-    itemsPerPage,
-    pagination,
-    onRowClick,
-    history,
-  } = props;
+const BudgetResultsTable = (props) => {
+  const { budgetResults, history } = props;
   return (
     <>
       <CRow>
         <CCol xs="12" lg="12">
           <CCard>
             <CCardHeader>
-              {title}
+              Budget-O-Matic Results List
               <DocsLink name="CModal" />
             </CCardHeader>
             <CCardBody>
               <CDataTable
-                items={itemsData}
+                items={budgetResults}
                 fields={fields}
-                itemsPerPage={itemsPerPage}
-                pagination={pagination}
-                onRowClick={onRowClick}
+                itemsPerPage={10}
+                pagination
+                onRowClick={(item) =>
+                  history.push(
+                    `/firstavenue/budgetomatic-page/results-list/${item._id}`,
+                  )
+                }
                 // scopedSlots={{
                 //   status: (item) => (
                 //     <td>
@@ -77,4 +73,4 @@ const Table = (props) => {
   );
 };
 
-export default Table;
+export default BudgetResultsTable;

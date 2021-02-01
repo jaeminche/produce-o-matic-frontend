@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Table from '../components/common/Table';
+import BudgetResultsTable from './tables/BudgetResultsTable';
 
 const BudgetResults = (props) => {
   //   console.log('==7979', props.budgetResults);
   return (
-    <div>
-      <Table {...props} />
-    </div>
+    <>
+      <BudgetResultsTable {...props} />
+    </>
   );
 };
 
