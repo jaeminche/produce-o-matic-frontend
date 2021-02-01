@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import { listBudgetResults } from '../../../modules/budgetResults';
-import BudgetResult from '../../components/BudgetResult';
+import BudgetResultDetail from '../../components/BudgetResultDetail';
 
 const BudgetResultContainer = ({ match }) => {
   const { id } = match.params;
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
   const { BUDGETRESULTS } = useSelector(({ budgetResults }) => ({
     BUDGETRESULTS: budgetResults.budgetResults,
@@ -19,7 +21,7 @@ const BudgetResultContainer = ({ match }) => {
     if (!BUDGETRESULTS) dispatch(listBudgetResults());
   }, [BUDGETRESULTS]);
 
-  return <BudgetResult targetResult={targetResult} />;
+  return <BudgetResultDetail targetResult={targetResult} isMobile={isMobile} />;
 };
 
 export default withRouter(BudgetResultContainer);

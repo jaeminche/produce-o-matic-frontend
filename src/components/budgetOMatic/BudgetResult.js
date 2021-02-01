@@ -507,6 +507,7 @@ const ResultTables = (props) => {
 
 const BudgetResult = (props) => {
   const {
+    admin,
     isMobile,
     categoryTotals,
     grandTotal,
@@ -518,13 +519,15 @@ const BudgetResult = (props) => {
       <Wrapper isMobile={isMobile}>
         <StyledPageTitle>Calculation Result</StyledPageTitle>
         <Spacer height="70px" />
-        <Button
-          onClick={() => onClickGoBack()}
-          smallBlue
-          style={{ float: 'left' }}
-        >
-          {'< Back'}
-        </Button>
+        {!admin && (
+          <Button
+            onClick={() => onClickGoBack()}
+            smallBlue
+            style={{ float: 'left' }}
+          >
+            {'< Back'}
+          </Button>
+        )}
         <ResultTables {...props} grandTotal={grandTotal} />
         <div
           style={{
@@ -532,9 +535,11 @@ const BudgetResult = (props) => {
             flexDirection: isMobile ? 'column' : 'row',
           }}
         >
-          <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
-            Send To Your Email
-          </ConfirmButton>
+          {!admin && (
+            <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
+              Send To Your Email
+            </ConfirmButton>
+          )}
           <div className="styled-centered">
             <ReactHTMLTableToExcel
               id="mytableButton"
