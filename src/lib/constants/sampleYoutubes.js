@@ -20,6 +20,7 @@ const SAMPLEYOUTUBES = [
     thumbnail: GYEONGBOKGUNG02,
     contentId: '1',
     baseUrl: '/produce-in-korea/popular-locations',
+    tags: ['popular-location'],
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ const SAMPLEYOUTUBES = [
     thumbnail: SEOUL02,
     contentId: '2',
     baseUrl: '/produce-in-korea/popular-locations',
+    tags: ['popular-location'],
   },
   {
     id: 3,
@@ -42,6 +44,7 @@ const SAMPLEYOUTUBES = [
     thumbnail: HANOKMAEUL,
     contentId: '3',
     baseUrl: '/produce-in-korea/popular-locations',
+    tags: ['popular-location'],
   },
   {
     id: 4,
@@ -53,6 +56,7 @@ const SAMPLEYOUTUBES = [
     thumbnail: GYEONGBOKGUNG03,
     contentId: '4',
     baseUrl: '/produce-in-korea/popular-locations',
+    tags: ['location-incentive'],
   },
   {
     id: 5,
@@ -64,6 +68,7 @@ const SAMPLEYOUTUBES = [
     thumbnail: HANOKMAEUL02,
     contentId: '5',
     baseUrl: '/produce-in-korea/popular-locations',
+    tags: ['location-incentive'],
   },
   // {
   //   id: 2,
