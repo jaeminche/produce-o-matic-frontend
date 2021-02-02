@@ -4,11 +4,17 @@ import {
   CCard,
   CCardBody,
   CCardHeader,
+  CCardFooter,
   CCol,
   CDataTable,
   CRow,
 } from '@coreui/react';
 import { DocsLink } from '../../reusable';
+import styled from 'styled-components/macro';
+
+const Description = styled.div`
+  font-size: 12px;
+`;
 
 const getBadge = (status) => {
   switch (status) {
@@ -43,6 +49,7 @@ const Table = (props) => {
     itemsPerPage,
     pagination,
     onRowClick,
+    description,
     history,
   } = props;
   return (
@@ -68,8 +75,14 @@ const Table = (props) => {
                 //     </td>
                 //   ),
                 // }}
+                description={description && description}
               />
             </CCardBody>
+            {description && (
+              <CCardFooter>
+                <Description>{description}</Description>
+              </CCardFooter>
+            )}
           </CCard>
         </CCol>
       </CRow>
