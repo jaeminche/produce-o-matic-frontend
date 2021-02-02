@@ -15,6 +15,7 @@ import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
 
 const StyledWrapper = styled.div`
+  max-width: 1100px;
   .floatRight {
     float: right;
   }
