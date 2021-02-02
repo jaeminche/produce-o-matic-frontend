@@ -145,7 +145,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
   }, [CURRENCYSET, currency]);
 
   useEffect(() => {
-    // ? 1. API request for all data
+    // ? 1. API request for all template data
     dispatch(listItemsGroups());
   }, []);
 

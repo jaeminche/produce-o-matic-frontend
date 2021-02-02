@@ -50,6 +50,9 @@ const BudgetResultsView = React.lazy(() =>
 const BudgetResultView = React.lazy(() =>
   import('./views/budgetomatic/BudgetResultView'),
 );
+const BudgetOMaticTemplate = React.lazy(() =>
+  import('./views/budgetomatic/BudgetOMaticTemplate'),
+);
 const CoreUIIcons = React.lazy(() =>
   import('./views/icons/coreui-icons/CoreUIIcons'),
 );
@@ -83,8 +86,8 @@ const routes = [
   },
   {
     path: '/firstavenue/budgetomatic-page/templates',
-    name: 'Dashboard',
-    component: Dashboard,
+    name: 'BudgetOMaticTemplate',
+    component: BudgetOMaticTemplate,
   },
   {
     path: '/firstavenue/main-page/banners',
