@@ -330,7 +330,7 @@ const ResultTables = (props) => {
   return (
     <table id="mytable" style={{ width: '100%' }}>
       {data &&
-        data.hasOwnProperty('labor') &&
+        // data.hasOwnProperty('labor') &&
         Object.entries(data).map(([key, value]) => {
           const categoryname = key;
           const categoryTotal = () => {
