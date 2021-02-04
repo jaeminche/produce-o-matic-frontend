@@ -7,6 +7,7 @@ import user, { userSaga } from './user';
 import itemsGroups, { itemsGroupsSaga } from './itemsGroups';
 import budgetResult, { budgetResultSaga } from './budgetResult';
 import budgetResults, { budgetResultsSaga } from './budgetResults';
+import admin, { adminSaga } from './admin';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   budgetResult,
   budgetResults,
   thirdPartyApis,
+  admin,
   write,
   post,
   posts,
@@ -34,6 +36,7 @@ export function* rootSaga() {
     budgetResultSaga(),
     budgetResultsSaga(),
     thirdParyApisSaga(),
+    adminSaga(),
     writeSaga(),
     postSaga(),
     postsSaga(),
