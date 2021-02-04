@@ -12,6 +12,7 @@ import {
 } from '@coreui/react';
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
+import { AddGroup } from '../../reusable';
 
 const StyledWrapper = styled.div`
   max-width: 1100px;
@@ -79,7 +80,10 @@ const BudgetOMaticTemplateTable = (props) => {
       <CRow>
         <CCol xs="12" lg="12">
           <CCard>
-            <CCardHeader>Budget-O-Matic Template</CCardHeader>
+            <CCardHeader>
+              Budget-O-Matic Template
+              <AddGroup />
+            </CCardHeader>
             <CCardBody>
               <CDataTable
                 items={DATASETS}

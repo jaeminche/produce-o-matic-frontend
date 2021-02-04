@@ -56,6 +56,9 @@ const BudgetOMaticTemplate = React.lazy(() =>
 const BudgetOMaticTemplateGroup = React.lazy(() =>
   import('./views/budgetomatic/BudgetOMaticTemplateGroup'),
 );
+const BudgetOMaticTemplateAddGroup = React.lazy(() =>
+  import('./views/budgetomatic/BudgetOMaticTemplateAddGroup'),
+);
 const CoreUIIcons = React.lazy(() =>
   import('./views/icons/coreui-icons/CoreUIIcons'),
 );
@@ -98,6 +101,12 @@ const routes = [
     exact: true,
     name: 'BudgetOMaticTemplateGroup',
     component: BudgetOMaticTemplateGroup,
+  },
+  {
+    path: '/firstavenue/budgetomatic-page/add-group',
+    exact: true,
+    name: 'BudgetOMaticTemplateAddGroup',
+    component: BudgetOMaticTemplateAddGroup,
   },
   {
     path: '/firstavenue/main-page/banners',
