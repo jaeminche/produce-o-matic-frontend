@@ -9,7 +9,6 @@ import {
   CDataTable,
   CRow,
 } from '@coreui/react';
-import { DocsLink } from '../../reusable';
 import styled from 'styled-components/macro';
 
 const Description = styled.div`
@@ -57,10 +56,7 @@ const Table = (props) => {
       <CRow>
         <CCol xs="12" lg="12">
           <CCard>
-            <CCardHeader>
-              {title}
-              <DocsLink name="CModal" />
-            </CCardHeader>
+            <CCardHeader>{title}</CCardHeader>
             <CCardBody>
               <CDataTable
                 items={itemsData}

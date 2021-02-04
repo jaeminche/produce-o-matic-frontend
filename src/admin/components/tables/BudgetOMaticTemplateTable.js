@@ -10,7 +10,6 @@ import {
   CCollapse,
   CButton,
 } from '@coreui/react';
-import { DocsLink } from '../../reusable';
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
 
@@ -80,10 +79,7 @@ const BudgetOMaticTemplateTable = (props) => {
       <CRow>
         <CCol xs="12" lg="12">
           <CCard>
-            <CCardHeader>
-              Budget-O-Matic Template
-              <DocsLink name="CModal" />
-            </CCardHeader>
+            <CCardHeader>Budget-O-Matic Template</CCardHeader>
             <CCardBody>
               <CDataTable
                 items={DATASETS}

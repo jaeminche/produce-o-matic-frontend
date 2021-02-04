@@ -8,7 +8,6 @@ import {
   CDataTable,
   CRow,
 } from '@coreui/react';
-import { DocsLink } from '../../reusable';
 
 const getBadge = (status) => {
   switch (status) {
@@ -42,10 +41,7 @@ const BudgetResultsTable = (props) => {
       <CRow>
         <CCol xs="12" lg="12">
           <CCard>
-            <CCardHeader>
-              Budget-O-Matic Results List
-              <DocsLink name="CModal" />
-            </CCardHeader>
+            <CCardHeader>Budget-O-Matic Results ListS</CCardHeader>
             <CCardBody>
               <CDataTable
                 items={budgetResults}
