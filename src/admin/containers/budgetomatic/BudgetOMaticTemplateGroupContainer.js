@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { listItemsGroups } from '../../../modules/itemsGroups';
 import BudgetOMaticTemplateGroup from '../../components/BudgetOMaticTemplateGroup';
 
-const BudgetOMaticTemplateGroupContainer = ({ match }) => {
+const BudgetOMaticTemplateGroupContainer = ({ match, history }) => {
   const { id } = match.params;
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
@@ -16,17 +16,30 @@ const BudgetOMaticTemplateGroupContainer = ({ match }) => {
       loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
     }),
   );
+  let nextTargetGroupIndex;
   const targetGroup =
     DATASETS &&
-    DATASETS.filter((group) => group._id === id).length === 1 &&
-    DATASETS.filter((group) => group._id === id)[0];
+    DATASETS.filter((group, index) => {
+      if (group._id === id) nextTargetGroupIndex = index + 1;
+      return group._id === id;
+    })[0];
+  const nextTargetGroupCode =
+    DATASETS &&
+    nextTargetGroupIndex !== undefined &&
+    DATASETS[nextTargetGroupIndex] &&
+    DATASETS[nextTargetGroupIndex].code;
 
   useEffect(() => {
     if (!DATASETS) dispatch(listItemsGroups());
+    // if (!DATASETS) history.goBack();
   }, [DATASETS]);
 
   return (
-    <BudgetOMaticTemplateGroup targetGroup={targetGroup} isMobile={isMobile} />
+    <BudgetOMaticTemplateGroup
+      targetGroup={targetGroup}
+      //   itemCodesTaken={itemCodesTaken}
+      isMobile={isMobile}
+    />
   );
 };
 

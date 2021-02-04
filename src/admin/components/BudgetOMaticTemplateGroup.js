@@ -34,17 +34,14 @@ import {
 import CIcon from '@coreui/icons-react';
 
 const BudgetOMaticTemplateGroup = (props) => {
-  const { targetGroup, isMobile } = props;
+  const { targetGroup, itemCodesTaken, nextTargetGroupCode, isMobile } = props;
   const { _id, code, name, category, budgetItems } = { ...targetGroup };
 
   return (
     <>
       {targetGroup && (
         <CCard>
-          <CCardHeader>
-            Basic Form
-            <small> Elements</small>
-          </CCardHeader>
+          <CCardHeader>템플릿 관리</CCardHeader>
           <CCardBody>
             <CForm
               action=""
@@ -54,15 +51,28 @@ const BudgetOMaticTemplateGroup = (props) => {
             >
               <CFormGroup row>
                 <CCol md="3">
-                  <CLabel>Static</CLabel>
+                  <CLabel>ID</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <p className="form-control-static">Username</p>
+                  <p className="form-control-static">{_id}</p>
                 </CCol>
               </CFormGroup>
               <CFormGroup row>
                 <CCol md="3">
-                  <CLabel htmlFor="text-input">Text Input</CLabel>
+                  <CLabel htmlFor="select">Code</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CSelect custom name="select" id="select">
+                    <option value="0">code를 선택하세요</option>
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                  </CSelect>
+                </CCol>
+              </CFormGroup>
+              <CFormGroup row>
+                <CCol md="3">
+                  <CLabel htmlFor="text-input">text</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
                   <CInput
