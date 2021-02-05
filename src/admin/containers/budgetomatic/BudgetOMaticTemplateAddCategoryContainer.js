@@ -6,12 +6,12 @@ import { listItemsGroups } from '../../../modules/itemsGroups';
 import {
   changeField,
   initializeForm,
-  addGroup,
+  addCategory,
   addItem,
 } from '../../../modules/admin';
-import BudgetOMaticTemplateAddGroup from '../../components/BudgetOMaticTemplateAddGroup';
+import BudgetOMaticTemplateAddCategory from '../../components/BudgetOMaticTemplateAddCategory';
 
-const BudgetOMaticTemplateAddGroupContainer = ({ match, history }) => {
+const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -20,24 +20,12 @@ const BudgetOMaticTemplateAddGroupContainer = ({ match, history }) => {
     admin: admin.auth,
     authError: admin.authError,
   }));
-  // let nextTargetGroupIndex;
-  // const targetGroup =
-  //   DATASETS &&
-  //   DATASETS.filter((group, index) => {
-  //     if (group._id === id) nextTargetGroupIndex = index + 1;
-  //     return group._id === id;
-  //   })[0];
-  // const nextTargetGroupCode =
-  //   DATASETS &&
-  //   nextTargetGroupIndex !== undefined &&
-  //   DATASETS[nextTargetGroupIndex] &&
-  //   DATASETS[nextTargetGroupIndex].code;
 
   const onChange = (e) => {
     const { value, name } = e.target;
     dispatch(
       changeField({
-        form: 'addGroup',
+        form: 'addCategory',
         key: name,
         value,
       }),
@@ -51,7 +39,7 @@ const BudgetOMaticTemplateAddGroupContainer = ({ match, history }) => {
   };
 
   useEffect(() => {
-    dispatch(initializeForm('addGroup'));
+    dispatch(initializeForm('addCategory'));
   }, [dispatch]);
 
   // useEffect(() => {
@@ -68,7 +56,7 @@ const BudgetOMaticTemplateAddGroupContainer = ({ match, history }) => {
   // }, [auth, authError, dispatch]);
 
   return (
-    <BudgetOMaticTemplateAddGroup
+    <BudgetOMaticTemplateAddCategory
       //   itemCodesTaken={itemCodesTaken}
       form={form}
       onChange={onChange}
@@ -79,4 +67,4 @@ const BudgetOMaticTemplateAddGroupContainer = ({ match, history }) => {
   );
 };
 
-export default withRouter(BudgetOMaticTemplateAddGroupContainer);
+export default withRouter(BudgetOMaticTemplateAddCategoryContainer);

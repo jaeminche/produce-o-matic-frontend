@@ -56,6 +56,9 @@ const BudgetOMaticTemplate = React.lazy(() =>
 const BudgetOMaticTemplateGroup = React.lazy(() =>
   import('./views/budgetomatic/BudgetOMaticTemplateGroup'),
 );
+const BudgetOMaticTemplateAddCategory = React.lazy(() =>
+  import('./views/budgetomatic/BudgetOMaticTemplateAddCategory'),
+);
 const BudgetOMaticTemplateAddGroup = React.lazy(() =>
   import('./views/budgetomatic/BudgetOMaticTemplateAddGroup'),
 );
@@ -101,6 +104,12 @@ const routes = [
     exact: true,
     name: 'BudgetOMaticTemplateGroup',
     component: BudgetOMaticTemplateGroup,
+  },
+  {
+    path: '/firstavenue/budgetomatic-page/add-category',
+    exact: true,
+    name: 'BudgetOMaticTemplateAddCategory',
+    component: BudgetOMaticTemplateAddCategory,
   },
   {
     path: '/firstavenue/budgetomatic-page/add-group',
