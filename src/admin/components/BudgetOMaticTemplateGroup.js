@@ -41,7 +41,10 @@ const BudgetOMaticTemplateGroup = (props) => {
     <>
       {targetGroup && (
         <CCard>
-          <CCardHeader>템플릿 관리</CCardHeader>
+          <CCardHeader>
+            Budget-O-Matic 템플릿 관리 - 레이어는 카테고리 / 그룹 / 아이템,
+            이렇게 3개입니다.
+          </CCardHeader>
           <CCardBody>
             <CForm
               action=""
