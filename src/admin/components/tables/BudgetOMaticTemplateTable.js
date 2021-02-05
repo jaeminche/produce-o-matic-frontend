@@ -166,7 +166,22 @@ const BudgetOMaticTemplateTable = (props) => {
                                 className={'hover'}
                               >
                                 <span>{item.code}. </span>
-                                <span>{item.name}</span>
+                                <span>{item.name} | </span>
+                                {item.rate.length > 0 &&
+                                  item.rate.map((rate, index) => (
+                                    <span>
+                                      ₩{rate}
+                                      {index > 0 &&
+                                        index !== item.rate.length - 1 &&
+                                        ' / '}
+                                    </span>
+                                  ))}
+
+                                <span> / {item.unit}</span>
+                                <span>
+                                  {' '}
+                                  | remark : {item.remark ? 'O' : 'X'}
+                                </span>
                                 <span className={'floatRight'}>
                                   <CButton size="sm" color="info">
                                     Modify
