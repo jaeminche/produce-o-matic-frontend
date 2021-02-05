@@ -12,7 +12,7 @@ import {
 } from '@coreui/react';
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
-import { AddGroup } from '../../reusable';
+import { AddCategory, AddGroup } from '../../reusable';
 
 const StyledWrapper = styled.div`
   max-width: 1100px;
@@ -83,6 +83,7 @@ const BudgetOMaticTemplateTable = (props) => {
             <CCardHeader>
               Budget-O-Matic Template
               <AddGroup />
+              <AddCategory />
             </CCardHeader>
             <CCardBody>
               <CDataTable
@@ -179,8 +180,23 @@ const BudgetOMaticTemplateTable = (props) => {
 
                                 <span> / {item.unit}</span>
                                 <span>
-                                  {' '}
-                                  | remark : {item.remark ? 'O' : 'X'}
+                                  {'  |  '}
+                                  remark : {item.remark ? 'O' : 'X'}
+                                </span>
+                                <span>
+                                  {item.tags.length > 0 ? `  |  tags : ` : null}
+                                  {item.tags.length > 0
+                                    ? item.tags.map((tag) => (
+                                        <CButton
+                                          color="primary"
+                                          variant="outline"
+                                          shape="square"
+                                          size="sm"
+                                        >
+                                          {tag}
+                                        </CButton>
+                                      ))
+                                    : null}
                                 </span>
                                 <span className={'floatRight'}>
                                   <CButton size="sm" color="info">
