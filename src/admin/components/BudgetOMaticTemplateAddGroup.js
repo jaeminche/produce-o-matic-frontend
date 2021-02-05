@@ -34,13 +34,12 @@ import {
 import CIcon from '@coreui/icons-react';
 
 const BudgetOMaticTemplateAddGroup = (props) => {
-  const { targetGroup, itemCodesTaken, nextTargetGroupCode, isMobile } = props;
-  const { _id, code, name, category, budgetItems } = { ...targetGroup };
-
+  const { onChange, onSubmit, isMobile } = props;
+  // const categories = {data: [{id: }]}
   return (
     <>
       <CCard>
-        <CCardHeader>템플릿 관리</CCardHeader>
+        <CCardHeader>Budget-O-Matic 템플릿 관리 - 그룹 추가하기</CCardHeader>
         <CCardBody>
           <CForm
             action=""
@@ -50,10 +49,15 @@ const BudgetOMaticTemplateAddGroup = (props) => {
           >
             <CFormGroup row>
               <CCol md="3">
-                <CLabel>ID</CLabel>
+                <CLabel htmlFor="select">카테고리</CLabel>
               </CCol>
               <CCol xs="12" md="9">
-                <p className="form-control-static">{_id}</p>
+                <CSelect custom name="select" id="select">
+                  <option value="0">카테고리를 선택하세요</option>
+                  <option value="1">Option #1</option>
+                  <option value="2">Option #2</option>
+                  <option value="3">Option #3</option>
+                </CSelect>
               </CCol>
             </CFormGroup>
             <CFormGroup row>
@@ -71,11 +75,18 @@ const BudgetOMaticTemplateAddGroup = (props) => {
             </CFormGroup>
             <CFormGroup row>
               <CCol md="3">
-                <CLabel htmlFor="text-input">text</CLabel>
+                <CLabel htmlFor="text-input">그룹명</CLabel>
               </CCol>
               <CCol xs="12" md="9">
-                <CInput id="text-input" name="text-input" placeholder="Text" />
-                <CFormText>This is a help text</CFormText>
+                <CInput
+                  onChange={onChange}
+                  id="name"
+                  name="name"
+                  placeholder="그룹명을 입력해주세요"
+                />
+                <CFormText>
+                  {'예)Production Department, Camera Equipments, etc...'}
+                </CFormText>
               </CCol>
             </CFormGroup>
             <CFormGroup row>

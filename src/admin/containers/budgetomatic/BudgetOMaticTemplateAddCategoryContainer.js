@@ -6,6 +6,7 @@ import { listItemsGroups } from '../../../modules/itemsGroups';
 import {
   changeField,
   initializeForm,
+  listCategories,
   addCategory,
   addItem,
 } from '../../../modules/admin';
@@ -40,6 +41,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   useEffect(() => {
     dispatch(initializeForm('addCategory'));
+    dispatch(listCategories());
   }, [dispatch]);
 
   // useEffect(() => {

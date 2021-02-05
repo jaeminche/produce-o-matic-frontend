@@ -17,6 +17,8 @@ import client from './client';
 
 // export const removeGroup = (id) => client.delete(`/api/itemGroups/${id}`);
 
+export const listCategories = () => client.get(`/api/categories`);
+
 export const addCategory = (data) =>
   client.post('/api/categories', { ...data });
 

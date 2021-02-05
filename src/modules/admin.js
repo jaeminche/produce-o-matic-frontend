@@ -10,6 +10,11 @@ const CHANGE_FIELD = 'admin/CHANGE_FIELD';
 const INITIALIZE_FORM = 'admin/INITIALIZE_FORM';
 
 const [
+  LISTCATEGORIES,
+  LISTCATEGORIES_SUCCESS,
+  LISTCATEGORIES_FAILURE,
+] = createRequestActionTypes('admin/LISTCATEGORIES');
+const [
   ADDCATEGORY,
   ADDCATEGORY_SUCCESS,
   ADDCATEGORY_FAILURE,
@@ -31,6 +36,7 @@ export const changeField = createAction(
 );
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 
+export const listCategories = createAction(LISTCATEGORIES);
 export const addCategory = createAction(
   ADDCATEGORY,
   ({ name, groupsCodes }) => ({
@@ -56,16 +62,22 @@ export const addItem = createAction(
 );
 
 // * Create Sagas
+const listCategoriesSaga = createRequestSaga(
+  LISTCATEGORIES,
+  adminAPI.listCategories,
+);
 const addCategorySaga = createRequestSaga(ADDCATEGORY, adminAPI.addCategory);
 const addGroupSaga = createRequestSaga(ADDGROUP, adminAPI.addGroup);
 const addItemSaga = createRequestSaga(ADDITEM, adminAPI.addItem);
 export function* adminSaga() {
+  yield takeLatest(LISTCATEGORIES, listCategoriesSaga);
   yield takeLatest(ADDCATEGORY, addCategorySaga);
   yield takeLatest(ADDGROUP, addGroupSaga);
   yield takeLatest(ADDITEM, addItemSaga);
 }
 
 const initialState = {
+  listCategories: null,
   addCategory: {
     name: '',
     groupsCodes: null,
@@ -83,6 +95,7 @@ const initialState = {
     remark: '',
     tags: null,
   },
+  listCategoriesError: null,
   addCategorySubmitted: null,
   addCategoryError: null,
   addGroupSubmitted: null,
@@ -101,6 +114,15 @@ const admin = handleActions(
       ...state,
       [form]: initialState[form],
       [`${form}Error`]: null,
+    }),
+    [LISTCATEGORIES_SUCCESS]: (state, { payload: listCategories }) => ({
+      ...state,
+      listCategoriesError: null,
+      listCategories,
+    }),
+    [LISTCATEGORIES_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      addCategoryError: error,
     }),
     [ADDCATEGORY_SUCCESS]: (state, { payload: addCategorySubmitted }) => ({
       ...state,
