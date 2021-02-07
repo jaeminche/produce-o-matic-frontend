@@ -15,14 +15,16 @@ import BudgetOMaticTemplateAddCategory from '../../components/BudgetOMaticTempla
 
 const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState(2);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  const [tab, setTab] = useState('');
+  const activeText = ['Category', 'Group', 'Item'];
+
   const {
     categoryForm,
     groupForm,
     itemForm,
-    listCategories,
+    categoriesList,
     addCategorySubmitted,
     addGroupSubmitted,
     addItemSubmitted,
@@ -34,7 +36,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     categoryForm: admin.addCategory,
     groupForm: admin.addGroup,
     itemForm: admin.addItem,
-    listCategories: admin.listCategories,
+    categoriesList: admin.listCategories,
     addCategorySubmitted: admin.addCategorySubmitted,
     addGroupSubmitted: admin.addGroupSubmitted,
     addItemSubmitted: admin.addItemSubmitted,
@@ -46,9 +48,10 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   const onChange = (e) => {
     const { value, name } = e.target;
+    console.log('===533', name, value, `add${activeText[activeTab]}`);
     dispatch(
       changeField({
-        form: `add${tab.charAt(0).toUpperCase()}`,
+        form: `add${activeText[activeTab]}`,
         key: name,
         value,
       }),
@@ -57,13 +60,13 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (tab === 'item') {
+    if (activeTab === 2) {
       const { code, name, unit, rate, remark, tags } = itemForm;
       dispatch(addItem({ code, name, unit, rate, remark, tags }));
-    } else if (tab === 'group') {
+    } else if (activeTab === 1) {
       const { code, name, category } = groupForm;
       dispatch(addGroup({ code, name, category }));
-    } else if (tab === 'category') {
+    } else if (activeTab === 0) {
       const { name, groupsCodes } = categoryForm;
       dispatch(addCategory({ name, groupsCodes }));
     }
@@ -89,9 +92,12 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   return (
     <BudgetOMaticTemplateAddCategory
-      tab={tab}
-      setTab={setTab}
-      form={itemForm || groupForm || categoryForm}
+      activeText={activeText}
+      activeTab={activeTab}
+      setActiveTab={setActiveTab}
+      form={
+        activeTab === 2 ? itemForm : activeTab === 1 ? groupForm : categoryForm
+      }
       listCategories={listCategories}
       onChange={onChange}
       onSubmit={onSubmit}

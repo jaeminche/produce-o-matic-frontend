@@ -14,6 +14,10 @@ import {
   CForm,
   CFormGroup,
   CFormText,
+  CNav,
+  CTabs,
+  CNavItem,
+  CNavLink,
   CValidFeedback,
   CInvalidFeedback,
   CTextarea,
@@ -30,14 +34,188 @@ import {
   CSelect,
   CRow,
   CSwitch,
+  CTabContent,
+  CTabPane,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
+const NameInputFormGroup = ({ tabTitle, onChange }) => {
+  const desc =
+    tabTitle === 'Item'
+      ? '예)production assistant, assistant director, etc...'
+      : tabTitle === 'Group'
+      ? '예)production department, camera department, etc...'
+      : tabTitle === 'Category'
+      ? '예)labor, equipments, etc...'
+      : '';
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
+      </CCol>
+      <CCol xs="12" md="9">
+        <CInput
+          onChange={onChange}
+          id="name"
+          name="name"
+          placeholder={`${tabTitle}명을 입력해주세요`}
+        />
+        <CFormText>{desc}</CFormText>
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const CategoryInputFormGroup = ({ activeTab, onChange }) => {
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`카테고리명`}</CLabel>
+      </CCol>
+      <CCol xs="12" md="9">
+        <CInput
+          onChange={onChange}
+          id="name"
+          name="name"
+          placeholder={`${activeTab}명을 입력해주세요`}
+        />
+        <CFormText>{'예)labor, equipments, etc...'}</CFormText>
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const GroupsCodesInputFormGroup = ({ activeTab, onChange }) => {
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`${activeTab}명`}</CLabel>
+      </CCol>
+      <CCol xs="12" md="9">
+        <CInput
+          onChange={onChange}
+          id="groupsCodes"
+          name="groupsCodes"
+          placeholder={`코드를 선택해주세요`}
+        />
+        <CFormText>{'예)labor, equipments, etc...'}</CFormText>
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const CodeInputFormGroup = ({ activeTab, onChange }) => {
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`${activeTab}명`}</CLabel>
+      </CCol>
+      <CCol xs="12" md="9">
+        <CInput
+          onChange={onChange}
+          id="code"
+          name="code"
+          placeholder={`코드를 선택해주세요`}
+        />
+        <CFormText>{'예)labor, equipments, etc...'}</CFormText>
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const FormGroups = ({ tabTitle, activeTab, onChange }) => {
+  // todo: 아래 할 차례
+  const setGroups = [
+    <>
+      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <GroupsCodesInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+    </>,
+    <>
+      <CodeInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+    </>,
+    <>
+      <CodeInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+    </>,
+  ];
+  return setGroups[activeTab];
+};
+
 const BudgetOMaticTemplateAddCategory = (props) => {
-  const { onChange, onSubmit, isMobile } = props;
+  const {
+    activeText,
+    activeTab,
+    setActiveTab,
+    form,
+    listCategories,
+    onChange,
+    onSubmit,
+    error,
+    isMobile,
+  } = props;
+  const tabTitle = activeText[activeTab];
+
   // const categories = {data: [{id: }]}
   return (
     <>
+      <CCard>
+        <CCardHeader>
+          추가하고자 하는 탭을 선택하시고 입력폼을 작성해주세요.
+        </CCardHeader>
+        <CCardBody>
+          <CTabs
+            activeTab={activeTab}
+            onActiveTabChange={(idx) => setActiveTab(idx)}
+          >
+            <CNav variant="tabs">
+              <CNavItem>
+                <CNavLink> 카테고리</CNavLink>
+              </CNavItem>
+              <CNavItem>
+                <CNavLink> 그룹</CNavLink>
+              </CNavItem>
+              <CNavItem>
+                <CNavLink> 아이템</CNavLink>
+              </CNavItem>
+            </CNav>
+            <CTabContent>
+              <CForm
+                action=""
+                method="post"
+                encType="multipart/form-data"
+                className="form-horizontal"
+              >
+                <CTabPane>
+                  {`추가할 신규 카테고리 정보를 입력해주세요`}
+                  <FormGroups
+                    tabTitle={tabTitle}
+                    activeTab={activeTab}
+                    onChange={onChange}
+                  />
+                </CTabPane>
+                <CTabPane>
+                  {`2.`}
+                  <FormGroups
+                    tabTitle={tabTitle}
+                    activeTab={activeTab}
+                    onChange={onChange}
+                  />
+                </CTabPane>
+                <CTabPane>
+                  {`3.`}
+                  <FormGroups
+                    tabTitle={tabTitle}
+                    activeTab={activeTab}
+                    onChange={onChange}
+                  />
+                </CTabPane>
+              </CForm>
+            </CTabContent>
+          </CTabs>
+        </CCardBody>
+      </CCard>
+
       <CCard>
         <CCardHeader>
           Budget-O-Matic 템플릿 관리 - 카테고리 추가하기
