@@ -7,8 +7,9 @@ import {
   changeField,
   initializeForm,
   listCategories,
-  addCategory,
+  addGroup,
   addItem,
+  addCategory,
 } from '../../../modules/admin';
 import BudgetOMaticTemplateAddCategory from '../../components/BudgetOMaticTemplateAddCategory';
 
@@ -16,17 +17,38 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  const { form, admin, authError, user } = useSelector(({ admin }) => ({
-    form: admin,
-    admin: admin.auth,
-    authError: admin.authError,
+  const [tab, setTab] = useState('');
+  const {
+    categoryForm,
+    groupForm,
+    itemForm,
+    listCategories,
+    addCategorySubmitted,
+    addGroupSubmitted,
+    addItemSubmitted,
+    addCategoryError,
+    addGroupError,
+    addItemError,
+    listCategoriesError,
+  } = useSelector(({ admin }) => ({
+    categoryForm: admin.addCategory,
+    groupForm: admin.addGroup,
+    itemForm: admin.addItem,
+    listCategories: admin.listCategories,
+    addCategorySubmitted: admin.addCategorySubmitted,
+    addGroupSubmitted: admin.addGroupSubmitted,
+    addItemSubmitted: admin.addItemSubmitted,
+    addCategoryError: admin.addCategoryError,
+    addGroupError: admin.addGroupError,
+    addItemError: admin.addItemError,
+    listCategoriesError: admin.listCategoriesError,
   }));
 
   const onChange = (e) => {
     const { value, name } = e.target;
     dispatch(
       changeField({
-        form: 'addCategory',
+        form: `add${tab.charAt(0).toUpperCase()}`,
         key: name,
         value,
       }),
@@ -35,8 +57,16 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { code, name, category } = form;
-    // dispatch(login({ username, password }));
+    if (tab === 'item') {
+      const { code, name, unit, rate, remark, tags } = itemForm;
+      dispatch(addItem({ code, name, unit, rate, remark, tags }));
+    } else if (tab === 'group') {
+      const { code, name, category } = groupForm;
+      dispatch(addGroup({ code, name, category }));
+    } else if (tab === 'category') {
+      const { name, groupsCodes } = categoryForm;
+      dispatch(addCategory({ name, groupsCodes }));
+    }
   };
 
   useEffect(() => {
@@ -59,8 +89,10 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   return (
     <BudgetOMaticTemplateAddCategory
-      //   itemCodesTaken={itemCodesTaken}
-      form={form}
+      tab={tab}
+      setTab={setTab}
+      form={itemForm || groupForm || categoryForm}
+      listCategories={listCategories}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}
