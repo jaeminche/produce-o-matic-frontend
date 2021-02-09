@@ -156,6 +156,10 @@ const BudgetOMaticTemplateAddCategory = (props) => {
   } = props;
   const tabTitle = activeText[activeTab];
 
+  const Explanation = ({ tabTitle }) => {
+    return `추가할 신규 ${tabTitle} 정보를 입력해주세요`;
+  };
+
   // const categories = {data: [{id: }]}
   return (
     <>
@@ -187,6 +191,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
             >
               <CTabContent>
                 <CTabPane>
+                  <Explanation tabTitle={tabTitle} />
                   {`추가할 신규 카테고리 정보를 입력해주세요`}
                   <FormGroups
                     tabTitle={tabTitle}
@@ -195,7 +200,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
                   />
                 </CTabPane>
                 <CTabPane>
-                  {`2.`}
+                  <Explanation tabTitle={tabTitle} />
                   <FormGroups
                     tabTitle={tabTitle}
                     activeTab={activeTab}
@@ -203,7 +208,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
                   />
                 </CTabPane>
                 <CTabPane>
-                  {`3.`}
+                  <Explanation tabTitle={tabTitle} />
                   <FormGroups
                     tabTitle={tabTitle}
                     activeTab={activeTab}
