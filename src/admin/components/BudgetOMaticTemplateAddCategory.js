@@ -56,7 +56,7 @@ const NameInputFormGroup = ({ tabTitle, onChange }) => {
       <CCol xs="12" md="9">
         <CInput
           onChange={onChange}
-          id="name"
+          id={tabTitle}
           name="name"
           placeholder={`${tabTitle}명을 입력해주세요`}
         />
@@ -179,13 +179,13 @@ const BudgetOMaticTemplateAddCategory = (props) => {
                 <CNavLink> 아이템</CNavLink>
               </CNavItem>
             </CNav>
-            <CTabContent>
-              <CForm
-                action=""
-                method="post"
-                encType="multipart/form-data"
-                className="form-horizontal"
-              >
+            <CForm
+              action=""
+              method="post"
+              encType="multipart/form-data"
+              className="form-horizontal"
+            >
+              <CTabContent>
                 <CTabPane>
                   {`추가할 신규 카테고리 정보를 입력해주세요`}
                   <FormGroups
@@ -210,8 +210,8 @@ const BudgetOMaticTemplateAddCategory = (props) => {
                     onChange={onChange}
                   />
                 </CTabPane>
-              </CForm>
-            </CTabContent>
+              </CTabContent>
+            </CForm>
           </CTabs>
         </CCardBody>
       </CCard>
