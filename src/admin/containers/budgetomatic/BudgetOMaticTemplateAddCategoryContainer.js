@@ -12,18 +12,22 @@ import {
   addCategory,
 } from '../../../modules/admin';
 import BudgetOMaticTemplateAddCategory from '../../components/BudgetOMaticTemplateAddCategory';
+import { myToast } from '../../../lib/util/myToast';
 
 const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(2);
   const dispatch = useDispatch();
+  const [filteredCategory, setFilteredCategory] = useState('');
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
 
   const {
+    itemsGroups,
     categoryForm,
     groupForm,
     itemForm,
+    selectedCategory,
     categoriesList,
     addCategorySubmitted,
     addGroupSubmitted,
@@ -32,14 +36,18 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     addGroupError,
     addItemError,
     listCategoriesError,
-  } = useSelector(({ admin }) => ({
+  } = useSelector(({ admin, itemsGroups }) => ({
+    itemsGroups: itemsGroups.dataSets,
     categoryForm: admin.addCategory,
     groupForm: admin.addGroup,
     itemForm: admin.addItem,
+    selectedCategory: admin.addGroup.category,
     categoriesList: admin.listCategories,
     addCategorySubmitted: admin.addCategorySubmitted,
     addGroupSubmitted: admin.addGroupSubmitted,
     addItemSubmitted: admin.addItemSubmitted,
+
+    itemsGroupsError: itemsGroups.error,
     addCategoryError: admin.addCategoryError,
     addGroupError: admin.addGroupError,
     addItemError: admin.addItemError,
@@ -59,14 +67,14 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   const handleOnSelect = ({ e, key, isMulti = false }) => {
     // if e is like [{label: str, value: num}], make it flat only with values
-    const destructured = isMulti
+    const structuredValues = isMulti
       ? key === 'groupsCodes' && e.map((obj) => obj.value)
-      : e;
+      : e.value;
     dispatch(
       changeField({
         form: `add${activeText[activeTab]}`,
         key,
-        value: destructured,
+        value: structuredValues,
       }),
     );
   };
@@ -88,21 +96,29 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   useEffect(() => {
     dispatch(initializeForm('addCategory'));
-    dispatch(listCategories());
-  }, [dispatch]);
+    dispatch(initializeForm('addGroup'));
+    dispatch(initializeForm('addItem'));
+    if (activeTab === 2 || activeTab === 1) {
+      dispatch(listItemsGroups());
+    }
+    if (activeTab === 1 || activeTab === 0) {
+      dispatch(listCategories());
+    }
+  }, [activeTab]);
 
-  // useEffect(() => {
-  //   if (authError) {
-  //     console.log('오류 발생');
-  //     console.log(authError);
-  //     setError('login failed');
-  //     return;
-  //   }
-  //   if (auth) {
-  //     console.log('로그인 성공');
-  //     dispatch(check());
-  //   }
-  // }, [auth, authError, dispatch]);
+  useEffect(() => {
+    if (categoriesList && selectedCategory)
+      setFilteredCategory(
+        categoriesList.filter((list) => list.name === selectedCategory)[0],
+      );
+  }, [categoriesList, selectedCategory]);
+
+  useEffect(() => {
+    if (addCategorySubmitted) {
+      myToast('저장되었습니다');
+      dispatch(initializeForm('addCategory'));
+    }
+  }, [addCategorySubmitted]);
 
   return (
     <BudgetOMaticTemplateAddCategory
@@ -113,9 +129,12 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
         activeTab === 2 ? itemForm : activeTab === 1 ? groupForm : categoryForm
       }
       categoriesList={categoriesList}
+      filteredCategory={filteredCategory}
+      itemsGroups={itemsGroups}
       onChange={onChange}
       handleOnSelect={handleOnSelect}
       onSubmit={onSubmit}
+      addCategorySubmitted={!!addCategorySubmitted}
       error={error}
       isMobile={isMobile}
     />

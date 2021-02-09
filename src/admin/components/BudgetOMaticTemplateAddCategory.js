@@ -74,20 +74,29 @@ const NameInputFormGroup = ({ tabTitle, onChange }) => {
   );
 };
 
-const CategoryInputFormGroup = ({ tabTitle, onChange }) => {
+const CategorySelectFormGroup = ({
+  categoriesList,
+  tabTitle,
+  handleOnSelect,
+}) => {
+  const options =
+    categoriesList &&
+    categoriesList.length > 0 &&
+    categoriesList.map((cate) => ({
+      value: cate.name,
+      label: cate.name,
+    }));
+  console.log('==0022', options);
   return (
     <CFormGroup row>
       <CCol md="3">
-        <CLabel htmlFor="text-input">{`카테고리명`}</CLabel>
+        <CLabel htmlFor="text-input">{`소속 카테고리명`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
-        <CInput
-          onChange={onChange}
-          id="name"
-          name="name"
-          placeholder={`${tabTitle}명을 입력해주세요`}
+        <Select
+          options={options}
+          onChange={(e) => handleOnSelect({ e, key: 'category' })}
         />
-        <CFormText>{'예)labor, equipments, etc...'}</CFormText>
       </CCol>
     </CFormGroup>
   );
@@ -98,6 +107,7 @@ const GroupsCodesInputFormGroup = ({
   tabTitle,
   onChange,
   handleOnSelect,
+  form,
 }) => {
   const categoriesCodesTaken =
     categoriesList && categoriesList.map((cate) => cate.groupsCodes).flat();
@@ -123,6 +133,8 @@ const GroupsCodesInputFormGroup = ({
       </CCol>
       <CCol xs="12" md="9">
         <Select
+          // isClearable={true}
+          // value={form && form.groupsCodes.length > 0 && form.groupsCodes}
           isMulti={true}
           options={options}
           onChange={(e) =>
@@ -146,33 +158,68 @@ const GroupsCodesInputFormGroup = ({
   );
 };
 
-const CodeInputFormGroup = ({ tabTitle, onChange }) => {
+const CodeInputFormGroup = ({
+  itemsGroups,
+  filteredCategory,
+  tabTitle,
+  onChange,
+  handleOnSelect,
+  form,
+}) => {
+  // const filteredCategory =
+  //   categoriesList &&
+  //   categoriesList.filter((list) => list.name === form.category);
+  console.log('==1, filteredCategory', filteredCategory);
+  console.log('==990 filteredCategory', filteredCategory);
+  const groupsCodes = filteredCategory && filteredCategory.groupsCodes;
+
+  const groupsCodesTaken =
+    itemsGroups &&
+    itemsGroups.length > 0 &&
+    itemsGroups.map((group) => group.code);
+  // const groupsCodesTaken =
+  //   filteredCategory && filteredCategory.map((cate) => cate.groupsCodes).flat();
+
+  const availGroupsCodes =
+    groupsCodesTaken &&
+    groupsCodes &&
+    groupsCodes.filter((code) => !groupsCodesTaken.includes(code));
+
+  const options =
+    availGroupsCodes &&
+    availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
+  console.log(
+    '==2939',
+    groupsCodes,
+    groupsCodesTaken,
+    availGroupsCodes,
+    options,
+  );
   return (
     <CFormGroup row>
       <CCol md="3">
-        <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
+        <CLabel htmlFor="text-input">{`사용가능한 코드`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
-        <CInput
-          onChange={onChange}
-          id="code"
-          name="code"
-          placeholder={`코드를 선택해주세요`}
+        <Select
+          options={filteredCategory && options}
+          onChange={(e) => handleOnSelect({ e, key: 'code' })}
         />
-        <CFormText>{'예)labor, equipments, etc...'}</CFormText>
       </CCol>
     </CFormGroup>
   );
 };
 
 const FormGroups = ({
+  itemsGroups,
   categoriesList,
+  filteredCategory,
   tabTitle,
   activeTab,
   onChange,
   handleOnSelect,
+  form,
 }) => {
-  // todo: 아래 할 차례
   const setGroups = [
     <>
       <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
@@ -181,14 +228,38 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
         handleOnSelect={handleOnSelect}
+        form={form}
       />
     </>,
     <>
-      <CodeInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <CategorySelectFormGroup
+        categoriesList={categoriesList}
+        tabTitle={tabTitle}
+        handleOnSelect={handleOnSelect}
+      />
+      <CodeInputFormGroup
+        itemsGroups={itemsGroups}
+        filteredCategory={filteredCategory}
+        tabTitle={tabTitle}
+        onChange={onChange}
+        handleOnSelect={handleOnSelect}
+        form={form}
+      />
       <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
     </>,
     <>
-      <CodeInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      {/* <CodeInputFormGroup
+        itemsGroups={itemsGroups}
+        filteredCategory={filteredCategory}
+        tabTitle={tabTitle}
+        onChange={onChange}
+        handleOnSelect={handleOnSelect}
+        form={form}
+      /> */}
+      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
       <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
     </>,
   ];
@@ -201,7 +272,9 @@ const BudgetOMaticTemplateAddCategory = (props) => {
     activeTab,
     setActiveTab,
     form,
+    itemsGroups,
     categoriesList,
+    filteredCategory,
     onChange,
     handleOnSelect,
     onSubmit,
@@ -249,26 +322,37 @@ const BudgetOMaticTemplateAddCategory = (props) => {
                   <TabDescription tabTitle={tabTitle} />
                   <FormGroups
                     categoriesList={categoriesList}
+                    filteredCategory={filteredCategory}
                     tabTitle={tabTitle}
                     activeTab={activeTab}
                     onChange={onChange}
                     handleOnSelect={handleOnSelect}
+                    form={form}
                   />
                 </CTabPane>
                 <CTabPane>
                   <TabDescription tabTitle={tabTitle} />
                   <FormGroups
+                    categoriesList={categoriesList}
+                    filteredCategory={filteredCategory}
+                    itemsGroups={itemsGroups}
                     tabTitle={tabTitle}
                     activeTab={activeTab}
                     onChange={onChange}
+                    handleOnSelect={handleOnSelect}
+                    form={form}
                   />
                 </CTabPane>
                 <CTabPane>
                   <TabDescription tabTitle={tabTitle} />
                   <FormGroups
+                    filteredCategory={filteredCategory}
+                    itemsGroups={itemsGroups}
                     tabTitle={tabTitle}
                     activeTab={activeTab}
                     onChange={onChange}
+                    handleOnSelect={handleOnSelect}
+                    form={form}
                   />
                 </CTabPane>
               </CTabContent>

@@ -80,7 +80,7 @@ const initialState = {
   listCategories: null,
   addCategory: {
     name: '',
-    groupsCodes: null,
+    groupsCodes: [],
   },
   addGroup: {
     code: null,
