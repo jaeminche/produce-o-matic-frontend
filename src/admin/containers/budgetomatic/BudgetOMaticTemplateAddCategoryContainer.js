@@ -48,12 +48,25 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   const onChange = (e) => {
     const { value, name } = e.target;
-    console.log('===533', name, value, `add${activeText[activeTab]}`);
     dispatch(
       changeField({
         form: `add${activeText[activeTab]}`,
         key: name,
         value,
+      }),
+    );
+  };
+
+  const handleOnSelect = ({ e, key, isMulti = false }) => {
+    // if e is like [{label: str, value: num}], make it flat only with values
+    const destructured = isMulti
+      ? key === 'groupsCodes' && e.map((obj) => obj.value)
+      : e;
+    dispatch(
+      changeField({
+        form: `add${activeText[activeTab]}`,
+        key,
+        value: destructured,
       }),
     );
   };
@@ -98,8 +111,9 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
       form={
         activeTab === 2 ? itemForm : activeTab === 1 ? groupForm : categoryForm
       }
-      listCategories={listCategories}
+      categoriesList={categoriesList}
       onChange={onChange}
+      handleOnSelect={handleOnSelect}
       onSubmit={onSubmit}
       error={error}
       isMobile={isMobile}

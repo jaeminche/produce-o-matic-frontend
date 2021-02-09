@@ -38,6 +38,7 @@ import {
   CTabPane,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
+import Select from 'react-select';
 import styled from 'styled-components/macro';
 
 const StyledWrapper = styled.div`
@@ -92,19 +93,54 @@ const CategoryInputFormGroup = ({ tabTitle, onChange }) => {
   );
 };
 
-const GroupsCodesInputFormGroup = ({ tabTitle, onChange }) => {
+const GroupsCodesInputFormGroup = ({
+  categoriesList,
+  tabTitle,
+  onChange,
+  handleOnSelect,
+}) => {
+  const categoriesCodesTaken =
+    categoriesList && categoriesList.map((cate) => cate.groupsCodes).flat();
+
+  const generateGroupsCodes = ({ num }) => {
+    const elem = [];
+    for (let i = 100; i <= num; i += 100) {
+      elem.push(i);
+    }
+    return elem.filter((code) => !categoriesCodesTaken.includes(code));
+  };
+  const availGroupsCodes =
+    categoriesCodesTaken && generateGroupsCodes({ num: 10000 });
+
+  const options =
+    availGroupsCodes &&
+    availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
+
   return (
     <CFormGroup row>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`허용할 그룹 코드`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
-        <CSelect custom id="groupsCodes" name="groupsCodes">
-          <option value="0">{tabTitle}를 선택하세요</option>
-          <option value="1">Option #1</option>
-          <option value="2">Option #2</option>
-          <option value="3">Option #3</option>
-        </CSelect>
+        <Select
+          isMulti={true}
+          options={options}
+          onChange={(e) =>
+            handleOnSelect({ e, key: 'groupsCodes', isMulti: true })
+          }
+        />
+        {/* <CSelect
+          multiple
+          onChange={(e) => handleOnSelect(e)}
+          custom
+          id="groupsCodes"
+          name="groupsCodes"
+        >
+          {availGroupsCodes &&
+            availGroupsCodes.map((code) => (
+              <option value={code}>{code}</option>
+            ))}
+        </CSelect> */}
       </CCol>
     </CFormGroup>
   );
@@ -129,12 +165,23 @@ const CodeInputFormGroup = ({ tabTitle, onChange }) => {
   );
 };
 
-const FormGroups = ({ tabTitle, activeTab, onChange }) => {
+const FormGroups = ({
+  categoriesList,
+  tabTitle,
+  activeTab,
+  onChange,
+  handleOnSelect,
+}) => {
   // todo: 아래 할 차례
   const setGroups = [
     <>
       <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
-      <GroupsCodesInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <GroupsCodesInputFormGroup
+        categoriesList={categoriesList}
+        tabTitle={tabTitle}
+        onChange={onChange}
+        handleOnSelect={handleOnSelect}
+      />
     </>,
     <>
       <CodeInputFormGroup tabTitle={tabTitle} onChange={onChange} />
@@ -154,8 +201,9 @@ const BudgetOMaticTemplateAddCategory = (props) => {
     activeTab,
     setActiveTab,
     form,
-    listCategories,
+    categoriesList,
     onChange,
+    handleOnSelect,
     onSubmit,
     error,
     isMobile,
@@ -200,9 +248,11 @@ const BudgetOMaticTemplateAddCategory = (props) => {
                 <CTabPane>
                   <TabDescription tabTitle={tabTitle} />
                   <FormGroups
+                    categoriesList={categoriesList}
                     tabTitle={tabTitle}
                     activeTab={activeTab}
                     onChange={onChange}
+                    handleOnSelect={handleOnSelect}
                   />
                 </CTabPane>
                 <CTabPane>
