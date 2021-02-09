@@ -73,7 +73,7 @@ const NameInputFormGroup = ({ tabTitle, onChange }) => {
   );
 };
 
-const CategoryInputFormGroup = ({ activeTab, onChange }) => {
+const CategoryInputFormGroup = ({ tabTitle, onChange }) => {
   return (
     <CFormGroup row>
       <CCol md="3">
@@ -84,7 +84,7 @@ const CategoryInputFormGroup = ({ activeTab, onChange }) => {
           onChange={onChange}
           id="name"
           name="name"
-          placeholder={`${activeTab}명을 입력해주세요`}
+          placeholder={`${tabTitle}명을 입력해주세요`}
         />
         <CFormText>{'예)labor, equipments, etc...'}</CFormText>
       </CCol>
@@ -92,30 +92,29 @@ const CategoryInputFormGroup = ({ activeTab, onChange }) => {
   );
 };
 
-const GroupsCodesInputFormGroup = ({ activeTab, onChange }) => {
+const GroupsCodesInputFormGroup = ({ tabTitle, onChange }) => {
   return (
     <CFormGroup row>
       <CCol md="3">
-        <CLabel htmlFor="text-input">{`${activeTab}명`}</CLabel>
+        <CLabel htmlFor="text-input">{`허용할 그룹 코드`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
-        <CInput
-          onChange={onChange}
-          id="groupsCodes"
-          name="groupsCodes"
-          placeholder={`코드를 선택해주세요`}
-        />
-        <CFormText>{'예)labor, equipments, etc...'}</CFormText>
+        <CSelect custom id="groupsCodes" name="groupsCodes">
+          <option value="0">{tabTitle}를 선택하세요</option>
+          <option value="1">Option #1</option>
+          <option value="2">Option #2</option>
+          <option value="3">Option #3</option>
+        </CSelect>
       </CCol>
     </CFormGroup>
   );
 };
 
-const CodeInputFormGroup = ({ activeTab, onChange }) => {
+const CodeInputFormGroup = ({ tabTitle, onChange }) => {
   return (
     <CFormGroup row>
       <CCol md="3">
-        <CLabel htmlFor="text-input">{`${activeTab}명`}</CLabel>
+        <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
         <CInput
