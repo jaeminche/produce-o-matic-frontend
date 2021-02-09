@@ -275,6 +275,14 @@ const BudgetOMaticTemplateAddCategory = (props) => {
             </CForm>
           </CTabs>
         </CCardBody>
+        <CCardFooter>
+          <CButton onClick={onSubmit} type="submit" size="sm" color="primary">
+            <CIcon name="cil-scrubber" /> Submit
+          </CButton>
+          <CButton type="reset" size="sm" color="danger">
+            <CIcon name="cil-ban" /> Reset
+          </CButton>
+        </CCardFooter>
       </CCard>
 
       <CCard>

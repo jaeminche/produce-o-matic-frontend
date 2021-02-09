@@ -73,6 +73,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log('==779', e, activeTab, categoryForm);
     if (activeTab === 2) {
       const { code, name, unit, rate, remark, tags } = itemForm;
       dispatch(addItem({ code, name, unit, rate, remark, tags }));
