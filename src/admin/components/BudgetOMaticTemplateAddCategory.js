@@ -38,6 +38,13 @@ import {
   CTabPane,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
+import styled from 'styled-components/macro';
+
+const StyledWrapper = styled.div`
+  .tab-description {
+    margin: 20px 0;
+  }
+`;
 
 const NameInputFormGroup = ({ tabTitle, onChange }) => {
   const desc =
@@ -157,12 +164,13 @@ const BudgetOMaticTemplateAddCategory = (props) => {
   const tabTitle = activeText[activeTab];
 
   const TabDescription = ({ tabTitle }) => {
-    return `추가할 신규 ${tabTitle} 정보를 입력해주세요`;
+    const text = `추가할 신규 ${tabTitle} 정보를 입력해주세요`;
+    return <p className="tab-description">{text}</p>;
   };
 
   // const categories = {data: [{id: }]}
   return (
-    <>
+    <StyledWrapper>
       <CCard>
         <CCardHeader>
           추가하고자 하는 탭을 선택하시고 입력폼을 작성해주세요.
@@ -661,7 +669,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
           </CButton>
         </CCardFooter>
       </CCard>
-    </>
+    </StyledWrapper>
   );
 };
 
