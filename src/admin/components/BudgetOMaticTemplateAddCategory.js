@@ -43,7 +43,8 @@ import styled from 'styled-components/macro';
 
 const StyledWrapper = styled.div`
   .tab-description {
-    margin: 20px 0;
+    margin: 50px 0;
+    font-style: italic;
   }
 `;
 
@@ -374,7 +375,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
   const tabTitle = activeText[activeTab];
 
   const TabDescription = ({ tabTitle }) => {
-    const text = `추가할 신규 ${tabTitle} 정보를 입력해주세요`;
+    const text = `* 추가할 신규 ${tabTitle} 정보를 입력해주세요`;
     return <p className="tab-description">{text}</p>;
   };
 
@@ -459,7 +460,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
         </CCardFooter>
       </CCard>
 
-      <CCard>
+      {/* <CCard>
         <CCardHeader>
           Budget-O-Matic 템플릿 관리 - 카테고리 추가하기
         </CCardHeader>
@@ -899,7 +900,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
             <CIcon name="cil-ban" /> Reset
           </CButton>
         </CCardFooter>
-      </CCard>
+      </CCard> */}
     </StyledWrapper>
   );
 };
