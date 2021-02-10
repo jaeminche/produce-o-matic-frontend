@@ -204,6 +204,7 @@ const CodeInputFormGroup = ({
         <Select
           options={filteredCategory && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
+          placeholder={'소속 카테고리명을 우선 선택하시면, 코드가 표시됩니다!'}
         />
       </CCol>
     </CFormGroup>
@@ -293,7 +294,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
     <StyledWrapper>
       <CCard>
         <CCardHeader>
-          추가하고자 하는 탭을 선택하시고 입력폼을 작성해주세요.
+          추가할 레이어의 탭을 선택하시고 입력폼을 작성해주세요.
         </CCardHeader>
         <CCardBody>
           <CTabs
