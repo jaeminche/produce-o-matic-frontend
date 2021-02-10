@@ -82,7 +82,7 @@ const BudgetOMaticTemplateTable = (props) => {
           <CCard>
             <CCardHeader>
               Budget-O-Matic Template
-              <AddGroup />
+              {/* <AddGroup /> */}
               <AddCategory />
             </CCardHeader>
             <CCardBody>

@@ -15,7 +15,7 @@ const AddCategory = (props) => {
           history.push(`/firstavenue/budgetomatic-page/add-category`);
         }}
       >
-        Add Category
+        Add Category / Group / Item
       </CButton>
     </div>
   );
