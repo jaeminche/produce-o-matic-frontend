@@ -74,6 +74,77 @@ const NameInputFormGroup = ({ tabTitle, onChange }) => {
   );
 };
 
+const TextInputFormGroup = ({ type, tabTitle, onChange }) => {
+  const desc =
+    type === 'unit'
+      ? '예)day, month week,, etc...'
+      : type === 'remark'
+      ? '예)this rate is subject to change, etc...'
+      : type === 'rate'
+      ? '예)100000 - 콤마없이 숫자만 입력, etc...'
+      : '';
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`${type}`}</CLabel>
+      </CCol>
+      <CCol xs="12" md="9">
+        <CInput
+          onChange={onChange}
+          id={type}
+          name={type}
+          placeholder={`${type}을 입력해주세요`}
+        />
+        <CFormText>{desc}</CFormText>
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const TagsSelectFormGroup = ({
+  categoriesList,
+  tabTitle,
+  onChange,
+  handleOnSelect,
+  form,
+}) => {
+  const categoriesCodesTaken =
+    categoriesList && categoriesList.map((cate) => cate.groupsCodes).flat();
+
+  const generateGroupsCodes = ({ num }) => {
+    const elem = [];
+    for (let i = 100; i <= num; i += 100) {
+      elem.push(i);
+    }
+    return elem.filter((code) => !categoriesCodesTaken.includes(code));
+  };
+  const availGroupsCodes =
+    categoriesCodesTaken && generateGroupsCodes({ num: 10000 });
+
+  const options =
+    availGroupsCodes &&
+    availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
+  const desc =
+    '사용자가 Type Of Production을 선택했을 때 디폴트로 표시되게 하고 싶은 것을 선택하세요.';
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`Type Of Production 설정`}</CLabel>
+      </CCol>
+      <CCol xs="12" md="9">
+        <Select
+          // isClearable={true}
+          // value={form && form.groupsCodes.length > 0 && form.groupsCodes}
+          isMulti={true}
+          options={options}
+          onChange={(e) => handleOnSelect({ e, key: 'tags' })}
+        />
+        <CFormText>{desc}</CFormText>
+      </CCol>
+    </CFormGroup>
+  );
+};
+
 const CategorySelectFormGroup = ({
   categoriesList,
   tabTitle,
@@ -102,7 +173,7 @@ const CategorySelectFormGroup = ({
   );
 };
 
-const GroupsCodesInputFormGroup = ({
+const GroupsCodesSelectFormGroup = ({
   categoriesList,
   tabTitle,
   onChange,
@@ -224,7 +295,7 @@ const FormGroups = ({
   const setGroups = [
     <>
       <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
-      <GroupsCodesInputFormGroup
+      <GroupsCodesSelectFormGroup
         categoriesList={categoriesList}
         tabTitle={tabTitle}
         onChange={onChange}
@@ -249,19 +320,37 @@ const FormGroups = ({
       <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
     </>,
     <>
-      {/* <CodeInputFormGroup
+      <CodeInputFormGroup
         itemsGroups={itemsGroups}
         filteredCategory={filteredCategory}
         tabTitle={tabTitle}
         onChange={onChange}
         handleOnSelect={handleOnSelect}
         form={form}
-      /> */}
+      />
       <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
-      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
-      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
-      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
-      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <TextInputFormGroup
+        type={'rate'}
+        tabTitle={tabTitle}
+        onChange={onChange}
+      />
+      <TextInputFormGroup
+        type={'unit'}
+        tabTitle={tabTitle}
+        onChange={onChange}
+      />
+      <TextInputFormGroup
+        type={'remark'}
+        tabTitle={tabTitle}
+        onChange={onChange}
+      />
+      <TagsSelectFormGroup
+        categoriesList={categoriesList}
+        tabTitle={tabTitle}
+        onChange={onChange}
+        handleOnSelect={handleOnSelect}
+        form={form}
+      />
     </>,
   ];
   return setGroups[activeTab];
