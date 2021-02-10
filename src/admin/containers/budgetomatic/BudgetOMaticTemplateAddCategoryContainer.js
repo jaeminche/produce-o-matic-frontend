@@ -83,8 +83,10 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     e.preventDefault();
     console.log('==779', e, activeTab, categoryForm);
     if (activeTab === 2) {
+      const rates = [];
       const { code, name, unit, rate, remark, tags } = itemForm;
-      dispatch(addItem({ code, name, unit, rate, remark, tags }));
+      rates.push(Number(rate));
+      dispatch(addItem({ code, name, unit, rate: rates, remark, tags }));
     } else if (activeTab === 1) {
       const { code, name, category } = groupForm;
       dispatch(addGroup({ code, name, category }));
