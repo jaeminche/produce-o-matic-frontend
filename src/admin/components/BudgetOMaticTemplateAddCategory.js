@@ -82,7 +82,7 @@ const TextInputFormGroup = ({ type, tabTitle, onChange }) => {
       : type === 'remark'
       ? '예)this rate is subject to change, etc...'
       : type === 'rate'
-      ? '예)100000 - 콤마없이 숫자만 입력, etc...'
+      ? '예)100000 - 콤마없이 숫자만 입력'
       : '';
   return (
     <CFormGroup row>
@@ -230,6 +230,30 @@ const GroupsCodesSelectFormGroup = ({
   );
 };
 
+const GroupCodeSelectFormGroup = ({ itemsGroups, handleOnSelect }) => {
+  const options =
+    itemsGroups &&
+    itemsGroups.map((group) => ({
+      value: group.code,
+      label: `${group.code}. ${group.name}`,
+    }));
+
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`소속 그룹 코드`}</CLabel>
+      </CCol>
+      <CCol xs="12" md="9">
+        <Select
+          options={options}
+          onChange={(e) => handleOnSelect({ e, key: 'selectedGroup' })}
+          placeholder={'어느 그룹의 아이템을 추가하실 건가요?'}
+        />
+      </CCol>
+    </CFormGroup>
+  );
+};
+
 const CodeInputFormGroup = ({
   itemsGroups,
   filteredCategory,
@@ -276,7 +300,64 @@ const CodeInputFormGroup = ({
         <Select
           options={filteredCategory && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
-          placeholder={'소속 카테고리명을 우선 선택하시면, 코드가 표시됩니다!'}
+          placeholder={
+            '사용가능한 코드 중, 카테고리/그룹을 고려하여 하나를 선택'
+          }
+        />
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const CodeInputFormGroupForItem = ({
+  itemsGroups,
+  filteredCategory,
+  tabTitle,
+  onChange,
+  handleOnSelect,
+  form,
+}) => {
+  // const filteredCategory =
+  //   categoriesList &&
+  //   categoriesList.filter((list) => list.name === form.category);
+  console.log('==1, filteredCategory', filteredCategory);
+  console.log('==990 filteredCategory', filteredCategory);
+  const groupsCodes = filteredCategory && filteredCategory.groupsCodes;
+
+  const groupsCodesTaken =
+    itemsGroups &&
+    itemsGroups.length > 0 &&
+    itemsGroups.map((group) => group.code);
+  // const groupsCodesTaken =
+  //   filteredCategory && filteredCategory.map((cate) => cate.groupsCodes).flat();
+
+  const availGroupsCodes =
+    groupsCodesTaken &&
+    groupsCodes &&
+    groupsCodes.filter((code) => !groupsCodesTaken.includes(code));
+
+  const options =
+    availGroupsCodes &&
+    availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
+  console.log(
+    '==2939',
+    groupsCodes,
+    groupsCodesTaken,
+    availGroupsCodes,
+    options,
+  );
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`사용가능한 코드`}</CLabel>
+      </CCol>
+      <CCol xs="12" md="9">
+        <Select
+          options={filteredCategory && options}
+          onChange={(e) => handleOnSelect({ e, key: 'code' })}
+          placeholder={
+            '사용가능한 코드 중, 카테고리/그룹을 고려하여 하나를 선택'
+          }
         />
       </CCol>
     </CFormGroup>
@@ -321,7 +402,11 @@ const FormGroups = ({
       <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
     </>,
     <>
-      <CodeInputFormGroup
+      <GroupCodeSelectFormGroup
+        itemsGroups={itemsGroups}
+        handleOnSelect={handleOnSelect}
+      />
+      <CodeInputFormGroupForItem
         itemsGroups={itemsGroups}
         filteredCategory={filteredCategory}
         tabTitle={tabTitle}
