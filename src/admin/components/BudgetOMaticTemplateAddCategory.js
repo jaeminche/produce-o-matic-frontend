@@ -168,6 +168,7 @@ const CategorySelectFormGroup = ({
         <Select
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'category' })}
+          placeholder={'어느 카테고리의 그룹을 추가하실 건가요?'}
         />
       </CCol>
     </CFormGroup>
@@ -254,7 +255,7 @@ const GroupCodeSelectFormGroup = ({ itemsGroups, handleOnSelect }) => {
   );
 };
 
-const CodeInputFormGroup = ({
+const CodeInputFormGroupForGroupTab = ({
   itemsGroups,
   filteredCategory,
   tabTitle,
@@ -294,14 +295,14 @@ const CodeInputFormGroup = ({
   return (
     <CFormGroup row>
       <CCol md="3">
-        <CLabel htmlFor="text-input">{`사용가능한 코드`}</CLabel>
+        <CLabel htmlFor="text-input">{`사용할 그룹 코드`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
         <Select
           options={filteredCategory && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
           placeholder={
-            '사용가능한 코드 중, 카테고리/그룹을 고려하여 하나를 선택'
+            '사용가능한 그룹 코드들 중, 카테고리/그룹을 고려하여 하나를 선택'
           }
         />
       </CCol>
@@ -309,55 +310,27 @@ const CodeInputFormGroup = ({
   );
 };
 
-const CodeInputFormGroupForItem = ({
+const CodeInputFormGroupForItemTab = ({
   itemsGroups,
-  filteredCategory,
   tabTitle,
   onChange,
   handleOnSelect,
+  availItemsCodes,
   form,
 }) => {
-  // const filteredCategory =
-  //   categoriesList &&
-  //   categoriesList.filter((list) => list.name === form.category);
-  console.log('==1, filteredCategory', filteredCategory);
-  console.log('==990 filteredCategory', filteredCategory);
-  const groupsCodes = filteredCategory && filteredCategory.groupsCodes;
-
-  const groupsCodesTaken =
-    itemsGroups &&
-    itemsGroups.length > 0 &&
-    itemsGroups.map((group) => group.code);
-  // const groupsCodesTaken =
-  //   filteredCategory && filteredCategory.map((cate) => cate.groupsCodes).flat();
-
-  const availGroupsCodes =
-    groupsCodesTaken &&
-    groupsCodes &&
-    groupsCodes.filter((code) => !groupsCodesTaken.includes(code));
-
   const options =
-    availGroupsCodes &&
-    availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
-  console.log(
-    '==2939',
-    groupsCodes,
-    groupsCodesTaken,
-    availGroupsCodes,
-    options,
-  );
+    availItemsCodes &&
+    availItemsCodes.map((code) => ({ value: code, label: `${code}` }));
   return (
     <CFormGroup row>
       <CCol md="3">
-        <CLabel htmlFor="text-input">{`사용가능한 코드`}</CLabel>
+        <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
         <Select
-          options={filteredCategory && options}
+          options={availItemsCodes && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
-          placeholder={
-            '사용가능한 코드 중, 카테고리/그룹을 고려하여 하나를 선택'
-          }
+          placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
         />
       </CCol>
     </CFormGroup>
@@ -370,6 +343,7 @@ const FormGroups = ({
   filteredCategory,
   tabTitle,
   activeTab,
+  availItemsCodes,
   onChange,
   handleOnSelect,
   form,
@@ -391,7 +365,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         handleOnSelect={handleOnSelect}
       />
-      <CodeInputFormGroup
+      <CodeInputFormGroupForGroupTab
         itemsGroups={itemsGroups}
         filteredCategory={filteredCategory}
         tabTitle={tabTitle}
@@ -406,11 +380,12 @@ const FormGroups = ({
         itemsGroups={itemsGroups}
         handleOnSelect={handleOnSelect}
       />
-      <CodeInputFormGroupForItem
+      <CodeInputFormGroupForItemTab
         itemsGroups={itemsGroups}
         filteredCategory={filteredCategory}
         tabTitle={tabTitle}
         onChange={onChange}
+        availItemsCodes={availItemsCodes}
         handleOnSelect={handleOnSelect}
         form={form}
       />
@@ -452,6 +427,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
     categoriesList,
     filteredCategory,
     onChange,
+    availItemsCodes,
     handleOnSelect,
     onSubmit,
     error,
@@ -526,6 +502,7 @@ const BudgetOMaticTemplateAddCategory = (props) => {
                     itemsGroups={itemsGroups}
                     tabTitle={tabTitle}
                     activeTab={activeTab}
+                    availItemsCodes={availItemsCodes}
                     onChange={onChange}
                     handleOnSelect={handleOnSelect}
                     form={form}

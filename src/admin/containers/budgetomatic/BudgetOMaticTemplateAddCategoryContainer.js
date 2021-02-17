@@ -19,7 +19,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   const [activeTab, setActiveTab] = useState(2);
   const dispatch = useDispatch();
   const [filteredCategory, setFilteredCategory] = useState('');
-  const [availItemCode, setAvailItemCode] = useState(null);
+  const [availItemsCodes, setAvailItemsCodes] = useState(null);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
 
@@ -119,20 +119,24 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   }, [categoriesList, selectedCategory]);
 
   useEffect(() => {
-    if (selectedGroup) {
-      const categoriesCodesTaken =
-        categoriesList && categoriesList.map((cate) => cate.groupsCodes).flat();
+    if (selectedGroup && itemsGroups) {
+      console.log('===662', selectedGroup, itemsGroups);
+      const itemsCodesTaken =
+        itemsGroups &&
+        itemsGroups
+          .filter((group) => group.code === selectedGroup)[0]
+          .budgetItems.map((item) => item.code);
 
-      const generateAllItemsCodes = ({ num }) => {
+      const generateAllItemsCodes = ({ baseNum }) => {
         const elem = [];
-        for (let i = 100; i <= num; i++) {
+        for (let i = baseNum + 1; i < baseNum + 100; i++) {
           elem.push(i);
         }
-        return elem.filter((code) => !categoriesCodesTaken.includes(code));
+        return elem.filter((code) => !itemsCodesTaken.includes(code));
       };
-      const availGroupsCodes =
-        categoriesCodesTaken && generateAllItemsCodes({ num: 10000 });
-      setAvailItemCode();
+      const _availItemsCodes =
+        itemsCodesTaken && generateAllItemsCodes({ baseNum: selectedGroup });
+      setAvailItemsCodes(_availItemsCodes);
     }
   }, [selectedGroup]);
 
@@ -156,6 +160,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
       itemsGroups={itemsGroups}
       onChange={onChange}
       handleOnSelect={handleOnSelect}
+      availItemsCodes={availItemsCodes}
       onSubmit={onSubmit}
       addCategorySubmitted={!!addCategorySubmitted}
       error={error}
