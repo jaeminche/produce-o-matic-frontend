@@ -51,7 +51,8 @@ export const addGroup = createAction(ADDGROUP, ({ code, name, category }) => ({
 }));
 export const addItem = createAction(
   ADDITEM,
-  ({ code, name, unit, rate, remark, tags }) => ({
+  ({ selectedGroup, code, name, unit, rate, remark, tags }) => ({
+    selectedGroup,
     code,
     name,
     unit,
@@ -88,6 +89,7 @@ const initialState = {
     category: '',
   },
   addItem: {
+    selectedGroup: '',
     code: null,
     name: '',
     unit: '',

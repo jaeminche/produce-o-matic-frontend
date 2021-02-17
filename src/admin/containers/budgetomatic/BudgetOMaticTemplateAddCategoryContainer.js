@@ -19,6 +19,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   const [activeTab, setActiveTab] = useState(2);
   const dispatch = useDispatch();
   const [filteredCategory, setFilteredCategory] = useState('');
+  const [availItemCode, setAvailItemCode] = useState(null);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
 
@@ -27,6 +28,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     categoryForm,
     groupForm,
     itemForm,
+    selectedGroup,
     selectedCategory,
     categoriesList,
     addCategorySubmitted,
@@ -41,6 +43,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     categoryForm: admin.addCategory,
     groupForm: admin.addGroup,
     itemForm: admin.addItem,
+    selectedGroup: admin.addItem.selectedGroup,
     selectedCategory: admin.addGroup.category,
     categoriesList: admin.listCategories,
     addCategorySubmitted: admin.addCategorySubmitted,
@@ -114,6 +117,24 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
         categoriesList.filter((list) => list.name === selectedCategory)[0],
       );
   }, [categoriesList, selectedCategory]);
+
+  useEffect(() => {
+    if (selectedGroup) {
+      const categoriesCodesTaken =
+        categoriesList && categoriesList.map((cate) => cate.groupsCodes).flat();
+
+      const generateAllItemsCodes = ({ num }) => {
+        const elem = [];
+        for (let i = 100; i <= num; i++) {
+          elem.push(i);
+        }
+        return elem.filter((code) => !categoriesCodesTaken.includes(code));
+      };
+      const availGroupsCodes =
+        categoriesCodesTaken && generateAllItemsCodes({ num: 10000 });
+      setAvailItemCode();
+    }
+  }, [selectedGroup]);
 
   useEffect(() => {
     if (addCategorySubmitted) {
