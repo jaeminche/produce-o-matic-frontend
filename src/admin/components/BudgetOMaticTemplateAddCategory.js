@@ -202,7 +202,7 @@ const GroupsCodesSelectFormGroup = ({
   return (
     <CFormGroup row>
       <CCol md="3">
-        <CLabel htmlFor="text-input">{`허용할 그룹 코드`}</CLabel>
+        <CLabel htmlFor="text-input">{`허용할 그룹 코드(들)`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
         <Select
@@ -213,6 +213,7 @@ const GroupsCodesSelectFormGroup = ({
           onChange={(e) =>
             handleOnSelect({ e, key: 'groupsCodes', isMulti: true })
           }
+          placeholder={'신규 카테고리에 속할 그룹 코드를 모두 선택해주세요'}
         />
         {/* <CSelect
           multiple
