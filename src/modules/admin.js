@@ -51,8 +51,7 @@ export const addGroup = createAction(ADDGROUP, ({ code, name, category }) => ({
 }));
 export const addItem = createAction(
   ADDITEM,
-  ({ selectedGroup, code, name, unit, rate, remark, tags }) => ({
-    selectedGroup,
+  ({ code, name, unit, rate, remark, tags }) => ({
     code,
     name,
     unit,
