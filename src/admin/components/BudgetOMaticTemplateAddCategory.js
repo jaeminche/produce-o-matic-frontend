@@ -109,24 +109,11 @@ const TagsSelectFormGroup = ({
   handleOnSelect,
   form,
 }) => {
-  const categoriesCodesTaken =
-    categoriesList && categoriesList.map((cate) => cate.groupsCodes).flat();
-
-  const generateGroupsCodes = ({ num }) => {
-    const elem = [];
-    for (let i = 100; i <= num; i += 100) {
-      elem.push(i);
-    }
-    return elem.filter((code) => !categoriesCodesTaken.includes(code));
-  };
-  const availGroupsCodes =
-    categoriesCodesTaken && generateGroupsCodes({ num: 10000 });
+  const availTypeTags = ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'];
 
   const options =
-    availGroupsCodes &&
-    availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
-  const desc =
-    '사용자가 Type Of Production을 선택했을 때 디폴트로 표시되게 하고 싶은 것을 선택하세요.';
+    availTypeTags &&
+    availTypeTags.map((tag) => ({ value: tag, label: `${tag}` }));
   return (
     <CFormGroup row>
       <CCol md="3">
@@ -134,13 +121,13 @@ const TagsSelectFormGroup = ({
       </CCol>
       <CCol xs="12" md="9">
         <Select
-          // isClearable={true}
-          // value={form && form.groupsCodes.length > 0 && form.groupsCodes}
           isMulti={true}
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'tags' })}
+          placeholder={
+            '사용자가 Type Of Production을 선택했을 때 디폴트로 표시되게 하고 싶은 것을 선택하세요.'
+          }
         />
-        <CFormText>{desc}</CFormText>
       </CCol>
     </CFormGroup>
   );
