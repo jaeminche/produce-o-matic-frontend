@@ -25,6 +25,11 @@ const [ADDGROUP, ADDGROUP_SUCCESS, ADDGROUP_FAILURE] = createRequestActionTypes(
 const [ADDITEM, ADDITEM_SUCCESS, ADDITEM_FAILURE] = createRequestActionTypes(
   'admin/ADDITEM',
 );
+const [
+  UPDATEITEM,
+  UPDATEITEM_SUCCESS,
+  UPDATEITEM_FAILURE,
+] = createRequestActionTypes('admin/UPDATEITEM');
 
 export const changeField = createAction(
   CHANGE_FIELD,
@@ -60,6 +65,18 @@ export const addItem = createAction(
     tags,
   }),
 );
+export const updateItem = createAction(
+  UPDATEITEM,
+  ({ id, code, name, unit, rate, remark, tags }) => ({
+    id,
+    code,
+    name,
+    unit,
+    rate,
+    remark,
+    tags,
+  }),
+);
 
 // * Create Sagas
 const listCategoriesSaga = createRequestSaga(
@@ -69,11 +86,13 @@ const listCategoriesSaga = createRequestSaga(
 const addCategorySaga = createRequestSaga(ADDCATEGORY, adminAPI.addCategory);
 const addGroupSaga = createRequestSaga(ADDGROUP, adminAPI.addGroup);
 const addItemSaga = createRequestSaga(ADDITEM, adminAPI.addItem);
+const updateItemSaga = createRequestSaga(UPDATEITEM, adminAPI.updateItem);
 export function* adminSaga() {
   yield takeLatest(LISTCATEGORIES, listCategoriesSaga);
   yield takeLatest(ADDCATEGORY, addCategorySaga);
   yield takeLatest(ADDGROUP, addGroupSaga);
   yield takeLatest(ADDITEM, addItemSaga);
+  yield takeLatest(UPDATEITEM, updateItemSaga);
 }
 
 const initialState = {
@@ -96,6 +115,19 @@ const initialState = {
     remark: '',
     tags: null,
   },
+  updateGroup: {
+    code: null,
+    name: '',
+    category: '',
+  },
+  updateItem: {
+    code: null,
+    name: '',
+    unit: '',
+    rate: null,
+    remark: '',
+    tags: null,
+  },
   listCategoriesError: null,
   addCategorySubmitted: null,
   addCategoryError: null,
@@ -103,6 +135,8 @@ const initialState = {
   addGroupError: null,
   addItemSubmitted: null,
   addItemError: null,
+  updateItemSubmitted: null,
+  updateItemError: null,
 };
 
 const admin = handleActions(
@@ -151,6 +185,15 @@ const admin = handleActions(
     [ADDITEM_FAILURE]: (state, { payload: error }) => ({
       ...state,
       addItemError: error,
+    }),
+    [UPDATEITEM_SUCCESS]: (state, { payload: updateItemSubmitted }) => ({
+      ...state,
+      updateItemError: null,
+      updateItemSubmitted,
+    }),
+    [UPDATEITEM_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      updateItemError: error,
     }),
   },
   initialState,

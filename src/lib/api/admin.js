@@ -25,3 +25,6 @@ export const addCategory = (data) =>
 export const addGroup = (data) => client.post('/api/itemsGroups', { ...data });
 
 export const addItem = (data) => client.post('/api/budgetItems', { ...data });
+
+export const updateItem = ({ id, ...rest }) =>
+  client.patch(`/api/budgetItems/${id}`, { ...rest });
