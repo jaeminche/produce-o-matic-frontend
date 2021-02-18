@@ -123,7 +123,7 @@ const TagsSelectFormGroup = ({
         <Select
           isMulti={true}
           options={options}
-          onChange={(e) => handleOnSelect({ e, key: 'tags' })}
+          onChange={(e) => handleOnSelect({ e, key: 'tags', isMulti: true })}
           placeholder={
             '사용자가 Type Of Production을 선택했을 때 디폴트로 표시되게 하고 싶은 것을 선택하세요.'
           }

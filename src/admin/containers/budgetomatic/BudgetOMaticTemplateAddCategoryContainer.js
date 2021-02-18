@@ -71,7 +71,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   const handleOnSelect = ({ e, key, isMulti = false }) => {
     // if e is like [{label: str, value: num}], make it flat only with values
     const structuredValues = isMulti
-      ? key === 'groupsCodes' && e.map((obj) => obj.value)
+      ? (key === 'groupsCodes' || key === 'tags') && e.map((obj) => obj.value)
       : e.value;
     dispatch(
       changeField({
