@@ -13,6 +13,8 @@ import {
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
 import { AddCategory, AddGroup } from '../../reusable';
+import FormGroups from '../common/FormGroups';
+import BudgetOMaticTemplateModifyContainer from '../../containers/budgetomatic/BudgetOMaticTemplateModifyContainer';
 
 const StyledWrapper = styled.div`
   max-width: 1100px;
@@ -61,7 +63,8 @@ const fields = [
 ];
 
 const BudgetItemTemplate = (props) => {
-  const { item, key } = props;
+  const { item, key, groupCode } = props;
+  const { itemsGroups } = props;
   const [willModifyItem, setWillModifyItem] = useState(false);
   const toggleModifyItem = (e) => {
     e.preventDefault();
@@ -69,7 +72,46 @@ const BudgetItemTemplate = (props) => {
   };
   return willModifyItem ? (
     <div style={{ marginBottom: '10px' }} className={'hover'}>
-      will modify
+      <BudgetOMaticTemplateModifyContainer modifyType={'update'} />
+
+      <span>{item.code}. </span>
+      <span>{item.name} | </span>
+      {item.rate.length > 0 &&
+        item.rate.map((rate, index) => (
+          <span>
+            ₩{rate}
+            {index > 0 && index !== item.rate.length - 1 && ' / '}
+          </span>
+        ))}
+
+      <span> / {item.unit}</span>
+      <span>
+        {'  |  '}
+        remark : {item.remark ? 'O' : 'X'}
+      </span>
+      <span>
+        {item.tags.length > 0 ? `  |  tags : ` : null}
+        {item.tags.length > 0
+          ? item.tags.map((tag) => (
+              <CButton
+                color="primary"
+                variant="outline"
+                shape="square"
+                size="sm"
+              >
+                {tag}
+              </CButton>
+            ))
+          : null}
+      </span>
+      <span className={'floatRight'}>
+        <CButton size="sm" color="info" onClick={toggleModifyItem}>
+          Modify
+        </CButton>
+        <CButton size="sm" color="danger" className="ml-1">
+          Delete
+        </CButton>
+      </span>
     </div>
   ) : (
     <div style={{ marginBottom: '10px' }} className={'hover'}>
@@ -216,8 +258,13 @@ const BudgetOMaticTemplateTable = (props) => {
                             </strong>
                           </p>
                           <p className="text-muted">
-                            {item.budgetItems.map((item, key) => (
-                              <BudgetItemTemplate item={item} key={key} />
+                            {item.budgetItems.map((budgetItem, key) => (
+                              <BudgetItemTemplate
+                                item={budgetItem}
+                                key={key}
+                                groupCode={item.code}
+                                itemsGroups={DATASETS}
+                              />
                             ))}
                           </p>
                         </CCardBody>

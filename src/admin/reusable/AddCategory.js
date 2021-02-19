@@ -12,7 +12,7 @@ const AddCategory = (props) => {
         color="info"
         size="lg"
         onClick={() => {
-          history.push(`/firstavenue/budgetomatic-page/add-category`);
+          history.push(`/firstavenue/budgetomatic-page/add`);
         }}
       >
         Add Category / Group / Item

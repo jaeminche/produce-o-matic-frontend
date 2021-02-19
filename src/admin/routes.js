@@ -56,12 +56,10 @@ const BudgetOMaticTemplate = React.lazy(() =>
 const BudgetOMaticTemplateGroup = React.lazy(() =>
   import('./views/budgetomatic/BudgetOMaticTemplateGroup'),
 );
-const BudgetOMaticTemplateAddCategory = React.lazy(() =>
-  import('./views/budgetomatic/BudgetOMaticTemplateAddCategory'),
+const BudgetOMaticTemplateModify = React.lazy(() =>
+  import('./views/budgetomatic/BudgetOMaticTemplateModify'),
 );
-const BudgetOMaticTemplateAddGroup = React.lazy(() =>
-  import('./views/budgetomatic/BudgetOMaticTemplateAddGroup'),
-);
+
 const CoreUIIcons = React.lazy(() =>
   import('./views/icons/coreui-icons/CoreUIIcons'),
 );
@@ -106,16 +104,10 @@ const routes = [
     component: BudgetOMaticTemplateGroup,
   },
   {
-    path: '/firstavenue/budgetomatic-page/add-category',
+    path: '/firstavenue/budgetomatic-page/add',
     exact: true,
-    name: 'BudgetOMaticTemplateAddCategory',
-    component: BudgetOMaticTemplateAddCategory,
-  },
-  {
-    path: '/firstavenue/budgetomatic-page/add-group',
-    exact: true,
-    name: 'BudgetOMaticTemplateAddGroup',
-    component: BudgetOMaticTemplateAddGroup,
+    name: 'BudgetOMaticTemplateModify',
+    component: BudgetOMaticTemplateModify,
   },
   {
     path: '/firstavenue/main-page/banners',

@@ -10,11 +10,19 @@ import {
   addGroup,
   addItem,
   addCategory,
+  updateGroup,
+  updateItem,
+  updateCategory,
 } from '../../../modules/admin';
-import BudgetOMaticTemplateAddCategory from '../../components/BudgetOMaticTemplateAddCategory';
+import BudgetOMaticTemplateModify from '../../components/BudgetOMaticTemplateModify';
 import { myToast } from '../../../lib/util/myToast';
+import FormGroups from '../../components/common/FormGroups';
 
-const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
+const BudgetOMaticTemplateModifyContainer = ({
+  match,
+  history,
+  modifyType = 'add',
+}) => {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(2);
   const dispatch = useDispatch();
@@ -25,9 +33,12 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   const {
     itemsGroups,
-    categoryForm,
-    groupForm,
-    itemForm,
+    formAddCategory,
+    formAddGroup,
+    formAddItem,
+    formUpdateCategory,
+    formUpdateGroup,
+    formUpdateItem,
     selectedGroup,
     selectedCategory,
     categoriesList,
@@ -37,23 +48,40 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     addCategoryError,
     addGroupError,
     addItemError,
+
+    updateCategorySubmitted,
+    updateGroupSubmitted,
+    updateItemSubmitted,
+    updateCategoryError,
+    updateGroupError,
+    updateItemError,
     listCategoriesError,
   } = useSelector(({ admin, itemsGroups }) => ({
     itemsGroups: itemsGroups.dataSets,
-    categoryForm: admin.addCategory,
-    groupForm: admin.addGroup,
-    itemForm: admin.addItem,
-    selectedGroup: admin.addItem.selectedGroup,
-    selectedCategory: admin.addGroup.category,
+    formAddCategory: admin.addCategory,
+    formAddGroup: admin.addGroup,
+    formAddItem: admin.addItem,
+    formUpdateCategory: admin.updateCategory,
+    formUpdateGroup: admin.updateGroup,
+    formUpdateItem: admin.updateItem,
+    selectedGroup:
+      admin.addItem.selectedGroup || admin.updateItem.selectedGroup,
+    selectedCategory: admin.addGroup.category || admin.updateGroup.category,
     categoriesList: admin.listCategories,
     addCategorySubmitted: admin.addCategorySubmitted,
     addGroupSubmitted: admin.addGroupSubmitted,
     addItemSubmitted: admin.addItemSubmitted,
+    updateCategorySubmitted: admin.updateCategorySubmitted,
+    updateGroupSubmitted: admin.updateGroupSubmitted,
+    updateItemSubmitted: admin.updateItemSubmitted,
 
     itemsGroupsError: itemsGroups.error,
     addCategoryError: admin.addCategoryError,
     addGroupError: admin.addGroupError,
     addItemError: admin.addItemError,
+    updateCategoryError: admin.updateCategoryError,
+    updateGroupError: admin.updateGroupError,
+    updateItemError: admin.updateItemError,
     listCategoriesError: admin.listCategoriesError,
   }));
 
@@ -61,7 +89,7 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     const { value, name } = e.target;
     dispatch(
       changeField({
-        form: `add${activeText[activeTab]}`,
+        form: `${modifyType}${activeText[activeTab]}`,
         key: name,
         value,
       }),
@@ -84,18 +112,33 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('==779', e, activeTab, categoryForm);
-    if (activeTab === 2) {
-      const rates = [];
-      const { code, name, unit, rate, remark, tags } = itemForm;
-      rates.push(Number(rate));
-      dispatch(addItem({ code, name, unit, rate: rates, remark, tags }));
-    } else if (activeTab === 1) {
-      const { code, name, category } = groupForm;
-      dispatch(addGroup({ code, name, category }));
-    } else if (activeTab === 0) {
-      const { name, groupsCodes } = categoryForm;
-      dispatch(addCategory({ name, groupsCodes }));
+    console.log('==779', e, activeTab, formAddCategory);
+    if (modifyType === 'add') {
+      if (activeTab === 2) {
+        const rates = [];
+        const { code, name, unit, rate, remark, tags } = formAddItem;
+        rates.push(Number(rate));
+        dispatch(addItem({ code, name, unit, rate: rates, remark, tags }));
+      } else if (activeTab === 1) {
+        const { code, name, category } = formAddGroup;
+        dispatch(addGroup({ code, name, category }));
+      } else if (activeTab === 0) {
+        const { name, groupsCodes } = formAddCategory;
+        dispatch(addCategory({ name, groupsCodes }));
+      }
+    } else if (modifyType === 'update') {
+      if (activeTab === 2) {
+        const rates = [];
+        const { code, name, unit, rate, remark, tags } = formUpdateItem;
+        rates.push(Number(rate));
+        dispatch(updateItem({ code, name, unit, rate: rates, remark, tags }));
+      } else if (activeTab === 1) {
+        const { code, name, category } = formAddGroup;
+        dispatch(updateGroup({ code, name, category }));
+      } else if (activeTab === 0) {
+        const { name, groupsCodes } = formAddCategory;
+        dispatch(updateCategory({ name, groupsCodes }));
+      }
     }
   };
 
@@ -103,6 +146,9 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     dispatch(initializeForm('addCategory'));
     dispatch(initializeForm('addGroup'));
     dispatch(initializeForm('addItem'));
+    dispatch(initializeForm('updateCategory'));
+    dispatch(initializeForm('updateGroup'));
+    dispatch(initializeForm('updateItem'));
     if (activeTab === 2 || activeTab === 1) {
       dispatch(listItemsGroups());
     }
@@ -147,13 +193,26 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
     }
   }, [addCategorySubmitted]);
 
-  return (
-    <BudgetOMaticTemplateAddCategory
+  return modifyType === 'update' ? (
+    <FormGroups
+      itemsGroups={itemsGroups}
+      // tabTitle={tabTitle}
+      activeTab={2}
+      availItemsCodes={availItemsCodes}
+      onChange={onChange}
+      handleOnSelect={handleOnSelect}
+    />
+  ) : (
+    <BudgetOMaticTemplateModify
       activeText={activeText}
       activeTab={activeTab}
       setActiveTab={setActiveTab}
       form={
-        activeTab === 2 ? itemForm : activeTab === 1 ? groupForm : categoryForm
+        activeTab === 2
+          ? formAddItem
+          : activeTab === 1
+          ? formAddGroup
+          : formAddCategory
       }
       categoriesList={categoriesList}
       filteredCategory={filteredCategory}
@@ -169,4 +228,4 @@ const BudgetOMaticTemplateAddCategoryContainer = ({ match, history }) => {
   );
 };
 
-export default withRouter(BudgetOMaticTemplateAddCategoryContainer);
+export default withRouter(BudgetOMaticTemplateModifyContainer);

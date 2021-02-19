@@ -26,6 +26,16 @@ const [ADDITEM, ADDITEM_SUCCESS, ADDITEM_FAILURE] = createRequestActionTypes(
   'admin/ADDITEM',
 );
 const [
+  UPDATECATEGORY,
+  UPDATECATEGORY_SUCCESS,
+  UPDATECATEGORY_FAILURE,
+] = createRequestActionTypes('admin/UPDATECATEGORY');
+const [
+  UPDATEGROUP,
+  UPDATEGROUP_SUCCESS,
+  UPDATEGROUP_FAILURE,
+] = createRequestActionTypes('admin/UPDATEGROUP');
+const [
   UPDATEITEM,
   UPDATEITEM_SUCCESS,
   UPDATEITEM_FAILURE,
@@ -65,6 +75,21 @@ export const addItem = createAction(
     tags,
   }),
 );
+export const updateCategory = createAction(
+  UPDATECATEGORY,
+  ({ name, groupsCodes }) => ({
+    name,
+    groupsCodes,
+  }),
+);
+export const updateGroup = createAction(
+  UPDATEGROUP,
+  ({ code, name, category }) => ({
+    code,
+    name,
+    category,
+  }),
+);
 export const updateItem = createAction(
   UPDATEITEM,
   ({ id, code, name, unit, rate, remark, tags }) => ({
@@ -86,12 +111,19 @@ const listCategoriesSaga = createRequestSaga(
 const addCategorySaga = createRequestSaga(ADDCATEGORY, adminAPI.addCategory);
 const addGroupSaga = createRequestSaga(ADDGROUP, adminAPI.addGroup);
 const addItemSaga = createRequestSaga(ADDITEM, adminAPI.addItem);
+const updateCategorySaga = createRequestSaga(
+  UPDATECATEGORY,
+  adminAPI.updateCategory,
+);
+const updateGroupSaga = createRequestSaga(UPDATEGROUP, adminAPI.updateGroup);
 const updateItemSaga = createRequestSaga(UPDATEITEM, adminAPI.updateItem);
 export function* adminSaga() {
   yield takeLatest(LISTCATEGORIES, listCategoriesSaga);
   yield takeLatest(ADDCATEGORY, addCategorySaga);
   yield takeLatest(ADDGROUP, addGroupSaga);
   yield takeLatest(ADDITEM, addItemSaga);
+  yield takeLatest(UPDATECATEGORY, updateCategorySaga);
+  yield takeLatest(UPDATEGROUP, updateGroupSaga);
   yield takeLatest(UPDATEITEM, updateItemSaga);
 }
 
@@ -115,6 +147,10 @@ const initialState = {
     remark: '',
     tags: null,
   },
+  updateCategory: {
+    name: '',
+    groupsCodes: [],
+  },
   updateGroup: {
     code: null,
     name: '',
@@ -135,6 +171,10 @@ const initialState = {
   addGroupError: null,
   addItemSubmitted: null,
   addItemError: null,
+  updateCategorySubmitted: null,
+  updateCategoryError: null,
+  updateGroupSubmitted: null,
+  updateGroupError: null,
   updateItemSubmitted: null,
   updateItemError: null,
 };
@@ -185,6 +225,27 @@ const admin = handleActions(
     [ADDITEM_FAILURE]: (state, { payload: error }) => ({
       ...state,
       addItemError: error,
+    }),
+    [UPDATECATEGORY_SUCCESS]: (
+      state,
+      { payload: updateCategorySubmitted },
+    ) => ({
+      ...state,
+      updateCategoryError: null,
+      updateCategorySubmitted,
+    }),
+    [UPDATECATEGORY_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      updateCategoryError: error,
+    }),
+    [UPDATEGROUP_SUCCESS]: (state, { payload: updateGroupSubmitted }) => ({
+      ...state,
+      updateGroupError: null,
+      updateGroupSubmitted,
+    }),
+    [UPDATEGROUP_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      updateGroupError: error,
     }),
     [UPDATEITEM_SUCCESS]: (state, { payload: updateItemSubmitted }) => ({
       ...state,
