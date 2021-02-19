@@ -60,6 +60,61 @@ const fields = [
   },
 ];
 
+const BudgetItemTemplate = (props) => {
+  const { item, key } = props;
+  const [willModifyItem, setWillModifyItem] = useState(false);
+  const toggleModifyItem = (e) => {
+    e.preventDefault();
+    setWillModifyItem(!willModifyItem);
+  };
+  return willModifyItem ? (
+    <div style={{ marginBottom: '10px' }} className={'hover'}>
+      will modify
+    </div>
+  ) : (
+    <div style={{ marginBottom: '10px' }} className={'hover'}>
+      <span>{item.code}. </span>
+      <span>{item.name} | </span>
+      {item.rate.length > 0 &&
+        item.rate.map((rate, index) => (
+          <span>
+            ₩{rate}
+            {index > 0 && index !== item.rate.length - 1 && ' / '}
+          </span>
+        ))}
+
+      <span> / {item.unit}</span>
+      <span>
+        {'  |  '}
+        remark : {item.remark ? 'O' : 'X'}
+      </span>
+      <span>
+        {item.tags.length > 0 ? `  |  tags : ` : null}
+        {item.tags.length > 0
+          ? item.tags.map((tag) => (
+              <CButton
+                color="primary"
+                variant="outline"
+                shape="square"
+                size="sm"
+              >
+                {tag}
+              </CButton>
+            ))
+          : null}
+      </span>
+      <span className={'floatRight'}>
+        <CButton size="sm" color="info" onClick={toggleModifyItem}>
+          Modify
+        </CButton>
+        <CButton size="sm" color="danger" className="ml-1">
+          Delete
+        </CButton>
+      </span>
+    </div>
+  );
+};
+
 const BudgetOMaticTemplateTable = (props) => {
   const { DATASETS, history } = props;
   const [details, setDetails] = useState([]);
@@ -161,56 +216,8 @@ const BudgetOMaticTemplateTable = (props) => {
                             </strong>
                           </p>
                           <p className="text-muted">
-                            {item.budgetItems.map((item) => (
-                              <div
-                                style={{ marginBottom: '10px' }}
-                                className={'hover'}
-                              >
-                                <span>{item.code}. </span>
-                                <span>{item.name} | </span>
-                                {item.rate.length > 0 &&
-                                  item.rate.map((rate, index) => (
-                                    <span>
-                                      ₩{rate}
-                                      {index > 0 &&
-                                        index !== item.rate.length - 1 &&
-                                        ' / '}
-                                    </span>
-                                  ))}
-
-                                <span> / {item.unit}</span>
-                                <span>
-                                  {'  |  '}
-                                  remark : {item.remark ? 'O' : 'X'}
-                                </span>
-                                <span>
-                                  {item.tags.length > 0 ? `  |  tags : ` : null}
-                                  {item.tags.length > 0
-                                    ? item.tags.map((tag) => (
-                                        <CButton
-                                          color="primary"
-                                          variant="outline"
-                                          shape="square"
-                                          size="sm"
-                                        >
-                                          {tag}
-                                        </CButton>
-                                      ))
-                                    : null}
-                                </span>
-                                <span className={'floatRight'}>
-                                  <CButton size="sm" color="info">
-                                    Modify
-                                  </CButton>
-                                  <CButton
-                                    size="sm"
-                                    color="danger"
-                                    className="ml-1"
-                                  >
-                                    Delete
-                                  </CButton>
-                                </span>
-                              </div>
+                            {item.budgetItems.map((item, key) => (
+                              <BudgetItemTemplate item={item} key={key} />
                             ))}
                           </p>
                         </CCardBody>
