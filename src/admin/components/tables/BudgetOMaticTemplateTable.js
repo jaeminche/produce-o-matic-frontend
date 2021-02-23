@@ -62,6 +62,19 @@ const fields = [
   },
 ];
 
+const EventsButtons = (props) => {
+  const { toggleModifyItem } = props;
+  return (
+    <span className={'floatRight'}>
+      <CButton size="sm" color="info" onClick={toggleModifyItem}>
+        Modify
+      </CButton>
+      <CButton size="sm" color="danger" className="ml-1">
+        Delete
+      </CButton>
+    </span>
+  );
+};
 const BudgetItemTemplate = (props) => {
   const { item, key, groupCode } = props;
   const { itemsGroups } = props;
@@ -70,89 +83,77 @@ const BudgetItemTemplate = (props) => {
     e.preventDefault();
     setWillModifyItem(!willModifyItem);
   };
-  return willModifyItem ? (
+  return (
     <div style={{ marginBottom: '10px' }} className={'hover'}>
-      <BudgetOMaticTemplateModifyContainer modifyType={'update'} />
+      {willModifyItem ? (
+        <BudgetOMaticTemplateModifyContainer modifyType={'update'}>
+          <span>{item.code}. </span>
+          <span>{item.name} | </span>
+          {item.rate.length > 0 &&
+            item.rate.map((rate, index) => (
+              <span>
+                ₩{rate}
+                {index > 0 && index !== item.rate.length - 1 && ' / '}
+              </span>
+            ))}
 
-      <span>{item.code}. </span>
-      <span>{item.name} | </span>
-      {item.rate.length > 0 &&
-        item.rate.map((rate, index) => (
+          <span> / {item.unit}</span>
           <span>
-            ₩{rate}
-            {index > 0 && index !== item.rate.length - 1 && ' / '}
+            {'  |  '}
+            remark : {item.remark ? 'O' : 'X'}
           </span>
-        ))}
-
-      <span> / {item.unit}</span>
-      <span>
-        {'  |  '}
-        remark : {item.remark ? 'O' : 'X'}
-      </span>
-      <span>
-        {item.tags.length > 0 ? `  |  tags : ` : null}
-        {item.tags.length > 0
-          ? item.tags.map((tag) => (
-              <CButton
-                color="primary"
-                variant="outline"
-                shape="square"
-                size="sm"
-              >
-                {tag}
-              </CButton>
-            ))
-          : null}
-      </span>
-      <span className={'floatRight'}>
-        <CButton size="sm" color="info" onClick={toggleModifyItem}>
-          Modify
-        </CButton>
-        <CButton size="sm" color="danger" className="ml-1">
-          Delete
-        </CButton>
-      </span>
-    </div>
-  ) : (
-    <div style={{ marginBottom: '10px' }} className={'hover'}>
-      <span>{item.code}. </span>
-      <span>{item.name} | </span>
-      {item.rate.length > 0 &&
-        item.rate.map((rate, index) => (
           <span>
-            ₩{rate}
-            {index > 0 && index !== item.rate.length - 1 && ' / '}
+            {item.tags.length > 0 ? `  |  tags : ` : null}
+            {item.tags.length > 0
+              ? item.tags.map((tag) => (
+                  <CButton
+                    color="primary"
+                    variant="outline"
+                    shape="square"
+                    size="sm"
+                  >
+                    {tag}
+                  </CButton>
+                ))
+              : null}
           </span>
-        ))}
+          <EventsButtons toggleModifyItem={toggleModifyItem} />
+        </BudgetOMaticTemplateModifyContainer>
+      ) : (
+        <div style={{ marginBottom: '10px' }} className={'hover'}>
+          <span>{item.code}. </span>
+          <span>{item.name} | </span>
+          {item.rate.length > 0 &&
+            item.rate.map((rate, index) => (
+              <span>
+                ₩{rate}
+                {index > 0 && index !== item.rate.length - 1 && ' / '}
+              </span>
+            ))}
 
-      <span> / {item.unit}</span>
-      <span>
-        {'  |  '}
-        remark : {item.remark ? 'O' : 'X'}
-      </span>
-      <span>
-        {item.tags.length > 0 ? `  |  tags : ` : null}
-        {item.tags.length > 0
-          ? item.tags.map((tag) => (
-              <CButton
-                color="primary"
-                variant="outline"
-                shape="square"
-                size="sm"
-              >
-                {tag}
-              </CButton>
-            ))
-          : null}
-      </span>
-      <span className={'floatRight'}>
-        <CButton size="sm" color="info" onClick={toggleModifyItem}>
-          Modify
-        </CButton>
-        <CButton size="sm" color="danger" className="ml-1">
-          Delete
-        </CButton>
-      </span>
+          <span> / {item.unit}</span>
+          <span>
+            {'  |  '}
+            remark : {item.remark ? 'O' : 'X'}
+          </span>
+          <span>
+            {item.tags.length > 0 ? `  |  tags : ` : null}
+            {item.tags.length > 0
+              ? item.tags.map((tag) => (
+                  <CButton
+                    color="primary"
+                    variant="outline"
+                    shape="square"
+                    size="sm"
+                  >
+                    {tag}
+                  </CButton>
+                ))
+              : null}
+          </span>
+          <EventsButtons toggleModifyItem={toggleModifyItem} />
+        </div>
+      )}
     </div>
   );
 };
