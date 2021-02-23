@@ -192,7 +192,7 @@ const BudgetOMaticTemplateTable = (props) => {
                 sorter
                 pagination
                 onRowClick={(item, index) => {
-                  toggleDetails(index);
+                  // toggleDetails(index);
                 }}
                 scopedSlots={{
                   status: (item) => (
@@ -211,13 +211,14 @@ const BudgetOMaticTemplateTable = (props) => {
                             variant="outline"
                             shape="square"
                             size="sm"
+                            style={{ width: 'max-content' }}
                             onClick={() => {
                               history.push(
                                 `/firstavenue/budgetomatic-page/templates/${item._id}`,
                               );
                             }}
                           >
-                            Modify
+                            Update GROUP
                           </CButton>
                         </td>
                       </>
