@@ -3,7 +3,11 @@ import { CCol, CFormGroup, CFormText, CInput, CLabel } from '@coreui/react';
 import Select from 'react-select';
 import styled from 'styled-components/macro';
 
-const NameInputFormGroup = ({ tabTitle, onChange }) => {
+const StyledGroups = styled.div`
+  ${(props) => props.flexRow && `display: flex; flexDirection: row;`}
+`;
+
+const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
   const desc =
     tabTitle === 'Item'
       ? '예)production assistant, assistant director, etc...'
@@ -12,18 +16,27 @@ const NameInputFormGroup = ({ tabTitle, onChange }) => {
       : tabTitle === 'Category'
       ? '예)labor, equipments, etc...'
       : '';
-  return (
+  const MyInput = () => {
+    return (
+      <CInput
+        onChange={onChange}
+        id={tabTitle}
+        name="name"
+        placeholder={`${tabTitle}명을 입력해주세요`}
+      />
+    );
+  };
+  return modifyType === 'update' ? (
+    <CCol md="3">
+      <MyInput />
+    </CCol>
+  ) : (
     <CFormGroup row>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
-        <CInput
-          onChange={onChange}
-          id={tabTitle}
-          name="name"
-          placeholder={`${tabTitle}명을 입력해주세요`}
-        />
+        <MyInput />
         <CFormText>{desc}</CFormText>
       </CCol>
     </CFormGroup>
@@ -215,27 +228,41 @@ const CodeInputFormGroupForGroupTab = ({
   );
 };
 
-const CodeInputFormGroupForItemTab = ({ handleOnSelect, availItemsCodes }) => {
+const CodeInputFormGroupForItemTab = ({
+  modifyType,
+  handleOnSelect,
+  availItemsCodes,
+}) => {
   const options =
     availItemsCodes &&
     availItemsCodes.map((code) => ({ value: code, label: `${code}` }));
-  return (
+  const MySelect = () => {
+    return (
+      <Select
+        options={availItemsCodes && options}
+        onChange={(e) => handleOnSelect({ e, key: 'code' })}
+        placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
+      />
+    );
+  };
+  return modifyType === 'update' ? (
+    <CCol md="3">
+      <MySelect />
+    </CCol>
+  ) : (
     <CFormGroup row>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
       </CCol>
       <CCol xs="12" md="9">
-        <Select
-          options={availItemsCodes && options}
-          onChange={(e) => handleOnSelect({ e, key: 'code' })}
-          placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
-        />
+        <MySelect />
       </CCol>
     </CFormGroup>
   );
 };
 
 const FormGroups = ({
+  modifyType,
   itemsGroups,
   categoriesList,
   filteredCategory,
@@ -247,52 +274,75 @@ const FormGroups = ({
   form,
 }) => {
   const setGroups = [
-    <>
-      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+    <StyledGroups flexRow={modifyType === 'update'}>
+      <NameInputFormGroup
+        modifyType={modifyType}
+        tabTitle={tabTitle}
+        onChange={onChange}
+      />
       <GroupsCodesSelectFormGroup
+        modifyType={modifyType}
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
-    </>,
-    <>
+    </StyledGroups>,
+    <StyledGroups flexRow={modifyType === 'update'}>
       <CategorySelectFormGroup
+        modifyType={modifyType}
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
       <CodeInputFormGroupForGroupTab
+        modifyType={modifyType}
         itemsGroups={itemsGroups}
         filteredCategory={filteredCategory}
         handleOnSelect={handleOnSelect}
       />
-      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
-    </>,
-    <>
+      <NameInputFormGroup
+        modifyType={modifyType}
+        tabTitle={tabTitle}
+        onChange={onChange}
+      />
+    </StyledGroups>,
+    <StyledGroups flexRow={modifyType === 'update'}>
       <GroupCodeSelectFormGroup
+        modifyType={modifyType}
         itemsGroups={itemsGroups}
         handleOnSelect={handleOnSelect}
       />
       <CodeInputFormGroupForItemTab
+        modifyType={modifyType}
         availItemsCodes={availItemsCodes}
         handleOnSelect={handleOnSelect}
       />
-      <NameInputFormGroup tabTitle={tabTitle} onChange={onChange} />
+      <NameInputFormGroup
+        modifyType={modifyType}
+        tabTitle={tabTitle}
+        onChange={onChange}
+      />
       <TextInputFormGroup
+        modifyType={modifyType}
         type={'rate'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
       <TextInputFormGroup
+        modifyType={modifyType}
         type={'unit'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
       <TextInputFormGroup
+        modifyType={modifyType}
         type={'remark'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      <TagsSelectFormGroup handleOnSelect={handleOnSelect} />
-    </>,
+      <TagsSelectFormGroup
+        modifyType={modifyType}
+        handleOnSelect={handleOnSelect}
+      />
+    </StyledGroups>,
   ];
   return setGroups[activeTab];
 };
