@@ -22,6 +22,8 @@ const BudgetOMaticTemplateModifyContainer = ({
   match,
   history,
   modifyType = 'add',
+  groupCode,
+  children,
 }) => {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(2);
@@ -65,7 +67,7 @@ const BudgetOMaticTemplateModifyContainer = ({
     formUpdateGroup: admin.updateGroup,
     formUpdateItem: admin.updateItem,
     selectedGroup:
-      admin.addItem.selectedGroup || admin.updateItem.selectedGroup,
+      modifyType === 'update' ? groupCode : admin.addItem.selectedGroup,
     selectedCategory: admin.addGroup.category || admin.updateGroup.category,
     categoriesList: admin.listCategories,
     addCategorySubmitted: admin.addCategorySubmitted,
@@ -103,7 +105,7 @@ const BudgetOMaticTemplateModifyContainer = ({
       : e.value;
     dispatch(
       changeField({
-        form: `add${activeText[activeTab]}`,
+        form: `${modifyType}${activeText[activeTab]}`,
         key,
         value: structuredValues,
       }),
@@ -192,18 +194,11 @@ const BudgetOMaticTemplateModifyContainer = ({
       dispatch(initializeForm('addCategory'));
     }
   }, [addCategorySubmitted]);
-
-  return modifyType === 'update' ? (
-    <FormGroups
-      itemsGroups={itemsGroups}
-      // tabTitle={tabTitle}
-      activeTab={2}
-      availItemsCodes={availItemsCodes}
-      onChange={onChange}
-      handleOnSelect={handleOnSelect}
-    />
-  ) : (
+  return (
     <BudgetOMaticTemplateModify
+      modifyType={modifyType}
+      groupCode={groupCode}
+      children={children}
       activeText={activeText}
       activeTab={activeTab}
       setActiveTab={setActiveTab}

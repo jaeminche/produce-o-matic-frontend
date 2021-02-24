@@ -26,6 +26,9 @@ const StyledWrapper = styled.div`
 
 const BudgetOMaticTemplateModify = (props) => {
   const {
+    modifyType,
+    groupCode,
+    children,
     activeText,
     activeTab,
     setActiveTab,
@@ -48,7 +51,28 @@ const BudgetOMaticTemplateModify = (props) => {
   };
 
   // const categories = {data: [{id: }]}
-  return (
+  return modifyType === 'update' ? (
+    <CForm
+      action=""
+      method="post"
+      encType="multipart/form-data"
+      className="form-horizontal"
+    >
+      <FormGroups
+        modifyType={modifyType}
+        groupCode={groupCode}
+        children={children}
+        filteredCategory={filteredCategory}
+        itemsGroups={itemsGroups}
+        tabTitle={tabTitle}
+        activeTab={activeTab}
+        availItemsCodes={availItemsCodes}
+        onChange={onChange}
+        handleOnSelect={handleOnSelect}
+        form={form}
+      />
+    </CForm>
+  ) : (
     <StyledWrapper>
       <CCard>
         <CCardHeader>

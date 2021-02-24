@@ -157,7 +157,11 @@ const GroupsCodesSelectFormGroup = ({ categoriesList, handleOnSelect }) => {
   );
 };
 
-const GroupCodeSelectFormGroup = ({ itemsGroups, handleOnSelect }) => {
+const GroupCodeSelectFormGroup = ({
+  modifyType,
+  itemsGroups,
+  handleOnSelect,
+}) => {
   const options =
     itemsGroups &&
     itemsGroups.map((group) => ({
@@ -167,9 +171,11 @@ const GroupCodeSelectFormGroup = ({ itemsGroups, handleOnSelect }) => {
 
   return (
     <CFormGroup row>
-      <CCol md="3">
-        <CLabel htmlFor="text-input">{`소속 그룹 코드`}</CLabel>
-      </CCol>
+      {modifyType !== 'update' && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`소속 그룹 코드`}</CLabel>
+        </CCol>
+      )}
       <CCol xs="12" md="9">
         <Select
           options={options}
@@ -264,6 +270,7 @@ const CodeInputFormGroupForItemTab = ({
 const FormGroups = ({
   modifyType,
   itemsGroups,
+  children,
   categoriesList,
   filteredCategory,
   tabTitle,
@@ -305,11 +312,13 @@ const FormGroups = ({
       />
     </StyledGroups>,
     <StyledGroups flexRow={modifyType === 'update'}>
-      <GroupCodeSelectFormGroup
-        modifyType={modifyType}
-        itemsGroups={itemsGroups}
-        handleOnSelect={handleOnSelect}
-      />
+      {modifyType !== 'update' && (
+        <GroupCodeSelectFormGroup
+          modifyType={modifyType}
+          itemsGroups={itemsGroups}
+          handleOnSelect={handleOnSelect}
+        />
+      )}
       <CodeInputFormGroupForItemTab
         modifyType={modifyType}
         availItemsCodes={availItemsCodes}
@@ -342,6 +351,7 @@ const FormGroups = ({
         modifyType={modifyType}
         handleOnSelect={handleOnSelect}
       />
+      {children && children}
     </StyledGroups>,
   ];
   return setGroups[activeTab];
