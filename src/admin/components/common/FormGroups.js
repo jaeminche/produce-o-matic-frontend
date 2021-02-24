@@ -16,34 +16,27 @@ const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
       : tabTitle === 'Category'
       ? '예)labor, equipments, etc...'
       : '';
-  const MyInput = () => {
-    return (
-      <CInput
-        onChange={onChange}
-        id={tabTitle}
-        name="name"
-        placeholder={`${tabTitle}명을 입력해주세요`}
-      />
-    );
-  };
-  return modifyType === 'update' ? (
-    <CCol md="3">
-      <MyInput />
-    </CCol>
-  ) : (
+  return (
     <CFormGroup row>
-      <CCol md="3">
-        <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
-      </CCol>
+      {modifyType !== 'update' && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
+        </CCol>
+      )}
       <CCol xs="12" md="9">
-        <MyInput />
-        <CFormText>{desc}</CFormText>
+        <CInput
+          onChange={onChange}
+          id={tabTitle}
+          name="name"
+          placeholder={`${tabTitle}명을 입력해주세요`}
+        />
+        {modifyType !== 'update' && <CFormText>{desc}</CFormText>}
       </CCol>
     </CFormGroup>
   );
 };
 
-const TextInputFormGroup = ({ type, tabTitle, onChange }) => {
+const TextInputFormGroup = ({ modifyType, type, tabTitle, onChange }) => {
   const desc =
     type === 'unit'
       ? '예)day, month week,, etc...'
@@ -54,9 +47,11 @@ const TextInputFormGroup = ({ type, tabTitle, onChange }) => {
       : '';
   return (
     <CFormGroup row>
-      <CCol md="3">
-        <CLabel htmlFor="text-input">{`${type}`}</CLabel>
-      </CCol>
+      {modifyType !== 'update' && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`${type}`}</CLabel>
+        </CCol>
+      )}
       <CCol xs="12" md="9">
         <CInput
           onChange={onChange}
@@ -64,7 +59,7 @@ const TextInputFormGroup = ({ type, tabTitle, onChange }) => {
           name={type}
           placeholder={`${type}을 입력해주세요`}
         />
-        <CFormText>{desc}</CFormText>
+        {modifyType !== 'update' && <CFormText>{desc}</CFormText>}
       </CCol>
     </CFormGroup>
   );
@@ -242,26 +237,19 @@ const CodeInputFormGroupForItemTab = ({
   const options =
     availItemsCodes &&
     availItemsCodes.map((code) => ({ value: code, label: `${code}` }));
-  const MySelect = () => {
-    return (
-      <Select
-        options={availItemsCodes && options}
-        onChange={(e) => handleOnSelect({ e, key: 'code' })}
-        placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
-      />
-    );
-  };
-  return modifyType === 'update' ? (
-    <CCol md="3">
-      <MySelect />
-    </CCol>
-  ) : (
+  return (
     <CFormGroup row>
-      <CCol md="3">
-        <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
-      </CCol>
+      {modifyType !== 'update' && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
+        </CCol>
+      )}
       <CCol xs="12" md="9">
-        <MySelect />
+        <Select
+          options={availItemsCodes && options}
+          onChange={(e) => handleOnSelect({ e, key: 'code' })}
+          placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
+        />{' '}
       </CCol>
     </CFormGroup>
   );
