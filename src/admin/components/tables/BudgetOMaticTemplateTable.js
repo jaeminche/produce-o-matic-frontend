@@ -21,6 +21,10 @@ const StyledWrapper = styled.div`
   .floatRight {
     float: right;
   }
+  .flexRow {
+    display: flex;
+    flex-direction: row;
+  }
   .hover {
     &:hover {
       color: ${palette.budgetomatic.text[1]};
@@ -65,7 +69,7 @@ const fields = [
 const EventsButtons = (props) => {
   const { toggleModifyItem } = props;
   return (
-    <span className={'floatRight'}>
+    <span className={'floatRight flexRow'}>
       <CButton size="sm" color="info" onClick={toggleModifyItem}>
         Modify
       </CButton>
@@ -86,8 +90,11 @@ const BudgetItemTemplate = (props) => {
   return (
     <div style={{ marginBottom: '10px' }} className={'hover'}>
       {willModifyItem ? (
-        <BudgetOMaticTemplateModifyContainer modifyType={'update'}>
-          <span>{item.code}. </span>
+        <BudgetOMaticTemplateModifyContainer
+          modifyType={'update'}
+          groupCode={groupCode}
+        >
+          {/* <span>{item.code}. </span>
           <span>{item.name} | </span>
           {item.rate.length > 0 &&
             item.rate.map((rate, index) => (
@@ -116,7 +123,7 @@ const BudgetItemTemplate = (props) => {
                   </CButton>
                 ))
               : null}
-          </span>
+          </span> */}
           <EventsButtons toggleModifyItem={toggleModifyItem} />
         </BudgetOMaticTemplateModifyContainer>
       ) : (
