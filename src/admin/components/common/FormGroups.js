@@ -272,7 +272,7 @@ const CodeInputFormGroupForItemTab = ({
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: '100px' } : null}
+      style={modifyType === 'update' ? { minWidth: '120px' } : null}
     >
       {modifyType !== 'update' && (
         <CCol md="3">
