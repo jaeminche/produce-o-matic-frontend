@@ -19,7 +19,7 @@ const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+      style={modifyType === 'update' ? { minWidth: '100px' } : null}
     >
       {modifyType !== 'update' && (
         <CCol md="3">
@@ -51,7 +51,7 @@ const TextInputFormGroup = ({ modifyType, type, tabTitle, onChange }) => {
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+      style={modifyType === 'update' ? { minWidth: '100px' } : null}
     >
       {modifyType !== 'update' && (
         <CCol md="3">
@@ -80,7 +80,7 @@ const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+      style={modifyType === 'update' ? { minWidth: '100px' } : null}
     >
       {modifyType !== 'update' && (
         <CCol md="3">
@@ -117,7 +117,7 @@ const CategorySelectFormGroup = ({
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+      style={modifyType === 'update' ? { minWidth: '100px' } : null}
     >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`소속 카테고리명`}</CLabel>
@@ -158,7 +158,7 @@ const GroupsCodesSelectFormGroup = ({
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+      style={modifyType === 'update' ? { minWidth: '100px' } : null}
     >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`허용할 그룹 코드(들)`}</CLabel>
@@ -192,7 +192,7 @@ const GroupCodeSelectFormGroup = ({
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+      style={modifyType === 'update' ? { minWidth: '100px' } : null}
     >
       {modifyType !== 'update' && (
         <CCol md="3">
@@ -243,7 +243,7 @@ const CodeInputFormGroupForGroupTab = ({
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+      style={modifyType === 'update' ? { minWidth: '100px' } : null}
     >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`사용할 그룹 코드`}</CLabel>
@@ -272,7 +272,7 @@ const CodeInputFormGroupForItemTab = ({
   return (
     <CFormGroup
       row
-      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+      style={modifyType === 'update' ? { minWidth: '100px' } : null}
     >
       {modifyType !== 'update' && (
         <CCol md="3">
