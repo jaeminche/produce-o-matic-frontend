@@ -7,7 +7,13 @@ const StyledFormGroups = styled.div`
   ${(props) => props.flexRow && `display: flex; flex-wrap: wrap;`}
 `;
 
-const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
+const NameInputFormGroup = ({
+  modifyType,
+  defaultValue,
+  tabTitle,
+  onChange,
+  form,
+}) => {
   const desc =
     tabTitle === 'Item'
       ? '예)production assistant, assistant director, etc...'
@@ -28,10 +34,12 @@ const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
       )}
       <CCol xs="12" md="9">
         <CInput
+          defaultValue={defaultValue && defaultValue}
           onChange={onChange}
           id={tabTitle}
           name="name"
           placeholder={`${tabTitle}명을 입력해주세요`}
+          required
         />
         {modifyType !== 'update' && <CFormText>{desc}</CFormText>}
       </CCol>
@@ -39,7 +47,13 @@ const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
   );
 };
 
-const TextInputFormGroup = ({ modifyType, type, tabTitle, onChange }) => {
+const TextInputFormGroup = ({
+  modifyType,
+  defaultValue,
+  type,
+  tabTitle,
+  onChange,
+}) => {
   const desc =
     type === 'unit'
       ? '예)day, month week,, etc...'
@@ -60,6 +74,7 @@ const TextInputFormGroup = ({ modifyType, type, tabTitle, onChange }) => {
       )}
       <CCol xs="12" md="9">
         <CInput
+          defaultValue={defaultValue && defaultValue}
           onChange={onChange}
           id={type}
           name={type}
@@ -71,7 +86,7 @@ const TextInputFormGroup = ({ modifyType, type, tabTitle, onChange }) => {
   );
 };
 
-const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
+const TagsSelectFormGroup = ({ modifyType, defaultValue, handleOnSelect }) => {
   const availTypeTags = ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'];
 
   const options =
@@ -89,7 +104,14 @@ const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
       )}
       <CCol xs="12" md={modifyType !== 'update' && '9'}>
         <Select
-          isMulti={true}
+          isMulti
+          defaultValue={
+            defaultValue &&
+            defaultValue.map((value) => {
+              return { label: value, value: value };
+            })
+          }
+          name={'tags'}
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'tags', isMulti: true })}
           placeholder={
@@ -103,6 +125,7 @@ const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
 
 const CategorySelectFormGroup = ({
   modifyType,
+  defaultValue,
   categoriesList,
   handleOnSelect,
 }) => {
@@ -113,7 +136,6 @@ const CategorySelectFormGroup = ({
       value: cate.name,
       label: cate.name,
     }));
-  console.log('==0022', options);
   return (
     <CFormGroup
       row
@@ -135,6 +157,7 @@ const CategorySelectFormGroup = ({
 
 const GroupsCodesSelectFormGroup = ({
   modifyType,
+  defaultValue,
   categoriesList,
   handleOnSelect,
 }) => {
@@ -179,6 +202,7 @@ const GroupsCodesSelectFormGroup = ({
 
 const GroupCodeSelectFormGroup = ({
   modifyType,
+  defaultValue,
   itemsGroups,
   handleOnSelect,
 }) => {
@@ -212,12 +236,13 @@ const GroupCodeSelectFormGroup = ({
 
 const CodeInputFormGroupForGroupTab = ({
   modifyType,
+  defaultValue,
   itemsGroups,
   filteredCategory,
   handleOnSelect,
 }) => {
-  console.log('==1, filteredCategory', filteredCategory);
-  console.log('==990 filteredCategory', filteredCategory);
+  // console.log('==1, filteredCategory', filteredCategory);
+  // console.log('==990 filteredCategory', filteredCategory);
   const groupsCodes = filteredCategory && filteredCategory.groupsCodes;
 
   const groupsCodesTaken =
@@ -233,13 +258,13 @@ const CodeInputFormGroupForGroupTab = ({
   const options =
     availGroupsCodes &&
     availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
-  console.log(
-    '==2939',
-    groupsCodes,
-    groupsCodesTaken,
-    availGroupsCodes,
-    options,
-  );
+  // console.log(
+  //   '==2939',
+  //   groupsCodes,
+  //   groupsCodesTaken,
+  //   availGroupsCodes,
+  //   options,
+  // );
   return (
     <CFormGroup
       row
@@ -263,8 +288,10 @@ const CodeInputFormGroupForGroupTab = ({
 
 const CodeInputFormGroupForItemTab = ({
   modifyType,
+  defaultValue,
   handleOnSelect,
   availItemsCodes,
+  form,
 }) => {
   const options =
     availItemsCodes &&
@@ -281,13 +308,12 @@ const CodeInputFormGroupForItemTab = ({
       )}
       <CCol xs="12" md={modifyType !== 'update' && '9'}>
         <Select
+          defaultValue={
+            defaultValue && { label: defaultValue, value: defaultValue }
+          }
           options={availItemsCodes && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
-          placeholder={
-            modifyType === 'update'
-              ? '101?'
-              : '사용가능한 아이템 코드들 중, 하나를 선택'
-          }
+          placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
         />{' '}
       </CCol>
     </CFormGroup>
@@ -296,6 +322,7 @@ const CodeInputFormGroupForItemTab = ({
 
 const FormGroups = ({
   modifyType,
+  updateItemTarget,
   children,
   itemsGroups,
   categoriesList,
@@ -307,15 +334,19 @@ const FormGroups = ({
   handleOnSelect,
   form,
 }) => {
+  const { code, name, unit, rate, remark, tags } = updateItemTarget;
+
   const setGroups = [
     <StyledFormGroups flexRow={modifyType === 'update'}>
       <NameInputFormGroup
         modifyType={modifyType}
+        form={form}
         tabTitle={tabTitle}
         onChange={onChange}
       />
       <GroupsCodesSelectFormGroup
         modifyType={modifyType}
+        form={form}
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
@@ -323,17 +354,20 @@ const FormGroups = ({
     <StyledFormGroups flexRow={modifyType === 'update'}>
       <CategorySelectFormGroup
         modifyType={modifyType}
+        form={form}
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
       <CodeInputFormGroupForGroupTab
         modifyType={modifyType}
+        form={form}
         itemsGroups={itemsGroups}
         filteredCategory={filteredCategory}
         handleOnSelect={handleOnSelect}
       />
       <NameInputFormGroup
         modifyType={modifyType}
+        form={form}
         tabTitle={tabTitle}
         onChange={onChange}
       />
@@ -342,40 +376,53 @@ const FormGroups = ({
       {modifyType !== 'update' && (
         <GroupCodeSelectFormGroup
           modifyType={modifyType}
+          form={form}
           itemsGroups={itemsGroups}
           handleOnSelect={handleOnSelect}
         />
       )}
       <CodeInputFormGroupForItemTab
         modifyType={modifyType}
+        defaultValue={code}
+        form={form}
         availItemsCodes={availItemsCodes}
         handleOnSelect={handleOnSelect}
       />
       <NameInputFormGroup
         modifyType={modifyType}
+        defaultValue={name}
+        form={form}
         tabTitle={tabTitle}
         onChange={onChange}
       />
       <TextInputFormGroup
         modifyType={modifyType}
+        defaultValue={rate}
+        form={form}
         type={'rate'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
       <TextInputFormGroup
         modifyType={modifyType}
+        defaultValue={unit}
+        form={form}
         type={'unit'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
       <TextInputFormGroup
         modifyType={modifyType}
+        defaultValue={remark}
+        form={form}
         type={'remark'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
       <TagsSelectFormGroup
         modifyType={modifyType}
+        defaultValue={tags.map((tag) => tag)}
+        form={form}
         handleOnSelect={handleOnSelect}
       />
       {/* <>{children && children}</> */}

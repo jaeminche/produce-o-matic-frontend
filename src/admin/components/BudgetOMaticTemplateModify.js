@@ -28,6 +28,7 @@ const BudgetOMaticTemplateModify = (props) => {
   const {
     modifyType,
     groupCode,
+    updateItemTarget,
     children,
     activeText,
     activeTab,
@@ -62,6 +63,7 @@ const BudgetOMaticTemplateModify = (props) => {
       <FormGroups
         modifyType={modifyType}
         groupCode={groupCode}
+        updateItemTarget={updateItemTarget}
         children={children}
         filteredCategory={filteredCategory}
         itemsGroups={itemsGroups}

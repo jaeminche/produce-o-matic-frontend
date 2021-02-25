@@ -104,6 +104,7 @@ const BudgetOMaticTemplateModifyContainer = ({
     const structuredValues = isMulti
       ? (key === 'groupsCodes' || key === 'tags') && e.map((obj) => obj.value)
       : e.value;
+
     dispatch(
       changeField({
         form: `${modifyType}${activeText[activeTab]}`,
@@ -115,7 +116,7 @@ const BudgetOMaticTemplateModifyContainer = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('==779', e, activeTab, formAddCategory);
+    // console.log('==779', e, activeTab, formAddCategory);
     if (modifyType === 'add') {
       if (activeTab === 2) {
         const rates = [];
@@ -171,7 +172,6 @@ const BudgetOMaticTemplateModifyContainer = ({
   useEffect(() => {
     // * add 페이지에서 사용자가 add할 아이템의 소속 그룹을 선택하거나, 아이템 update 버튼을 누르면, availItemsCodes를 설정한다.
     if (selectedGroup && itemsGroups) {
-      console.log('===662', selectedGroup, itemsGroups);
       const itemsCodesTaken =
         itemsGroups &&
         itemsGroups
@@ -198,6 +198,21 @@ const BudgetOMaticTemplateModifyContainer = ({
   }, [selectedGroup]);
 
   useEffect(() => {
+    // * 아이템 update를 클릭했을 때, 기존값을 초기값으로 설정
+    if (updateItemTarget) {
+      for (const [key, value] of Object.entries(updateItemTarget)) {
+        dispatch(
+          changeField({
+            form: `${modifyType}${activeText[activeTab]}`,
+            key,
+            value,
+          }),
+        );
+      }
+    }
+  }, [updateItemTarget]);
+
+  useEffect(() => {
     if (addCategorySubmitted) {
       myToast('저장되었습니다');
       dispatch(initializeForm('addCategory'));
@@ -208,16 +223,19 @@ const BudgetOMaticTemplateModifyContainer = ({
     <BudgetOMaticTemplateModify
       modifyType={modifyType}
       groupCode={groupCode}
+      updateItemTarget={updateItemTarget}
       children={children}
       activeText={activeText}
       activeTab={activeTab}
       setActiveTab={setActiveTab}
       form={
-        activeTab === 2
-          ? formAddItem
-          : activeTab === 1
-          ? formAddGroup
-          : formAddCategory
+        modifyType === 'add'
+          ? activeTab === 2
+            ? formAddItem
+            : activeTab === 1
+            ? formAddGroup
+            : formAddCategory
+          : formUpdateItem
       }
       categoriesList={categoriesList}
       filteredCategory={filteredCategory}
