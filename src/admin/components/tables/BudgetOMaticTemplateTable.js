@@ -93,6 +93,7 @@ const BudgetItemTemplate = (props) => {
         <BudgetOMaticTemplateModifyContainer
           modifyType={'update'}
           groupCode={groupCode}
+          updateItemTarget={item}
         >
           <EventsButtons toggleModifyItem={toggleModifyItem} />
         </BudgetOMaticTemplateModifyContainer>

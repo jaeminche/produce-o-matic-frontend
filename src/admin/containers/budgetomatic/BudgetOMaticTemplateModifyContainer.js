@@ -23,6 +23,7 @@ const BudgetOMaticTemplateModifyContainer = ({
   history,
   modifyType = 'add',
   groupCode,
+  updateItemTarget,
   children,
 }) => {
   const [error, setError] = useState(null);
