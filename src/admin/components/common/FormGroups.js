@@ -80,7 +80,7 @@ const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
           <CLabel htmlFor="text-input">{`Type Of Production 설정`}</CLabel>
         </CCol>
       )}
-      <CCol xs="12" md="9">
+      <CCol xs="12" md={modifyType !== 'update' && '9'}>
         <Select
           isMulti={true}
           options={options}
@@ -248,7 +248,7 @@ const CodeInputFormGroupForItemTab = ({
           <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
         </CCol>
       )}
-      <CCol xs="12" md="9">
+      <CCol xs="12" md={modifyType !== 'update' && '9'}>
         <Select
           options={availItemsCodes && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
