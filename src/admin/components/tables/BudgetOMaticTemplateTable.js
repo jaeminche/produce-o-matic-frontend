@@ -35,6 +35,12 @@ const StyledWrapper = styled.div`
   }
 `;
 
+const TwoFlexboxes = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+`;
+
 const getBadge = (status) => {
   switch (status) {
     case 'Active':
@@ -72,16 +78,17 @@ const fields = [
 const EventsButtons = (props) => {
   const { toggleModifyItem } = props;
   return (
-    <span className={'floatRight flexRow buttonHeight'}>
+    <div className={'flexRow buttonHeight'}>
       <CButton size="sm" color="info" onClick={toggleModifyItem}>
         Modify
       </CButton>
       <CButton size="sm" color="danger" className="ml-1">
         Delete
       </CButton>
-    </span>
+    </div>
   );
 };
+
 const BudgetItemTemplate = (props) => {
   const { item, key, groupCode } = props;
   const { itemsGroups } = props;
@@ -93,23 +100,17 @@ const BudgetItemTemplate = (props) => {
   return (
     <div style={{ marginBottom: '10px' }} className={'hover'}>
       {willModifyItem ? (
-        <BudgetOMaticTemplateModifyContainer
-          modifyType={'update'}
-          groupCode={groupCode}
-          updateItemTarget={item}
-        >
+        <TwoFlexboxes>
+          <BudgetOMaticTemplateModifyContainer
+            modifyType={'update'}
+            groupCode={groupCode}
+            updateItemTarget={item}
+          />
           <EventsButtons toggleModifyItem={toggleModifyItem} />
-        </BudgetOMaticTemplateModifyContainer>
+        </TwoFlexboxes>
       ) : (
-        <div
-          style={{
-            marginBottom: '10px',
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}
-          className={'hover'}
-        >
-          <span
+        <TwoFlexboxes>
+          <div
             style={{ display: 'flex', flexWrap: 'wrap', marginRight: '15px' }}
           >
             <span>{item.code}. </span>
@@ -142,9 +143,9 @@ const BudgetItemTemplate = (props) => {
                   ))
                 : null}
             </span>
-          </span>
+          </div>
           <EventsButtons toggleModifyItem={toggleModifyItem} />
-        </div>
+        </TwoFlexboxes>
       )}
     </div>
   );
