@@ -146,6 +146,7 @@ const BudgetOMaticTemplateModifyContainer = ({
   };
 
   useEffect(() => {
+    // * 페이지 초기 로드나, add 페이지에서 사용자가 activeTab을 선택할 때마다 모든 폼 초기화
     dispatch(initializeForm('addCategory'));
     dispatch(initializeForm('addGroup'));
     dispatch(initializeForm('addItem'));
@@ -168,6 +169,7 @@ const BudgetOMaticTemplateModifyContainer = ({
   }, [categoriesList, selectedCategory]);
 
   useEffect(() => {
+    // * add 페이지에서 사용자가 add할 아이템의 소속 그룹을 선택하거나, 아이템 update 버튼을 누르면, availItemsCodes를 설정한다.
     if (selectedGroup && itemsGroups) {
       console.log('===662', selectedGroup, itemsGroups);
       const itemsCodesTaken =
@@ -195,6 +197,7 @@ const BudgetOMaticTemplateModifyContainer = ({
       dispatch(initializeForm('addCategory'));
     }
   }, [addCategorySubmitted]);
+
   return (
     <BudgetOMaticTemplateModify
       modifyType={modifyType}
