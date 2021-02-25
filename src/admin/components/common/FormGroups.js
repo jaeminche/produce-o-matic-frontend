@@ -4,7 +4,9 @@ import Select from 'react-select';
 import styled from 'styled-components/macro';
 
 const StyledGroups = styled.div`
-  ${(props) => props.flexRow && `display: flex; flexDirection: row;`}
+  ${(props) =>
+    props.flexRow &&
+    `display: flex; flex-direction: row; justify-content: space-between;`}
 `;
 
 const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
@@ -65,7 +67,7 @@ const TextInputFormGroup = ({ modifyType, type, tabTitle, onChange }) => {
   );
 };
 
-const TagsSelectFormGroup = ({ handleOnSelect }) => {
+const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
   const availTypeTags = ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'];
 
   const options =
@@ -73,9 +75,11 @@ const TagsSelectFormGroup = ({ handleOnSelect }) => {
     availTypeTags.map((tag) => ({ value: tag, label: `${tag}` }));
   return (
     <CFormGroup row>
-      <CCol md="3">
-        <CLabel htmlFor="text-input">{`Type Of Production 설정`}</CLabel>
-      </CCol>
+      {modifyType !== 'update' && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`Type Of Production 설정`}</CLabel>
+        </CCol>
+      )}
       <CCol xs="12" md="9">
         <Select
           isMulti={true}
@@ -248,7 +252,11 @@ const CodeInputFormGroupForItemTab = ({
         <Select
           options={availItemsCodes && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
-          placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
+          placeholder={
+            modifyType === 'update'
+              ? '101?'
+              : '사용가능한 아이템 코드들 중, 하나를 선택'
+          }
         />{' '}
       </CCol>
     </CFormGroup>
@@ -257,8 +265,8 @@ const CodeInputFormGroupForItemTab = ({
 
 const FormGroups = ({
   modifyType,
-  itemsGroups,
   children,
+  itemsGroups,
   categoriesList,
   filteredCategory,
   tabTitle,
@@ -339,7 +347,7 @@ const FormGroups = ({
         modifyType={modifyType}
         handleOnSelect={handleOnSelect}
       />
-      {children && children}
+      <>{children && children}</>
     </StyledGroups>,
   ];
   return setGroups[activeTab];
