@@ -57,6 +57,7 @@ const BudgetOMaticTemplateModify = (props) => {
       method="post"
       encType="multipart/form-data"
       className="form-horizontal"
+      style={{ marginRight: '15px' }}
     >
       <FormGroups
         modifyType={modifyType}
