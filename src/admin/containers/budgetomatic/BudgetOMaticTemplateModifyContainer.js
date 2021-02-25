@@ -183,7 +183,13 @@ const BudgetOMaticTemplateModifyContainer = ({
         for (let i = baseNum + 1; i < baseNum + 100; i++) {
           elem.push(i);
         }
-        return elem.filter((code) => !itemsCodesTaken.includes(code));
+        return modifyType === 'update'
+          ? elem.filter(
+              (code) =>
+                !itemsCodesTaken.includes(code) ||
+                code === updateItemTarget.code,
+            )
+          : elem.filter((code) => !itemsCodesTaken.includes(code));
       };
       const _availItemsCodes =
         itemsCodesTaken && generateAllItemsCodes({ baseNum: selectedGroup });
