@@ -19,7 +19,7 @@ const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
       ? '예)labor, equipments, etc...'
       : '';
   return (
-    <CFormGroup row>
+    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
@@ -48,7 +48,7 @@ const TextInputFormGroup = ({ modifyType, type, tabTitle, onChange }) => {
       ? '예)100000 - 콤마없이 숫자만 입력'
       : '';
   return (
-    <CFormGroup row>
+    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`${type}`}</CLabel>
@@ -74,7 +74,7 @@ const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
     availTypeTags &&
     availTypeTags.map((tag) => ({ value: tag, label: `${tag}` }));
   return (
-    <CFormGroup row>
+    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`Type Of Production 설정`}</CLabel>
@@ -94,7 +94,11 @@ const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
   );
 };
 
-const CategorySelectFormGroup = ({ categoriesList, handleOnSelect }) => {
+const CategorySelectFormGroup = ({
+  modifyType,
+  categoriesList,
+  handleOnSelect,
+}) => {
   const options =
     categoriesList &&
     categoriesList.length > 0 &&
@@ -104,7 +108,7 @@ const CategorySelectFormGroup = ({ categoriesList, handleOnSelect }) => {
     }));
   console.log('==0022', options);
   return (
-    <CFormGroup row>
+    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`소속 카테고리명`}</CLabel>
       </CCol>
@@ -119,7 +123,11 @@ const CategorySelectFormGroup = ({ categoriesList, handleOnSelect }) => {
   );
 };
 
-const GroupsCodesSelectFormGroup = ({ categoriesList, handleOnSelect }) => {
+const GroupsCodesSelectFormGroup = ({
+  modifyType,
+  categoriesList,
+  handleOnSelect,
+}) => {
   const categoriesCodesTaken =
     categoriesList && categoriesList.map((cate) => cate.groupsCodes).flat();
 
@@ -138,7 +146,7 @@ const GroupsCodesSelectFormGroup = ({ categoriesList, handleOnSelect }) => {
     availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
 
   return (
-    <CFormGroup row>
+    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`허용할 그룹 코드(들)`}</CLabel>
       </CCol>
@@ -169,7 +177,7 @@ const GroupCodeSelectFormGroup = ({
     }));
 
   return (
-    <CFormGroup row>
+    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`소속 그룹 코드`}</CLabel>
@@ -187,6 +195,7 @@ const GroupCodeSelectFormGroup = ({
 };
 
 const CodeInputFormGroupForGroupTab = ({
+  modifyType,
   itemsGroups,
   filteredCategory,
   handleOnSelect,
@@ -216,7 +225,7 @@ const CodeInputFormGroupForGroupTab = ({
     options,
   );
   return (
-    <CFormGroup row>
+    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`사용할 그룹 코드`}</CLabel>
       </CCol>
@@ -242,7 +251,7 @@ const CodeInputFormGroupForItemTab = ({
     availItemsCodes &&
     availItemsCodes.map((code) => ({ value: code, label: `${code}` }));
   return (
-    <CFormGroup row>
+    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
