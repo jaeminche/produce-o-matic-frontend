@@ -76,11 +76,21 @@ const fields = [
 ];
 
 const EventsButtons = (props) => {
-  const { toggleModifyItem } = props;
+  const { willModifyItem, toggleModifyItem } = props;
   return (
     <div className={'flexRow buttonHeight'}>
-      <CButton size="sm" color="info" onClick={toggleModifyItem}>
-        Modify
+      {willModifyItem && (
+        <CButton size="sm" color="warning">
+          SUBMIT
+        </CButton>
+      )}
+      <CButton
+        size="sm"
+        color="info"
+        className="ml-1"
+        onClick={toggleModifyItem}
+      >
+        {willModifyItem ? 'Cancel' : 'Update'}
       </CButton>
       <CButton size="sm" color="danger" className="ml-1">
         Delete
@@ -106,7 +116,10 @@ const BudgetItemTemplate = (props) => {
             groupCode={groupCode}
             updateItemTarget={item}
           />
-          <EventsButtons toggleModifyItem={toggleModifyItem} />
+          <EventsButtons
+            willModifyItem={willModifyItem}
+            toggleModifyItem={toggleModifyItem}
+          />
         </TwoFlexboxes>
       ) : (
         <TwoFlexboxes>
@@ -144,7 +157,10 @@ const BudgetItemTemplate = (props) => {
                 : null}
             </span>
           </div>
-          <EventsButtons toggleModifyItem={toggleModifyItem} />
+          <EventsButtons
+            willModifyItem={willModifyItem}
+            toggleModifyItem={toggleModifyItem}
+          />
         </TwoFlexboxes>
       )}
     </div>
