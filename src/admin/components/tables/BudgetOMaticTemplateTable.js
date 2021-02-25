@@ -12,7 +12,7 @@ import {
 } from '@coreui/react';
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
-import { AddCategory, AddGroup } from '../../reusable';
+import { AddCategory, SpacerInRow } from '../../reusable';
 import FormGroups from '../common/FormGroups';
 import BudgetOMaticTemplateModifyContainer from '../../containers/budgetomatic/BudgetOMaticTemplateModifyContainer';
 
@@ -127,7 +127,8 @@ const BudgetItemTemplate = (props) => {
             style={{ display: 'flex', flexWrap: 'wrap', marginRight: '15px' }}
           >
             <span>{item.code}. </span>
-            <span>{item.name} | </span>
+            <span>{item.name}</span>
+            <SpacerInRow />
             {item.rate.length > 0 &&
               item.rate.map((rate, index) => (
                 <span>
@@ -137,12 +138,11 @@ const BudgetItemTemplate = (props) => {
               ))}
 
             <span> / {item.unit}</span>
+            <SpacerInRow />
+            <span>remark : {item.remark ? 'O' : 'X'}</span>
+            <SpacerInRow />
             <span>
-              {'  |  '}
-              remark : {item.remark ? 'O' : 'X'}
-            </span>
-            <span>
-              {item.tags.length > 0 ? `  |  tags : ` : null}
+              {item.tags.length > 0 ? ` tags : ` : null}
               {item.tags.length > 0
                 ? item.tags.map((tag) => (
                     <CButton
