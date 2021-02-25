@@ -25,6 +25,9 @@ const StyledWrapper = styled.div`
     display: flex;
     flex-direction: row;
   }
+  .buttonHeight {
+    height: 27.6px;
+  }
   .hover {
     &:hover {
       color: ${palette.budgetomatic.text[1]};
@@ -69,7 +72,7 @@ const fields = [
 const EventsButtons = (props) => {
   const { toggleModifyItem } = props;
   return (
-    <span className={'floatRight flexRow'}>
+    <span className={'floatRight flexRow buttonHeight'}>
       <CButton size="sm" color="info" onClick={toggleModifyItem}>
         Modify
       </CButton>
@@ -98,36 +101,47 @@ const BudgetItemTemplate = (props) => {
           <EventsButtons toggleModifyItem={toggleModifyItem} />
         </BudgetOMaticTemplateModifyContainer>
       ) : (
-        <div style={{ marginBottom: '10px' }} className={'hover'}>
-          <span>{item.code}. </span>
-          <span>{item.name} | </span>
-          {item.rate.length > 0 &&
-            item.rate.map((rate, index) => (
-              <span>
-                ₩{rate}
-                {index > 0 && index !== item.rate.length - 1 && ' / '}
-              </span>
-            ))}
+        <div
+          style={{
+            marginBottom: '10px',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+          className={'hover'}
+        >
+          <span
+            style={{ display: 'flex', flexWrap: 'wrap', marginRight: '15px' }}
+          >
+            <span>{item.code}. </span>
+            <span>{item.name} | </span>
+            {item.rate.length > 0 &&
+              item.rate.map((rate, index) => (
+                <span>
+                  ₩{rate}
+                  {index > 0 && index !== item.rate.length - 1 && ' / '}
+                </span>
+              ))}
 
-          <span> / {item.unit}</span>
-          <span>
-            {'  |  '}
-            remark : {item.remark ? 'O' : 'X'}
-          </span>
-          <span>
-            {item.tags.length > 0 ? `  |  tags : ` : null}
-            {item.tags.length > 0
-              ? item.tags.map((tag) => (
-                  <CButton
-                    color="primary"
-                    variant="outline"
-                    shape="square"
-                    size="sm"
-                  >
-                    {tag}
-                  </CButton>
-                ))
-              : null}
+            <span> / {item.unit}</span>
+            <span>
+              {'  |  '}
+              remark : {item.remark ? 'O' : 'X'}
+            </span>
+            <span>
+              {item.tags.length > 0 ? `  |  tags : ` : null}
+              {item.tags.length > 0
+                ? item.tags.map((tag) => (
+                    <CButton
+                      color="primary"
+                      variant="outline"
+                      shape="square"
+                      size="sm"
+                    >
+                      {tag}
+                    </CButton>
+                  ))
+                : null}
+            </span>
           </span>
           <EventsButtons toggleModifyItem={toggleModifyItem} />
         </div>
