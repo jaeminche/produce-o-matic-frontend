@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CCol, CFormGroup, CFormText, CInput, CLabel } from '@coreui/react';
 import Select from 'react-select';
 import styled from 'styled-components/macro';
+import { SpacerInRow } from '../../reusable';
 
 const StyledFormGroups = styled.div`
   ${(props) => props.flexRow && `display: flex; flex-wrap: wrap;`}
@@ -395,6 +396,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
+      <SpacerInRow />
       <TextInputFormGroup
         modifyType={modifyType}
         defaultValue={rate}
@@ -403,6 +405,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
+      <SpacerInRow slash />
       <TextInputFormGroup
         modifyType={modifyType}
         defaultValue={unit}
@@ -411,6 +414,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
+      <SpacerInRow />
       <TextInputFormGroup
         modifyType={modifyType}
         defaultValue={remark}
@@ -419,6 +423,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
+      <SpacerInRow />
       <TagsSelectFormGroup
         modifyType={modifyType}
         defaultValue={tags.map((tag) => tag)}

@@ -136,13 +136,13 @@ const BudgetItemTemplate = (props) => {
                   {index > 0 && index !== item.rate.length - 1 && ' / '}
                 </span>
               ))}
-
-            <span> / {item.unit}</span>
+            <SpacerInRow slash />
+            <span>{item.unit}</span>
             <SpacerInRow />
             <span>remark : {item.remark ? 'O' : 'X'}</span>
             <SpacerInRow />
             <span>
-              {item.tags.length > 0 ? ` tags : ` : null}
+              {item.tags.length > 0 ? `  tags : ` : null}
               {item.tags.length > 0
                 ? item.tags.map((tag) => (
                     <CButton

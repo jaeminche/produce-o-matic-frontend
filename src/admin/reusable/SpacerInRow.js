@@ -2,7 +2,8 @@ import React from 'react';
 import { CButton } from '@coreui/react';
 import { useHistory } from 'react-router-dom';
 
-const SpacerInRow = () => {
+const SpacerInRow = (props) => {
+  const { slash } = props;
   return (
     <span
       style={{
@@ -12,7 +13,7 @@ const SpacerInRow = () => {
         color: 'blue',
       }}
     >
-      |
+      {slash ? '/' : '|'}
     </span>
   );
 };
