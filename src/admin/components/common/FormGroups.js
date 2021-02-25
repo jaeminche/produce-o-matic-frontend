@@ -3,10 +3,8 @@ import { CCol, CFormGroup, CFormText, CInput, CLabel } from '@coreui/react';
 import Select from 'react-select';
 import styled from 'styled-components/macro';
 
-const StyledGroups = styled.div`
-  ${(props) =>
-    props.flexRow &&
-    `display: flex; flex-direction: row; justify-content: space-between;`}
+const StyledFormGroups = styled.div`
+  ${(props) => props.flexRow && `display: flex; flex-wrap: wrap;`}
 `;
 
 const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
@@ -19,7 +17,10 @@ const NameInputFormGroup = ({ modifyType, tabTitle, onChange }) => {
       ? '예)labor, equipments, etc...'
       : '';
   return (
-    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
+    <CFormGroup
+      row
+      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+    >
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
@@ -48,7 +49,10 @@ const TextInputFormGroup = ({ modifyType, type, tabTitle, onChange }) => {
       ? '예)100000 - 콤마없이 숫자만 입력'
       : '';
   return (
-    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
+    <CFormGroup
+      row
+      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+    >
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`${type}`}</CLabel>
@@ -74,7 +78,10 @@ const TagsSelectFormGroup = ({ modifyType, handleOnSelect }) => {
     availTypeTags &&
     availTypeTags.map((tag) => ({ value: tag, label: `${tag}` }));
   return (
-    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
+    <CFormGroup
+      row
+      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+    >
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`Type Of Production 설정`}</CLabel>
@@ -108,7 +115,10 @@ const CategorySelectFormGroup = ({
     }));
   console.log('==0022', options);
   return (
-    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
+    <CFormGroup
+      row
+      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+    >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`소속 카테고리명`}</CLabel>
       </CCol>
@@ -146,7 +156,10 @@ const GroupsCodesSelectFormGroup = ({
     availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
 
   return (
-    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
+    <CFormGroup
+      row
+      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+    >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`허용할 그룹 코드(들)`}</CLabel>
       </CCol>
@@ -177,7 +190,10 @@ const GroupCodeSelectFormGroup = ({
     }));
 
   return (
-    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
+    <CFormGroup
+      row
+      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+    >
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`소속 그룹 코드`}</CLabel>
@@ -225,7 +241,10 @@ const CodeInputFormGroupForGroupTab = ({
     options,
   );
   return (
-    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
+    <CFormGroup
+      row
+      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+    >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`사용할 그룹 코드`}</CLabel>
       </CCol>
@@ -251,7 +270,10 @@ const CodeInputFormGroupForItemTab = ({
     availItemsCodes &&
     availItemsCodes.map((code) => ({ value: code, label: `${code}` }));
   return (
-    <CFormGroup row style={modifyType === 'update' ? { flex: '2' } : null}>
+    <CFormGroup
+      row
+      style={modifyType === 'update' ? { minWidth: 'auto' } : null}
+    >
       {modifyType !== 'update' && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
@@ -286,7 +308,7 @@ const FormGroups = ({
   form,
 }) => {
   const setGroups = [
-    <StyledGroups flexRow={modifyType === 'update'}>
+    <StyledFormGroups flexRow={modifyType === 'update'}>
       <NameInputFormGroup
         modifyType={modifyType}
         tabTitle={tabTitle}
@@ -297,8 +319,8 @@ const FormGroups = ({
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
-    </StyledGroups>,
-    <StyledGroups flexRow={modifyType === 'update'}>
+    </StyledFormGroups>,
+    <StyledFormGroups flexRow={modifyType === 'update'}>
       <CategorySelectFormGroup
         modifyType={modifyType}
         categoriesList={categoriesList}
@@ -315,8 +337,8 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
-    </StyledGroups>,
-    <StyledGroups flexRow={modifyType === 'update'}>
+    </StyledFormGroups>,
+    <StyledFormGroups flexRow={modifyType === 'update'}>
       {modifyType !== 'update' && (
         <GroupCodeSelectFormGroup
           modifyType={modifyType}
@@ -356,8 +378,8 @@ const FormGroups = ({
         modifyType={modifyType}
         handleOnSelect={handleOnSelect}
       />
-      <>{children && children}</>
-    </StyledGroups>,
+      {/* <>{children && children}</> */}
+    </StyledFormGroups>,
   ];
   return setGroups[activeTab];
 };
