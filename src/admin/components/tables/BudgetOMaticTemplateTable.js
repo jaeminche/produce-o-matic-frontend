@@ -94,36 +94,6 @@ const BudgetItemTemplate = (props) => {
           modifyType={'update'}
           groupCode={groupCode}
         >
-          {/* <span>{item.code}. </span>
-          <span>{item.name} | </span>
-          {item.rate.length > 0 &&
-            item.rate.map((rate, index) => (
-              <span>
-                ₩{rate}
-                {index > 0 && index !== item.rate.length - 1 && ' / '}
-              </span>
-            ))}
-
-          <span> / {item.unit}</span>
-          <span>
-            {'  |  '}
-            remark : {item.remark ? 'O' : 'X'}
-          </span>
-          <span>
-            {item.tags.length > 0 ? `  |  tags : ` : null}
-            {item.tags.length > 0
-              ? item.tags.map((tag) => (
-                  <CButton
-                    color="primary"
-                    variant="outline"
-                    shape="square"
-                    size="sm"
-                  >
-                    {tag}
-                  </CButton>
-                ))
-              : null}
-          </span> */}
           <EventsButtons toggleModifyItem={toggleModifyItem} />
         </BudgetOMaticTemplateModifyContainer>
       ) : (
