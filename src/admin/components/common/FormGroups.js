@@ -8,6 +8,31 @@ const StyledFormGroups = styled.div`
   ${(props) => props.flexRow && `display: flex; flex-wrap: wrap;`}
 `;
 
+const maxWidth = {
+  code: '130px',
+  name: '150px',
+  rate: '110px',
+  unit: '80px',
+  remark: '200px',
+  multiSelects: '200px',
+};
+const minWidth = {
+  code: '130px',
+  name: '150px',
+  rate: '110px',
+  unit: '80px',
+  remark: '200px',
+  multiSelects: '200px',
+};
+const width = {
+  code: '130px',
+  name: '150px',
+  rate: '110px',
+  unit: '80px',
+  remark: '200px',
+  multiSelects: '200px',
+};
+
 const NameInputFormGroup = ({
   updateBtnClicked,
   defaultValue,
@@ -24,13 +49,16 @@ const NameInputFormGroup = ({
       ? '예)labor, equipments, etc...'
       : '';
   return (
-    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { width: '150px' } : null}
+    >
       {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
         </CCol>
       )}
-      <CCol xs="12" md="9">
+      <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <CInput
           defaultValue={defaultValue && defaultValue}
           onChange={onChange}
@@ -60,14 +88,18 @@ const TextInputFormGroup = ({
       : type === 'rate'
       ? '예)100000 - 콤마없이 숫자만 입력'
       : '';
+
   return (
-    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { width: `${width[type]}` } : null}
+    >
       {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`${type}`}</CLabel>
         </CCol>
       )}
-      <CCol xs="12" md="9">
+      <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <CInput
           defaultValue={defaultValue && defaultValue}
           onChange={onChange}
@@ -85,6 +117,7 @@ const TagsSelectFormGroup = ({
   updateBtnClicked,
   defaultValue,
   handleOnSelect,
+  type,
 }) => {
   const availTypeTags = ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'];
 
@@ -92,7 +125,10 @@ const TagsSelectFormGroup = ({
     availTypeTags &&
     availTypeTags.map((tag) => ({ value: tag, label: `${tag}` }));
   return (
-    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { minWidth: `${minWidth[type]}` } : null}
+    >
       {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`Type Of Production 설정`}</CLabel>
@@ -133,11 +169,14 @@ const CategorySelectFormGroup = ({
       label: cate.name,
     }));
   return (
-    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { maxWidth: '100px' } : null}
+    >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`소속 카테고리명`}</CLabel>
       </CCol>
-      <CCol xs="12" md="9">
+      <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <Select
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'category' })}
@@ -172,11 +211,14 @@ const GroupsCodesSelectFormGroup = ({
     availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
 
   return (
-    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { maxWidth: '100px' } : null}
+    >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`허용할 그룹 코드(들)`}</CLabel>
       </CCol>
-      <CCol xs="12" md="9">
+      <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <Select
           isMulti={true}
           options={options}
@@ -204,13 +246,16 @@ const GroupCodeSelectFormGroup = ({
     }));
 
   return (
-    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { maxWidth: '100px' } : null}
+    >
       {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`소속 그룹 코드`}</CLabel>
         </CCol>
       )}
-      <CCol xs="12" md="9">
+      <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <Select
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'selectedGroup' })}
@@ -253,11 +298,14 @@ const CodeInputFormGroupForGroupTab = ({
   //   options,
   // );
   return (
-    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { maxWidth: '100px' } : null}
+    >
       <CCol md="3">
         <CLabel htmlFor="text-input">{`사용할 그룹 코드`}</CLabel>
       </CCol>
-      <CCol xs="12" md="9">
+      <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <Select
           options={filteredCategory && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
@@ -281,7 +329,10 @@ const CodeInputFormGroupForItemTab = ({
     availItemsCodes &&
     availItemsCodes.map((code) => ({ value: code, label: `${code}` }));
   return (
-    <CFormGroup row style={updateBtnClicked ? { minWidth: '120px' } : null}>
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { width: '120px' } : null}
+    >
       {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
@@ -329,6 +380,7 @@ const FormGroups = ({
       <GroupsCodesSelectFormGroup
         updateBtnClicked={updateBtnClicked}
         form={form}
+        type={'multiSelects'}
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
@@ -367,6 +419,7 @@ const FormGroups = ({
         updateBtnClicked={updateBtnClicked}
         defaultValue={code}
         form={form}
+        type={'code'}
         availItemsCodes={availItemsCodes}
         handleOnSelect={handleOnSelect}
       />
@@ -374,6 +427,7 @@ const FormGroups = ({
         updateBtnClicked={updateBtnClicked}
         defaultValue={name}
         form={form}
+        type={'name'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
@@ -409,6 +463,7 @@ const FormGroups = ({
         updateBtnClicked={updateBtnClicked}
         defaultValue={tags && tags.map((tag) => tag)}
         form={form}
+        type={'multiSelects'}
         handleOnSelect={handleOnSelect}
       />
       {/* <>{children && children}</> */}
