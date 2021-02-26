@@ -5,7 +5,8 @@ import styled from 'styled-components/macro';
 import { SpacerInRow } from '../../reusable';
 
 const StyledFormGroups = styled.div`
-  ${(props) => props.flexRow && `display: flex; flex-wrap: wrap;`}
+  ${(props) =>
+    props.flexRow && `display: flex; flex-wrap: wrap; margin-left: -15px;`}
 `;
 
 const maxWidth = {
