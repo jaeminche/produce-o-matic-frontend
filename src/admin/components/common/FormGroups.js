@@ -9,7 +9,7 @@ const StyledFormGroups = styled.div`
 `;
 
 const NameInputFormGroup = ({
-  modifyType,
+  updateBtnClicked,
   defaultValue,
   tabTitle,
   onChange,
@@ -24,11 +24,8 @@ const NameInputFormGroup = ({
       ? '예)labor, equipments, etc...'
       : '';
   return (
-    <CFormGroup
-      row
-      style={modifyType === 'update' ? { minWidth: '100px' } : null}
-    >
-      {modifyType !== 'update' && (
+    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+      {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`${tabTitle}명`}</CLabel>
         </CCol>
@@ -42,14 +39,14 @@ const NameInputFormGroup = ({
           placeholder={`${tabTitle}명을 입력해주세요`}
           required
         />
-        {modifyType !== 'update' && <CFormText>{desc}</CFormText>}
+        {!updateBtnClicked && <CFormText>{desc}</CFormText>}
       </CCol>
     </CFormGroup>
   );
 };
 
 const TextInputFormGroup = ({
-  modifyType,
+  updateBtnClicked,
   defaultValue,
   type,
   tabTitle,
@@ -64,11 +61,8 @@ const TextInputFormGroup = ({
       ? '예)100000 - 콤마없이 숫자만 입력'
       : '';
   return (
-    <CFormGroup
-      row
-      style={modifyType === 'update' ? { minWidth: '100px' } : null}
-    >
-      {modifyType !== 'update' && (
+    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+      {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`${type}`}</CLabel>
         </CCol>
@@ -81,29 +75,30 @@ const TextInputFormGroup = ({
           name={type}
           placeholder={`${type}을 입력해주세요`}
         />
-        {modifyType !== 'update' && <CFormText>{desc}</CFormText>}
+        {!updateBtnClicked && <CFormText>{desc}</CFormText>}
       </CCol>
     </CFormGroup>
   );
 };
 
-const TagsSelectFormGroup = ({ modifyType, defaultValue, handleOnSelect }) => {
+const TagsSelectFormGroup = ({
+  updateBtnClicked,
+  defaultValue,
+  handleOnSelect,
+}) => {
   const availTypeTags = ['DO', 'IN', 'TV', 'TC', 'OC', 'DIY'];
 
   const options =
     availTypeTags &&
     availTypeTags.map((tag) => ({ value: tag, label: `${tag}` }));
   return (
-    <CFormGroup
-      row
-      style={modifyType === 'update' ? { minWidth: '100px' } : null}
-    >
-      {modifyType !== 'update' && (
+    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+      {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`Type Of Production 설정`}</CLabel>
         </CCol>
       )}
-      <CCol xs="12" md={modifyType !== 'update' && '9'}>
+      <CCol xs="12" md={!updateBtnClicked && '9'}>
         <Select
           isMulti
           defaultValue={
@@ -125,7 +120,7 @@ const TagsSelectFormGroup = ({ modifyType, defaultValue, handleOnSelect }) => {
 };
 
 const CategorySelectFormGroup = ({
-  modifyType,
+  updateBtnClicked,
   defaultValue,
   categoriesList,
   handleOnSelect,
@@ -138,10 +133,7 @@ const CategorySelectFormGroup = ({
       label: cate.name,
     }));
   return (
-    <CFormGroup
-      row
-      style={modifyType === 'update' ? { minWidth: '100px' } : null}
-    >
+    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`소속 카테고리명`}</CLabel>
       </CCol>
@@ -157,7 +149,7 @@ const CategorySelectFormGroup = ({
 };
 
 const GroupsCodesSelectFormGroup = ({
-  modifyType,
+  updateBtnClicked,
   defaultValue,
   categoriesList,
   handleOnSelect,
@@ -180,10 +172,7 @@ const GroupsCodesSelectFormGroup = ({
     availGroupsCodes.map((code) => ({ value: code, label: `${code}` }));
 
   return (
-    <CFormGroup
-      row
-      style={modifyType === 'update' ? { minWidth: '100px' } : null}
-    >
+    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`허용할 그룹 코드(들)`}</CLabel>
       </CCol>
@@ -202,7 +191,7 @@ const GroupsCodesSelectFormGroup = ({
 };
 
 const GroupCodeSelectFormGroup = ({
-  modifyType,
+  updateBtnClicked,
   defaultValue,
   itemsGroups,
   handleOnSelect,
@@ -215,11 +204,8 @@ const GroupCodeSelectFormGroup = ({
     }));
 
   return (
-    <CFormGroup
-      row
-      style={modifyType === 'update' ? { minWidth: '100px' } : null}
-    >
-      {modifyType !== 'update' && (
+    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
+      {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`소속 그룹 코드`}</CLabel>
         </CCol>
@@ -236,7 +222,7 @@ const GroupCodeSelectFormGroup = ({
 };
 
 const CodeInputFormGroupForGroupTab = ({
-  modifyType,
+  updateBtnClicked,
   defaultValue,
   itemsGroups,
   filteredCategory,
@@ -267,10 +253,7 @@ const CodeInputFormGroupForGroupTab = ({
   //   options,
   // );
   return (
-    <CFormGroup
-      row
-      style={modifyType === 'update' ? { minWidth: '100px' } : null}
-    >
+    <CFormGroup row style={updateBtnClicked ? { minWidth: '100px' } : null}>
       <CCol md="3">
         <CLabel htmlFor="text-input">{`사용할 그룹 코드`}</CLabel>
       </CCol>
@@ -288,7 +271,7 @@ const CodeInputFormGroupForGroupTab = ({
 };
 
 const CodeInputFormGroupForItemTab = ({
-  modifyType,
+  updateBtnClicked,
   defaultValue,
   handleOnSelect,
   availItemsCodes,
@@ -298,16 +281,13 @@ const CodeInputFormGroupForItemTab = ({
     availItemsCodes &&
     availItemsCodes.map((code) => ({ value: code, label: `${code}` }));
   return (
-    <CFormGroup
-      row
-      style={modifyType === 'update' ? { minWidth: '120px' } : null}
-    >
-      {modifyType !== 'update' && (
+    <CFormGroup row style={updateBtnClicked ? { minWidth: '120px' } : null}>
+      {!updateBtnClicked && (
         <CCol md="3">
           <CLabel htmlFor="text-input">{`사용할 아이템 코드`}</CLabel>
         </CCol>
       )}
-      <CCol xs="12" md={modifyType !== 'update' && '9'}>
+      <CCol xs="12" md={!updateBtnClicked && '9'}>
         <Select
           defaultValue={
             defaultValue && { label: defaultValue, value: defaultValue }
@@ -336,97 +316,97 @@ const FormGroups = ({
   form,
 }) => {
   const { code, name, unit, rate, remark, tags } = { ...updateItemTarget };
-  const updateItemBtnClicked = modifyType === 'update';
+  const updateBtnClicked = modifyType === 'update';
 
   const setGroups = [
-    <StyledFormGroups flexRow={modifyType === 'update'}>
+    <StyledFormGroups flexRow={updateBtnClicked}>
       <NameInputFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         form={form}
         tabTitle={tabTitle}
         onChange={onChange}
       />
       <GroupsCodesSelectFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         form={form}
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
     </StyledFormGroups>,
-    <StyledFormGroups flexRow={modifyType === 'update'}>
+    <StyledFormGroups flexRow={updateBtnClicked}>
       <CategorySelectFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         form={form}
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
       <CodeInputFormGroupForGroupTab
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         form={form}
         itemsGroups={itemsGroups}
         filteredCategory={filteredCategory}
         handleOnSelect={handleOnSelect}
       />
       <NameInputFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         form={form}
         tabTitle={tabTitle}
         onChange={onChange}
       />
     </StyledFormGroups>,
-    <StyledFormGroups flexRow={modifyType === 'update'}>
-      {modifyType !== 'update' && (
+    <StyledFormGroups flexRow={updateBtnClicked}>
+      {!updateBtnClicked && (
         <GroupCodeSelectFormGroup
-          modifyType={modifyType}
+          updateBtnClicked={updateBtnClicked}
           form={form}
           itemsGroups={itemsGroups}
           handleOnSelect={handleOnSelect}
         />
       )}
       <CodeInputFormGroupForItemTab
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         defaultValue={code}
         form={form}
         availItemsCodes={availItemsCodes}
         handleOnSelect={handleOnSelect}
       />
       <NameInputFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         defaultValue={name}
         form={form}
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      {updateItemBtnClicked && <SpacerInRow />}
+      {updateBtnClicked && <SpacerInRow />}
       <TextInputFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         defaultValue={rate}
         form={form}
         type={'rate'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      {updateItemBtnClicked && <SpacerInRow slash />}
+      {updateBtnClicked && <SpacerInRow slash />}
       <TextInputFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         defaultValue={unit}
         form={form}
         type={'unit'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      {updateItemBtnClicked && <SpacerInRow />}
+      {updateBtnClicked && <SpacerInRow />}
       <TextInputFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         defaultValue={remark}
         form={form}
         type={'remark'}
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      {updateItemBtnClicked && <SpacerInRow />}
+      {updateBtnClicked && <SpacerInRow />}
       <TagsSelectFormGroup
-        modifyType={modifyType}
+        updateBtnClicked={updateBtnClicked}
         defaultValue={tags && tags.map((tag) => tag)}
         form={form}
         handleOnSelect={handleOnSelect}
