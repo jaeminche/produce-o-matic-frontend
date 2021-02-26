@@ -335,7 +335,7 @@ const FormGroups = ({
   handleOnSelect,
   form,
 }) => {
-  const { code, name, unit, rate, remark, tags } = updateItemTarget;
+  const { code, name, unit, rate, remark, tags } = { ...updateItemTarget };
 
   const setGroups = [
     <StyledFormGroups flexRow={modifyType === 'update'}>
@@ -426,7 +426,7 @@ const FormGroups = ({
       <SpacerInRow />
       <TagsSelectFormGroup
         modifyType={modifyType}
-        defaultValue={tags.map((tag) => tag)}
+        defaultValue={tags && tags.map((tag) => tag)}
         form={form}
         handleOnSelect={handleOnSelect}
       />
