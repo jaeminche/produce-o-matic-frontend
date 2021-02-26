@@ -61,7 +61,7 @@ const NameInputFormGroup = ({
       )}
       <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <CInput
-          defaultValue={defaultValue && defaultValue}
+          // defaultValue={defaultValue && defaultValue}
           onChange={onChange}
           id={tabTitle}
           name="name"
@@ -369,7 +369,7 @@ const FormGroups = ({
 }) => {
   const { code, name, unit, rate, remark, tags } = { ...updateItemTarget };
   const updateBtnClicked = modifyType === 'update';
-
+  console.log('==555', form);
   const setGroups = [
     <StyledFormGroups flexRow={updateBtnClicked}>
       <NameInputFormGroup

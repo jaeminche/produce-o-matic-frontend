@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
+import produce from 'immer';
 import { listItemsGroups } from '../../../modules/itemsGroups';
 import {
   changeField,
@@ -35,6 +36,7 @@ const BudgetOMaticTemplateModifyContainer = ({
   const [availItemsCodes, setAvailItemsCodes] = useState(null);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
+  const [formUpdateItem, setFormUpdateItem] = useState();
 
   const {
     itemsGroups,
@@ -43,7 +45,6 @@ const BudgetOMaticTemplateModifyContainer = ({
     formAddItem,
     formUpdateCategory,
     formUpdateGroup,
-    formUpdateItem,
     selectedGroup,
     selectedCategory,
     categoriesList,
@@ -68,7 +69,6 @@ const BudgetOMaticTemplateModifyContainer = ({
     formAddItem: admin.addItem,
     formUpdateCategory: admin.updateCategory,
     formUpdateGroup: admin.updateGroup,
-    formUpdateItem: admin.updateItem,
     selectedGroup:
       modifyType === 'update' ? groupCode : admin.addItem.selectedGroup,
     selectedCategory: admin.addGroup.category || admin.updateGroup.category,
@@ -92,13 +92,27 @@ const BudgetOMaticTemplateModifyContainer = ({
 
   const onChange = (e) => {
     const { value, name } = e.target;
-    dispatch(
-      changeField({
-        form: `${modifyType}${activeText[activeTab]}`,
-        key: name,
-        value,
-      }),
-    );
+    console.log('==622', value, name);
+    if (modifyType === 'add') {
+      dispatch(
+        changeField({
+          form: `${modifyType}${activeText[activeTab]}`,
+          key: name,
+          value,
+        }),
+      );
+    } else if (modifyType === 'update') {
+      if (activeTab === 2) {
+        const baseState = { ...formUpdateItem };
+        const nextState = produce(baseState, (draftState) => {
+          draftState[name] = value;
+        });
+        console.log('==0001', e, e.target);
+        console.log('==0002', nextState);
+
+        setFormUpdateItem(nextState);
+      }
+    }
   };
 
   const handleOnSelect = ({ e, key, isMulti = false }) => {
@@ -136,7 +150,9 @@ const BudgetOMaticTemplateModifyContainer = ({
       if (activeTab === 2) {
         const rates = [];
         const { code, name, unit, rate, remark, tags } = formUpdateItem;
-        rates.push(Number(rate));
+        typeof rate === 'string'
+          ? rates.push(Number(rate))
+          : rates.push(Number(rate[0]));
         dispatch(updateItem({ code, name, unit, rate: rates, remark, tags }));
       } else if (activeTab === 1) {
         const { code, name, category } = formAddGroup;
@@ -202,17 +218,15 @@ const BudgetOMaticTemplateModifyContainer = ({
   useEffect(() => {
     // * 아이템 update를 클릭했을 때, 기존값을 초기값으로 설정
     if (updateItemTarget) {
-      for (const [key, value] of Object.entries(updateItemTarget)) {
-        dispatch(
-          changeField({
-            form: `${modifyType}${activeText[activeTab]}`,
-            key,
-            value,
-          }),
-        );
-      }
+      // ?destructure rate
+      updateItemTarget.rate = updateItemTarget.rate[0];
+      setFormUpdateItem(updateItemTarget);
     }
   }, [updateItemTarget]);
+
+  useEffect(() => {
+    console.log('==3920', formUpdateItem);
+  }, [formUpdateItem]);
 
   useEffect(() => {
     if (addCategorySubmitted) {
