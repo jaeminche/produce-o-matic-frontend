@@ -16,6 +16,7 @@ import {
 import CIcon from '@coreui/icons-react';
 import styled from 'styled-components/macro';
 import FormGroups from './common/FormGroups';
+import EventsButtons from './common/EventsButtons';
 
 const StyledWrapper = styled.div`
   .tab-description {
@@ -26,6 +27,8 @@ const StyledWrapper = styled.div`
 
 const BudgetOMaticTemplateModify = (props) => {
   const {
+    updateItemBtnClicked,
+    toggleUpdateItem,
     modifyType,
     groupCode,
     updateItemTarget,
@@ -51,6 +54,12 @@ const BudgetOMaticTemplateModify = (props) => {
     return <p className="tab-description">{text}</p>;
   };
 
+  const TwoFlexboxes = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  `;
+
   // const categories = {data: [{id: }]}
   return modifyType === 'update' ? (
     <CForm
@@ -60,20 +69,26 @@ const BudgetOMaticTemplateModify = (props) => {
       className="form-horizontal"
       style={{ marginRight: '15px' }}
     >
-      <FormGroups
-        modifyType={modifyType}
-        groupCode={groupCode}
-        updateItemTarget={updateItemTarget}
-        children={children}
-        filteredCategory={filteredCategory}
-        itemsGroups={itemsGroups}
-        tabTitle={tabTitle}
-        activeTab={activeTab}
-        availItemsCodes={availItemsCodes}
-        onChange={onChange}
-        handleOnSelect={handleOnSelect}
-        form={form}
-      />
+      <TwoFlexboxes>
+        <FormGroups
+          modifyType={modifyType}
+          groupCode={groupCode}
+          updateItemTarget={updateItemTarget}
+          children={children}
+          filteredCategory={filteredCategory}
+          itemsGroups={itemsGroups}
+          tabTitle={tabTitle}
+          activeTab={activeTab}
+          availItemsCodes={availItemsCodes}
+          onChange={onChange}
+          handleOnSelect={handleOnSelect}
+          form={form}
+        />
+        <EventsButtons
+          updateItemBtnClicked={updateItemBtnClicked}
+          toggleUpdateItem={toggleUpdateItem}
+        />
+      </TwoFlexboxes>
     </CForm>
   ) : (
     <StyledWrapper>

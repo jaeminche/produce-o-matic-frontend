@@ -24,6 +24,8 @@ const BudgetOMaticTemplateModifyContainer = ({
   modifyType = 'add',
   groupCode,
   updateItemTarget,
+  updateItemBtnClicked,
+  toggleUpdateItem,
   children,
 }) => {
   const [error, setError] = useState(null);
@@ -221,6 +223,8 @@ const BudgetOMaticTemplateModifyContainer = ({
 
   return (
     <BudgetOMaticTemplateModify
+      updateItemBtnClicked={updateItemBtnClicked}
+      toggleUpdateItem={toggleUpdateItem}
       modifyType={modifyType}
       groupCode={groupCode}
       updateItemTarget={updateItemTarget}

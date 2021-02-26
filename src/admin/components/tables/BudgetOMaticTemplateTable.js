@@ -13,20 +13,13 @@ import {
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
 import { AddCategory, SpacerInRow } from '../../reusable';
-import FormGroups from '../common/FormGroups';
+import EventsButtons from '../common/EventsButtons';
 import BudgetOMaticTemplateModifyContainer from '../../containers/budgetomatic/BudgetOMaticTemplateModifyContainer';
 
 const StyledWrapper = styled.div`
   max-width: 1100px;
   .floatRight {
     float: right;
-  }
-  .flexRow {
-    display: flex;
-    flex-direction: row;
-  }
-  .buttonHeight {
-    height: 27.6px;
   }
   .hover {
     &:hover {
@@ -75,30 +68,6 @@ const fields = [
   },
 ];
 
-const EventsButtons = (props) => {
-  const { updateItemBtnClicked, toggleUpdateItem } = props;
-  return (
-    <div className={'flexRow buttonHeight'}>
-      {updateItemBtnClicked && (
-        <CButton size="sm" color="warning">
-          SUBMIT
-        </CButton>
-      )}
-      <CButton
-        size="sm"
-        color="info"
-        className="ml-1"
-        onClick={toggleUpdateItem}
-      >
-        {updateItemBtnClicked ? 'Cancel' : 'Update'}
-      </CButton>
-      <CButton size="sm" color="danger" className="ml-1">
-        Delete
-      </CButton>
-    </div>
-  );
-};
-
 const BudgetItemTemplate = (props) => {
   const { item, key, groupCode } = props;
   const { itemsGroups } = props;
@@ -110,17 +79,13 @@ const BudgetItemTemplate = (props) => {
   return (
     <div style={{ marginBottom: '10px' }} className={'hover'}>
       {updateItemBtnClicked ? (
-        <TwoFlexboxes>
-          <BudgetOMaticTemplateModifyContainer
-            modifyType={'update'}
-            groupCode={groupCode}
-            updateItemTarget={item}
-          />
-          <EventsButtons
-            updateItemBtnClicked={updateItemBtnClicked}
-            toggleUpdateItem={toggleUpdateItem}
-          />
-        </TwoFlexboxes>
+        <BudgetOMaticTemplateModifyContainer
+          modifyType={'update'}
+          groupCode={groupCode}
+          updateItemTarget={item}
+          updateItemBtnClicked={updateItemBtnClicked}
+          toggleUpdateItem={toggleUpdateItem}
+        />
       ) : (
         <TwoFlexboxes>
           <div
