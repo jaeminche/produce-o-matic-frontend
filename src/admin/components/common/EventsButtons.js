@@ -11,11 +11,11 @@ const StyledWrapper = styled.div`
 `;
 
 const EventsButtons = (props) => {
-  const { updateItemBtnClicked, toggleUpdateItem } = props;
+  const { updateItemBtnClicked, toggleUpdateItem, onSubmit, onDelete } = props;
   return (
     <StyledWrapper updateItemBtnClicked={updateItemBtnClicked}>
       {updateItemBtnClicked && (
-        <CButton size="sm" color="warning" className="ml-1">
+        <CButton size="sm" color="warning" className="ml-1" onClick={onSubmit}>
           SUBMIT
         </CButton>
       )}
@@ -27,7 +27,7 @@ const EventsButtons = (props) => {
       >
         {updateItemBtnClicked ? 'Cancel' : 'Update'}
       </CButton>
-      <CButton size="sm" color="danger" className="ml-1">
+      <CButton size="sm" color="danger" className="ml-1" onClick={onDelete}>
         Delete
       </CButton>
     </StyledWrapper>
