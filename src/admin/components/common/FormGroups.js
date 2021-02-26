@@ -336,6 +336,7 @@ const FormGroups = ({
   form,
 }) => {
   const { code, name, unit, rate, remark, tags } = { ...updateItemTarget };
+  const updateItemBtnClicked = modifyType === 'update';
 
   const setGroups = [
     <StyledFormGroups flexRow={modifyType === 'update'}>
@@ -396,7 +397,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      <SpacerInRow />
+      {updateItemBtnClicked && <SpacerInRow />}
       <TextInputFormGroup
         modifyType={modifyType}
         defaultValue={rate}
@@ -405,7 +406,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      <SpacerInRow slash />
+      {updateItemBtnClicked && <SpacerInRow slash />}
       <TextInputFormGroup
         modifyType={modifyType}
         defaultValue={unit}
@@ -414,7 +415,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      <SpacerInRow />
+      {updateItemBtnClicked && <SpacerInRow />}
       <TextInputFormGroup
         modifyType={modifyType}
         defaultValue={remark}
@@ -423,7 +424,7 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
-      <SpacerInRow />
+      {updateItemBtnClicked && <SpacerInRow />}
       <TagsSelectFormGroup
         modifyType={modifyType}
         defaultValue={tags && tags.map((tag) => tag)}
