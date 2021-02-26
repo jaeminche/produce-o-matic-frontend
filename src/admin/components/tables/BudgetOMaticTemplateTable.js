@@ -76,10 +76,10 @@ const fields = [
 ];
 
 const EventsButtons = (props) => {
-  const { willModifyItem, toggleModifyItem } = props;
+  const { updateItemBtnClicked, toggleUpdateItem } = props;
   return (
     <div className={'flexRow buttonHeight'}>
-      {willModifyItem && (
+      {updateItemBtnClicked && (
         <CButton size="sm" color="warning">
           SUBMIT
         </CButton>
@@ -88,9 +88,9 @@ const EventsButtons = (props) => {
         size="sm"
         color="info"
         className="ml-1"
-        onClick={toggleModifyItem}
+        onClick={toggleUpdateItem}
       >
-        {willModifyItem ? 'Cancel' : 'Update'}
+        {updateItemBtnClicked ? 'Cancel' : 'Update'}
       </CButton>
       <CButton size="sm" color="danger" className="ml-1">
         Delete
@@ -102,14 +102,14 @@ const EventsButtons = (props) => {
 const BudgetItemTemplate = (props) => {
   const { item, key, groupCode } = props;
   const { itemsGroups } = props;
-  const [willModifyItem, setWillModifyItem] = useState(false);
-  const toggleModifyItem = (e) => {
+  const [updateItemBtnClicked, setUpdateItemBtnClicked] = useState(false);
+  const toggleUpdateItem = (e) => {
     e.preventDefault();
-    setWillModifyItem(!willModifyItem);
+    setUpdateItemBtnClicked(!updateItemBtnClicked);
   };
   return (
     <div style={{ marginBottom: '10px' }} className={'hover'}>
-      {willModifyItem ? (
+      {updateItemBtnClicked ? (
         <TwoFlexboxes>
           <BudgetOMaticTemplateModifyContainer
             modifyType={'update'}
@@ -117,8 +117,8 @@ const BudgetItemTemplate = (props) => {
             updateItemTarget={item}
           />
           <EventsButtons
-            willModifyItem={willModifyItem}
-            toggleModifyItem={toggleModifyItem}
+            updateItemBtnClicked={updateItemBtnClicked}
+            toggleUpdateItem={toggleUpdateItem}
           />
         </TwoFlexboxes>
       ) : (
@@ -158,8 +158,8 @@ const BudgetItemTemplate = (props) => {
             </span>
           </div>
           <EventsButtons
-            willModifyItem={willModifyItem}
-            toggleModifyItem={toggleModifyItem}
+            updateItemBtnClicked={updateItemBtnClicked}
+            toggleUpdateItem={toggleUpdateItem}
           />
         </TwoFlexboxes>
       )}
