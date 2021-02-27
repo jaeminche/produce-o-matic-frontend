@@ -36,8 +36,15 @@ const BudgetOMaticTemplateModifyContainer = ({
   const [availItemsCodes, setAvailItemsCodes] = useState(null);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
-  const [formUpdateItem, setFormUpdateItem] = useState();
+  const [formUpdateItem, setFormUpdateItem] = useState(updateItemTarget);
+  // const formUpdateItemInput = React.useRef(null);
+  // useEffect(() => {
+  //   formUpdateItem.current.focus();
+  // }, [formUpdateItem]);
 
+  useEffect(() => {
+    console.log('==6699', formUpdateItem);
+  }, [formUpdateItem]);
   const {
     itemsGroups,
     formAddCategory,
@@ -215,18 +222,19 @@ const BudgetOMaticTemplateModifyContainer = ({
     }
   }, [selectedGroup]);
 
-  useEffect(() => {
-    // * 아이템 update를 클릭했을 때, 기존값을 초기값으로 설정
-    if (updateItemTarget) {
-      // ?destructure rate
-      updateItemTarget.rate = updateItemTarget.rate[0];
-      setFormUpdateItem(updateItemTarget);
-    }
-  }, [updateItemTarget]);
+  // useEffect(() => {
+  //   // * 아이템 update를 클릭했을 때, 기존값을 초기값으로 설정
+  //   if (updateItemTarget) {
+  //     // ?destructure rate
+  //     updateItemTarget.rate = updateItemTarget.rate[0];
+  //     setFormUpdateItem(updateItemTarget);
+  //   }
+  // }, [updateItemTarget]);
 
-  useEffect(() => {
-    console.log('==3920', formUpdateItem);
-  }, [formUpdateItem]);
+  // useEffect(() => {
+  //   // console.log('==3920', formUpdateItem);
+  //   formUpdateItem && formUpdateItem.current.focus();
+  // }, [formUpdateItem]);
 
   useEffect(() => {
     if (addCategorySubmitted) {
@@ -237,6 +245,7 @@ const BudgetOMaticTemplateModifyContainer = ({
 
   return (
     <BudgetOMaticTemplateModify
+      // formUpdateItemInput={formUpdateItemInput}
       updateItemBtnClicked={updateItemBtnClicked}
       toggleUpdateItem={toggleUpdateItem}
       modifyType={modifyType}

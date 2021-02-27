@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { CCol, CFormGroup, CFormText, CInput, CLabel } from '@coreui/react';
 import Select from 'react-select';
 import styled from 'styled-components/macro';
@@ -36,6 +37,7 @@ const width = {
 
 const NameInputFormGroup = ({
   updateBtnClicked,
+  formUpdateItemInput,
   defaultValue,
   tabTitle,
   onChange,
@@ -61,7 +63,10 @@ const NameInputFormGroup = ({
       )}
       <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <CInput
+          // plaintext={true}
+          value={form && form.name && form.name}
           // defaultValue={defaultValue && defaultValue}
+          // ref={formUpdateItemInput}
           onChange={onChange}
           id={tabTitle}
           name="name"
@@ -354,6 +359,7 @@ const CodeInputFormGroupForItemTab = ({
 };
 
 const FormGroups = ({
+  formUpdateItemInput,
   modifyType,
   updateItemTarget,
   children,
@@ -370,7 +376,8 @@ const FormGroups = ({
   const { code, name, unit, rate, remark, tags } = { ...updateItemTarget };
   const updateBtnClicked = modifyType === 'update';
   console.log('==555', form);
-  const setGroups = [
+  // return setGroups[activeTab];
+  return activeTab === 0 ? (
     <StyledFormGroups flexRow={updateBtnClicked}>
       <NameInputFormGroup
         updateBtnClicked={updateBtnClicked}
@@ -385,7 +392,8 @@ const FormGroups = ({
         categoriesList={categoriesList}
         handleOnSelect={handleOnSelect}
       />
-    </StyledFormGroups>,
+    </StyledFormGroups>
+  ) : activeTab === 1 ? (
     <StyledFormGroups flexRow={updateBtnClicked}>
       <CategorySelectFormGroup
         updateBtnClicked={updateBtnClicked}
@@ -406,7 +414,8 @@ const FormGroups = ({
         tabTitle={tabTitle}
         onChange={onChange}
       />
-    </StyledFormGroups>,
+    </StyledFormGroups>
+  ) : activeTab === 2 ? (
     <StyledFormGroups flexRow={updateBtnClicked}>
       {!updateBtnClicked && (
         <GroupCodeSelectFormGroup
@@ -425,6 +434,8 @@ const FormGroups = ({
         handleOnSelect={handleOnSelect}
       />
       <NameInputFormGroup
+        formUpdateItemInput={formUpdateItemInput}
+        key="nameInput"
         updateBtnClicked={updateBtnClicked}
         defaultValue={name}
         form={form}
@@ -468,9 +479,8 @@ const FormGroups = ({
         handleOnSelect={handleOnSelect}
       />
       {/* <>{children && children}</> */}
-    </StyledFormGroups>,
-  ];
-  return setGroups[activeTab];
+    </StyledFormGroups>
+  ) : null;
 };
 
 export default FormGroups;
