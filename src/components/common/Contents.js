@@ -298,7 +298,9 @@ const FlexContainerResponsive = (props) => {
                 </div>
               )}
 
-              {item.customComponent && item.customComponent}
+              {item.customComponent &&
+                item.customComponent.url &&
+                item.customComponent}
             </>
           ) : (
             <div key={key} className={item.classNames || 'text'} style={style}>
@@ -431,7 +433,9 @@ const DrawRowComponent = (props) => {
       </h3>
     ),
     customComponent: (
-      <div className={classNames || null}>{customComponent}</div>
+      <div className={classNames || null}>
+        {customComponent && customComponent}
+      </div>
     ),
   };
 

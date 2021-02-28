@@ -116,14 +116,17 @@ const PopularLocations = ({ data, history, isMobile }) => {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {cards.map((card, key) => (
-            <ImageBlock
-              isMobile={isMobile}
-              data={card}
-              history={history}
-              key={key}
-            />
-          ))}
+          {cards.map(
+            (card, key) =>
+              card.toggleDisplay && (
+                <ImageBlock
+                  isMobile={isMobile}
+                  data={card}
+                  history={history}
+                  key={key}
+                />
+              ),
+          )}
         </Masonry>
       </Wrapper>
     </PopularLocationsBlock>

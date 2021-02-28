@@ -11,6 +11,7 @@ import {
 const SAMPLEYOUTUBES = [
   {
     id: 1,
+    toggleDisplay: true,
     name: 'PopularLocations',
     title: 'Taekwondowon, a versatile location for film and TV',
     url: 'https://www.youtube.com/embed/joiGm8xre04',
@@ -24,6 +25,7 @@ const SAMPLEYOUTUBES = [
   },
   {
     id: 2,
+    toggleDisplay: true,
     name: 'PopularLocations',
     title: 'Establishing Seoul city',
     url: 'https://www.youtube.com/embed/-pMNJLlUTYU',
@@ -36,6 +38,7 @@ const SAMPLEYOUTUBES = [
   },
   {
     id: 3,
+    toggleDisplay: true,
     name: 'Korea from the sky',
     title: 'Korea from the sky',
     url: 'https://www.youtube.com/embed/2LekFOqnrOA',
@@ -48,6 +51,7 @@ const SAMPLEYOUTUBES = [
   },
   {
     id: 4,
+    toggleDisplay: false,
     name: 'Seoul Film Commission & Korean Film Commissions',
     title: 'Seoul Film Commission & Korean Film Commissions',
     url: 'https://www.youtube.com/embed/G5AQGM22Xa8',
@@ -60,6 +64,7 @@ const SAMPLEYOUTUBES = [
   },
   {
     id: 5,
+    toggleDisplay: true,
     name: 'Pechino Express by local producer',
     title: 'Pechino Express by local producer',
     url: 'https://www.youtube.com/embed/SVWezoYUqM0',

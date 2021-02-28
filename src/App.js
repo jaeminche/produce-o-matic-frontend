@@ -240,7 +240,7 @@ const App = () => {
         name="Page 500"
         render={(props) => <Page500 {...props} />}
       />
-      <ScrollToTopRoute component={MainPage} path="/" />
+      <ScrollToTopRoute exact component={MainPage} path="/" />
     </React.Suspense>
   );
 };

@@ -703,10 +703,11 @@ const uiData = {
         type: 'customComponent',
         classNames: 'margin-tb',
         customComponent: (
-          <IframedVideo
-            title={'Seoul Film Commission & Korean Film Commissions'}
-            url={'https://www.youtube.com/embed/G5AQGM22Xa8'}
-          />
+          // <IframedVideo
+          //   title={'Seoul Film Commission & Korean Film Commissions'}
+          //   url={'https://www.youtube.com/embed/G5AQGM22Xa8'}
+          // />
+          <></>
         ),
       },
       {

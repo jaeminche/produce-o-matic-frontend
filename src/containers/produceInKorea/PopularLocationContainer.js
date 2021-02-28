@@ -33,6 +33,11 @@ const PopularLocationContainer = ({ location, match, history }) => {
     id && setData(SAMPLEYOUTUBES[id - 1]);
   }, [id]);
 
+  useEffect(() => {
+    if (data && !data.toggleDisplay)
+      history.push('/produce-in-korea/popular-locations');
+  }, [data]);
+
   return <PopularLocation data={data} history={history} isMobile={isMobile} />;
 };
 
