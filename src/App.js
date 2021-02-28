@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useHistory } from 'react-router-dom';
 import ScrollToTopRoute from './components/common/ScrollToTopRoute';
 
 import PostsListPage from './pages/PostsListPage';
@@ -53,6 +53,14 @@ const Page404 = React.lazy(() => import('./admin/views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./admin/views/pages/page500/Page500'));
 
 const App = () => {
+  const history = useHistory();
+  console.log('===00011111', history);
+
+  useEffect(() => {
+    if (history.location.pathname === '/produce-in-korea/location-incentives')
+      history.push('/produce-o-manual/location-incentives');
+  }, []);
+
   return (
     <React.Suspense fallback={loading}>
       <Background />
@@ -150,10 +158,7 @@ const App = () => {
       <ScrollToTopRoute
         component={LocationIncentivesPage}
         exact
-        path={[
-          '/produce-o-manual/location-incentives',
-          '/produce-in-korea/location-incentives',
-        ]}
+        path="/produce-o-manual/location-incentives"
       />
       <ScrollToTopRoute
         component={PermitPage}
