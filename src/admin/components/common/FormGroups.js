@@ -435,7 +435,7 @@ const FormGroups = ({
       />
       <NameInputFormGroup
         formUpdateItemInput={formUpdateItemInput}
-        key="nameInput"
+        // key="nameInput"
         updateBtnClicked={updateBtnClicked}
         defaultValue={name}
         form={form}

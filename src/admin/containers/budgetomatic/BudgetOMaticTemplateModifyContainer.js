@@ -22,6 +22,7 @@ import FormGroups from '../../components/common/FormGroups';
 const BudgetOMaticTemplateModifyContainer = ({
   match,
   history,
+  itemsGroups,
   modifyType = 'add',
   groupCode,
   updateItemTarget,
@@ -46,7 +47,6 @@ const BudgetOMaticTemplateModifyContainer = ({
     console.log('==6699', formUpdateItem);
   }, [formUpdateItem]);
   const {
-    itemsGroups,
     formAddCategory,
     formAddGroup,
     formAddItem,
@@ -69,8 +69,7 @@ const BudgetOMaticTemplateModifyContainer = ({
     updateGroupError,
     updateItemError,
     listCategoriesError,
-  } = useSelector(({ admin, itemsGroups }) => ({
-    itemsGroups: itemsGroups.dataSets,
+  } = useSelector(({ admin }) => ({
     formAddCategory: admin.addCategory,
     formAddGroup: admin.addGroup,
     formAddItem: admin.addItem,
@@ -87,7 +86,6 @@ const BudgetOMaticTemplateModifyContainer = ({
     updateGroupSubmitted: admin.updateGroupSubmitted,
     updateItemSubmitted: admin.updateItemSubmitted,
 
-    itemsGroupsError: itemsGroups.error,
     addCategoryError: admin.addCategoryError,
     addGroupError: admin.addGroupError,
     addItemError: admin.addItemError,
@@ -180,7 +178,7 @@ const BudgetOMaticTemplateModifyContainer = ({
     dispatch(initializeForm('updateGroup'));
     dispatch(initializeForm('updateItem'));
     if (activeTab === 2 || activeTab === 1) {
-      dispatch(listItemsGroups());
+      // dispatch(listItemsGroups());
     }
     if (activeTab === 1 || activeTab === 0) {
       dispatch(listCategories());
@@ -251,7 +249,7 @@ const BudgetOMaticTemplateModifyContainer = ({
       modifyType={modifyType}
       groupCode={groupCode}
       updateItemTarget={updateItemTarget}
-      children={children}
+      // children={children}
       activeText={activeText}
       activeTab={activeTab}
       setActiveTab={setActiveTab}

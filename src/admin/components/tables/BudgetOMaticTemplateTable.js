@@ -80,6 +80,7 @@ const BudgetItemTemplate = (props) => {
     <div style={{ marginBottom: '10px' }} className={'hover'}>
       {updateItemBtnClicked ? (
         <BudgetOMaticTemplateModifyContainer
+          // itemsGroups={itemsGroups}
           modifyType={'update'}
           groupCode={groupCode}
           updateItemTarget={item}
