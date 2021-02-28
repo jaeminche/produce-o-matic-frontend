@@ -54,7 +54,6 @@ const Page500 = React.lazy(() => import('./admin/views/pages/page500/Page500'));
 
 const App = () => {
   const history = useHistory();
-  console.log('===00011111', history);
 
   useEffect(() => {
     if (history.location.pathname === '/produce-in-korea/location-incentives')
