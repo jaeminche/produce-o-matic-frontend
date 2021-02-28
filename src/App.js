@@ -101,7 +101,6 @@ const App = () => {
       <Route component={PostPage} path="/firstavenue/@:username/:postId" /> */}
       {/* ----- admin pages ends ----- */}
 
-      <ScrollToTopRoute component={MainPage} exact path="/" />
       <ScrollToTopRoute
         component={SummaryInKoreaPage}
         exact
@@ -151,7 +150,10 @@ const App = () => {
       <ScrollToTopRoute
         component={LocationIncentivesPage}
         exact
-        path="/produce-o-manual/location-incentives"
+        path={[
+          '/produce-o-manual/location-incentives',
+          '/produce-in-korea/location-incentives',
+        ]}
       />
       <ScrollToTopRoute
         component={PermitPage}
@@ -238,6 +240,7 @@ const App = () => {
         name="Page 500"
         render={(props) => <Page500 {...props} />}
       />
+      <ScrollToTopRoute component={MainPage} path="/" />
     </React.Suspense>
   );
 };
