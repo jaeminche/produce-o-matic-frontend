@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
@@ -38,14 +38,11 @@ const BudgetOMaticTemplateModifyContainer = ({
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
   const [formUpdateItem, setFormUpdateItem] = useState(updateItemTarget);
-  // const formUpdateItemInput = React.useRef(null);
-  // useEffect(() => {
-  //   formUpdateItem.current.focus();
-  // }, [formUpdateItem]);
-
+  const inputRef = useRef(null);
   useEffect(() => {
-    console.log('==6699', formUpdateItem);
+    if (formUpdateItem && inputRef.current) inputRef.current.focus();
   }, [formUpdateItem]);
+
   const {
     formAddCategory,
     formAddGroup,
@@ -243,7 +240,7 @@ const BudgetOMaticTemplateModifyContainer = ({
 
   return (
     <BudgetOMaticTemplateModify
-      // formUpdateItemInput={formUpdateItemInput}
+      inputRef={inputRef}
       updateItemBtnClicked={updateItemBtnClicked}
       toggleUpdateItem={toggleUpdateItem}
       modifyType={modifyType}

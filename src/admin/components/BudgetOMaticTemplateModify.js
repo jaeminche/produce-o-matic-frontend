@@ -27,7 +27,7 @@ const StyledWrapper = styled.div`
 
 const BudgetOMaticTemplateModify = (props) => {
   const {
-    formUpdateItemInput,
+    inputRef,
     updateItemBtnClicked,
     toggleUpdateItem,
     modifyType,
@@ -72,6 +72,7 @@ const BudgetOMaticTemplateModify = (props) => {
     >
       <TwoFlexboxes>
         <FormGroups
+          inputRef={inputRef}
           modifyType={modifyType}
           groupCode={groupCode}
           updateItemTarget={updateItemTarget}
@@ -148,7 +149,6 @@ const BudgetOMaticTemplateModify = (props) => {
                 <CTabPane>
                   <TabDescription tabTitle={tabTitle} />
                   <FormGroups
-                    formUpdateItemInput={formUpdateItemInput}
                     filteredCategory={filteredCategory}
                     itemsGroups={itemsGroups}
                     tabTitle={tabTitle}

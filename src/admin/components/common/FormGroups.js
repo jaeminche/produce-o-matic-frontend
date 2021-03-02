@@ -37,7 +37,7 @@ const width = {
 
 const NameInputFormGroup = ({
   updateBtnClicked,
-  formUpdateItemInput,
+  inputRef,
   defaultValue,
   tabTitle,
   onChange,
@@ -66,13 +66,24 @@ const NameInputFormGroup = ({
           // plaintext={true}
           value={form && form.name && form.name}
           // defaultValue={defaultValue && defaultValue}
-          // ref={formUpdateItemInput}
+          innerRef={inputRef}
           onChange={onChange}
           id={tabTitle}
           name="name"
           placeholder={`${tabTitle}명을 입력해주세요`}
           required
         />
+        {/* <input
+          // plaintext={true}
+          value={form && form.name && form.name}
+          // defaultValue={defaultValue && defaultValue}
+          ref={inputRef}
+          onChange={onChange}
+          id={tabTitle}
+          name="name"
+          placeholder={`${tabTitle}명을 입력해주세요`}
+          required
+        /> */}
         {!updateBtnClicked && <CFormText>{desc}</CFormText>}
       </CCol>
     </CFormGroup>
@@ -359,7 +370,7 @@ const CodeInputFormGroupForItemTab = ({
 };
 
 const FormGroups = ({
-  formUpdateItemInput,
+  inputRef,
   modifyType,
   updateItemTarget,
   children,
@@ -434,7 +445,7 @@ const FormGroups = ({
         handleOnSelect={handleOnSelect}
       />
       <NameInputFormGroup
-        formUpdateItemInput={formUpdateItemInput}
+        inputRef={inputRef}
         // key="nameInput"
         updateBtnClicked={updateBtnClicked}
         defaultValue={name}
