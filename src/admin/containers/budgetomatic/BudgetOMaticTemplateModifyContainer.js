@@ -32,11 +32,6 @@ const BudgetOMaticTemplateModifyContainer = ({
   const [filteredCategory, setFilteredCategory] = useState('');
   const [availItemsCodes, setAvailItemsCodes] = useState(null);
 
-  // const toggleUpdateItem = (e) => {
-  //   e.preventDefault();
-  //   setUpdateItemBtnClicked(!updateItemBtnClicked);
-  // };
-
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
 
@@ -153,10 +148,12 @@ const BudgetOMaticTemplateModifyContainer = ({
   };
 
   useEffect(() => {
-    // * 페이지 초기 로드나, add 페이지에서 사용자가 activeTab을 선택할 때마다 모든 폼 초기화
-    dispatch(initializeForm('addCategory'));
-    dispatch(initializeForm('addGroup'));
-    dispatch(initializeForm('addItem'));
+    if (modifyType === 'add') {
+      // * 페이지 초기 로드나, add 페이지에서 사용자가 activeTab을 선택할 때마다 모든 폼 초기화
+      dispatch(initializeForm('addCategory'));
+      dispatch(initializeForm('addGroup'));
+      dispatch(initializeForm('addItem'));
+    }
     dispatch(initializeForm('updateCategory'));
     dispatch(initializeForm('updateGroup'));
     dispatch(initializeForm('updateItem'));
@@ -206,6 +203,7 @@ const BudgetOMaticTemplateModifyContainer = ({
   useEffect(() => {
     // * 아이템 update를 클릭했을 때, 기존값을 초기값으로 설정
     if (updateItemTarget) {
+      console.log('==123', updateItemTarget);
       for (const [key, value] of Object.entries(updateItemTarget)) {
         dispatch(
           changeField({

@@ -76,7 +76,7 @@ const fields = [
 ];
 
 const EventsButtons = (props) => {
-  const { isActiveItem, toggleUpdateItem, index } = props;
+  const { isActiveItem, toggleUpdateItem, code, index } = props;
   return (
     <div className={'flexRow buttonHeight'}>
       {isActiveItem && (
@@ -88,7 +88,7 @@ const EventsButtons = (props) => {
         size="sm"
         color="info"
         className="ml-1"
-        onClick={() => toggleUpdateItem(index)}
+        onClick={() => toggleUpdateItem(code, index)}
       >
         {isActiveItem ? 'Cancel' : 'Update'}
       </CButton>
@@ -100,15 +100,11 @@ const EventsButtons = (props) => {
 };
 
 const BudgetItemTemplate = (props) => {
-  const {
-    item,
-    index,
-    groupCode,
-    activeItem,
-    toggleUpdateItem,
-    setActiveItem,
-  } = props;
-  const isActiveItem = activeItem.key === index && activeItem.open;
+  const { item, index, groupCode, activeItem, toggleUpdateItem } = props;
+  const isActiveItem =
+    activeItem.groupCode === groupCode &&
+    activeItem.key === index &&
+    activeItem.open;
 
   return (
     <div style={{ marginBottom: '10px' }} className={'hover'} key={index}>
@@ -121,9 +117,9 @@ const BudgetItemTemplate = (props) => {
           />
           <EventsButtons
             index={index}
+            groupCode={groupCode}
             isActiveItem={isActiveItem}
             toggleUpdateItem={toggleUpdateItem}
-            setActiveItem={setActiveItem}
           />
         </TwoFlexboxes>
       ) : (
@@ -166,7 +162,6 @@ const BudgetItemTemplate = (props) => {
             index={index}
             isActiveItem={isActiveItem}
             toggleUpdateItem={toggleUpdateItem}
-            setActiveItem={setActiveItem}
           />
         </TwoFlexboxes>
       )}
@@ -175,39 +170,22 @@ const BudgetItemTemplate = (props) => {
 };
 
 const BudgetItemsList = (props) => {
-  const {
-    item,
-    activeItem,
-    setActiveItem,
-    toggleUpdateItem,
-    itemsGroups,
-  } = props;
-  return item.budgetItems.map((budgetItem, index) => {
-    // console.log('==4497', budgetItem, index);
-    return (
-      <BudgetItemTemplate
-        item={budgetItem}
-        index={index}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        toggleUpdateItem={() => toggleUpdateItem(index)}
-        groupCode={item.code}
-        itemsGroups={itemsGroups}
-      />
-    );
-  });
+  const { item, activeItem, toggleUpdateItem } = props;
+  const { code } = item;
+  return item.budgetItems.map((budgetItem, index) => (
+    <BudgetItemTemplate
+      item={budgetItem}
+      index={index}
+      activeItem={activeItem}
+      toggleUpdateItem={() => toggleUpdateItem(code, index)}
+      groupCode={code}
+    />
+  ));
 };
 
 const BudgetOMaticTemplateTable = (props) => {
-  const {
-    DATASETS,
-    history,
-    activeItem,
-    setActiveItem,
-    toggleUpdateItem,
-  } = props;
+  const { DATASETS, history, activeItem, toggleUpdateItem } = props;
   const [details, setDetails] = useState([]);
-  // const [items, setItems] = useState(usersData)
 
   const toggleDetails = (index) => {
     const position = details.indexOf(index);
@@ -309,9 +287,7 @@ const BudgetOMaticTemplateTable = (props) => {
                             <BudgetItemsList
                               item={item}
                               activeItem={activeItem}
-                              setActiveItem={setActiveItem}
                               toggleUpdateItem={toggleUpdateItem}
-                              itemsGroups={DATASETS}
                             />
                           </p>
                         </CCardBody>
