@@ -76,10 +76,10 @@ const fields = [
 ];
 
 const EventsButtons = (props) => {
-  const { updateItemBtnClicked, toggleUpdateItem } = props;
+  const { isActiveItem, toggleUpdateItem, index } = props;
   return (
     <div className={'flexRow buttonHeight'}>
-      {updateItemBtnClicked && (
+      {isActiveItem && (
         <CButton size="sm" color="warning">
           SUBMIT
         </CButton>
@@ -88,9 +88,9 @@ const EventsButtons = (props) => {
         size="sm"
         color="info"
         className="ml-1"
-        onClick={toggleUpdateItem}
+        onClick={() => toggleUpdateItem(index)}
       >
-        {updateItemBtnClicked ? 'Cancel' : 'Update'}
+        {isActiveItem ? 'Cancel' : 'Update'}
       </CButton>
       <CButton size="sm" color="danger" className="ml-1">
         Delete
@@ -100,16 +100,19 @@ const EventsButtons = (props) => {
 };
 
 const BudgetItemTemplate = (props) => {
-  const { item, key, groupCode } = props;
-  const { itemsGroups } = props;
-  const [updateItemBtnClicked, setUpdateItemBtnClicked] = useState(false);
-  const toggleUpdateItem = (e) => {
-    e.preventDefault();
-    setUpdateItemBtnClicked(!updateItemBtnClicked);
-  };
+  const {
+    item,
+    index,
+    groupCode,
+    activeItem,
+    toggleUpdateItem,
+    setActiveItem,
+  } = props;
+  const isActiveItem = activeItem.key === index && activeItem.open;
+
   return (
-    <div style={{ marginBottom: '10px' }} className={'hover'}>
-      {updateItemBtnClicked ? (
+    <div style={{ marginBottom: '10px' }} className={'hover'} key={index}>
+      {isActiveItem ? (
         <TwoFlexboxes>
           <BudgetOMaticTemplateModifyContainer
             modifyType={'update'}
@@ -117,8 +120,10 @@ const BudgetItemTemplate = (props) => {
             updateItemTarget={item}
           />
           <EventsButtons
-            updateItemBtnClicked={updateItemBtnClicked}
+            index={index}
+            isActiveItem={isActiveItem}
             toggleUpdateItem={toggleUpdateItem}
+            setActiveItem={setActiveItem}
           />
         </TwoFlexboxes>
       ) : (
@@ -158,8 +163,10 @@ const BudgetItemTemplate = (props) => {
             </span>
           </div>
           <EventsButtons
-            updateItemBtnClicked={updateItemBtnClicked}
+            index={index}
+            isActiveItem={isActiveItem}
             toggleUpdateItem={toggleUpdateItem}
+            setActiveItem={setActiveItem}
           />
         </TwoFlexboxes>
       )}
@@ -167,8 +174,38 @@ const BudgetItemTemplate = (props) => {
   );
 };
 
+const BudgetItemsList = (props) => {
+  const {
+    item,
+    activeItem,
+    setActiveItem,
+    toggleUpdateItem,
+    itemsGroups,
+  } = props;
+  return item.budgetItems.map((budgetItem, index) => {
+    // console.log('==4497', budgetItem, index);
+    return (
+      <BudgetItemTemplate
+        item={budgetItem}
+        index={index}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        toggleUpdateItem={() => toggleUpdateItem(index)}
+        groupCode={item.code}
+        itemsGroups={itemsGroups}
+      />
+    );
+  });
+};
+
 const BudgetOMaticTemplateTable = (props) => {
-  const { DATASETS, history } = props;
+  const {
+    DATASETS,
+    history,
+    activeItem,
+    setActiveItem,
+    toggleUpdateItem,
+  } = props;
   const [details, setDetails] = useState([]);
   // const [items, setItems] = useState(usersData)
 
@@ -269,14 +306,13 @@ const BudgetOMaticTemplateTable = (props) => {
                             </strong>
                           </p>
                           <p className="text-muted">
-                            {item.budgetItems.map((budgetItem, key) => (
-                              <BudgetItemTemplate
-                                item={budgetItem}
-                                key={key}
-                                groupCode={item.code}
-                                itemsGroups={DATASETS}
-                              />
-                            ))}
+                            <BudgetItemsList
+                              item={item}
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              toggleUpdateItem={toggleUpdateItem}
+                              itemsGroups={DATASETS}
+                            />
                           </p>
                         </CCardBody>
                       </CCollapse>

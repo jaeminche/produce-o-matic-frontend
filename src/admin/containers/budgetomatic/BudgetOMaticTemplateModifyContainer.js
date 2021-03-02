@@ -31,6 +31,12 @@ const BudgetOMaticTemplateModifyContainer = ({
   const dispatch = useDispatch();
   const [filteredCategory, setFilteredCategory] = useState('');
   const [availItemsCodes, setAvailItemsCodes] = useState(null);
+
+  // const toggleUpdateItem = (e) => {
+  //   e.preventDefault();
+  //   setUpdateItemBtnClicked(!updateItemBtnClicked);
+  // };
+
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
 
