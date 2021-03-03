@@ -163,6 +163,7 @@ const initialState = {
     rate: null,
     remark: '',
     tags: null,
+    _id: '',
   },
   listCategoriesError: null,
   addCategorySubmitted: null,

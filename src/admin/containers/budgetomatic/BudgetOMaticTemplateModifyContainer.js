@@ -139,9 +139,12 @@ const BudgetOMaticTemplateModifyContainer = ({
       if (activeTab === 2) {
         console.log('==0002');
         const rates = [];
-        const { code, name, unit, rate, remark, tags } = formUpdateItem;
+        const { code, name, unit, rate, remark, tags, _id } = formUpdateItem;
+        const id = _id;
         rates.push(Number(rate));
-        dispatch(updateItem({ code, name, unit, rate: rates, remark, tags }));
+        dispatch(
+          updateItem({ id, code, name, unit, rate: rates, remark, tags }),
+        );
       } else if (activeTab === 1) {
         const { code, name, category } = formAddGroup;
         dispatch(updateGroup({ code, name, category }));
