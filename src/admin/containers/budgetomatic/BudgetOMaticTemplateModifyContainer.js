@@ -21,9 +21,12 @@ import FormGroups from '../../components/common/FormGroups';
 const BudgetOMaticTemplateModifyContainer = ({
   match,
   history,
+  isActiveItem,
   modifyType = 'add',
   groupCode,
   updateItemTarget,
+  toggleUpdateItem,
+  key,
   children,
 }) => {
   const [error, setError] = useState(null);
@@ -117,7 +120,7 @@ const BudgetOMaticTemplateModifyContainer = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // console.log('==779', e, activeTab, formAddCategory);
+    console.log('==779', e, activeTab, formAddCategory);
     if (modifyType === 'add') {
       if (activeTab === 2) {
         const rates = [];
@@ -132,7 +135,9 @@ const BudgetOMaticTemplateModifyContainer = ({
         dispatch(addCategory({ name, groupsCodes }));
       }
     } else if (modifyType === 'update') {
+      console.log('==0001');
       if (activeTab === 2) {
+        console.log('==0002');
         const rates = [];
         const { code, name, unit, rate, remark, tags } = formUpdateItem;
         rates.push(Number(rate));
@@ -225,6 +230,9 @@ const BudgetOMaticTemplateModifyContainer = ({
 
   return (
     <BudgetOMaticTemplateModify
+      key={key}
+      toggleUpdateItem={toggleUpdateItem}
+      isActiveItem={isActiveItem}
       modifyType={modifyType}
       groupCode={groupCode}
       updateItemTarget={updateItemTarget}

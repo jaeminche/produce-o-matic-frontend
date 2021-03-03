@@ -109,19 +109,14 @@ const BudgetItemTemplate = (props) => {
   return (
     <div style={{ marginBottom: '10px' }} className={'hover'} key={index}>
       {isActiveItem ? (
-        <TwoFlexboxes>
-          <BudgetOMaticTemplateModifyContainer
-            modifyType={'update'}
-            groupCode={groupCode}
-            updateItemTarget={item}
-          />
-          <EventsButtons
-            index={index}
-            groupCode={groupCode}
-            isActiveItem={isActiveItem}
-            toggleUpdateItem={toggleUpdateItem}
-          />
-        </TwoFlexboxes>
+        <BudgetOMaticTemplateModifyContainer
+          modifyType={'update'}
+          toggleUpdateItem={toggleUpdateItem}
+          isActiveItem={isActiveItem}
+          groupCode={groupCode}
+          updateItemTarget={item}
+          key={index}
+        />
       ) : (
         <TwoFlexboxes>
           <div

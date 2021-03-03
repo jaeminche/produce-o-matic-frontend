@@ -16,6 +16,7 @@ import {
 import CIcon from '@coreui/icons-react';
 import styled from 'styled-components/macro';
 import FormGroups from './common/FormGroups';
+import EventsButtons from '../components/common/EventsButtons';
 
 const StyledWrapper = styled.div`
   .tab-description {
@@ -24,8 +25,17 @@ const StyledWrapper = styled.div`
   }
 `;
 
+const TwoFlexboxes = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+`;
+
 const BudgetOMaticTemplateModify = (props) => {
   const {
+    key,
+    isActiveItem,
+    toggleUpdateItem,
     modifyType,
     groupCode,
     updateItemTarget,
@@ -53,28 +63,37 @@ const BudgetOMaticTemplateModify = (props) => {
 
   // const categories = {data: [{id: }]}
   return modifyType === 'update' ? (
-    <CForm
-      action=""
-      method="post"
-      encType="multipart/form-data"
-      className="form-horizontal"
-      style={{ marginRight: '15px' }}
-    >
-      <FormGroups
-        modifyType={modifyType}
+    <TwoFlexboxes>
+      <CForm
+        action=""
+        method="post"
+        encType="multipart/form-data"
+        className="form-horizontal"
+        style={{ marginRight: '15px' }}
+      >
+        <FormGroups
+          modifyType={modifyType}
+          groupCode={groupCode}
+          updateItemTarget={updateItemTarget}
+          children={children}
+          filteredCategory={filteredCategory}
+          itemsGroups={itemsGroups}
+          tabTitle={tabTitle}
+          activeTab={activeTab}
+          availItemsCodes={availItemsCodes}
+          onChange={onChange}
+          handleOnSelect={handleOnSelect}
+          form={form}
+        />
+      </CForm>
+      <EventsButtons
+        index={key}
         groupCode={groupCode}
-        updateItemTarget={updateItemTarget}
-        children={children}
-        filteredCategory={filteredCategory}
-        itemsGroups={itemsGroups}
-        tabTitle={tabTitle}
-        activeTab={activeTab}
-        availItemsCodes={availItemsCodes}
-        onChange={onChange}
-        handleOnSelect={handleOnSelect}
-        form={form}
+        isActiveItem={isActiveItem}
+        toggleUpdateItem={toggleUpdateItem}
+        onSubmit={onSubmit}
       />
-    </CForm>
+    </TwoFlexboxes>
   ) : (
     <StyledWrapper>
       <CCard>
