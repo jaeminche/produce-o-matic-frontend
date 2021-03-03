@@ -76,11 +76,11 @@ const fields = [
 ];
 
 const EventsButtons = (props) => {
-  const { isActiveItem, toggleUpdateItem, code, index } = props;
+  const { isActiveItem, toggleUpdateItem, code, index, onSubmit } = props;
   return (
     <div className={'flexRow buttonHeight'}>
       {isActiveItem && (
-        <CButton size="sm" color="warning">
+        <CButton size="sm" color="warning" onClick={onSubmit}>
           SUBMIT
         </CButton>
       )}
@@ -184,7 +184,7 @@ const BudgetItemsList = (props) => {
 };
 
 const BudgetOMaticTemplateTable = (props) => {
-  const { DATASETS, history, activeItem, toggleUpdateItem } = props;
+  const { DATASETS, history, activeItem, toggleUpdateItem, onSubmit } = props;
   const [details, setDetails] = useState([]);
 
   const toggleDetails = (index) => {
@@ -288,6 +288,7 @@ const BudgetOMaticTemplateTable = (props) => {
                               item={item}
                               activeItem={activeItem}
                               toggleUpdateItem={toggleUpdateItem}
+                              onSubmit={onSubmit}
                             />
                           </p>
                         </CCardBody>
