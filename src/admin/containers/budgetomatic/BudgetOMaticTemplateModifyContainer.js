@@ -243,6 +243,28 @@ const BudgetOMaticTemplateModifyContainer = ({
     }
   }, [updateItemSubmitted]);
 
+  useEffect(() => {
+    if (
+      addCategoryError ||
+      addGroupError ||
+      addItemError ||
+      updateCategoryError ||
+      updateGroupError ||
+      updateItemError
+    ) {
+      const errorMsg = 'Something went wrong. Consult your developer';
+      myToast(errorMsg);
+      setError(errorMsg);
+    }
+  }, [
+    addCategoryError,
+    addGroupError,
+    addItemError,
+    updateCategoryError,
+    updateGroupError,
+    updateItemError,
+  ]);
+
   return (
     <BudgetOMaticTemplateModify
       key={key}

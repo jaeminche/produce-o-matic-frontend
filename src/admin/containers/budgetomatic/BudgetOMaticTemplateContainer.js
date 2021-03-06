@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useHistory } from 'react-router-dom';
 import { listItemsGroups } from '../../../modules/itemsGroups';
 import BudgetOMaticTemplate from '../../components/BudgetOMaticTemplate';
+import { myToast } from '../../../lib/util/myToast';
 
 const BudgetOMaticTemplateContainer = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ const BudgetOMaticTemplateContainer = () => {
     dispatch(listItemsGroups());
   }, []);
 
+  useEffect(() => {
+    if (error) myToast('Something went wrong. Consult your developer');
+  }, [error]);
   return (
     <BudgetOMaticTemplate
       DATASETS={DATASETS}
