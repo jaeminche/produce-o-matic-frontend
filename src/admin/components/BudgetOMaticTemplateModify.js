@@ -15,7 +15,7 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import styled from 'styled-components/macro';
-import FormGroups from './common/FormGroups';
+import { GetOneFormGroup, FormGroups } from './common/FormGroups';
 import EventsButtons from '../components/common/EventsButtons';
 
 const StyledWrapper = styled.div`
@@ -63,37 +63,41 @@ const BudgetOMaticTemplateModify = (props) => {
 
   // const categories = {data: [{id: }]}
   return modifyType === 'update' ? (
-    <TwoFlexboxes>
-      <CForm
-        action=""
-        method="post"
-        encType="multipart/form-data"
-        className="form-horizontal"
-        style={{ marginRight: '15px' }}
-      >
-        <FormGroups
-          modifyType={modifyType}
+    activeTab === 2 ? (
+      <TwoFlexboxes>
+        <CForm
+          action=""
+          method="post"
+          encType="multipart/form-data"
+          className="form-horizontal"
+          style={{ marginRight: '15px' }}
+        >
+          <FormGroups
+            modifyType={modifyType}
+            groupCode={groupCode}
+            updateItemTarget={updateItemTarget}
+            children={children}
+            filteredCategory={filteredCategory}
+            itemsGroups={itemsGroups}
+            tabTitle={tabTitle}
+            activeTab={activeTab}
+            availItemsCodes={availItemsCodes}
+            onChange={onChange}
+            handleOnSelect={handleOnSelect}
+            form={form}
+          />
+        </CForm>
+        <EventsButtons
+          index={key}
           groupCode={groupCode}
-          updateItemTarget={updateItemTarget}
-          children={children}
-          filteredCategory={filteredCategory}
-          itemsGroups={itemsGroups}
-          tabTitle={tabTitle}
-          activeTab={activeTab}
-          availItemsCodes={availItemsCodes}
-          onChange={onChange}
-          handleOnSelect={handleOnSelect}
-          form={form}
+          isActiveItem={isActiveItem}
+          toggleUpdateItem={toggleUpdateItem}
+          onSubmit={onSubmit}
         />
-      </CForm>
-      <EventsButtons
-        index={key}
-        groupCode={groupCode}
-        isActiveItem={isActiveItem}
-        toggleUpdateItem={toggleUpdateItem}
-        onSubmit={onSubmit}
-      />
-    </TwoFlexboxes>
+      </TwoFlexboxes>
+    ) : activeTab === 1 ? (
+      <GetOneFormGroup />
+    ) : null
   ) : (
     <StyledWrapper>
       <CCard>

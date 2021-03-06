@@ -9,11 +9,15 @@ import {
   CRow,
   CCollapse,
   CButton,
+  CFormGroup,
+  CLabel,
+  CInput,
 } from '@coreui/react';
+import Select from 'react-select';
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
 import { AddCategory, SpacerInRow } from '../../reusable';
-import FormGroups from '../common/FormGroups';
+import { GetOneFormGroup } from '../common/FormGroups';
 import BudgetOMaticTemplateModifyContainer from '../../containers/budgetomatic/BudgetOMaticTemplateModifyContainer';
 
 const StyledWrapper = styled.div`
@@ -77,6 +81,7 @@ const fields = [
 
 const EventsButtons = (props) => {
   const { isActiveItem, toggleUpdateItem, code, index, onSubmit } = props;
+  console.log('==911', code, index, toggleUpdateItem);
   return (
     <div className={'flexRow buttonHeight'}>
       {isActiveItem && (
@@ -179,9 +184,21 @@ const BudgetItemsList = (props) => {
 };
 
 const BudgetOMaticTemplateTable = (props) => {
-  const { DATASETS, history, activeItem, toggleUpdateItem, onSubmit } = props;
-  const [details, setDetails] = useState([]);
-
+  const {
+    DATASETS,
+    details,
+    setDetails,
+    toggleUpdateGroup,
+    activeItem,
+    toggleUpdateItem,
+    onSubmit,
+    form,
+    itemsGroups,
+    filteredCategory,
+    handleOnSelect,
+    activeGroup,
+    setActiveGroup,
+  } = props;
   const toggleDetails = (index) => {
     const position = details.indexOf(index);
     let newDetails = details.slice();
@@ -192,6 +209,12 @@ const BudgetOMaticTemplateTable = (props) => {
     }
     setDetails(newDetails);
   };
+
+  useEffect(() => {
+    if (details.length > 0) console.log('==980', details);
+    if (activeGroup) console.log('==981', activeGroup);
+  }, [details, activeGroup]);
+
   return (
     <StyledWrapper>
       <CRow>
@@ -210,9 +233,7 @@ const BudgetOMaticTemplateTable = (props) => {
                 hover
                 sorter
                 pagination
-                onRowClick={(item, index) => {
-                  // toggleDetails(index);
-                }}
+                onRowClick={(item, index) => {}}
                 scopedSlots={{
                   status: (item) => (
                     <td>
@@ -221,7 +242,31 @@ const BudgetOMaticTemplateTable = (props) => {
                       </CBadge>
                     </td>
                   ),
-                  modify_group: (item, index) => {
+                  code: (group) => {
+                    // console.log('===301', group, activeGroup);
+                    const isActiveGroup =
+                      activeGroup &&
+                      activeGroup.code === group.code &&
+                      activeGroup.open;
+                    isActiveGroup &&
+                      console.log('==312', activeGroup, GetOneFormGroup);
+                    return isActiveGroup ? (
+                      <td>
+                        <GetOneFormGroup
+                          target="CodeInputFormGroupForGroupTab"
+                          updateBtnClicked={true}
+                          form={form}
+                          itemsGroups={itemsGroups}
+                          filteredCategory={filteredCategory}
+                          handleOnSelect={handleOnSelect}
+                          updateGroupTarget={activeGroup}
+                        />
+                      </td>
+                    ) : (
+                      <td>{group.code}</td>
+                    );
+                  },
+                  modify_group: (group, index) => {
                     return (
                       <>
                         <td className="py-2">
@@ -232,9 +277,7 @@ const BudgetOMaticTemplateTable = (props) => {
                             size="sm"
                             style={{ width: 'max-content' }}
                             onClick={() => {
-                              history.push(
-                                `/firstavenue/budgetomatic-page/templates/${item._id}`,
-                              );
+                              toggleUpdateGroup(group);
                             }}
                           >
                             Update GROUP

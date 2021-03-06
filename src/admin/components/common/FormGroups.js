@@ -274,7 +274,7 @@ const CodeInputFormGroupForGroupTab = ({
   filteredCategory,
   handleOnSelect,
 }) => {
-  // console.log('==1, filteredCategory', filteredCategory);
+  console.log('==1, filteredCategory', filteredCategory);
   // console.log('==990 filteredCategory', filteredCategory);
   const groupsCodes = filteredCategory && filteredCategory.groupsCodes;
 
@@ -353,6 +353,13 @@ const CodeInputFormGroupForItemTab = ({
   );
 };
 
+const GetOneFormGroup = (props) => {
+  const { target, ...rest } = props;
+  const dic = {
+    CodeInputFormGroupForGroupTab: <CodeInputFormGroupForGroupTab {...rest} />,
+  };
+  return dic[target];
+};
 const FormGroups = ({
   modifyType,
   updateItemTarget,
@@ -473,4 +480,4 @@ const FormGroups = ({
   return setGroups[activeTab];
 };
 
-export default FormGroups;
+export { GetOneFormGroup, FormGroups };

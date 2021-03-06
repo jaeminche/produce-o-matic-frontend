@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
+import BudgetOMaticTemplateTable from '../../components/tables/BudgetOMaticTemplateTable';
 import { listItemsGroups } from '../../../modules/itemsGroups';
 import {
   changeField,
@@ -16,19 +17,23 @@ import {
 } from '../../../modules/admin';
 import BudgetOMaticTemplateModify from '../../components/BudgetOMaticTemplateModify';
 import { myToast } from '../../../lib/util/myToast';
-import FormGroups from '../../components/common/FormGroups';
+import { FormGroups } from '../../components/common/FormGroups';
 
-const BudgetOMaticTemplateModifyContainer = ({
-  match,
-  history,
-  isActiveItem,
-  modifyType = 'add',
-  groupCode,
-  updateItemTarget,
-  toggleUpdateItem,
-  key,
-  children,
-}) => {
+const BudgetOMaticTemplateModifyContainer = (props) => {
+  const {
+    match,
+    history,
+    isActiveItem,
+    modifyType = 'add',
+    hasActiveGroup = false,
+    activeGroup,
+    groupCode,
+    updateItemTarget,
+    toggleUpdateItem,
+    key,
+    children,
+    ...rest
+  } = props;
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(2);
   const dispatch = useDispatch();
@@ -265,7 +270,17 @@ const BudgetOMaticTemplateModifyContainer = ({
     updateItemError,
   ]);
 
-  return (
+  return hasActiveGroup ? (
+    <BudgetOMaticTemplateTable
+      form={modifyType === 'add' ? formAddGroup : formUpdateGroup}
+      itemsGroups={itemsGroups}
+      filteredCategory={filteredCategory}
+      handleOnSelect={handleOnSelect}
+      activeGroup={activeGroup}
+      toggleUpdateItem={toggleUpdateItem}
+      {...rest}
+    />
+  ) : (
     <BudgetOMaticTemplateModify
       key={key}
       toggleUpdateItem={toggleUpdateItem}
