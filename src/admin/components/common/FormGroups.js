@@ -52,7 +52,7 @@ const NameInputFormGroup = ({
   return (
     <CFormGroup
       row={!updateBtnClicked}
-      style={updateBtnClicked ? { width: '150px' } : null}
+      style={updateBtnClicked ? { width: '170px' } : null}
     >
       {!updateBtnClicked && (
         <CCol md="3">
@@ -173,7 +173,7 @@ const CategorySelectFormGroup = ({
   return (
     <CFormGroup
       row={!updateBtnClicked}
-      style={updateBtnClicked ? { maxWidth: '100px' } : null}
+      style={updateBtnClicked ? { maxWidth: '120px' } : null}
     >
       {!updateBtnClicked && (
         <CCol md="3">
@@ -307,7 +307,7 @@ const CodeInputFormGroupForGroupTab = ({
   return (
     <CFormGroup
       row={!updateBtnClicked}
-      style={updateBtnClicked ? { maxWidth: '100px' } : null}
+      style={updateBtnClicked ? { maxWidth: '120px' } : null}
     >
       {!updateBtnClicked && (
         <CCol md="3">
@@ -498,4 +498,4 @@ const FormGroups = ({
   return setGroups[activeTab];
 };
 
-export { GetOneFormGroup, FormGroups };
+export { maxWidth, minWidth, width, GetOneFormGroup, FormGroups };

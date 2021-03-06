@@ -17,7 +17,12 @@ import Select from 'react-select';
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
 import { AddCategory, SpacerInRow } from '../../reusable';
-import { GetOneFormGroup } from '../common/FormGroups';
+import {
+  maxWidth,
+  minWidth,
+  width,
+  GetOneFormGroup,
+} from '../common/FormGroups';
 import BudgetOMaticTemplateModifyContainer from '../../containers/budgetomatic/BudgetOMaticTemplateModifyContainer';
 
 const StyledWrapper = styled.div`
@@ -37,6 +42,10 @@ const StyledWrapper = styled.div`
       color: ${palette.budgetomatic.text[1]};
     }
   }
+`;
+
+const StyledFormGroups = styled.div`
+  margin-left: -15px;
 `;
 
 const TwoFlexboxes = styled.div`
@@ -250,15 +259,17 @@ const BudgetOMaticTemplateTable = (props) => {
                       activeGroup.open;
                     return isActiveGroup ? (
                       <td>
-                        <GetOneFormGroup
-                          target="CodeInputFormGroupForGroupTab"
-                          updateBtnClicked
-                          form={form}
-                          itemsGroups={itemsGroups}
-                          filteredCategory={filteredCategory}
-                          handleOnSelect={handleOnSelect}
-                          updateGroupTarget={activeGroup}
-                        />
+                        <StyledFormGroups>
+                          <GetOneFormGroup
+                            target="CodeInputFormGroupForGroupTab"
+                            updateBtnClicked
+                            form={form}
+                            itemsGroups={itemsGroups}
+                            filteredCategory={filteredCategory}
+                            handleOnSelect={handleOnSelect}
+                            updateGroupTarget={activeGroup}
+                          />
+                        </StyledFormGroups>
                       </td>
                     ) : (
                       <td>{group.code}</td>
@@ -272,16 +283,18 @@ const BudgetOMaticTemplateTable = (props) => {
                       activeGroup.open;
                     return isActiveGroup ? (
                       <td>
-                        <GetOneFormGroup
-                          target="CategorySelectFormGroup"
-                          updateBtnClicked
-                          form={form}
-                          itemsGroups={itemsGroups}
-                          filteredCategory={filteredCategory}
-                          handleOnSelect={handleOnSelect}
-                          updateGroupTarget={activeGroup}
-                          categoriesList={categoriesList}
-                        />
+                        <StyledFormGroups>
+                          <GetOneFormGroup
+                            target="CategorySelectFormGroup"
+                            updateBtnClicked
+                            form={form}
+                            itemsGroups={itemsGroups}
+                            filteredCategory={filteredCategory}
+                            handleOnSelect={handleOnSelect}
+                            updateGroupTarget={activeGroup}
+                            categoriesList={categoriesList}
+                          />
+                        </StyledFormGroups>
                       </td>
                     ) : (
                       <td>{group.category}</td>
@@ -295,15 +308,17 @@ const BudgetOMaticTemplateTable = (props) => {
                       activeGroup.open;
                     return isActiveGroup ? (
                       <td>
-                        <GetOneFormGroup
-                          target="NameInputFormGroup"
-                          updateBtnClicked
-                          form={form}
-                          itemsGroups={itemsGroups}
-                          filteredCategory={filteredCategory}
-                          handleOnSelect={handleOnSelect}
-                          updateGroupTarget={activeGroup}
-                        />
+                        <StyledFormGroups>
+                          <GetOneFormGroup
+                            target="NameInputFormGroup"
+                            updateBtnClicked
+                            form={form}
+                            itemsGroups={itemsGroups}
+                            filteredCategory={filteredCategory}
+                            handleOnSelect={handleOnSelect}
+                            updateGroupTarget={activeGroup}
+                          />
+                        </StyledFormGroups>
                       </td>
                     ) : (
                       <td>{group.name}</td>
