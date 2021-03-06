@@ -226,10 +226,22 @@ const BudgetOMaticTemplateModifyContainer = ({
 
   useEffect(() => {
     if (addCategorySubmitted) {
-      myToast('저장되었습니다');
+      myToast('제출 성공. 카테고리 1개가 추가되었습니다.');
       dispatch(initializeForm('addCategory'));
     }
   }, [addCategorySubmitted]);
+
+  useEffect(() => {
+    if (updateItemSubmitted && updateItemSubmitted.code) {
+      myToast(
+        `제출 성공. 템플릿의 아이템 코드 ${updateItemSubmitted.code}가 업데이트되었습니다.`,
+      );
+      // ? initialize forms and refresh the list
+      dispatch(initializeForm('updateItemSubmitted'));
+      toggleUpdateItem(groupCode, key);
+      dispatch(listItemsGroups());
+    }
+  }, [updateItemSubmitted]);
 
   return (
     <BudgetOMaticTemplateModify
