@@ -81,7 +81,7 @@ const fields = [
 
 const EventsButtons = (props) => {
   const { isActiveItem, toggleUpdateItem, code, index, onSubmit } = props;
-  console.log('==911', code, index, toggleUpdateItem);
+  // console.log('==911', code, index, toggleUpdateItem);
   return (
     <div className={'flexRow buttonHeight'}>
       {isActiveItem && (
@@ -210,10 +210,10 @@ const BudgetOMaticTemplateTable = (props) => {
     setDetails(newDetails);
   };
 
-  useEffect(() => {
-    if (details.length > 0) console.log('==980', details);
-    if (activeGroup) console.log('==981', activeGroup);
-  }, [details, activeGroup]);
+  // useEffect(() => {
+  //   if (details.length > 0) console.log('==980', details);
+  //   if (activeGroup) console.log('==981', activeGroup);
+  // }, [details, activeGroup]);
 
   return (
     <StyledWrapper>
@@ -248,8 +248,6 @@ const BudgetOMaticTemplateTable = (props) => {
                       activeGroup &&
                       activeGroup.code === group.code &&
                       activeGroup.open;
-                    isActiveGroup &&
-                      console.log('==312', activeGroup, GetOneFormGroup);
                     return isActiveGroup ? (
                       <td>
                         <GetOneFormGroup
