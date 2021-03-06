@@ -197,7 +197,7 @@ const BudgetOMaticTemplateTable = (props) => {
     filteredCategory,
     handleOnSelect,
     activeGroup,
-    setActiveGroup,
+    categoriesList,
   } = props;
   const toggleDetails = (index) => {
     const position = details.indexOf(index);
@@ -252,7 +252,7 @@ const BudgetOMaticTemplateTable = (props) => {
                       <td>
                         <GetOneFormGroup
                           target="CodeInputFormGroupForGroupTab"
-                          updateBtnClicked={true}
+                          updateBtnClicked
                           form={form}
                           itemsGroups={itemsGroups}
                           filteredCategory={filteredCategory}
@@ -262,6 +262,51 @@ const BudgetOMaticTemplateTable = (props) => {
                       </td>
                     ) : (
                       <td>{group.code}</td>
+                    );
+                  },
+                  category: (group) => {
+                    // console.log('===301', group, activeGroup);
+                    const isActiveGroup =
+                      activeGroup &&
+                      activeGroup.code === group.code &&
+                      activeGroup.open;
+                    return isActiveGroup ? (
+                      <td>
+                        <GetOneFormGroup
+                          target="CategorySelectFormGroup"
+                          updateBtnClicked
+                          form={form}
+                          itemsGroups={itemsGroups}
+                          filteredCategory={filteredCategory}
+                          handleOnSelect={handleOnSelect}
+                          updateGroupTarget={activeGroup}
+                          categoriesList={categoriesList}
+                        />
+                      </td>
+                    ) : (
+                      <td>{group.category}</td>
+                    );
+                  },
+                  name: (group) => {
+                    // console.log('===301', group, activeGroup);
+                    const isActiveGroup =
+                      activeGroup &&
+                      activeGroup.code === group.code &&
+                      activeGroup.open;
+                    return isActiveGroup ? (
+                      <td>
+                        <GetOneFormGroup
+                          target="NameInputFormGroup"
+                          updateBtnClicked
+                          form={form}
+                          itemsGroups={itemsGroups}
+                          filteredCategory={filteredCategory}
+                          handleOnSelect={handleOnSelect}
+                          updateGroupTarget={activeGroup}
+                        />
+                      </td>
+                    ) : (
+                      <td>{group.name}</td>
                     );
                   },
                   modify_group: (group, index) => {

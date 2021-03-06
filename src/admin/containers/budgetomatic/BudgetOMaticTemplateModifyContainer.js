@@ -35,7 +35,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     ...rest
   } = props;
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState(2);
+  const [activeTab, setActiveTab] = useState(hasActiveGroup ? 1 : 2);
   const dispatch = useDispatch();
   const [filteredCategory, setFilteredCategory] = useState('');
   const [availItemsCodes, setAvailItemsCodes] = useState(null);
@@ -161,6 +161,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
   };
 
   useEffect(() => {
+    console.log('==299', activeTab);
     if (modifyType === 'add') {
       // * 페이지 초기 로드나, add 페이지에서 사용자가 activeTab을 선택할 때마다 모든 폼 초기화
       dispatch(initializeForm('addCategory'));
@@ -277,6 +278,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       filteredCategory={filteredCategory}
       handleOnSelect={handleOnSelect}
       activeGroup={activeGroup}
+      categoriesList={categoriesList}
       toggleUpdateItem={toggleUpdateItem}
       {...rest}
     />

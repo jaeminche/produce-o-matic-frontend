@@ -162,6 +162,7 @@ const CategorySelectFormGroup = ({
   categoriesList,
   handleOnSelect,
 }) => {
+  console.log('==933', categoriesList);
   const options =
     categoriesList &&
     categoriesList.length > 0 &&
@@ -174,11 +175,16 @@ const CategorySelectFormGroup = ({
       row={!updateBtnClicked}
       style={updateBtnClicked ? { maxWidth: '100px' } : null}
     >
-      <CCol md="3">
-        <CLabel htmlFor="text-input">{`소속 카테고리명`}</CLabel>
-      </CCol>
+      {!updateBtnClicked && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`소속 카테고리명`}</CLabel>
+        </CCol>
+      )}
       <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <Select
+          defaultValue={
+            defaultValue && { label: defaultValue, value: defaultValue }
+          }
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'category' })}
           placeholder={'어느 카테고리의 그룹을 추가하실 건가요?'}
@@ -303,12 +309,17 @@ const CodeInputFormGroupForGroupTab = ({
       row={!updateBtnClicked}
       style={updateBtnClicked ? { maxWidth: '100px' } : null}
     >
-      <CCol md="3">
-        <CLabel htmlFor="text-input">{`사용할 그룹 코드`}</CLabel>
-      </CCol>
+      {!updateBtnClicked && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`사용할 그룹 코드`}</CLabel>
+        </CCol>
+      )}
       <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
         <Select
-          options={filteredCategory && options}
+          defaultValue={
+            defaultValue && { label: defaultValue, value: defaultValue }
+          }
+          options={availGroupsCodes && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
           placeholder={
             '사용가능한 그룹 코드들 중, 카테고리/그룹을 고려하여 하나를 선택'
@@ -354,9 +365,16 @@ const CodeInputFormGroupForItemTab = ({
 };
 
 const GetOneFormGroup = (props) => {
-  const { target, ...rest } = props;
+  const { target, updateGroupTarget, ...rest } = props;
+  const { code, name, category } = updateGroupTarget;
   const dic = {
-    CodeInputFormGroupForGroupTab: <CodeInputFormGroupForGroupTab {...rest} />,
+    CodeInputFormGroupForGroupTab: (
+      <CodeInputFormGroupForGroupTab {...rest} defaultValue={code} />
+    ),
+    CategorySelectFormGroup: (
+      <CategorySelectFormGroup {...rest} defaultValue={category} />
+    ),
+    NameInputFormGroup: <NameInputFormGroup {...rest} defaultValue={name} />,
   };
   return dic[target];
 };
