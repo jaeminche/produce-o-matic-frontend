@@ -84,7 +84,8 @@ export const updateCategory = createAction(
 );
 export const updateGroup = createAction(
   UPDATEGROUP,
-  ({ code, name, category }) => ({
+  ({ id, code, name, category }) => ({
+    id,
     code,
     name,
     category,
@@ -155,6 +156,7 @@ const initialState = {
     code: null,
     name: '',
     category: '',
+    _id: '',
   },
   updateItem: {
     code: null,
