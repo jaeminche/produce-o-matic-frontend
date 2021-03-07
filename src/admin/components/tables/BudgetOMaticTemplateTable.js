@@ -314,11 +314,11 @@ const BudgetOMaticTemplateTable = (props) => {
                       <>
                         <td className="py-2">
                           <CButton
-                            color="primary"
+                            color="warning"
                             variant="outline"
                             shape="square"
                             size="sm"
-                            style={{ width: 'max-content' }}
+                            style={{ width: 'max-content', float: 'right' }}
                             onClick={() => {
                               toggleUpdateGroup(group);
                             }}
@@ -345,7 +345,7 @@ const BudgetOMaticTemplateTable = (props) => {
                               toggleUpdateGroup(group);
                             }}
                           >
-                            Update GROUP
+                            {isActiveGroup(group) ? 'Cancel' : 'Update Group'}
                           </CButton>
                         </td>
                       </>
