@@ -320,7 +320,7 @@ const BudgetOMaticTemplateTable = (props) => {
                             size="sm"
                             style={{ width: 'max-content', float: 'right' }}
                             onClick={() => {
-                              toggleUpdateGroup(group);
+                              onSubmit();
                             }}
                           >
                             Submit
