@@ -17,25 +17,14 @@ import Select from 'react-select';
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
 import { AddCategory, SpacerInRow } from '../../reusable';
-import {
-  maxWidth,
-  minWidth,
-  width,
-  GetOneFormGroup,
-} from '../common/FormGroups';
+import { GetOneFormGroup } from '../common/FormGroups';
 import BudgetOMaticTemplateModifyContainer from '../../containers/budgetomatic/BudgetOMaticTemplateModifyContainer';
+import EventsButtons from '../common/EventsButtons';
 
 const StyledWrapper = styled.div`
   max-width: 1100px;
   .floatRight {
     float: right;
-  }
-  .flexRow {
-    display: flex;
-    flex-direction: row;
-  }
-  .buttonHeight {
-    height: 27.6px;
   }
   .hover {
     &:hover {
@@ -73,7 +62,14 @@ const fields = [
   'category',
   'name',
   {
-    key: 'modify_group',
+    key: 'submit_update_group',
+    label: '',
+    _style: { width: '1%' },
+    sorter: false,
+    filter: false,
+  },
+  {
+    key: 'update_group',
     label: '',
     _style: { width: '1%' },
     sorter: false,
@@ -88,30 +84,30 @@ const fields = [
   },
 ];
 
-const EventsButtons = (props) => {
-  const { isActiveItem, toggleUpdateItem, code, index, onSubmit } = props;
-  // console.log('==911', code, index, toggleUpdateItem);
-  return (
-    <div className={'flexRow buttonHeight'}>
-      {isActiveItem && (
-        <CButton size="sm" color="warning" onClick={onSubmit}>
-          SUBMIT
-        </CButton>
-      )}
-      <CButton
-        size="sm"
-        color="info"
-        className="ml-1"
-        onClick={() => toggleUpdateItem(code, index)}
-      >
-        {isActiveItem ? 'Cancel' : 'Update'}
-      </CButton>
-      <CButton size="sm" color="danger" className="ml-1">
-        Delete
-      </CButton>
-    </div>
-  );
-};
+// const EventsButtons = (props) => {
+//   const { isActiveItem, toggleUpdateItem, code, index, onSubmit } = props;
+//   // console.log('==911', code, index, toggleUpdateItem);
+//   return (
+//     <div className={'flexRow buttonHeight'}>
+//       {isActiveItem && (
+//         <CButton size="sm" color="warning" onClick={onSubmit}>
+//           SUBMIT
+//         </CButton>
+//       )}
+//       <CButton
+//         size="sm"
+//         color="info"
+//         className="ml-1"
+//         onClick={() => toggleUpdateItem(code, index)}
+//       >
+//         {isActiveItem ? 'Cancel' : 'Update'}
+//       </CButton>
+//       <CButton size="sm" color="danger" className="ml-1">
+//         Delete
+//       </CButton>
+//     </div>
+//   );
+// };
 
 const BudgetItemTemplate = (props) => {
   const { item, index, groupCode, activeItem, toggleUpdateItem } = props;
@@ -219,6 +215,10 @@ const BudgetOMaticTemplateTable = (props) => {
     setDetails(newDetails);
   };
 
+  function isActiveGroup(group) {
+    return activeGroup && activeGroup.code === group.code && activeGroup.open;
+  }
+
   // useEffect(() => {
   //   if (details.length > 0) console.log('==980', details);
   //   if (activeGroup) console.log('==981', activeGroup);
@@ -252,12 +252,7 @@ const BudgetOMaticTemplateTable = (props) => {
                     </td>
                   ),
                   code: (group) => {
-                    // console.log('===301', group, activeGroup);
-                    const isActiveGroup =
-                      activeGroup &&
-                      activeGroup.code === group.code &&
-                      activeGroup.open;
-                    return isActiveGroup ? (
+                    return isActiveGroup(group) ? (
                       <td>
                         <StyledFormGroups>
                           <GetOneFormGroup
@@ -276,12 +271,7 @@ const BudgetOMaticTemplateTable = (props) => {
                     );
                   },
                   category: (group) => {
-                    // console.log('===301', group, activeGroup);
-                    const isActiveGroup =
-                      activeGroup &&
-                      activeGroup.code === group.code &&
-                      activeGroup.open;
-                    return isActiveGroup ? (
+                    return isActiveGroup(group) ? (
                       <td>
                         <StyledFormGroups>
                           <GetOneFormGroup
@@ -301,12 +291,7 @@ const BudgetOMaticTemplateTable = (props) => {
                     );
                   },
                   name: (group) => {
-                    // console.log('===301', group, activeGroup);
-                    const isActiveGroup =
-                      activeGroup &&
-                      activeGroup.code === group.code &&
-                      activeGroup.open;
-                    return isActiveGroup ? (
+                    return isActiveGroup(group) ? (
                       <td>
                         <StyledFormGroups>
                           <GetOneFormGroup
@@ -324,7 +309,29 @@ const BudgetOMaticTemplateTable = (props) => {
                       <td>{group.name}</td>
                     );
                   },
-                  modify_group: (group, index) => {
+                  submit_update_group: (group, index) => {
+                    return isActiveGroup(group) ? (
+                      <>
+                        <td className="py-2">
+                          <CButton
+                            color="primary"
+                            variant="outline"
+                            shape="square"
+                            size="sm"
+                            style={{ width: 'max-content' }}
+                            onClick={() => {
+                              toggleUpdateGroup(group);
+                            }}
+                          >
+                            Submit
+                          </CButton>
+                        </td>
+                      </>
+                    ) : (
+                      <></>
+                    );
+                  },
+                  update_group: (group, index) => {
                     return (
                       <>
                         <td className="py-2">
