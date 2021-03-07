@@ -262,7 +262,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       // toggleUpdateCategory?();
     }
     dispatch(listItemsGroups());
-  }, [updateItemSubmitted]);
+  }, [updateItemSubmitted, updateGroupSubmitted, updateCategorySubmitted]);
 
   useEffect(() => {
     if (
