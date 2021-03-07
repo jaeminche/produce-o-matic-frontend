@@ -227,8 +227,19 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
           }),
         );
       }
+    } else if (activeGroup) {
+      console.log('==124', activeGroup);
+      for (const [key, value] of Object.entries(activeGroup)) {
+        dispatch(
+          changeField({
+            form: `${modifyType}${activeText[activeTab]}`,
+            key,
+            value,
+          }),
+        );
+      }
     }
-  }, [updateItemTarget]);
+  }, [updateItemTarget, activeGroup]);
 
   useEffect(() => {
     let formType = '';
