@@ -141,9 +141,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
         dispatch(addCategory({ name, groupsCodes }));
       }
     } else if (modifyType === 'update') {
-      console.log('==0001');
       if (activeTab === 2) {
-        console.log('==0002');
         const rates = [];
         const { code, name, unit, rate, remark, tags, _id } = formUpdateItem;
         const id = _id;
@@ -152,8 +150,9 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
           updateItem({ id, code, name, unit, rate: rates, remark, tags }),
         );
       } else if (activeTab === 1) {
-        const { code, name, category } = formUpdateGroup;
-        dispatch(updateGroup({ code, name, category }));
+        const { code, name, category, _id } = formUpdateGroup;
+        const id = _id;
+        dispatch(updateGroup({ id, code, name, category }));
       } else if (activeTab === 0) {
         const { name, groupsCodes } = formUpdateCategory;
         dispatch(updateCategory({ name, groupsCodes }));
@@ -232,11 +231,22 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
   }, [updateItemTarget]);
 
   useEffect(() => {
+    let formType = '';
+    const korText = {
+      addCategory: '카테고리',
+      addGroup: '그룹',
+      addItem: '아이템',
+    };
     if (addCategorySubmitted) {
-      myToast('제출 성공. 카테고리 1개가 추가되었습니다.');
-      dispatch(initializeForm('addCategory'));
+      formType = 'addCategory';
+    } else if (addGroupSubmitted) {
+      formType = 'addGroup';
+    } else if (addItemSubmitted) {
+      formType = 'addItem';
     }
-  }, [addCategorySubmitted]);
+    dispatch(initializeForm(formType));
+    myToast(`제출 성공. ${korText[formType]} 1개가 추가되었습니다.`);
+  }, [addCategorySubmitted, addGroupSubmitted, addItemSubmitted]);
 
   useEffect(() => {
     if (updateItemSubmitted && updateItemSubmitted.code) {
@@ -271,7 +281,8 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       addItemError ||
       updateCategoryError ||
       updateGroupError ||
-      updateItemError
+      updateItemError ||
+      listCategoriesError
     ) {
       const errorMsg = 'Something went wrong. Consult your developer';
       myToast(errorMsg);
@@ -284,6 +295,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     updateCategoryError,
     updateGroupError,
     updateItemError,
+    listCategoriesError,
   ]);
 
   return hasActiveGroup ? (
