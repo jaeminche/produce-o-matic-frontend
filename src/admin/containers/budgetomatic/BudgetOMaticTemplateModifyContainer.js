@@ -29,6 +29,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     activeGroup,
     groupCode,
     updateItemTarget,
+    toggleUpdateGroup,
     toggleUpdateItem,
     key,
     children,
@@ -245,8 +246,22 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       // ? initialize forms and refresh the list
       dispatch(initializeForm('updateItemSubmitted'));
       toggleUpdateItem(groupCode, key);
-      dispatch(listItemsGroups());
+    } else if (updateGroupSubmitted && updateGroupSubmitted.code) {
+      myToast(
+        `제출 성공. 템플릿의 그룹 코드 ${updateGroupSubmitted.code}가 업데이트되었습니다.`,
+      );
+      // ? initialize forms and refresh the list
+      dispatch(initializeForm('updateGroupSubmitted'));
+      toggleUpdateGroup(activeGroup);
+    } else if (updateCategorySubmitted && updateCategorySubmitted.name) {
+      myToast(
+        `제출 성공. 템플릿의 카테고리 이름 ${updateCategorySubmitted.name}가 업데이트되었습니다.`,
+      );
+      // ? initialize forms and refresh the list
+      dispatch(initializeForm('updateCategorySubmitted'));
+      // toggleUpdateCategory?();
     }
+    dispatch(listItemsGroups());
   }, [updateItemSubmitted]);
 
   useEffect(() => {
