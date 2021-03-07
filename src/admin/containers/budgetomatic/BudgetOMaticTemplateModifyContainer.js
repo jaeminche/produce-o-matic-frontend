@@ -244,8 +244,10 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     } else if (addItemSubmitted) {
       formType = 'addItem';
     }
-    dispatch(initializeForm(formType));
-    myToast(`제출 성공. ${korText[formType]} 1개가 추가되었습니다.`);
+    if (addCategorySubmitted || addGroupSubmitted || addItemSubmitted) {
+      dispatch(initializeForm(formType));
+      myToast(`제출 성공. ${korText[formType]} 1개가 추가되었습니다.`);
+    }
   }, [addCategorySubmitted, addGroupSubmitted, addItemSubmitted]);
 
   useEffect(() => {
