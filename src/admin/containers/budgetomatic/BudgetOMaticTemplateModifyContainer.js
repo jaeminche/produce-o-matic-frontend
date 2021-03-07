@@ -151,10 +151,10 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
           updateItem({ id, code, name, unit, rate: rates, remark, tags }),
         );
       } else if (activeTab === 1) {
-        const { code, name, category } = formAddGroup;
+        const { code, name, category } = formUpdateGroup;
         dispatch(updateGroup({ code, name, category }));
       } else if (activeTab === 0) {
-        const { name, groupsCodes } = formAddCategory;
+        const { name, groupsCodes } = formUpdateCategory;
         dispatch(updateCategory({ name, groupsCodes }));
       }
     }
