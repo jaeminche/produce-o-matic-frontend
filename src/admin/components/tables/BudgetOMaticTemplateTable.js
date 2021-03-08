@@ -311,30 +311,31 @@ const BudgetOMaticTemplateTable = (props) => {
                   },
                   submit_update_group: (group, index) => {
                     return isActiveGroup(group) ? (
-                      <>
-                        <td className="py-2">
-                          <CButton
-                            color="warning"
-                            variant="outline"
-                            shape="square"
-                            size="sm"
-                            style={{ width: 'max-content', float: 'right' }}
-                            onClick={() => {
-                              onSubmit();
-                            }}
-                          >
-                            Submit
-                          </CButton>
-                        </td>
-                      </>
+                      <td className="py-2">
+                        <CButton
+                          color="warning"
+                          variant="outline"
+                          shape="square"
+                          size="sm"
+                          style={{ width: 'max-content', float: 'right' }}
+                          onClick={() => {
+                            onSubmit();
+                          }}
+                        >
+                          Submit
+                        </CButton>
+                      </td>
                     ) : (
-                      <></>
+                      <td className="py-2"></td>
                     );
                   },
                   update_group: (group, index) => {
                     return (
                       <>
-                        <td className="py-2">
+                        <td
+                          className="py-2"
+                          style={{ display: 'flex', justifyContent: 'center' }}
+                        >
                           <CButton
                             color="primary"
                             variant="outline"
