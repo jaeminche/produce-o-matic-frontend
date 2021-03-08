@@ -88,7 +88,9 @@ const BudgetOMaticTemplateContainer = () => {
       childrenElement: () => <div />,
       closeOnEscape: true,
       closeOnClickOutside: true,
-      willUnmount: () => {},
+      willUnmount: () => {
+        dispatch(listItemsGroups());
+      },
       afterClose: () => {},
       onClickOutside: () => {},
       onKeypressEscape: () => {},
