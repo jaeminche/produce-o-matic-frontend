@@ -321,12 +321,14 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       handleOnSelect={handleOnSelect}
       activeGroup={activeGroup}
       categoriesList={categoriesList}
+      toggleUpdateGroup={toggleUpdateGroup}
       toggleUpdateItem={toggleUpdateItem}
       {...rest}
     />
   ) : (
     <BudgetOMaticTemplateModify
       key={key}
+      toggleUpdateGroup={toggleUpdateGroup}
       toggleUpdateItem={toggleUpdateItem}
       isActiveItem={isActiveItem}
       modifyType={modifyType}
