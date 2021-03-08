@@ -39,7 +39,6 @@ const BudgetOMaticTemplateModify = (props) => {
     modifyType,
     groupCode,
     updateItemTarget,
-    children,
     activeText,
     activeTab,
     setActiveTab,
@@ -51,6 +50,8 @@ const BudgetOMaticTemplateModify = (props) => {
     availItemsCodes,
     handleOnSelect,
     onSubmit,
+    handleDelete,
+    id,
     error,
     isMobile,
   } = props;
@@ -76,7 +77,6 @@ const BudgetOMaticTemplateModify = (props) => {
             modifyType={modifyType}
             groupCode={groupCode}
             updateItemTarget={updateItemTarget}
-            children={children}
             filteredCategory={filteredCategory}
             itemsGroups={itemsGroups}
             tabTitle={tabTitle}
@@ -88,6 +88,8 @@ const BudgetOMaticTemplateModify = (props) => {
           />
         </CForm>
         <EventsButtons
+          handleDelete={handleDelete}
+          id={id}
           index={key}
           groupCode={groupCode}
           isActiveItem={isActiveItem}

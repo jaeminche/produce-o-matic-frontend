@@ -381,7 +381,6 @@ const GetOneFormGroup = (props) => {
 const FormGroups = ({
   modifyType,
   updateItemTarget,
-  children,
   itemsGroups,
   categoriesList,
   filteredCategory,
@@ -492,7 +491,6 @@ const FormGroups = ({
         type={'multiSelects'}
         handleOnSelect={handleOnSelect}
       />
-      {/* <>{children && children}</> */}
     </StyledFormGroups>,
   ];
   return setGroups[activeTab];

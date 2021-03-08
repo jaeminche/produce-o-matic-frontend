@@ -40,6 +40,21 @@ const [
   UPDATEITEM_SUCCESS,
   UPDATEITEM_FAILURE,
 ] = createRequestActionTypes('admin/UPDATEITEM');
+const [
+  DELETEGROUP,
+  DELETEGROUP_SUCCESS,
+  DELETEGROUP_FAILURE,
+] = createRequestActionTypes('admin/DELETEGROUP');
+const [
+  DELETECATEGORY,
+  DELETECATEGORY_SUCCESS,
+  DELETECATEGORY_FAILURE,
+] = createRequestActionTypes('admin/DELETECATEGORY');
+const [
+  DELETEITEM,
+  DELETEITEM_SUCCESS,
+  DELETEITEM_FAILURE,
+] = createRequestActionTypes('admin/DELETEITEM');
 
 export const changeField = createAction(
   CHANGE_FIELD,
@@ -103,6 +118,9 @@ export const updateItem = createAction(
     tags,
   }),
 );
+export const deleteCategory = createAction(DELETECATEGORY, (id) => id);
+export const deleteGroup = createAction(DELETEGROUP, (id) => id);
+export const deleteItem = createAction(DELETEITEM, (id) => id);
 
 // * Create Sagas
 const listCategoriesSaga = createRequestSaga(
@@ -118,6 +136,12 @@ const updateCategorySaga = createRequestSaga(
 );
 const updateGroupSaga = createRequestSaga(UPDATEGROUP, adminAPI.updateGroup);
 const updateItemSaga = createRequestSaga(UPDATEITEM, adminAPI.updateItem);
+const deleteCategorySaga = createRequestSaga(
+  UPDATECATEGORY,
+  adminAPI.deleteCategory,
+);
+const deleteGroupSaga = createRequestSaga(UPDATEGROUP, adminAPI.deleteGroup);
+const deleteItemSaga = createRequestSaga(UPDATEITEM, adminAPI.deleteItem);
 export function* adminSaga() {
   yield takeLatest(LISTCATEGORIES, listCategoriesSaga);
   yield takeLatest(ADDCATEGORY, addCategorySaga);
@@ -126,6 +150,9 @@ export function* adminSaga() {
   yield takeLatest(UPDATECATEGORY, updateCategorySaga);
   yield takeLatest(UPDATEGROUP, updateGroupSaga);
   yield takeLatest(UPDATEITEM, updateItemSaga);
+  yield takeLatest(DELETECATEGORY, deleteCategorySaga);
+  yield takeLatest(DELETEGROUP, deleteGroupSaga);
+  yield takeLatest(DELETEITEM, deleteItemSaga);
 }
 
 const initialState = {
@@ -180,6 +207,12 @@ const initialState = {
   updateGroupError: null,
   updateItemSubmitted: null,
   updateItemError: null,
+  deleteCategoryCompleted: null,
+  deleteCategoryError: null,
+  deleteGroupCompleted: null,
+  deleteGroupError: null,
+  deleteItemCompleted: null,
+  deleteItemError: null,
 };
 
 const admin = handleActions(
@@ -258,6 +291,36 @@ const admin = handleActions(
     [UPDATEITEM_FAILURE]: (state, { payload: error }) => ({
       ...state,
       updateItemError: error,
+    }),
+    [DELETECATEGORY_SUCCESS]: (
+      state,
+      { payload: deleteCategoryCompleted },
+    ) => ({
+      ...state,
+      deleteCategoryError: null,
+      deleteCategoryCompleted,
+    }),
+    [DELETECATEGORY_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      deleteCategoryError: error,
+    }),
+    [DELETEGROUP_SUCCESS]: (state, { payload: deleteGroupCompleted }) => ({
+      ...state,
+      deleteGroupError: null,
+      deleteGroupCompleted,
+    }),
+    [DELETEGROUP_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      deleteGroupError: error,
+    }),
+    [DELETEITEM_SUCCESS]: (state, { payload: deleteItemCompleted }) => ({
+      ...state,
+      deleteItemError: null,
+      deleteItemCompleted,
+    }),
+    [DELETEITEM_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      deleteItemError: error,
     }),
   },
   initialState,

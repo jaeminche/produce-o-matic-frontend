@@ -5,6 +5,13 @@ import { listItemsGroups } from '../../../modules/itemsGroups';
 import { initializeForm, updateGroup } from '../../../modules/admin';
 import BudgetOMaticTemplate from '../../components/BudgetOMaticTemplate';
 import { myToast } from '../../../lib/util/myToast';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import {
+  deleteItem,
+  deleteGroup,
+  deleteCategory,
+} from '../../../lib/api/admin';
 
 const BudgetOMaticTemplateContainer = () => {
   // todo: 나중에 categories update 할 때 참고.
@@ -37,7 +44,7 @@ const BudgetOMaticTemplateContainer = () => {
     }),
   );
 
-  // *=== MODIFY GROUP starts ===
+  // *=== MODIFY GROUP ===
   const toggleUpdateGroup = (group) => {
     if (activeItem && activeItem.open) toggleUpdateItem(activeItem);
     setActiveGroup({ ...group, open: !activeGroup.open });
@@ -50,11 +57,42 @@ const BudgetOMaticTemplateContainer = () => {
     }
   }, [activeGroup]);
 
-  // *=== MODIFY ITEMS start ===
+  // *=== MODIFY ITEMS ===
   const toggleUpdateItem = (groupCode, index) => {
     console.log('==1929', activeGroup);
     if (activeGroup && activeGroup.open) toggleUpdateGroup(activeGroup);
     setActiveItem({ groupCode, key: index, open: !activeItem.open });
+  };
+
+  // *=== DELETE ITEM / GROUP / CAT ===
+  const handleDelete = ({ type, id }) => {
+    const typeText =
+      type === 'item' ? '아이템' : type === 'group' ? '그룹' : '카테고리';
+    confirmAlert({
+      title: `정말 이 ${typeText}을 삭제하시겠습까?`,
+      message: '삭제 후 Budget-O-Matic 페이지에 즉시 반영됩니다.',
+      buttons: [
+        {
+          label: '확인',
+          onClick: () => {
+            type === 'item' && dispatch(deleteItem(id));
+            type === 'group' && dispatch(deleteGroup(id));
+            type === 'category' && dispatch(deleteCategory(id));
+          },
+        },
+        {
+          label: '취소',
+          onClick: () => {},
+        },
+      ],
+      childrenElement: () => <div />,
+      closeOnEscape: true,
+      closeOnClickOutside: true,
+      willUnmount: () => {},
+      afterClose: () => {},
+      onClickOutside: () => {},
+      onKeypressEscape: () => {},
+    });
   };
 
   useEffect(() => {
@@ -76,6 +114,7 @@ const BudgetOMaticTemplateContainer = () => {
       toggleUpdateGroup={toggleUpdateGroup}
       activeItem={activeItem}
       toggleUpdateItem={toggleUpdateItem}
+      handleDelete={handleDelete}
       history={history}
     />
   );

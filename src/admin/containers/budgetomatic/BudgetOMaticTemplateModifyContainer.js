@@ -21,9 +21,6 @@ import { FormGroups } from '../../components/common/FormGroups';
 
 const BudgetOMaticTemplateModifyContainer = (props) => {
   const {
-    match,
-    history,
-    isActiveItem,
     modifyType = 'add',
     hasActiveGroup = false,
     activeGroup,
@@ -32,7 +29,6 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     toggleUpdateGroup,
     toggleUpdateItem,
     key,
-    children,
     ...rest
   } = props;
   const [error, setError] = useState(null);
@@ -332,11 +328,9 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       key={key}
       toggleUpdateGroup={toggleUpdateGroup}
       toggleUpdateItem={toggleUpdateItem}
-      isActiveItem={isActiveItem}
       modifyType={modifyType}
       groupCode={groupCode}
       updateItemTarget={updateItemTarget}
-      children={children}
       activeText={activeText}
       activeTab={activeTab}
       setActiveTab={setActiveTab}
@@ -357,6 +351,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       availItemsCodes={availItemsCodes}
       onSubmit={onSubmit}
       addCategorySubmitted={!!addCategorySubmitted}
+      {...rest}
       error={error}
       isMobile={isMobile}
     />

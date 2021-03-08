@@ -11,7 +11,15 @@ const StyledWrapper = styled.div`
 `;
 
 const EventsButtons = (props) => {
-  const { isActiveItem, toggleUpdateItem, code, index, onSubmit } = props;
+  const {
+    isActiveItem,
+    toggleUpdateItem,
+    code,
+    index,
+    onSubmit,
+    handleDelete,
+    id,
+  } = props;
   return (
     <StyledWrapper isActiveItem={isActiveItem}>
       {isActiveItem && (
@@ -27,7 +35,12 @@ const EventsButtons = (props) => {
       >
         {isActiveItem ? 'Cancel' : 'Update'}
       </CButton>
-      <CButton size="sm" color="danger" className="ml-1">
+      <CButton
+        size="sm"
+        color="danger"
+        className="ml-1"
+        onClick={() => handleDelete({ type: 'item', id })}
+      >
         Delete
       </CButton>
     </StyledWrapper>

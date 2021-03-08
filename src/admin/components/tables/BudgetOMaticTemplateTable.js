@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
   CBadge,
   CCard,
@@ -9,11 +10,7 @@ import {
   CRow,
   CCollapse,
   CButton,
-  CFormGroup,
-  CLabel,
-  CInput,
 } from '@coreui/react';
-import Select from 'react-select';
 import styled from 'styled-components/macro';
 import palette from '../../../lib/styles/palette';
 import { AddCategory, SpacerInRow } from '../../reusable';
@@ -87,41 +84,20 @@ const fields = [
   },
 ];
 
-// const EventsButtons = (props) => {
-//   const { isActiveItem, toggleUpdateItem, code, index, onSubmit } = props;
-//   // console.log('==911', code, index, toggleUpdateItem);
-//   return (
-//     <div className={'flexRow buttonHeight'}>
-//       {isActiveItem && (
-//         <CButton size="sm" color="warning" onClick={onSubmit}>
-//           SUBMIT
-//         </CButton>
-//       )}
-//       <CButton
-//         size="sm"
-//         color="info"
-//         className="ml-1"
-//         onClick={() => toggleUpdateItem(code, index)}
-//       >
-//         {isActiveItem ? 'Cancel' : 'Update'}
-//       </CButton>
-//       <CButton size="sm" color="danger" className="ml-1">
-//         Delete
-//       </CButton>
-//     </div>
-//   );
-// };
-
 const BudgetItemTemplate = (props) => {
-  const { item, index, groupCode, activeItem, toggleUpdateItem } = props;
+  const {
+    item,
+    index,
+    groupCode,
+    activeItem,
+    toggleUpdateItem,
+    handleDelete,
+  } = props;
+  const { id } = item._id;
   const isActiveItem =
     activeItem.groupCode === groupCode &&
     activeItem.key === index &&
     activeItem.open;
-
-  // useEffect(() => {
-  //   console.log(object)
-  // }, [])
 
   return (
     <div style={{ marginBottom: '10px' }} className={'hover'} key={index}>
@@ -171,6 +147,8 @@ const BudgetItemTemplate = (props) => {
             </span>
           </div>
           <EventsButtons
+            handleDelete={handleDelete}
+            id={id}
             index={index}
             isActiveItem={isActiveItem}
             toggleUpdateItem={toggleUpdateItem}
@@ -182,7 +160,7 @@ const BudgetItemTemplate = (props) => {
 };
 
 const BudgetItemsList = (props) => {
-  const { item, activeItem, toggleUpdateItem } = props;
+  const { item, activeItem, toggleUpdateItem, handleDelete } = props;
   const { code } = item;
   return item.budgetItems.map((budgetItem, index) => (
     <BudgetItemTemplate
@@ -191,6 +169,7 @@ const BudgetItemsList = (props) => {
       activeItem={activeItem}
       toggleUpdateItem={() => toggleUpdateItem(code, index)}
       groupCode={code}
+      handleDelete={handleDelete}
     />
   ));
 };
@@ -204,6 +183,7 @@ const BudgetOMaticTemplateTable = (props) => {
     activeItem,
     toggleUpdateItem,
     onSubmit,
+    handleDelete,
     form,
     itemsGroups,
     filteredCategory,
@@ -400,6 +380,7 @@ const BudgetOMaticTemplateTable = (props) => {
                               activeItem={activeItem}
                               toggleUpdateItem={toggleUpdateItem}
                               onSubmit={onSubmit}
+                              handleDelete={handleDelete}
                             />
                           </p>
                         </CCardBody>
