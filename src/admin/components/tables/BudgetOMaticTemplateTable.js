@@ -35,6 +35,9 @@ const StyledWrapper = styled.div`
 
 const StyledFormGroups = styled.div`
   margin-left: -15px;
+  .form-group {
+    margin-bottom: 0;
+  }
 `;
 
 const TwoFlexboxes = styled.div`
