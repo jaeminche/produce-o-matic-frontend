@@ -5,16 +5,23 @@ import BudgetOMaticTemplateModifyContainer from '../containers/budgetomatic/Budg
 const BudgetOMaticTemplate = (props) => {
   const { activeGroup, ...rest } = props;
   const hasActiveGroup = activeGroup && activeGroup.open;
+  const [activePage, setActivePage] = useState(3);
   return hasActiveGroup ? (
     <BudgetOMaticTemplateModifyContainer
       modifyType="update"
       hasActiveGroup={hasActiveGroup}
       activeGroup={activeGroup}
+      activePage={activePage}
+      setActivePage={setActivePage}
       {...rest}
     />
   ) : (
     <>
-      <BudgetOMaticTemplateTable {...props} />
+      <BudgetOMaticTemplateTable
+        activePage={activePage}
+        setActivePage={setActivePage}
+        {...props}
+      />
     </>
   );
 };

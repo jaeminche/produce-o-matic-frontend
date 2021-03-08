@@ -22,7 +22,7 @@ const ListGroups = React.lazy(() =>
 const Navbars = React.lazy(() => import('./views/base/navbars/Navbars'));
 const Navs = React.lazy(() => import('./views/base/navs/Navs'));
 const Paginations = React.lazy(() =>
-  import('./views/base/paginations/Pagnations'),
+  import('./views/base/paginations/Paginations'),
 );
 const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'));
 const ProgressBar = React.lazy(() =>

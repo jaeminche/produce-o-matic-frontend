@@ -118,7 +118,6 @@ const BudgetItemTemplate = (props) => {
     activeItem.groupCode === groupCode &&
     activeItem.key === index &&
     activeItem.open;
-  const [page, setPage] = useState();
 
   // useEffect(() => {
   //   console.log(object)
@@ -211,7 +210,10 @@ const BudgetOMaticTemplateTable = (props) => {
     handleOnSelect,
     activeGroup,
     categoriesList,
+    activePage,
+    setActivePage,
   } = props;
+
   const toggleDetails = (index) => {
     const position = details.indexOf(index);
     let newDetails = details.slice();
@@ -226,11 +228,6 @@ const BudgetOMaticTemplateTable = (props) => {
   function isActiveGroup(group) {
     return activeGroup && activeGroup.code === group.code && activeGroup.open;
   }
-
-  // useEffect(() => {
-  //   if (details.length > 0) console.log('==980', details);
-  //   if (activeGroup) console.log('==981', activeGroup);
-  // }, [details, activeGroup]);
 
   return (
     <StyledWrapper>
@@ -250,7 +247,10 @@ const BudgetOMaticTemplateTable = (props) => {
                 hover
                 sorter
                 pagination
-                activePage
+                activePage={activePage}
+                onPageChange={(e) => {
+                  setActivePage(e);
+                }}
                 onRowClick={(item, index) => {}}
                 scopedSlots={{
                   status: (item) => (

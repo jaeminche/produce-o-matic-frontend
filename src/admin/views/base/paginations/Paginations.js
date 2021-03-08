@@ -3,7 +3,7 @@ import { CCard, CCardBody, CCardHeader, CPagination } from '@coreui/react';
 import { DocsLink } from '../../../reusable';
 
 const Paginations = () => {
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setActivePage] = useState(3);
 
   return (
     <>
@@ -17,7 +17,7 @@ const Paginations = () => {
           <CPagination
             activePage={currentPage}
             pages={10}
-            onActivePageChange={setCurrentPage}
+            onActivePageChange={(i) => setActivePage(i)}
           />
           <br></br>
 
@@ -26,7 +26,7 @@ const Paginations = () => {
             size="sm"
             activePage={currentPage}
             pages={10}
-            onActivePageChange={setCurrentPage}
+            onActivePageChange={(i) => setActivePage(i)}
           />
           <br></br>
 
@@ -36,7 +36,7 @@ const Paginations = () => {
               size="lg"
               activePage={currentPage}
               pages={10}
-              onActivePageChange={setCurrentPage}
+              onActivePageChange={(i) => setActivePage(i)}
             />
             <br></br>
           </div>
@@ -54,7 +54,7 @@ const Paginations = () => {
           <CPagination
             activePage={currentPage}
             pages={10}
-            onActivePageChange={setCurrentPage}
+            onActivePageChange={(i) => setActivePage(i)}
           />
           <br></br>
 
@@ -64,7 +64,7 @@ const Paginations = () => {
             addListClass="some-class"
             activePage={currentPage}
             pages={10}
-            onActivePageChange={setCurrentPage}
+            onActivePageChange={(i) => setActivePage(i)}
           />
           <br></br>
 
@@ -73,7 +73,7 @@ const Paginations = () => {
             align="end"
             activePage={currentPage}
             pages={10}
-            onActivePageChange={setCurrentPage}
+            onActivePageChange={(i) => setActivePage(i)}
           />
           <br></br>
 
