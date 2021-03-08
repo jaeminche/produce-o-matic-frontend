@@ -39,6 +39,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const activeText = ['Category', 'Group', 'Item'];
+  const history = useHistory();
 
   const {
     itemsGroups,
@@ -255,6 +256,8 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     if (addCategorySubmitted || addGroupSubmitted || addItemSubmitted) {
       dispatch(initializeForm(formType));
       myToast(`제출 성공. ${korText[formType]} 1개가 추가되었습니다.`);
+      dispatch(initializeForm(`${formType}Submitted`));
+      history.push('/firstavenue/budgetomatic-page/templates');
     }
   }, [addCategorySubmitted, addGroupSubmitted, addItemSubmitted]);
 
