@@ -3,7 +3,7 @@ import { CCard, CCardBody, CCardHeader, CPagination } from '@coreui/react';
 import { DocsLink } from '../../../reusable';
 
 const Paginations = () => {
-  const [currentPage, setActivePage] = useState(3);
+  const [currentPage, setActivePage] = useState(1);
 
   return (
     <>
