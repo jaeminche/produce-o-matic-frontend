@@ -327,9 +327,7 @@ const BudgetOMaticTemplateTable = (props) => {
                           shape="square"
                           size="sm"
                           style={{ width: 'max-content', float: 'right' }}
-                          onClick={() => {
-                            onSubmit();
-                          }}
+                          onClick={() => onSubmit()}
                         >
                           Submit
                         </CButton>

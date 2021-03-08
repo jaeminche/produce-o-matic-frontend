@@ -125,8 +125,8 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    console.log('==779', e, activeTab, formAddCategory);
+    e && e.preventDefault();
+    e && console.log('==779', e, activeTab, formAddCategory);
     if (modifyType === 'add') {
       if (activeTab === 2) {
         const rates = [];
@@ -152,6 +152,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       } else if (activeTab === 1) {
         const { code, name, category, _id } = formUpdateGroup;
         const id = _id;
+        console.log('==661', id);
         dispatch(updateGroup({ id, code, name, category }));
       } else if (activeTab === 0) {
         const { name, groupsCodes } = formUpdateCategory;
@@ -323,6 +324,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       categoriesList={categoriesList}
       toggleUpdateGroup={toggleUpdateGroup}
       toggleUpdateItem={toggleUpdateItem}
+      onSubmit={onSubmit}
       {...rest}
     />
   ) : (
