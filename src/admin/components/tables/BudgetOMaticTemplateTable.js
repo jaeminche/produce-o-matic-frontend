@@ -118,6 +118,11 @@ const BudgetItemTemplate = (props) => {
     activeItem.groupCode === groupCode &&
     activeItem.key === index &&
     activeItem.open;
+  const [page, setPage] = useState();
+
+  // useEffect(() => {
+  //   console.log(object)
+  // }, [])
 
   return (
     <div style={{ marginBottom: '10px' }} className={'hover'} key={index}>
@@ -245,6 +250,7 @@ const BudgetOMaticTemplateTable = (props) => {
                 hover
                 sorter
                 pagination
+                activePage
                 onRowClick={(item, index) => {}}
                 scopedSlots={{
                   status: (item) => (
