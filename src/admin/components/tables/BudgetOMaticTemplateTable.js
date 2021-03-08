@@ -93,7 +93,7 @@ const BudgetItemTemplate = (props) => {
     toggleUpdateItem,
     handleDelete,
   } = props;
-  const { id } = item._id;
+  const id = item._id;
   const isActiveItem =
     activeItem.groupCode === groupCode &&
     activeItem.key === index &&
@@ -358,7 +358,7 @@ const BudgetOMaticTemplateTable = (props) => {
                       </>
                     );
                   },
-                  details: (item, index) => {
+                  details: (group, index) => {
                     return (
                       <CCollapse show={details.includes(index)}>
                         <CCardBody>
@@ -366,17 +366,20 @@ const BudgetOMaticTemplateTable = (props) => {
                             size="sm"
                             color="danger"
                             className="ml-1 floatRight"
+                            onClick={() =>
+                              handleDelete({ type: 'group', id: group._id })
+                            }
                           >
                             Delete Group
                           </CButton>
                           <p className="text-muted">
                             <strong>
-                              This group has {item.budgetItems.length} items:
+                              This group has {group.budgetItems.length} items:
                             </strong>
                           </p>
                           <p className="text-muted">
                             <BudgetItemsList
-                              item={item}
+                              item={group}
                               activeItem={activeItem}
                               toggleUpdateItem={toggleUpdateItem}
                               onSubmit={onSubmit}
