@@ -35,14 +35,19 @@ const BudgetOMaticTemplateContainer = () => {
     key: null,
     open: false,
   });
-  const { DATASETS, error, formUpdateGroup, loading } = useSelector(
-    ({ itemsGroups, admin, loading }) => ({
-      DATASETS: itemsGroups.dataSets,
-      error: itemsGroups.error,
-      formUpdateGroup: admin.updateGroup,
-      loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
-    }),
-  );
+  const {
+    DATASETS,
+    error,
+    deleteGroupCompleted,
+    deleteItemCompleted,
+    loading,
+  } = useSelector(({ itemsGroups, admin, loading }) => ({
+    DATASETS: itemsGroups.dataSets,
+    error: itemsGroups.error,
+    deleteGroupCompleted: admin.deleteGroupCompleted,
+    deleteItemCompleted: admin.deleteItemCompleted,
+    loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
+  }));
 
   // *=== MODIFY GROUP ===
   const toggleUpdateGroup = (group) => {
@@ -88,14 +93,25 @@ const BudgetOMaticTemplateContainer = () => {
       childrenElement: () => <div />,
       closeOnEscape: true,
       closeOnClickOutside: true,
-      willUnmount: () => {
-        dispatch(listItemsGroups());
-      },
+      willUnmount: () => {},
       afterClose: () => {},
       onClickOutside: () => {},
       onKeypressEscape: () => {},
     });
   };
+
+  useEffect(() => {
+    if (deleteItemCompleted === '' || deleteGroupCompleted === '') {
+      const formText =
+        deleteItemCompleted === ''
+          ? 'deleteItemCompleted'
+          : deleteGroupCompleted === ''
+          ? 'deleteGroupCompleted'
+          : 'deleteCategoryCompleted';
+      dispatch(listItemsGroups());
+      dispatch(initializeForm(formText));
+    }
+  }, [deleteItemCompleted, deleteGroupCompleted]);
 
   useEffect(() => {
     // ? 1. API request for all template data

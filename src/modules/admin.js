@@ -8,6 +8,7 @@ import * as adminAPI from '../lib/api/admin';
 
 const CHANGE_FIELD = 'admin/CHANGE_FIELD';
 const INITIALIZE_FORM = 'admin/INITIALIZE_FORM';
+const INITIALIZE_ALL = 'admin/INITIALIZE_ALL';
 
 const [
   LISTCATEGORIES,
@@ -65,6 +66,7 @@ export const changeField = createAction(
   }),
 );
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
+export const initializeAll = createAction(INITIALIZE_ALL);
 
 export const listCategories = createAction(LISTCATEGORIES);
 export const addCategory = createAction(
@@ -137,11 +139,11 @@ const updateCategorySaga = createRequestSaga(
 const updateGroupSaga = createRequestSaga(UPDATEGROUP, adminAPI.updateGroup);
 const updateItemSaga = createRequestSaga(UPDATEITEM, adminAPI.updateItem);
 const deleteCategorySaga = createRequestSaga(
-  UPDATECATEGORY,
+  DELETECATEGORY,
   adminAPI.deleteCategory,
 );
-const deleteGroupSaga = createRequestSaga(UPDATEGROUP, adminAPI.deleteGroup);
-const deleteItemSaga = createRequestSaga(UPDATEITEM, adminAPI.deleteItem);
+const deleteGroupSaga = createRequestSaga(DELETEGROUP, adminAPI.deleteGroup);
+const deleteItemSaga = createRequestSaga(DELETEITEM, adminAPI.deleteItem);
 export function* adminSaga() {
   yield takeLatest(LISTCATEGORIES, listCategoriesSaga);
   yield takeLatest(ADDCATEGORY, addCategorySaga);
@@ -225,6 +227,9 @@ const admin = handleActions(
       ...state,
       [form]: initialState[form],
       [`${form}Error`]: null,
+    }),
+    [INITIALIZE_ALL]: (state) => ({
+      ...initialState,
     }),
     [LISTCATEGORIES_SUCCESS]: (state, { payload: listCategories }) => ({
       ...state,

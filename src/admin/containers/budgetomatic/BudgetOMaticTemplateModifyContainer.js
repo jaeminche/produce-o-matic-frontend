@@ -7,6 +7,7 @@ import { listItemsGroups } from '../../../modules/itemsGroups';
 import {
   changeField,
   initializeForm,
+  initializeAll,
   listCategories,
   addGroup,
   addItem,
@@ -65,6 +66,9 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     updateCategoryError,
     updateGroupError,
     updateItemError,
+    deleteCategoryError,
+    deleteGroupError,
+    deleteItemError,
     listCategoriesError,
   } = useSelector(({ admin, itemsGroups }) => ({
     itemsGroups: itemsGroups.dataSets,
@@ -92,6 +96,9 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     updateCategoryError: admin.updateCategoryError,
     updateGroupError: admin.updateGroupError,
     updateItemError: admin.updateItemError,
+    deleteCategoryError: admin.deleteCategoryError,
+    deleteGroupError: admin.deleteGroupError,
+    deleteItemError: admin.deleteItemError,
     listCategoriesError: admin.listCategoriesError,
   }));
 
@@ -297,11 +304,15 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       updateCategoryError ||
       updateGroupError ||
       updateItemError ||
+      deleteCategoryError ||
+      deleteGroupError ||
+      deleteItemError ||
       listCategoriesError
     ) {
       const errorMsg = 'Something went wrong. Consult your developer';
       myToast(errorMsg);
       setError(errorMsg);
+      dispatch(initializeAll());
     }
   }, [
     addCategoryError,
@@ -310,6 +321,9 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     updateCategoryError,
     updateGroupError,
     updateItemError,
+    deleteCategoryError,
+    deleteGroupError,
+    deleteItemError,
     listCategoriesError,
   ]);
 
