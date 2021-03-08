@@ -35,8 +35,8 @@ export const updateGroup = ({ id, ...rest }) =>
 export const updateItem = ({ id, ...rest }) =>
   client.patch(`/api/budgetItems/${id}`, { ...rest });
 
-export const deleteCategory = (id) => client.patch(`/api/categories/${id}`);
+export const deleteCategory = ({ id }) => client.patch(`/api/categories/${id}`);
 
-export const deleteGroup = (id) => client.delete(`/api/itemGroups/${id}`);
+export const deleteGroup = ({ id }) => client.delete(`/api/itemGroups/${id}`);
 
-export const deleteItem = (id) => client.delete(`/api/budgetItems/${id}`);
+export const deleteItem = ({ id }) => client.delete(`/api/budgetItems/${id}`);

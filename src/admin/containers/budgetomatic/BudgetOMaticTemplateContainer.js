@@ -11,7 +11,7 @@ import {
   deleteItem,
   deleteGroup,
   deleteCategory,
-} from '../../../lib/api/admin';
+} from '../../../modules/admin';
 
 const BudgetOMaticTemplateContainer = () => {
   // todo: 나중에 categories update 할 때 참고.
@@ -75,9 +75,9 @@ const BudgetOMaticTemplateContainer = () => {
         {
           label: '확인',
           onClick: () => {
-            type === 'item' && dispatch(deleteItem(id));
-            type === 'group' && dispatch(deleteGroup(id));
-            type === 'category' && dispatch(deleteCategory(id));
+            type === 'item' && dispatch(deleteItem({ id }));
+            type === 'group' && dispatch(deleteGroup({ id }));
+            type === 'category' && dispatch(deleteCategory({ id }));
           },
         },
         {
