@@ -19,16 +19,6 @@ const OPTIONS = {
   days: generateQt(40),
 };
 
-const myDataSetsTemplate = {
-  labor: [],
-  equipments: [],
-  cast: [],
-  'travel & accommodations': [],
-  'communications & delivery': [],
-  'location fee': [],
-  'insurances & taxes': [],
-};
-
 const moveItemBeforeAnotherInArr = (arr, newIndex, oldIndex) => {
   if (oldIndex >= arr.length) {
     let i = oldIndex - arr.length + 1;
@@ -53,7 +43,6 @@ export {
   disabledDefault,
   generateQt,
   OPTIONS,
-  myDataSetsTemplate,
   moveItemBeforeAnotherInArr,
   defaultCurrencyRates,
 };

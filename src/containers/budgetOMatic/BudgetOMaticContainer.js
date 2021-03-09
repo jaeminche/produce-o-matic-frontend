@@ -15,7 +15,6 @@ import {
 import { getUsersLocation } from '../../modules/thirdPartyApis';
 import { listItemsGroups } from '../../modules/itemsGroups';
 import { postBudgetResult } from '../../modules/budgetResult';
-import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 import { v1 } from 'uuid';
 import CurrencyFixer from '../currencyFixer/CurrencyFixer';
@@ -153,7 +152,14 @@ const BudgetOMaticContainer = ({ history, location }) => {
   useEffect(() => {
     // ? 2. transform DATASETS into myDataSets (cascading dictionary format)
     if (DATASETS) {
-      const tempMyDataSets = JSON.parse(JSON.stringify(myDataSetsTemplate));
+      // 모든 그룹 정보에서 카테고리 값 (유니크한)을 하나씩만 가져와서 dictionary 포맷으로 재배열한다
+      const uniqueValues = [
+        ...new Set(DATASETS.map((group) => group.category)),
+      ];
+      const tempMyDataSets = {};
+      for (const value of uniqueValues) {
+        tempMyDataSets[value] = [];
+      }
       for (const GROUP of DATASETS) {
         tempMyDataSets[GROUP.category].push(GROUP);
       }
