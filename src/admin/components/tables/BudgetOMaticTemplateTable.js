@@ -367,7 +367,11 @@ const BudgetOMaticTemplateTable = (props) => {
                             color="danger"
                             className="ml-1 floatRight"
                             onClick={() =>
-                              handleDelete({ type: 'group', id: group._id })
+                              handleDelete({
+                                type: 'group',
+                                id: group._id,
+                                budgetItemsLen: group.budgetItems.length,
+                              })
                             }
                           >
                             Delete Group

@@ -77,12 +77,16 @@ const BudgetOMaticTemplateContainer = () => {
   };
 
   // *=== DELETE ITEM / GROUP / CAT ===
-  const handleDelete = ({ type, id }) => {
+  const handleDelete = ({ type, id, budgetItemsLen = false }) => {
     const typeText =
       type === 'item' ? '아이템' : type === 'group' ? '그룹' : '카테고리';
+
     confirmAlert({
-      title: `정말 이 ${typeText}을 삭제하시겠습까?`,
-      message: '삭제 후 Budget-O-Matic 페이지에 즉시 반영됩니다.',
+      title:
+        type === 'group' && budgetItemsLen > 0
+          ? `이 그룹에 ${budgetItemsLen}개의 아이템이 있습니다. 진행하시면 일괄 삭제됩니다. 진행할까요?`
+          : `정말 이 ${typeText}을 삭제하시겠습까?`,
+      message: `삭제 즉시, 사용자가 사용하는 Budget-O-Matic 페이지에 반영됩니다.`,
       buttons: [
         {
           label: '확인',
