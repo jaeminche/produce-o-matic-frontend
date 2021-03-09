@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useHistory } from 'react-router-dom';
 import { listItemsGroups } from '../../../modules/itemsGroups';
-import { initializeForm, updateGroup } from '../../../modules/admin';
+import { initializeForm, initializeAll } from '../../../modules/admin';
 import BudgetOMaticTemplate from '../../components/BudgetOMaticTemplate';
 import { myToast } from '../../../lib/util/myToast';
 import { confirmAlert } from 'react-confirm-alert';
@@ -21,6 +21,7 @@ const BudgetOMaticTemplateContainer = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const [error, setError] = useState(null);
   const [details, setDetails] = useState([]);
   const [activeGroup, setActiveGroup] = useState({
     code: null,
@@ -37,15 +38,21 @@ const BudgetOMaticTemplateContainer = () => {
   });
   const {
     DATASETS,
-    error,
+    listCategoriesError,
     deleteGroupCompleted,
     deleteItemCompleted,
+    deleteCategoryError,
+    deleteGroupError,
+    deleteItemError,
     loading,
   } = useSelector(({ itemsGroups, admin, loading }) => ({
     DATASETS: itemsGroups.dataSets,
-    error: itemsGroups.error,
+    listCategoriesError: itemsGroups.error,
     deleteGroupCompleted: admin.deleteGroupCompleted,
     deleteItemCompleted: admin.deleteItemCompleted,
+    deleteCategoryError: admin.deleteCategoryError,
+    deleteGroupError: admin.deleteGroupError,
+    deleteItemError: admin.deleteItemError,
     loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
   }));
 
@@ -120,7 +127,26 @@ const BudgetOMaticTemplateContainer = () => {
 
   //  *=== ERROR HANDLINGS ===
   useEffect(() => {
-    if (error) myToast('Something went wrong. Consult your developer');
+    if (
+      deleteCategoryError ||
+      deleteGroupError ||
+      deleteItemError ||
+      listCategoriesError
+    ) {
+      setError('Something went wrong. Consult your developer');
+    }
+  }, [
+    deleteCategoryError,
+    deleteGroupError,
+    deleteItemError,
+    listCategoriesError,
+  ]);
+
+  useEffect(() => {
+    if (error) {
+      myToast(error);
+      dispatch(initializeAll());
+    }
   }, [error]);
   return (
     <BudgetOMaticTemplate

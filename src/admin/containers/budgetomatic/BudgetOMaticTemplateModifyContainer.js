@@ -304,9 +304,6 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       updateCategoryError ||
       updateGroupError ||
       updateItemError ||
-      deleteCategoryError ||
-      deleteGroupError ||
-      deleteItemError ||
       listCategoriesError
     ) {
       const errorMsg = 'Something went wrong. Consult your developer';
@@ -321,9 +318,6 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     updateCategoryError,
     updateGroupError,
     updateItemError,
-    deleteCategoryError,
-    deleteGroupError,
-    deleteItemError,
     listCategoriesError,
   ]);
 
