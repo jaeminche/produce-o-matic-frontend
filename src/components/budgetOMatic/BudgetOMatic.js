@@ -295,7 +295,6 @@ const Controller1 = (props) => {
     onChangeTypeOfProduction,
     onChangeDaysOfShooting,
     onChangeCurrency,
-    uiData,
     isMobile,
   } = props;
 

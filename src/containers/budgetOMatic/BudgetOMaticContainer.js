@@ -4,10 +4,6 @@ import { withRouter, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import BudgetOMatic from '../../components/budgetOMatic/BudgetOMatic';
 import {
-  BUDGETOMATIC_UIDATA,
-  _INITIAL_CODES_SET,
-} from '../../lib/constants/sampleBudgetomaticData';
-import {
   OPTIONS,
   moveItemBeforeAnotherInArr,
   defaultCurrencyRates,
@@ -565,7 +561,6 @@ const BudgetOMaticContainer = ({ history, location }) => {
         onClickRemove={onClickRemove}
         onClickAdd={onClickAdd}
         onSubmit={onSubmit}
-        uiData={BUDGETOMATIC_UIDATA}
         isMobile={isMobile}
       />
     </CurrencyFixer>
