@@ -66,9 +66,6 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     updateCategoryError,
     updateGroupError,
     updateItemError,
-    deleteCategoryError,
-    deleteGroupError,
-    deleteItemError,
     listCategoriesError,
   } = useSelector(({ admin, itemsGroups }) => ({
     itemsGroups: itemsGroups.dataSets,
@@ -96,9 +93,6 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
     updateCategoryError: admin.updateCategoryError,
     updateGroupError: admin.updateGroupError,
     updateItemError: admin.updateItemError,
-    deleteCategoryError: admin.deleteCategoryError,
-    deleteGroupError: admin.deleteGroupError,
-    deleteItemError: admin.deleteItemError,
     listCategoriesError: admin.listCategoriesError,
   }));
 
