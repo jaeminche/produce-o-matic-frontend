@@ -57,6 +57,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
   // ? 1. request dataSetInstance data and full dataset
   const [myDataSets, setMyDataSets] = useState('');
   const [dataSetInstance, setDataSetInstance] = useState('');
+  const [countForDataChange, setCountForDataChange] = useState(1);
   const [typeOfProduction, setTypeOfProduction] = useState('DO');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
@@ -274,12 +275,13 @@ const BudgetOMaticContainer = ({ history, location }) => {
 
   useEffect(() => {
     if (!!dataSetInstance) {
+      setCountForDataChange(countForDataChange + 1);
       try {
         localStorage.setItem(
           '_dataSetInstance',
           JSON.stringify(dataSetInstance),
         );
-        myToast('saving...');
+        countForDataChange % 5 === 0 && myToast('saving...');
       } catch (e) {
         console.log('LocalStorage is not working!');
         myToast(
