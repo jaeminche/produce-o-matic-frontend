@@ -15,9 +15,14 @@ import {
 
 const BudgetOMaticTemplateContainer = () => {
   // todo: 나중에 categories update 할 때 참고.
-  //   categories 를 지우려면, 소속 그룹들이 전부 없는지 확인(some). ('해당 카테고리에 소속되어 있는 그룹들 전부 삭제하고 다시 시도하세요')
+  //   1. 지금 카테고리 patch, delete만 안 되고 다 됨.
 
-  // categories.groupsCodes 어레이에서 그룹을 지우려면, 해당 그룹이 없어야 함. ('해당 그룹을 삭제하고 다시 시도하세요')
+  // 2. patch가 가능케 하려면, itemsgroups에 category_id 필드를 추가해야 함.
+
+  // 3. categories.name을 수정하고자 한다면 itemsgroups의 category_id 필드 값이 같은 그룹을 찾아 group.category도 함께 바꾸어야 함. 해당 그룹들에 일괄 적용하시겠습니까?
+
+  // 4. categories 를 지우려면, 소속 그룹들이 전부 없는지 확인(some). ('해당 카테고리에 소속되어 있는 그룹들 전부 삭제하고 다시 시도하세요')
+  // 그리고, 같은 맥락으로, categories.groupsCodes 어레이에서 그룹을 지우려면, 해당 그룹이 없어야 함. ('해당 그룹을 삭제하고 다시 시도하세요')
 
   const dispatch = useDispatch();
   const history = useHistory();
