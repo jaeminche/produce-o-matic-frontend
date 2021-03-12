@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BudgetResultsContainer from '../../containers/budgetomatic/BudgetResultsContainer';
 
 const BudgetResultsView = () => {
