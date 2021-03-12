@@ -59,6 +59,9 @@ const BudgetOMaticTemplateGroup = React.lazy(() =>
 const BudgetOMaticTemplateModify = React.lazy(() =>
   import('./views/budgetomatic/BudgetOMaticTemplateModify'),
 );
+const PopularLocationsView = React.lazy(() =>
+  import('./views/contents/PopularLocationsView'),
+);
 
 const CoreUIIcons = React.lazy(() =>
   import('./views/icons/coreui-icons/CoreUIIcons'),
@@ -121,8 +124,9 @@ const routes = [
   },
   {
     path: '/firstavenue/popularlocations-page',
-    name: 'Dashboard',
-    component: Dashboard,
+    exact: true,
+    name: 'PopularLocationsView',
+    component: PopularLocationsView,
   },
   { path: '/firstavenue/people-page', name: 'Dashboard', component: Dashboard },
 
