@@ -1,10 +1,15 @@
 import React from 'react';
+import BasicDropzone from '../../../components/BasicDropzone/BasicDropzone';
 // import PopularLocationsTable from './tables/PopularLocationsTable';
 
 const PopularLocations = (props) => {
   //   console.log('==7979', props.PopularLocations);
   //   return <PopularLocationsTable {...props} />;
-  return <div>test</div>;
+  return (
+    <div>
+      <BasicDropzone />
+    </div>
+  );
 };
 
 export default PopularLocations;
