@@ -86,7 +86,7 @@ const ImgLinkBlock = styled.div`
 `;
 
 const ImageBlock = ({ data, history, isMobile }) => {
-  const { contentId, title, subtitle, thumbnail, baseUrl } = data;
+  const { contentId, title, subtitle, thumbnailPath, baseUrl } = data;
   const handleClick = () => history.push(`${baseUrl}/${contentId}`);
   const shortenStr = (str) => {
     const upto = isMobile ? 50 : 60;
@@ -94,7 +94,7 @@ const ImageBlock = ({ data, history, isMobile }) => {
   };
   return (
     <ImgLinkBlock onClick={() => handleClick()} isMobile={isMobile}>
-      <img src={thumbnail} alt="click to go to the page" />
+      <img src={thumbnailPath} alt="click to go to the page" />
       <div className="textbox">
         <div className="textbox-title">{title}</div>
         <div>{shortenStr(subtitle)}</div>
