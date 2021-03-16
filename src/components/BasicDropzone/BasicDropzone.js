@@ -24,7 +24,14 @@ const BasicDropzone = (props) => {
     setFormDataToUpload(formData);
   }, []);
 
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+  const {
+    acceptedFiles,
+    fileRejections,
+    getRootProps,
+    getInputProps,
+    // isDragAccept,
+    // isDragReject,
+  } = useDropzone({
     onDrop,
     accept:
       'image/jpeg, image/png, image/jpg, image/tiff, image/gif, image/bmp, image/exif, image/ppm, image/pgm, image/pbm, image/pnm, image/hdr, image/heif, image/bpg, application/pdf' /*, 동영상 image/mpeg, image/hevc*/,
@@ -33,6 +40,17 @@ const BasicDropzone = (props) => {
   const files = acceptedFiles.map((file) => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
+    </li>
+  ));
+
+  const fileRejectionItems = fileRejections.map(({ file, errors }) => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+      <ul>
+        {errors.map((e) => (
+          <li key={e.code}>{e.message}</li>
+        ))}
+      </ul>
     </li>
   ));
 
@@ -48,8 +66,19 @@ const BasicDropzone = (props) => {
         <div>
           <span className="attachedNameLabel">첨부할 파일:</span>
           <ul>{files}</ul>
+
+          {fileRejectionItems.length > 0 && (
+            <>
+              <p className="attachedNameLabel warning">
+                첨부할 수 없습니다 (아래 설명을 참고하세요):
+              </p>
+              <ul>{fileRejectionItems}</ul>
+            </>
+          )}
+          {/* {isDragAccept && <p>All files will be accepted</p>}
+        {isDragReject && <p>Some files will be rejected</p>} */}
+          {fileUploadDone && <span>파일 업로드 완료됨</span>}
         </div>
-        {fileUploadDone && <div>파일 업로드 완료됨</div>}
       </aside>
     </StyledBasicDropzone>
   );
