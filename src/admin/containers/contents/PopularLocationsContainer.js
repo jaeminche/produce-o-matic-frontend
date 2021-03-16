@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useHistory } from 'react-router-dom';
 // import { listBudgetResults } from '../../../modules/budgetResults';
 import clientForMultipart from '../../../lib/api/clientForMultipart';
+import {
+  listPopularLocations,
+  postPopularLocation,
+} from '../../../modules/popularLocations';
 import PopularLocations from '../../components/contents/PopularLocations';
 import { myToast } from '../../../lib/util/myToast';
 
@@ -32,8 +36,11 @@ const PopularLocationsContainer = () => {
               `파일업로드 실패. 아래 설명을 참고하셔서 다시 업로드해주세요. ErrorCode: F0000; 이유: ${response.data.errmsg}`,
             );
             return;
-          } else if (response.data.contentType) {
+          } else if (response.data._id) {
             myToast(`File uploading successful!`);
+            const { _id, location, contentType, originalname } = response.data;
+            const thumbnail = { _id, location, contentType, originalname };
+            dispatch(postPopularLocation({ thumbnail }));
           }
         } else {
           myToast(
