@@ -25,19 +25,20 @@ const PopularLocationsContainer = () => {
     clientForMultipart
       .post('/api/fileUpload', formDataToUpload)
       .then(function (response) {
-        console.log('==999.0', /*response.data.results[0].image,*/ response);
-        if (
-          response.status === 200 &&
-          response.data &&
-          response.data.contentType
-        ) {
-          if (response.data.contentType === 'image/png') {
+        console.log('==999.0', response);
+        if (response.status === 200 && response.data) {
+          if (response.data.status === 400 && response.data.errmsg) {
+            myToast(
+              `파일업로드 실패. 아래 설명을 참고하셔서 다시 업로드해주세요. ErrorCode: F0000; 이유: ${response.data.errmsg}`,
+            );
+            return;
+          } else if (response.data.contentType) {
             myToast(`File uploading successful!`);
-          } else {
-            myToast(`이미지 파일만 업로드 가능합니다`);
           }
         } else {
-          myToast(`File uploading failed! Consult your engineer.`);
+          myToast(
+            `파일 업로드 실패. 서버에서 응답이 없습니다. Consult your engineer.`,
+          );
           return;
 
           // onChange({
@@ -69,12 +70,12 @@ const PopularLocationsContainer = () => {
           // );
         }
       })
-      .catch(function (response) {
-        myToast(`서버와의 통신 중에 오류 발생 : ${response}`);
-        console.log('---401.1', response);
-        if (response.status === 401) {
-          //   refreshAndSetJwtAndLoginType();
-        }
+      .catch(function (err) {
+        myToast(`서버와의 통신 중에 오류 발생 : ${err.message}`);
+        console.log('---401.1', err);
+        // if (err.status === 401) {
+        //   //   refreshAndSetJwtAndLoginType();
+        // }
       });
   };
 
