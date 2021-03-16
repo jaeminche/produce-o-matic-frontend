@@ -50,6 +50,10 @@ const StyledBasicDropzone = styled.section`
     color: rgb(117, 117, 117);
   }
 
+  .warning {
+    color: red;
+  }
+
   .attachedName {
     font-size: 0.785rem;
     font-weight: normal;
