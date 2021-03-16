@@ -3,13 +3,16 @@ import BasicDropzone from '../../../components/BasicDropzone/BasicDropzone';
 // import PopularLocationsTable from './tables/PopularLocationsTable';
 
 const PopularLocations = (props) => {
-  const { onSubmit } = props;
-  //   console.log('==7979', props.PopularLocations);
+  const { onSubmit, formDataToUpload } = props;
+  console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
+  const formDataReady =
+    formDataToUpload &&
+    formDataToUpload.getAll('image').some((file) => file.path);
   //   return <PopularLocationsTable {...props} />;
   return (
     <div>
       <BasicDropzone {...props} />
-      <input onClick={onSubmit} />
+      {formDataReady && <input onClick={(formDataReady && onSubmit) || null} />}
     </div>
   );
 };
