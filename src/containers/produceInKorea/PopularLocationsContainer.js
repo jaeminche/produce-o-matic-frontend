@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PopularLocations from '../../components/produceInKorea/PopularLocations';
 import {
@@ -13,8 +14,10 @@ import {
 } from '../../assets';
 import { useMediaQuery } from 'react-responsive';
 import SAMPLEYOUTUBES from '../../lib/constants/sampleYoutubes';
+import { listPopularLocations } from '../../modules/popularLocations';
 
 const PopularLocationsContainer = ({ location, history }) => {
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const retrieved = {
     id: 1,
@@ -136,6 +139,11 @@ const PopularLocationsContainer = ({ location, history }) => {
     //   },
     // ],
   };
+
+  useEffect(() => {
+    console.log('==8880');
+    dispatch(listPopularLocations());
+  }, []);
   return (
     <PopularLocations isMobile={isMobile} data={retrieved} history={history} />
   );
