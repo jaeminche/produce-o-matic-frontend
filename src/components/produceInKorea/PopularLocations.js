@@ -86,8 +86,9 @@ const ImgLinkBlock = styled.div`
 `;
 
 const ImageBlock = ({ data, history, isMobile }) => {
-  const { contentId, title, subtitle, thumbnailPath, baseUrl } = data;
-  const handleClick = () => history.push(`${baseUrl}/${contentId}`);
+  const { _id, title, subtitle, thumbnail, baseUrl } = data;
+  const thumbnailPath = thumbnail.location;
+  const handleClick = () => history.push(`${baseUrl}/${_id}`);
   const shortenStr = (str) => {
     const upto = isMobile ? 50 : 60;
     return `${str.slice(0, upto)}...`;
@@ -103,8 +104,9 @@ const ImageBlock = ({ data, history, isMobile }) => {
   );
 };
 
-const PopularLocations = ({ data, history, isMobile }) => {
-  const { cards } = data;
+const PopularLocations = ({ locations, history, isMobile }) => {
+  // const { locations } = data;
+  console.log('==001', locations);
   return (
     <PopularLocationsBlock>
       <Wrapper isMobile={isMobile}>
@@ -116,17 +118,19 @@ const PopularLocations = ({ data, history, isMobile }) => {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {cards.map(
-            (card, key) =>
-              card.toggleDisplay && (
-                <ImageBlock
-                  isMobile={isMobile}
-                  data={card}
-                  history={history}
-                  key={key}
-                />
-              ),
-          )}
+          {locations &&
+            locations.length > 0 &&
+            locations.map(
+              (card, key) =>
+                card.toggleDisplay && (
+                  <ImageBlock
+                    isMobile={isMobile}
+                    data={card}
+                    history={history}
+                    key={key}
+                  />
+                ),
+            )}
         </Masonry>
       </Wrapper>
     </PopularLocationsBlock>
