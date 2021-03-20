@@ -43,8 +43,7 @@ export const listPopularLocations = (data) => {
     return string;
   }
 
-  console.log('==101', data, writeParams(data));
-  return client.get(`/api/popularLocations?${writeParams(data)}`);
+  return client.get(`/api/popularLocations?${data && writeParams(data)}`);
 };
 
 // export const updateGroup = ({ id, title, body, tags }) =>
