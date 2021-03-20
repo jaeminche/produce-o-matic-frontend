@@ -22,8 +22,8 @@ const MainPage = () => {
       </Helmet>
       {/* possible props: Spacer, reverse-color */}
       <HeaderContainer />
-      <LocationsContainer type="youtube" />
-      <LocationsContainer type="blog" />
+      <LocationsContainer />
+      {/* <LocationsContainer type="locationIncentive" /> */}
       <IntroTextContainer />
       <ThumbnailsContainer />
       <FooterContainer />

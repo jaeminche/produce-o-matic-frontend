@@ -12,7 +12,7 @@ import client from './client';
 export const postPopularLocation = ({
   toggleDisplay = true,
   toggleDisplayOnMain = true,
-  name = 'PopularLocations',
+  name = 'LocationIncentive',
   title = 'Test-Title',
   subtitle = 'test-subtitle',
   youtubePath = 'https://www.youtube.com/embed/joiGm8xre04',
@@ -34,7 +34,18 @@ export const postPopularLocation = ({
     baseUrl,
   });
 
-export const listPopularLocations = () => client.get(`/api/popularLocations`);
+export const listPopularLocations = (data) => {
+  function writeParams(data) {
+    let string = '';
+    for (const [key, value] of Object.entries(data)) {
+      string += `${key}=${value}&`;
+    }
+    return string;
+  }
+
+  console.log('==101', data, writeParams(data));
+  return client.get(`/api/popularLocations?${writeParams(data)}`);
+};
 
 // export const updateGroup = ({ id, title, body, tags }) =>
 //   client.patch(`/api/itemGroups/${id}`, { title, body, tags });

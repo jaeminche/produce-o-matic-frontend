@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
 import {
   GYEONGBOKGUNG,
   GYEONGBOKGUNG02,
@@ -8,6 +8,7 @@ import {
   INSADONG,
 } from '../../assets';
 import Locations from '../../components/main/Locations';
+import { listPopularLocations } from '../../modules/popularLocations';
 
 // todo: DATA TO BE RETRIEVED
 const temp1 = [
@@ -83,8 +84,46 @@ const temp2 = [
   // },
 ];
 
-const LocationsContainer = ({ type }) => {
-  return <Locations items={type === 'youtube' ? temp1 : temp2} />;
+const LocationsContainer = (props) => {
+  const { location } = props;
+  const dispatch = useDispatch();
+  const { locations, error, loading } = useSelector(
+    ({ popularLocations, loading, user }) => ({
+      locations: popularLocations.popularLocations,
+      error: popularLocations.error,
+      loading: loading['popularLocations/LIST_POPULARLOCATIONS'],
+    }),
+  );
+
+  const popularLocations =
+    locations &&
+    locations.filter((location) => location.name === 'PopularLocations');
+  const locationIncentives =
+    locations &&
+    locations.filter((location) => location.name === 'LocationIncentive');
+
+  useEffect(() => {
+    // const param =
+    //   location.pathname === '/'
+    //     ? { toggleDisplayOnMain: true }
+    //     : location.pathname === '/produce-in-korea/popular-locations'
+    //     ? { toggleDisplay: true, name: 'popularLocations' }
+    //     : location.pathname === '/produce-o-manual/location-incentives'
+    //     ? { toggleDisplay: true, name: 'locationIncentive' }
+    //     : null;
+    dispatch(listPopularLocations({ toggleDisplayOnMain: true }));
+  }, []);
+
+  return (
+    <>
+      {popularLocations && popularLocations.length > 0 && (
+        <Locations items={popularLocations} />
+      )}
+      {locationIncentives && locationIncentives.length > 0 && (
+        <Locations items={locationIncentives} />
+      )}
+    </>
+  );
 };
 
 export default withRouter(LocationsContainer);

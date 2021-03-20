@@ -145,10 +145,10 @@ const Locations = ({ items }) => {
           {items.map((item, key) => (
             <CustomSlide
               key={key}
-              imgpath={item.imgpath}
+              imgpath={item.thumbnail.location}
               title={item.title}
               subtitle={item.subtitle}
-              url={item.url}
+              url={item.youtubePath}
             />
           ))}
         </Slider>

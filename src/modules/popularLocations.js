@@ -20,7 +20,10 @@ const [
 ] = createRequestActionTypes('popularLocations/POST_POPULARLOCATION');
 
 export const initialize = createAction(INITIALIZE);
-export const listPopularLocations = createAction(LIST_POPULARLOCATIONS);
+export const listPopularLocations = createAction(
+  LIST_POPULARLOCATIONS,
+  (data) => data,
+);
 export const postPopularLocation = createAction(
   POST_POPULARLOCATION,
   (data) => data,

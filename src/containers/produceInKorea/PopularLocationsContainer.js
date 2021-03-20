@@ -13,7 +13,6 @@ import {
   HANOKMAEUL,
 } from '../../assets';
 import { useMediaQuery } from 'react-responsive';
-import SAMPLEYOUTUBES from '../../lib/constants/sampleYoutubes';
 import { listPopularLocations } from '../../modules/popularLocations';
 
 const PopularLocationsContainer = ({ location, history }) => {
@@ -37,8 +36,11 @@ const PopularLocationsContainer = ({ location, history }) => {
 
   useEffect(() => {
     console.log('==8880');
-    dispatch(listPopularLocations());
+    dispatch(
+      listPopularLocations({ toggleDisplay: true, name: 'PopularLocations' }),
+    );
   }, []);
+
   return (
     <PopularLocations
       isMobile={isMobile}
