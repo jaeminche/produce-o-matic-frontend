@@ -11,24 +11,26 @@ import client from './client';
 
 export const postPopularLocation = ({
   toggleDisplay = true,
+  toggleDisplayOnMain = true,
   name = 'PopularLocations',
   title = 'Test-Title',
   subtitle = 'test-subtitle',
   youtubePath = 'https://www.youtube.com/embed/joiGm8xre04',
   text = 'test-texts',
   thumbnail,
-  tags = ['popular-location'],
+  // tags = ['popular-location'],
   baseUrl = '/produce-in-korea/popular-locations',
 }) =>
   client.post('/api/popularLocations', {
     toggleDisplay,
+    toggleDisplayOnMain,
     name,
     title,
     subtitle,
     youtubePath,
     text,
     thumbnail,
-    tags,
+    // tags,
     baseUrl,
   });
 
