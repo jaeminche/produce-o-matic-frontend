@@ -52,7 +52,7 @@ const fields = [
   },
   {
     key: 'toggleDisplayOnMain',
-    label: '메인페이지에 표시',
+    label: 'Main페이지에 표시',
     sorter: false,
     filter: false,
   },
