@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { CCol, CFormGroup, CFormText, CInput, CLabel } from '@coreui/react';
+import {
+  CCol,
+  CFormGroup,
+  CFormText,
+  CInput,
+  CLabel,
+  CCard,
+  CCardBody,
+  CSwitch,
+} from '@coreui/react';
 import Select from 'react-select';
 import styled from 'styled-components/macro';
 import { SpacerInRow } from '../../reusable';
@@ -115,6 +124,45 @@ const TextInputFormGroup = ({
           id={type}
           name={type}
           placeholder={`${type}을 입력해주세요`}
+        />
+        {!updateBtnClicked && <CFormText>{desc}</CFormText>}
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const SwitchInputFormGroup = ({
+  updateBtnClicked,
+  defaultValue,
+  toggle,
+  type,
+  tabTitle,
+  setToggle,
+}) => {
+  const desc = '';
+  console.log('==401', toggle);
+  return (
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { width: `${width[type]}` } : null}
+    >
+      {!updateBtnClicked && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`${type}`}</CLabel>
+        </CCol>
+      )}
+      <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
+        <CSwitch
+          className={'mx-1'}
+          shape={'pill'}
+          color={'info'}
+          labelOn={'\u2713'}
+          labelOff={'\u2715'}
+          defaultChecked
+          checked={toggle}
+          onChange={setToggle}
+          id={type}
+          name={type}
         />
         {!updateBtnClicked && <CFormText>{desc}</CFormText>}
       </CCol>
@@ -415,7 +463,7 @@ const CodeInputFormGroupForItemTab = ({
 
 const ContentsFormGroup = (props) => {
   console.log('==202', props);
-  const { targetItem, form, onChange, handleOnSelect } = props;
+  const { targetItem, form, onChange, setToggle, handleOnSelect } = props;
   const {
     title,
     subtitle,
@@ -467,6 +515,20 @@ const ContentsFormGroup = (props) => {
         form={form}
         type={'youtubePath'}
         onChange={onChange}
+      />
+      <SwitchInputFormGroup
+        defaultValue={toggleDisplay}
+        toggle={form && form.toggleDisplay}
+        form={form}
+        type={'toggleDisplay'}
+        setToggle={setToggle}
+      />
+      <SwitchInputFormGroup
+        defaultValue={toggleDisplayOnMain}
+        toggle={form && form.toggleDisplayOnMain}
+        form={form}
+        type={'toggleDisplayOnMain'}
+        setToggle={setToggle}
       />
     </StyledFormGroups>
   );

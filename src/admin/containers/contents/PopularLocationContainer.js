@@ -44,6 +44,14 @@ const PopularLocationContainer = ({ match }) => {
     // );
   });
 
+  const setToggle = (e) => {
+    const { value, name } = e.target;
+    setPopularLocationForm({
+      ...popularLocationForm,
+      [name]: !popularLocationForm[name],
+    });
+  };
+
   const handleOnSelect = useCallback(({ e, key, isMulti = false }) => {
     // if e is like [{label: str, value: num}], make it flat only with values
     const structuredValues = isMulti
@@ -76,7 +84,19 @@ const PopularLocationContainer = ({ match }) => {
             myToast(`File uploading successful!`);
             const { _id, location, contentType, originalname } = response.data;
             const thumbnail = { _id, location, contentType, originalname };
-            dispatch(postPopularLocation({ thumbnail }));
+            //           toggleDisplay = true,
+            // toggleDisplayOnMain = true,
+            // name = 'LocationIncentive',
+            // title = 'Test-Title',
+            // subtitle = 'test-subtitle',
+            // youtubePath = 'https://www.youtube.com/embed/joiGm8xre04',
+            // text = 'test-texts',
+            // thumbnail,
+            // // tags = ['popular-location'],
+            // baseUrl = '/produce-in-korea/popular-locations',
+            dispatch(
+              postPopularLocation({ thumbnail, ...popularLocationForm }),
+            );
           }
         } else {
           myToast(
@@ -134,6 +154,7 @@ const PopularLocationContainer = ({ match }) => {
       targetItem={targetItem}
       form={popularLocationForm}
       onChange={onChange}
+      setToggle={setToggle}
       handleOnSelect={handleOnSelect}
       formDataToUpload={formDataToUpload}
       setFormDataToUpload={setFormDataToUpload}
