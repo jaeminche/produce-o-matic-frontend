@@ -52,21 +52,9 @@ const PopularLocationContainer = ({ match }) => {
     });
   };
 
-  const handleOnSelect = useCallback(({ e, key, isMulti = false }) => {
-    // if e is like [{label: str, value: num}], make it flat only with values
-    const structuredValues = isMulti
-      ? (key === 'groupsCodes' || key === 'tags') && e.map((obj) => obj.value)
-      : e.value;
-
+  const handleOnSelect = ({ e, key }) => {
     setPopularLocationForm({ ...popularLocationForm, [key]: e.value });
-    // dispatch(
-    //   changeField({
-    //     form: `${modifyType}${activeText[activeTab]}`,
-    //     key,
-    //     value: structuredValues,
-    //   }),
-    // );
-  });
+  };
 
   const onSubmit = ({ type }) => {
     /**

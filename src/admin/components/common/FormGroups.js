@@ -332,7 +332,7 @@ const GroupCodeSelectFormGroup = ({
 const NameTypeSelectFormGroup = ({
   defaultValue,
   form,
-  key,
+  type,
   handleOnSelect,
 }) => {
   const options = [
@@ -361,7 +361,7 @@ const NameTypeSelectFormGroup = ({
           }
           // defaultValue={form && { label: form[key], value: form[key] }}
           // value={form && key && form[key]}
-          onChange={(e) => handleOnSelect({ e, key })}
+          onChange={(e) => handleOnSelect({ e, key: type })}
           placeholder={defaultValue || desc}
         />
         <CFormText>{desc}</CFormText>
@@ -491,7 +491,7 @@ const ContentsFormGroup = (props) => {
       <NameTypeSelectFormGroup
         defaultValue={name}
         form={form}
-        key={'name'}
+        type={'name'}
         handleOnSelect={handleOnSelect}
       />
       <TextInputFormGroup
