@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import BasicDropzone from '../../../components/BasicDropzone/BasicDropzone';
-// import PopularLocationsTable from './tables/PopularLocationsTable';
+import PopularLocationsTable from '../tables/PopularLocationsTable';
 import { listPopularLocations } from '../../../modules/popularLocations';
 
 const PopularLocations = (props) => {
@@ -20,10 +20,11 @@ const PopularLocations = (props) => {
   }, []);
 
   return (
-    <div>
-      <BasicDropzone {...props} />
-      {formDataReady && <input onClick={(formDataReady && onSubmit) || null} />}
-    </div>
+    <>
+      <PopularLocationsTable {...props} />
+      {/* <BasicDropzone {...props} />
+      {formDataReady && <input onClick={(formDataReady && onSubmit) || null} />} */}
+    </>
   );
 };
 

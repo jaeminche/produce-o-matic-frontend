@@ -50,16 +50,16 @@ const _nav = [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Popular Locations 페이지 관리',
+    name: 'Main / Popular Locations Pages',
     to: '/firstavenue/popularlocations-page',
     icon: 'cil-pencil',
   },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'People 페이지 관리',
-    to: '/firstavenue/people-page',
-    icon: 'cil-pencil',
-  },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'People 페이지 관리',
+  //   to: '/firstavenue/people-page',
+  //   icon: 'cil-pencil',
+  // },
   // TODO: REMOVE ALL THE ITEMS BELOW ON PRODUCTION
   // {
   //   _tag: 'CSidebarNavTitle',

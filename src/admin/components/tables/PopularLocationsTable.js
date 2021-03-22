@@ -24,27 +24,58 @@ const getBadge = (status) => {
   }
 };
 const fields = [
-  '_id',
-  'uuid',
-  'grandTotal',
-  'currency',
-  'currencyRate',
-  'createdAt_local',
-  'createdAt_utc',
-  'email',
+  {
+    key: 'location',
+    label: '썸네일',
+    _style: { width: '100px' },
+    sorter: false,
+    filter: false,
+  },
+  'title',
+  {
+    key: 'name',
+    label: 'Type',
+    sorter: false,
+    filter: false,
+  },
+  {
+    key: 'originalname',
+    label: 'File name',
+    sorter: false,
+    filter: false,
+  },
+  {
+    key: 'toggleDisplay',
+    label: 'P.Location페이지에 표시',
+    sorter: false,
+    filter: false,
+  },
+  {
+    key: 'toggleDisplayOnMain',
+    label: '메인페이지에 표시',
+    sorter: false,
+    filter: false,
+  },
 ];
 
 const PopularLocationsTable = (props) => {
-  const { budgetResults, history } = props;
+  const { history, popularLocations } = props;
+  console.log('==200', popularLocations);
+  const { thumbnail } = { ...popularLocations };
+  // const { location, originalname } = { ...thumbnail };
+  // const { {...thumbnail}, title, name, toggleDisplay, toggleDisplayOnMain } = {
+  //   ...popularLocations,
+  // };
+  const _locations = { ...popularLocations, ...thumbnail };
   return (
     <>
       <CRow>
         <CCol xs="12" lg="12">
           <CCard>
-            <CCardHeader>Popular Locations 목록</CCardHeader>
+            <CCardHeader>Popular Locations 데이터 목록</CCardHeader>
             <CCardBody>
               <CDataTable
-                items={budgetResults}
+                items={popularLocations}
                 fields={fields}
                 itemsPerPage={10}
                 pagination
@@ -53,13 +84,24 @@ const PopularLocationsTable = (props) => {
                     `/firstavenue/budgetomatic-page/results-list/${item._id}`,
                   )
                 }
-                // scopedSlots={{
-                //   status: (item) => (
-                //     <td>
-                //       <CBadge color={getBadge(item._id)}>{item._id}</CBadge>
-                //     </td>
-                //   ),
-                // }}
+                scopedSlots={{
+                  location: (item) => (
+                    <td>
+                      <div>
+                        <img
+                          style={{ width: '100px' }}
+                          src={item.thumbnail.location}
+                          alt={item.thumbnail.originalname}
+                        />
+                      </div>
+                    </td>
+                  ),
+                  originalname: (item) => (
+                    <td>
+                      <div>{item.thumbnail.originalname}</div>
+                    </td>
+                  ),
+                }}
               />
             </CCardBody>
           </CCard>
