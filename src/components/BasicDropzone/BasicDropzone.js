@@ -15,7 +15,9 @@ const BasicDropzone = (props) => {
     formDataToUpload,
     setFormDataToUpload,
     fileUploadDone,
+    targetItem,
   } = props;
+  const { thumbnail } = { ...targetItem };
   const dispatch = useDispatch();
   const [uploadedFile, setUploadedFile] = useState('');
   const onDrop = useCallback((acceptedFiles) => {
@@ -59,7 +61,9 @@ const BasicDropzone = (props) => {
       <Label>{text}</Label>
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        <p className="buttonLabel">첨부하기</p>
+        <p className="buttonLabel">
+          {thumbnail ? '썸네일이미지 변경하기' : '첨부하기'}
+        </p>
       </div>
       <p className="desc">{desc}</p>
       <aside className="attachedName">
