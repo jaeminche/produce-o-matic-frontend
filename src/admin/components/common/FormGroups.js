@@ -475,6 +475,7 @@ const ContentsFormGroup = (props) => {
     toggleDisplayOnMain,
   } = { ...targetItem };
   const { location, originalname, _id } = { ...thumbnail };
+  const filename = thumbnail && thumbnail.originalname;
   return (
     <StyledFormGroups>
       <CFormGroup row>
@@ -483,6 +484,7 @@ const ContentsFormGroup = (props) => {
         </CCol>
         <CCol xs="12" md={'9'}>
           <img src={location} alt={originalname} style={{ width: '60%' }} />
+          {filename && <CFormText>{filename}</CFormText>}
         </CCol>
       </CFormGroup>
 
