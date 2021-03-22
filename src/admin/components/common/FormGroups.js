@@ -148,7 +148,13 @@ const SwitchInputFormGroup = ({
     >
       {!updateBtnClicked && (
         <CCol md="3">
-          <CLabel htmlFor="text-input">{`${type}`}</CLabel>
+          <CLabel htmlFor="text-input">
+            {type === 'toggleDisplay'
+              ? 'Popular Locations 페이지에 표시 여부'
+              : type === 'toggleDisplayOnMain'
+              ? '메인 페이지에 표시 여부'
+              : ''}
+          </CLabel>
         </CCol>
       )}
       <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
@@ -346,12 +352,11 @@ const NameTypeSelectFormGroup = ({
     },
   ];
   const desc =
-    'p.locations을 선택하면 메인페이지에서 상단에, l.incentive를 선택하면 하단에 위치합니다';
-  console.log('==301', form, defaultValue);
+    'p.locations를 선택하면 Main 페이지 상단 슬라이드에, l.incentive를 선택하면 Main 페이지 하단 슬라이드에 표시됩니다.\n 페이지에 표시 않을지라도 설정 필수.';
   return (
     <CFormGroup row>
       <CCol md="3">
-        <CLabel htmlFor="text-input">{`타입`}</CLabel>
+        <CLabel htmlFor="text-input">{`타입 설정`}</CLabel>
       </CCol>
       <CCol xs="12" md={'9'}>
         <Select
@@ -488,12 +493,6 @@ const ContentsFormGroup = (props) => {
         </CCol>
       </CFormGroup>
 
-      <NameTypeSelectFormGroup
-        defaultValue={name}
-        form={form}
-        type={'name'}
-        handleOnSelect={handleOnSelect}
-      />
       <TextInputFormGroup
         defaultValue={title}
         form={form}
@@ -531,6 +530,12 @@ const ContentsFormGroup = (props) => {
         form={form}
         type={'toggleDisplayOnMain'}
         setToggle={setToggle}
+      />
+      <NameTypeSelectFormGroup
+        defaultValue={name}
+        form={form}
+        type={'name'}
+        handleOnSelect={handleOnSelect}
       />
     </StyledFormGroups>
   );
