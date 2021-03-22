@@ -60,13 +60,7 @@ const fields = [
 
 const PopularLocationsTable = (props) => {
   const { history, popularLocations } = props;
-  console.log('==200', popularLocations);
-  const { thumbnail } = { ...popularLocations };
-  // const { location, originalname } = { ...thumbnail };
-  // const { {...thumbnail}, title, name, toggleDisplay, toggleDisplayOnMain } = {
-  //   ...popularLocations,
-  // };
-  const _locations = { ...popularLocations, ...thumbnail };
+
   return (
     <>
       <CRow>
@@ -80,9 +74,7 @@ const PopularLocationsTable = (props) => {
                 itemsPerPage={10}
                 pagination
                 onRowClick={(item) =>
-                  history.push(
-                    `/firstavenue/budgetomatic-page/results-list/${item._id}`,
-                  )
+                  history.push(`/firstavenue/popularlocations-page/${item._id}`)
                 }
                 scopedSlots={{
                   location: (item) => (
