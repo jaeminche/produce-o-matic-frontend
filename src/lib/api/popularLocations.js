@@ -10,13 +10,13 @@ import client from './client';
 // export const listItemsGroups = () => client.get(`/api/itemsGroups`);
 
 export const postPopularLocation = ({
-  toggleDisplay = true,
-  toggleDisplayOnMain = true,
-  name = 'LocationIncentive',
-  title = 'Test-Title',
-  subtitle = 'test-subtitle',
-  youtubePath = 'https://www.youtube.com/embed/joiGm8xre04',
-  text = 'test-texts',
+  toggleDisplay,
+  toggleDisplayOnMain,
+  name,
+  title,
+  subtitle,
+  youtubePath,
+  text,
   thumbnail,
   // tags = ['popular-location'],
   baseUrl = '/produce-in-korea/popular-locations',
@@ -46,7 +46,29 @@ export const listPopularLocations = (data) => {
   return client.get(`/api/popularLocations?${data && writeParams(data)}`);
 };
 
-// export const updateGroup = ({ id, title, body, tags }) =>
-//   client.patch(`/api/itemGroups/${id}`, { title, body, tags });
+export const updatePopularLocation = ({
+  id,
+  toggleDisplay,
+  toggleDisplayOnMain,
+  name,
+  title,
+  subtitle,
+  youtubePath,
+  text,
+  thumbnail,
+  baseUrl = '/produce-in-korea/popular-locations',
+}) =>
+  client.patch(`/api/popularLocations/${id}`, {
+    toggleDisplay,
+    toggleDisplayOnMain,
+    name,
+    title,
+    subtitle,
+    youtubePath,
+    text,
+    thumbnail,
+    baseUrl,
+  });
 
-// export const removeGroup = (id) => client.delete(`/api/itemGroups/${id}`);
+export const removePopularLocation = (id) =>
+  client.delete(`/api/popularLocations/${id}`);

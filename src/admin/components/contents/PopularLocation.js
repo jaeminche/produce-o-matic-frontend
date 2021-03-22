@@ -7,13 +7,16 @@ import { CForm } from '@coreui/react';
 import { ContentsFormGroup } from '../../../admin/components/common/FormGroups';
 
 const PopularLocation = (props) => {
-  const { targetItem, onSubmit, formDataToUpload } = props;
+  const { targetItem, form, onSubmit, formDataToUpload } = props;
   const dispatch = useDispatch();
 
   console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
+  console.log('==7980', form);
+
   const formDataReady =
-    formDataToUpload &&
-    formDataToUpload.getAll('image').some((file) => file.path);
+    (formDataToUpload &&
+      formDataToUpload.getAll('image').some((file) => file.path)) ||
+    (form && Object.values(form).every((x) => x !== null && x !== ''));
   //   return <PopularLocationsTable {...props} />;
 
   return (
@@ -28,7 +31,7 @@ const PopularLocation = (props) => {
         <ContentsFormGroup {...props} />
       </CForm>
       <BasicDropzone {...props} />
-      {formDataReady && <input onClick={(formDataReady && onSubmit) || null} />}
+      {formDataReady && <input onClick={() => onSubmit({ type: 'patch' })} />}
     </div>
   );
 };

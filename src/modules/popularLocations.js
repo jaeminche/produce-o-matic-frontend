@@ -19,6 +19,12 @@ const [
   POST_POPULARLOCATION_FAILURE,
 ] = createRequestActionTypes('popularLocations/POST_POPULARLOCATION');
 
+const [
+  UPDATE_POPULARLOCATION,
+  UPDATE_POPULARLOCATION_SUCCESS,
+  UPDATE_POPULARLOCATION_FAILURE,
+] = createRequestActionTypes('popularLocations/UPDATE_POPULARLOCATION');
+
 export const initialize = createAction(INITIALIZE);
 export const listPopularLocations = createAction(
   LIST_POPULARLOCATIONS,
@@ -26,6 +32,10 @@ export const listPopularLocations = createAction(
 );
 export const postPopularLocation = createAction(
   POST_POPULARLOCATION,
+  (data) => data,
+);
+export const updatePopularLocation = createAction(
+  UPDATE_POPULARLOCATION,
   (data) => data,
 );
 
@@ -37,9 +47,14 @@ const postPopularLocationSaga = createRequestSaga(
   POST_POPULARLOCATION,
   popularLocationsAPI.postPopularLocation,
 );
+const updatePopularLocationSaga = createRequestSaga(
+  UPDATE_POPULARLOCATION,
+  popularLocationsAPI.updatePopularLocation,
+);
 export function* popularLocationsSaga() {
   yield takeLatest(LIST_POPULARLOCATIONS, listPopularLocationsSaga);
   yield takeLatest(POST_POPULARLOCATION, postPopularLocationSaga);
+  yield takeLatest(UPDATE_POPULARLOCATION, updatePopularLocationSaga);
 }
 
 const initialState = {
@@ -78,6 +93,17 @@ const popularLocations = handleActions(
       };
     },
     [POST_POPULARLOCATION_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      error,
+    }),
+    [UPDATE_POPULARLOCATION_SUCCESS]: (state, { payload: result }) => {
+      return {
+        ...state,
+        res: result,
+        error: null,
+      };
+    },
+    [UPDATE_POPULARLOCATION_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),

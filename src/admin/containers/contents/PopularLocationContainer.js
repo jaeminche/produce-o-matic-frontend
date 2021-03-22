@@ -5,7 +5,7 @@ import clientForMultipart from '../../../lib/api/clientForMultipart';
 import {
   listPopularLocations,
   postPopularLocation,
-  formPopularLocation,
+  updatePopularLocation,
 } from '../../../modules/popularLocations';
 import PopularLocation from '../../components/contents/PopularLocation';
 import { myToast } from '../../../lib/util/myToast';
@@ -16,7 +16,7 @@ const PopularLocationContainer = ({ match }) => {
   const { id } = match.params;
   const [popularLocationForm, setPopularLocationForm] = useState(null);
   const [formDataToUpload, setFormDataToUpload] = useState('');
-  const [fileUploadDone, setFileUploadDone] = useState('');
+  const [fileUploadDone, setFileUploadDone] = useState(false);
   const { location } = useSelector(({ popularLocations }) => ({
     location: popularLocations.popularLocations,
   }));
@@ -68,78 +68,97 @@ const PopularLocationContainer = ({ match }) => {
     // );
   });
 
-  const onSubmit = () => {
-    console.log('==912');
-    clientForMultipart
-      .post('/api/fileUpload', formDataToUpload)
-      .then(function (response) {
-        console.log('==999.0', response);
-        if (response.status === 200 && response.data) {
-          if (response.data.status === 400 && response.data.errmsg) {
+  const onSubmit = ({ type }) => {
+    /**
+     *? post일 때는 무조건 파일업로드하고 제출.
+     *? patch일 때는 썸네일이미지 변경하기했을 때만 파일업로드하고 제출.
+     *? 그렇지 않았을 때는 파일업로드 생략하고 제출
+     */
+    if (
+      type === 'post' ||
+      (type === 'patch' &&
+        formDataToUpload &&
+        formDataToUpload.getAll('image').some((file) => file.path))
+    ) {
+      clientForMultipart
+        .post('/api/fileUpload', formDataToUpload)
+        .then(function (response) {
+          console.log('==999.0', response);
+          if (response.status === 200 && response.data) {
+            if (response.data.status === 400 && response.data.errmsg) {
+              myToast(
+                `파일업로드 실패. 아래 설명을 참고하셔서 다시 업로드해주세요. ErrorCode: F0000; 이유: ${response.data.errmsg}`,
+              );
+              return;
+            } else if (response.data._id) {
+              // setFileUploadDone(true);
+              myToast(`File uploading successful!`);
+              const {
+                _id,
+                location,
+                contentType,
+                originalname,
+              } = response.data;
+              const thumbnail = { _id, location, contentType, originalname };
+
+              type === 'post' &&
+                dispatch(
+                  postPopularLocation({ ...popularLocationForm, thumbnail }),
+                );
+              type === 'patch' &&
+                dispatch(
+                  updatePopularLocation({
+                    ...popularLocationForm,
+                    thumbnail,
+                    id,
+                  }),
+                );
+            }
+          } else {
             myToast(
-              `파일업로드 실패. 아래 설명을 참고하셔서 다시 업로드해주세요. ErrorCode: F0000; 이유: ${response.data.errmsg}`,
+              `파일 업로드 실패. 서버에서 응답이 없습니다. Consult your engineer.`,
             );
             return;
-          } else if (response.data._id) {
-            myToast(`File uploading successful!`);
-            const { _id, location, contentType, originalname } = response.data;
-            const thumbnail = { _id, location, contentType, originalname };
-            //           toggleDisplay = true,
-            // toggleDisplayOnMain = true,
-            // name = 'LocationIncentive',
-            // title = 'Test-Title',
-            // subtitle = 'test-subtitle',
-            // youtubePath = 'https://www.youtube.com/embed/joiGm8xre04',
-            // text = 'test-texts',
-            // thumbnail,
-            // // tags = ['popular-location'],
-            // baseUrl = '/produce-in-korea/popular-locations',
-            dispatch(
-              postPopularLocation({ thumbnail, ...popularLocationForm }),
-            );
-          }
-        } else {
-          myToast(
-            `파일 업로드 실패. 서버에서 응답이 없습니다. Consult your engineer.`,
-          );
-          return;
 
-          // onChange({
-          //   name:
-          //     type === 'I0'
-          //       ? 'verify_image_path'
-          //       : type === 'legal_represent_file_path'
-          //       ? 'legal_represent_file_path'
-          //       : type === 'corp_biz_file_path'
-          //       ? 'corp_biz_file_path'
-          //       : type,
-          //   value: response.data.results[0].image,
-          //   formindex,
-          // });
-          // dispatch(
-          //   changeField({
-          //     form: "creditorInfoForm",
-          //     key:
-          //       type === "I0"
-          //         ? "verify_image_path"
-          //         : type === "legal_represent_file_path"
-          //         ? "legal_represent_file_path"
-          //         : type === "corp_biz_file_path"
-          //         ? "corp_biz_file_path"
-          //         : "",
-          //     value: response.data.results[0].image,
-          //     formindex
-          //   })
-          // );
-        }
-      })
-      .catch(function (err) {
-        myToast(`서버와의 통신 중에 오류 발생 : ${err.message}`);
-        console.log('---401.1', err);
-        // if (err.status === 401) {
-        //   //   refreshAndSetJwtAndLoginType();
-        // }
-      });
+            // onChange({
+            //   name:
+            //     type === 'I0'
+            //       ? 'verify_image_path'
+            //       : type === 'legal_represent_file_path'
+            //       ? 'legal_represent_file_path'
+            //       : type === 'corp_biz_file_path'
+            //       ? 'corp_biz_file_path'
+            //       : type,
+            //   value: response.data.results[0].image,
+            //   formindex,
+            // });
+            // dispatch(
+            //   changeField({
+            //     form: "creditorInfoForm",
+            //     key:
+            //       type === "I0"
+            //         ? "verify_image_path"
+            //         : type === "legal_represent_file_path"
+            //         ? "legal_represent_file_path"
+            //         : type === "corp_biz_file_path"
+            //         ? "corp_biz_file_path"
+            //         : "",
+            //     value: response.data.results[0].image,
+            //     formindex
+            //   })
+            // );
+          }
+        })
+        .catch(function (err) {
+          myToast(`서버와의 통신 중에 오류 발생 : ${err.message}`);
+          console.log('---401.1', err);
+          // if (err.status === 401) {
+          //   //   refreshAndSetJwtAndLoginType();
+          // }
+        });
+    } else if (type === 'patch') {
+      dispatch(updatePopularLocation({ ...popularLocationForm, id }));
+    }
   };
 
   useEffect(() => {
