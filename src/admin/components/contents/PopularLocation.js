@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import BasicDropzone from '../../../components/BasicDropzone/BasicDropzone';
-// import PopularLocationsTable from './tables/PopularLocationsTable';
-import { listPopularLocations } from '../../../modules/popularLocations';
 import {
   CCard,
   CCardHeader,
