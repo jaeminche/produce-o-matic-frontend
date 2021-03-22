@@ -209,9 +209,7 @@ const TagsSelectFormGroup = ({
           name={'tags'}
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'tags', isMulti: true })}
-          placeholder={
-            '사용자가 Type Of Production을 선택했을 때 디폴트로 표시되게 하고 싶은 것을 선택하세요.'
-          }
+          placeholder={'디폴트 Type Of Production 설정'}
         />
       </CCol>
     </CFormGroup>
