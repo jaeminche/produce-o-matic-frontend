@@ -273,6 +273,47 @@ const GroupCodeSelectFormGroup = ({
   );
 };
 
+const NameTypeSelectFormGroup = ({
+  defaultValue,
+  form,
+  key,
+  handleOnSelect,
+}) => {
+  const options = [
+    {
+      value: 'PopularLocations',
+      label: 'PopularLocations',
+    },
+    {
+      value: 'LocationIncentive',
+      label: 'LocationIncentive',
+    },
+  ];
+  const desc =
+    'p.locations을 선택하면 메인페이지에서 상단에, l.incentive를 선택하면 하단에 위치합니다';
+  console.log('==301', form, defaultValue);
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`타입`}</CLabel>
+      </CCol>
+      <CCol xs="12" md={'9'}>
+        <Select
+          options={options}
+          defaultValue={
+            defaultValue && { label: defaultValue, value: defaultValue }
+          }
+          // defaultValue={form && { label: form[key], value: form[key] }}
+          // value={form && key && form[key]}
+          onChange={(e) => handleOnSelect({ e, key })}
+          placeholder={defaultValue || desc}
+        />
+        <CFormText>{desc}</CFormText>
+      </CCol>
+    </CFormGroup>
+  );
+};
+
 const CodeInputFormGroupForGroupTab = ({
   updateBtnClicked,
   defaultValue,
@@ -364,6 +405,61 @@ const CodeInputFormGroupForItemTab = ({
   );
 };
 
+const ContentsFormGroup = (props) => {
+  console.log('==202', props);
+  const { targetItem, form, onChange, handleOnSelect } = props;
+  const {
+    title,
+    subtitle,
+    text,
+    name,
+    youtubePath,
+    thumbnail,
+    toggleDisplay,
+    toggleDisplayOnMain,
+  } = { ...targetItem };
+  const { location, originalname, _id } = { ...thumbnail };
+  return (
+    <StyledFormGroups>
+      <img src={location} alt={originalname} style={{ width: '200px' }} />
+      <NameTypeSelectFormGroup
+        defaultValue={name}
+        form={form}
+        key={'name'}
+        handleOnSelect={handleOnSelect}
+      />
+      <TextInputFormGroup
+        defaultValue={title}
+        form={form}
+        type={'title'}
+        // tabTitle={tabTitle}
+        onChange={onChange}
+      />
+      <TextInputFormGroup
+        defaultValue={subtitle}
+        form={form}
+        type={'subtitle'}
+        // tabTitle={tabTitle}
+        onChange={onChange}
+      />
+      <TextInputFormGroup
+        defaultValue={text}
+        form={form}
+        type={'text'}
+        // tabTitle={tabTitle}
+        onChange={onChange}
+      />
+
+      <TextInputFormGroup
+        defaultValue={youtubePath}
+        form={form}
+        type={'youtubePath'}
+        // tabTitle={tabTitle}
+        onChange={onChange}
+      />
+    </StyledFormGroups>
+  );
+};
 const GetOneFormGroup = (props) => {
   const { target, updateGroupTarget, ...rest } = props;
   const { code, name, category } = updateGroupTarget;
@@ -391,6 +487,13 @@ const FormGroups = ({
   handleOnSelect,
   form,
 }) => {
+  /**
+   * * activeTab 설정
+   * 0: 템플릿 관리 > 카테고리
+   * 1: 템플릿 관리 > 그룹
+   * 2: 템플릿 관리 > 아이템
+   * 위의 조건에 따라 0, 또는 1, 2로 들어온다
+   */
   const { code, name, unit, rate, remark, tags } = { ...updateItemTarget };
   const updateBtnClicked = modifyType === 'update';
 
@@ -496,4 +599,11 @@ const FormGroups = ({
   return setGroups[activeTab];
 };
 
-export { maxWidth, minWidth, width, GetOneFormGroup, FormGroups };
+export {
+  maxWidth,
+  minWidth,
+  width,
+  ContentsFormGroup,
+  GetOneFormGroup,
+  FormGroups,
+};

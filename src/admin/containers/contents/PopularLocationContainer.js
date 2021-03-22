@@ -1,29 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useHistory } from 'react-router-dom';
-// import { listBudgetResults } from '../../../modules/budgetResults';
 import clientForMultipart from '../../../lib/api/clientForMultipart';
 import {
   listPopularLocations,
   postPopularLocation,
+  formPopularLocation,
 } from '../../../modules/popularLocations';
 import PopularLocation from '../../components/contents/PopularLocation';
 import { myToast } from '../../../lib/util/myToast';
 
-const PopularLocationContainer = () => {
+const PopularLocationContainer = ({ match }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = match.params;
+  const [popularLocationForm, setPopularLocationForm] = useState(null);
   const [formDataToUpload, setFormDataToUpload] = useState('');
   const [fileUploadDone, setFileUploadDone] = useState('');
-  //   const { BUDGETRESULTS } = useSelector(({ budgetResults }) => ({
-  //     BUDGETRESULTS: budgetResults.budgetResults,
-  //   }));
+  const { location } = useSelector(({ popularLocations }) => ({
+    location: popularLocations.popularLocations,
+  }));
 
-  //   useEffect(() => {
-  //     dispatch(listBudgetResults());
-  //   }, []);
+  const targetItem =
+    location &&
+    location.length > 0 &&
+    location.filter((item) => item._id === id)[0];
 
-  // const onRowClick = (e) => history.push()
+  useEffect(() => {
+    !location
+      ? dispatch(listPopularLocations())
+      : setPopularLocationForm(targetItem);
+  }, [dispatch, location]);
+
+  const onChange = useCallback((e) => {
+    const { value, name } = e.target;
+    setPopularLocationForm({ ...popularLocationForm, [name]: value });
+    // dispatch(
+    //   changeField({
+    //     form: `${modifyType}${activeText[activeTab]}`,
+    //     key: name,
+    //     value,
+    //   }),
+    // );
+  });
+
+  const handleOnSelect = useCallback(({ e, key, isMulti = false }) => {
+    // if e is like [{label: str, value: num}], make it flat only with values
+    const structuredValues = isMulti
+      ? (key === 'groupsCodes' || key === 'tags') && e.map((obj) => obj.value)
+      : e.value;
+
+    setPopularLocationForm({ ...popularLocationForm, [key]: e.value });
+    // dispatch(
+    //   changeField({
+    //     form: `${modifyType}${activeText[activeTab]}`,
+    //     key,
+    //     value: structuredValues,
+    //   }),
+    // );
+  });
+
   const onSubmit = () => {
     console.log('==912');
     clientForMultipart
@@ -87,11 +123,18 @@ const PopularLocationContainer = () => {
   };
 
   useEffect(() => {
+    console.log('==300', popularLocationForm);
+  }, [popularLocationForm]);
+  useEffect(() => {
     formDataToUpload && console.log('==980', formDataToUpload.getAll('image'));
   }, [formDataToUpload]);
   return (
     <PopularLocation
       history={history}
+      targetItem={targetItem}
+      form={popularLocationForm}
+      onChange={onChange}
+      handleOnSelect={handleOnSelect}
       formDataToUpload={formDataToUpload}
       setFormDataToUpload={setFormDataToUpload}
       fileUploadDone={fileUploadDone}

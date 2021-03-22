@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux';
 import BasicDropzone from '../../../components/BasicDropzone/BasicDropzone';
 // import PopularLocationsTable from './tables/PopularLocationsTable';
 import { listPopularLocations } from '../../../modules/popularLocations';
+import { CForm } from '@coreui/react';
+import { ContentsFormGroup } from '../../../admin/components/common/FormGroups';
 
 const PopularLocation = (props) => {
-  const { onSubmit, formDataToUpload } = props;
+  const { targetItem, onSubmit, formDataToUpload } = props;
   const dispatch = useDispatch();
 
   console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
@@ -14,13 +16,17 @@ const PopularLocation = (props) => {
     formDataToUpload.getAll('image').some((file) => file.path);
   //   return <PopularLocationsTable {...props} />;
 
-  useEffect(() => {
-    console.log('==8880');
-    dispatch(listPopularLocations());
-  }, []);
-
   return (
     <div>
+      <CForm
+        action=""
+        method="post"
+        encType="multipart/form-data"
+        className="form-horizontal"
+        style={{ marginRight: '15px' }}
+      >
+        <ContentsFormGroup {...props} />
+      </CForm>
       <BasicDropzone {...props} />
       {formDataReady && <input onClick={(formDataReady && onSubmit) || null} />}
     </div>
