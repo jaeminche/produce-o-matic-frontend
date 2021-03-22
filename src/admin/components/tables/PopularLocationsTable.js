@@ -8,6 +8,7 @@ import {
   CDataTable,
   CRow,
 } from '@coreui/react';
+import AddLocation from '../../reusable/AddLocation';
 
 const getBadge = (status) => {
   switch (status) {
@@ -66,7 +67,10 @@ const PopularLocationsTable = (props) => {
       <CRow>
         <CCol xs="12" lg="12">
           <CCard>
-            <CCardHeader>Popular Locations 데이터 목록</CCardHeader>
+            <CCardHeader>
+              Popular Locations 데이터 목록
+              <AddLocation />
+            </CCardHeader>
             <CCardBody>
               <CDataTable
                 items={popularLocations}
