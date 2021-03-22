@@ -43,11 +43,11 @@ const NameInputFormGroup = ({
 }) => {
   const desc =
     tabTitle === 'Item'
-      ? '예)production assistant, assistant director, etc...'
+      ? '예) production assistant, assistant director, etc...'
       : tabTitle === 'Group'
-      ? '예)production department, camera department, etc...'
+      ? '예) production department, camera department, etc...'
       : tabTitle === 'Category'
-      ? '예)labor, equipments, etc...'
+      ? '예) labor, equipments, etc...'
       : '';
   return (
     <CFormGroup
@@ -83,11 +83,19 @@ const TextInputFormGroup = ({
 }) => {
   const desc =
     type === 'unit'
-      ? '예)day, month week,, etc...'
+      ? '예) day, month week,, etc...'
       : type === 'remark'
-      ? '예)this rate is subject to change, etc...'
+      ? '예) this rate is subject to change, etc...'
       : type === 'rate'
-      ? '예)100000 - 콤마없이 숫자만 입력'
+      ? '예) 100000 - 콤마없이 숫자만 입력'
+      : type === 'title'
+      ? '예) Taekwondowon, a versatile location for film and TV'
+      : type === 'subtitle'
+      ? '예) Discover the charms of Muju Taekwondowon a special filming location of South Korea'
+      : type === 'text'
+      ? '예) TaeKwondowon is ...(디테일 페이지에 들어갈 설명)'
+      : type === 'youtubePath'
+      ? '예) https://www.youtube.com/embed/joiGm8xre04'
       : '';
 
   return (
@@ -421,7 +429,15 @@ const ContentsFormGroup = (props) => {
   const { location, originalname, _id } = { ...thumbnail };
   return (
     <StyledFormGroups>
-      <img src={location} alt={originalname} style={{ width: '200px' }} />
+      <CFormGroup row>
+        <CCol md="3">
+          <CLabel htmlFor="text-input">{`썸네일이미지`}</CLabel>
+        </CCol>
+        <CCol xs="12" md={'9'}>
+          <img src={location} alt={originalname} style={{ width: '60%' }} />
+        </CCol>
+      </CFormGroup>
+
       <NameTypeSelectFormGroup
         defaultValue={name}
         form={form}
@@ -432,29 +448,24 @@ const ContentsFormGroup = (props) => {
         defaultValue={title}
         form={form}
         type={'title'}
-        // tabTitle={tabTitle}
         onChange={onChange}
       />
       <TextInputFormGroup
         defaultValue={subtitle}
         form={form}
         type={'subtitle'}
-        // tabTitle={tabTitle}
         onChange={onChange}
       />
       <TextInputFormGroup
         defaultValue={text}
         form={form}
         type={'text'}
-        // tabTitle={tabTitle}
         onChange={onChange}
       />
-
       <TextInputFormGroup
         defaultValue={youtubePath}
         form={form}
         type={'youtubePath'}
-        // tabTitle={tabTitle}
         onChange={onChange}
       />
     </StyledFormGroups>
