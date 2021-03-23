@@ -10,9 +10,12 @@ const Home = () => {
   }));
   useEffect(() => {
     if (user) {
-      window.setTimeout(function () {
+      let timer1 = window.setTimeout(function () {
         history.push('/firstavenue/budgetomatic-page/results-list');
       }, 3500);
+      return () => {
+        window.clearTimeout(timer1);
+      };
     }
   }, [user]);
   return (
@@ -28,7 +31,7 @@ const Home = () => {
                     <p>{`메뉴를 선택해주세요.`}</p>
                     <p>
                       {`곧 '결과 페이지 내역 보기'로
-                      리다이렉팅됩니다..`}
+                      리다이렉트됩니다..`}
                     </p>
                   </>
                 )}
