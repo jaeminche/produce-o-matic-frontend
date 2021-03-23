@@ -124,6 +124,10 @@ const TextInputFormGroup = ({
           id={type}
           name={type}
           placeholder={`${type}을 입력해주세요`}
+          required={type === 'remark' ? false : 'required'}
+          type={
+            type === 'youtubePath' ? 'url' : type === 'rate' ? 'number' : 'text'
+          }
         />
         {!updateBtnClicked && <CFormText>{desc}</CFormText>}
       </CCol>

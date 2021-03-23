@@ -170,6 +170,7 @@ const PopularLocationContainer = ({ match, location }) => {
   return (
     <PopularLocation
       history={history}
+      isAddPage={isAddPage}
       targetItem={targetItem}
       form={popularLocationForm}
       onChange={onChange}
