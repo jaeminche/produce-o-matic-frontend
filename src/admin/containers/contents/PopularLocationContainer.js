@@ -145,7 +145,7 @@ const PopularLocationContainer = ({ match, location }) => {
       myToast(`로케이션 정보를 ${desc1}하였습니다.`);
       history.push('/firstavenue/popularlocations-page');
     }
-    if ((error_add, error_update, error_list)) {
+    if (error_add || error_update || error_list) {
       myToast(
         `로케이션 정보 ${desc1} 실패! 다시 시도해주세요. ErrorCode: PS0000`,
       );
