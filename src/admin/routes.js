@@ -44,6 +44,7 @@ const ButtonGroups = React.lazy(() =>
 const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/charts/Charts'));
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
+const Home = React.lazy(() => import('./views/home/Home'));
 const BudgetResultsView = React.lazy(() =>
   import('./views/budgetomatic/BudgetResultsView'),
 );
@@ -83,7 +84,7 @@ const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 
 const routes = [
-  { path: '/firstavenue', exact: true, name: 'Home' },
+  { path: '/firstavenue', exact: true, name: 'Home', component: Home },
   { path: '/firstavenue/dashboard', name: 'Dashboard', component: Dashboard },
   {
     path: '/firstavenue/budgetomatic-page/results-list',

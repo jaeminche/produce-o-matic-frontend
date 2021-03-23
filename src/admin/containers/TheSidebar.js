@@ -31,7 +31,7 @@ const TheSidebar = () => {
         dispatch({ type: 'toggleAdminSide', sidebarShow: val })
       }
     >
-      <CSidebarBrand className="d-md-down-none" to="/">
+      <CSidebarBrand className="d-md-down-none" to="/firstavenue">
         <CImg
           src={LOGO1ROW}
           className="c-sidebar-brand-full"
