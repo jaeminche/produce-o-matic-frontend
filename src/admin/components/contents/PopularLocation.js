@@ -48,7 +48,7 @@ const PopularLocation = (props) => {
       </CCardBody>
       <CCardFooter>
         <CButton
-          onClick={() => (formDataReady ? onSubmit({ type: 'patch' }) : null)}
+          onClick={() => (formDataReady ? onSubmit() : null)}
           type="submit"
           size="sm"
           color="primary"

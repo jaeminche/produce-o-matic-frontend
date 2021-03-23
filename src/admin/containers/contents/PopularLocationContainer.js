@@ -10,27 +10,32 @@ import {
 import PopularLocation from '../../components/contents/PopularLocation';
 import { myToast } from '../../../lib/util/myToast';
 
-const PopularLocationContainer = ({ match }) => {
+const PopularLocationContainer = ({ match, location }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { id } = match.params;
+
+  const isAddPage =
+    location.pathname === '/firstavenue/popularlocations-page/add';
+  const { id } = !isAddPage && match.params;
+
   const [popularLocationForm, setPopularLocationForm] = useState(null);
   const [formDataToUpload, setFormDataToUpload] = useState('');
   const [fileUploadDone, setFileUploadDone] = useState(false);
-  const { location } = useSelector(({ popularLocations }) => ({
-    location: popularLocations.popularLocations,
+  const { locations } = useSelector(({ popularLocations }) => ({
+    locations: popularLocations.popularLocations,
   }));
 
   const targetItem =
-    location &&
-    location.length > 0 &&
-    location.filter((item) => item._id === id)[0];
+    !isAddPage &&
+    locations &&
+    locations.length > 0 &&
+    locations.filter((item) => item._id === id)[0];
 
   useEffect(() => {
-    !location
+    !locations
       ? dispatch(listPopularLocations())
       : setPopularLocationForm(targetItem);
-  }, [dispatch, location]);
+  }, [dispatch, locations]);
 
   const onChange = useCallback((e) => {
     const { value, name } = e.target;
@@ -56,15 +61,15 @@ const PopularLocationContainer = ({ match }) => {
     setPopularLocationForm({ ...popularLocationForm, [key]: e.value });
   };
 
-  const onSubmit = ({ type }) => {
+  const onSubmit = () => {
     /**
      *? post일 때는 무조건 파일업로드하고 제출.
      *? patch일 때는 썸네일이미지 변경하기했을 때만 파일업로드하고 제출.
      *? 그렇지 않았을 때는 파일업로드 생략하고 제출
      */
     if (
-      type === 'post' ||
-      (type === 'patch' &&
+      isAddPage ||
+      (!isAddPage &&
         formDataToUpload &&
         formDataToUpload.getAll('image').some((file) => file.path))
     ) {
@@ -89,11 +94,11 @@ const PopularLocationContainer = ({ match }) => {
               } = response.data;
               const thumbnail = { _id, location, contentType, originalname };
 
-              type === 'post' &&
+              isAddPage &&
                 dispatch(
                   postPopularLocation({ ...popularLocationForm, thumbnail }),
                 );
-              type === 'patch' &&
+              !isAddPage &&
                 dispatch(
                   updatePopularLocation({
                     ...popularLocationForm,
@@ -144,7 +149,7 @@ const PopularLocationContainer = ({ match }) => {
           //   //   refreshAndSetJwtAndLoginType();
           // }
         });
-    } else if (type === 'patch') {
+    } else if (!isAddPage) {
       dispatch(updatePopularLocation({ ...popularLocationForm, id }));
     }
   };

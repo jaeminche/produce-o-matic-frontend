@@ -132,6 +132,12 @@ const routes = [
     component: PopularLocationsView,
   },
   {
+    path: '/firstavenue/popularlocations-page/add',
+    exact: true,
+    name: 'PopularLocationView',
+    component: PopularLocationView,
+  },
+  {
     path: '/firstavenue/popularlocations-page/:id',
     exact: true,
     name: 'PopularLocationView',
