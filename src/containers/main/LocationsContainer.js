@@ -84,7 +84,7 @@ const temp2 = [
 ];
 
 const LocationsContainer = (props) => {
-  // const { location } = props;
+  const { history } = props;
   const dispatch = useDispatch();
   const { locations, error, loading } = useSelector(
     ({ popularLocations, loading, user }) => ({
@@ -116,10 +116,10 @@ const LocationsContainer = (props) => {
   return (
     <>
       {popularLocations && popularLocations.length > 0 && (
-        <Locations items={popularLocations} />
+        <Locations items={popularLocations} history={history} />
       )}
       {locationIncentives && locationIncentives.length > 0 && (
-        <Locations items={locationIncentives} />
+        <Locations items={locationIncentives} history={history} />
       )}
     </>
   );

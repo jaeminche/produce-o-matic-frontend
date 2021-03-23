@@ -89,10 +89,10 @@ const ImgBlock = styled.div`
 `;
 
 const ImagesBlock = (props) => {
-  const { key, title, imgpath, subtitle, url } = props;
+  const { key, title, imgpath, subtitle, url, history } = props;
   // console.log('-s-s', url, imgpath);
   return (
-    <ImgBlock key={key}>
+    <ImgBlock key={key} onClick={() => history.push(url)}>
       <a href={url}>
         <img src={imgpath} alt="click to watch Youtube" />
         <div className="textbox">
@@ -112,8 +112,7 @@ const CustomSlide = (props) => {
   );
 };
 
-const Locations = ({ items }) => {
-  console.log('아이템', items);
+const Locations = ({ items, history }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -148,7 +147,8 @@ const Locations = ({ items }) => {
               imgpath={item.thumbnail.location}
               title={item.title}
               subtitle={item.subtitle}
-              url={item.youtubePath}
+              url={`${item.baseUrl}/${item._id}`}
+              history={history}
             />
           ))}
         </Slider>
