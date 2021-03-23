@@ -29,8 +29,9 @@ import { toggleAdminSide } from '../../modules/main';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const { sidebarShow } = useSelector(({ main }) => ({
+  const { sidebarShow, user } = useSelector(({ main, user }) => ({
     sidebarShow: main.sidebarShow,
+    user: user.user,
   }));
 
   const toggleSidebar = () => {
@@ -84,7 +85,7 @@ const TheHeader = () => {
         {/* <TheHeaderDropdownNotif />
         <TheHeaderDropdownTasks />
         <TheHeaderDropdownMssg /> */}
-        <TheHeaderDropdown />
+        <TheHeaderDropdown username={user.username} />
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">
