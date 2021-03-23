@@ -365,7 +365,7 @@ const NameTypeSelectFormGroup = ({
           // defaultValue={form && { label: form[key], value: form[key] }}
           // value={form && key && form[key]}
           onChange={(e) => handleOnSelect({ e, key: type })}
-          placeholder={defaultValue || desc}
+          placeholder={defaultValue || '타입 설정'}
         />
         <CFormText>{desc}</CFormText>
       </CCol>
