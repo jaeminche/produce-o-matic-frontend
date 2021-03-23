@@ -11,12 +11,12 @@ import {
 import CIcon from '@coreui/icons-react';
 import { ContentsFormGroup } from '../../../admin/components/common/FormGroups';
 import { myToast } from '../../../lib/util/myToast';
+import isURL from 'validator/lib/isURL';
 
 const PopularLocation = (props) => {
   const { isAddPage, form, onSubmit, formDataToUpload } = props;
 
   console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
-  console.log('==7980', form);
 
   const validateForm = () => {
     const validateFileFormInsteadOfThumbnail = () => {
@@ -35,16 +35,20 @@ const PopularLocation = (props) => {
           Object.entries(form)
             .filter((item) => item[0] !== 'thumbnail')
             .every((x) => x[1] !== null && x[1] !== '')
-        : Object.values(form).every((x) => x !== null && x !== ''))
+        : Object.values(form).every((x) => x !== null && x !== '')) &&
+      isURL(form['youtubePath'])
     );
   };
 
   return (
     <CCard>
       <CForm
-        // action='' method="post" encType="multipart/form-data"
+        // action=""
+        method="post"
+        encType="application/x-www-form-urlencoded"
         className="form-horizontal"
         style={{ marginRight: '15px' }}
+        wasValidated={true}
       >
         <CCardHeader>
           <p>
@@ -57,22 +61,22 @@ const PopularLocation = (props) => {
           <ContentsFormGroup {...props} />
           <BasicDropzone {...props} />
         </CCardBody>
-        <CCardFooter>
-          <CButton
-            onClick={() =>
-              validateForm() ? onSubmit() : myToast('모두 입력해주세요')
-            }
-            type="submit"
-            size="sm"
-            color="primary"
-          >
-            <CIcon name="cil-scrubber" /> Submit
-          </CButton>
-          {/* <CButton type="reset" size="sm" color="danger">
+      </CForm>
+      <CCardFooter>
+        <CButton
+          onClick={() =>
+            validateForm() ? onSubmit() : myToast('모두 입력해주세요')
+          }
+          // type="submit"
+          size="sm"
+          color="primary"
+        >
+          <CIcon name="cil-scrubber" /> Submit
+        </CButton>
+        {/* <CButton type="reset" size="sm" color="danger">
           <CIcon name="cil-ban" /> Reset
         </CButton> */}
-        </CCardFooter>
-      </CForm>
+      </CCardFooter>
     </CCard>
   );
 };
