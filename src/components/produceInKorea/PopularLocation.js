@@ -39,13 +39,15 @@ const Wrapper = styled(Responsive)`
 `;
 
 const PopularLocation = ({ data, history, isMobile }) => {
-  const { title, url, text } = data;
+  const { title, youtubePath, text } = { ...data };
 
   return (
     <PopularLocationBlock>
       <Wrapper isMobile={isMobile}>
         {title && <h1 className="title margin-tb">{title}</h1>}
-        {url && <IframedVideo title={title && title} url={url} />}
+        {youtubePath && (
+          <IframedVideo title={title && title} url={youtubePath} />
+        )}
         {text && <p className="text">{text}</p>}
 
         <CenteredButton onClick={history.goBack} bigBlue>
