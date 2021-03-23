@@ -72,6 +72,7 @@ const BudgetOMaticTemplateModify = (props) => {
           encType="multipart/form-data"
           className="form-horizontal"
           style={{ marginRight: '15px' }}
+          wasValidated={true}
         >
           <FormGroups
             modifyType={modifyType}
@@ -127,6 +128,7 @@ const BudgetOMaticTemplateModify = (props) => {
               method="post"
               encType="multipart/form-data"
               className="form-horizontal"
+              wasValidated={true}
             >
               <CTabContent>
                 <CTabPane>

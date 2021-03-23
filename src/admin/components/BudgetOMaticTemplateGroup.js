@@ -51,6 +51,7 @@ const BudgetOMaticTemplateGroup = (props) => {
               method="post"
               encType="multipart/form-data"
               className="form-horizontal"
+              wasValidated={true}
             >
               <CFormGroup row>
                 <CCol md="3">

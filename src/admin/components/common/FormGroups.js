@@ -173,6 +173,7 @@ const SwitchInputFormGroup = ({
           onChange={setToggle}
           id={type}
           name={type}
+          required
         />
         {!updateBtnClicked && <CFormText>{desc}</CFormText>}
       </CCol>
@@ -252,6 +253,7 @@ const CategorySelectFormGroup = ({
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'category' })}
           placeholder={'어느 카테고리의 그룹을 추가하실 건가요?'}
+          required
         />
       </CCol>
     </CFormGroup>
@@ -297,6 +299,7 @@ const GroupsCodesSelectFormGroup = ({
             handleOnSelect({ e, key: 'groupsCodes', isMulti: true })
           }
           placeholder={'신규 카테고리에 속할 그룹 코드를 모두 선택해주세요'}
+          required
         />
       </CCol>
     </CFormGroup>
@@ -331,6 +334,7 @@ const GroupCodeSelectFormGroup = ({
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'selectedGroup' })}
           placeholder={'어느 그룹의 아이템을 추가하실 건가요?'}
+          required
         />
       </CCol>
     </CFormGroup>
@@ -370,6 +374,7 @@ const NameTypeSelectFormGroup = ({
           // value={form && key && form[key]}
           onChange={(e) => handleOnSelect({ e, key: type })}
           placeholder={defaultValue || '타입 설정'}
+          required
         />
         <CFormText>{desc}</CFormText>
       </CCol>
@@ -428,6 +433,7 @@ const CodeInputFormGroupForGroupTab = ({
           placeholder={
             '사용가능한 그룹 코드들 중, 카테고리/그룹을 고려하여 하나를 선택'
           }
+          required
         />
       </CCol>
     </CFormGroup>
@@ -462,6 +468,7 @@ const CodeInputFormGroupForItemTab = ({
           options={availItemsCodes && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
           placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
+          required
         />{' '}
       </CCol>
     </CFormGroup>
