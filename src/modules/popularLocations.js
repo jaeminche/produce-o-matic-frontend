@@ -61,6 +61,11 @@ const initialState = {
   popularLocations: null,
   error: null,
   lastPage: 1,
+  error_list: null,
+  res_add: null,
+  error_add: null,
+  res_update: null,
+  error_update: null,
 };
 
 const popularLocations = handleActions(
@@ -74,38 +79,57 @@ const popularLocations = handleActions(
         ...state,
         popularLocations,
         lastPage: parseInt(response.headers['last-page'], 10), // 문자열을 숫자로 변환
+        error_list: null,
+        res_add: null,
+        error_add: null,
+        res_update: null,
+        error_update: null,
       };
     },
     [LIST_POPULARLOCATIONS_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      error,
+      error_list: error,
+      res_add: null,
+      error_add: null,
+      res_update: null,
+      error_update: null,
     }),
-    [POST_POPULARLOCATION_SUCCESS]: (
-      state,
-      // ! 여기할 차례
-      { payload: result },
-    ) => {
+    [POST_POPULARLOCATION_SUCCESS]: (state, { payload: result }) => {
       console.log('===100', result);
       return {
         ...state,
-        res: result,
-        error: null,
+        error_list: null,
+        res_add: result,
+        error_add: null,
+        res_update: null,
+        error_update: null,
       };
     },
     [POST_POPULARLOCATION_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      error,
+      error_list: null,
+      res_add: null,
+      error_add: error,
+      res_update: null,
+      error_update: null,
     }),
     [UPDATE_POPULARLOCATION_SUCCESS]: (state, { payload: result }) => {
       return {
         ...state,
-        res: result,
-        error: null,
+        error_list: null,
+        res_add: null,
+        error_add: null,
+        res_update: result,
+        error_update: null,
       };
     },
     [UPDATE_POPULARLOCATION_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      error,
+      error_list: null,
+      res_add: null,
+      error_add: null,
+      res_update: null,
+      error_update: error,
     }),
   },
   initialState,

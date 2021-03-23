@@ -21,8 +21,21 @@ const PopularLocationContainer = ({ match, location }) => {
   const [popularLocationForm, setPopularLocationForm] = useState(null);
   const [formDataToUpload, setFormDataToUpload] = useState('');
   const [fileUploadDone, setFileUploadDone] = useState(false);
-  const { locations } = useSelector(({ popularLocations }) => ({
+
+  const {
+    locations,
+    res_add,
+    res_update,
+    error_list,
+    error_add,
+    error_update,
+  } = useSelector(({ popularLocations }) => ({
     locations: popularLocations.popularLocations,
+    res_add: popularLocations.res_add,
+    res_update: popularLocations.res_update,
+    error_list: popularLocations.error,
+    error_add: popularLocations.error_add,
+    error_update: popularLocations.error_update,
   }));
 
   const targetItem =
@@ -112,34 +125,6 @@ const PopularLocationContainer = ({ match, location }) => {
               `파일 업로드 실패. 서버에서 응답이 없습니다. Consult your engineer.`,
             );
             return;
-
-            // onChange({
-            //   name:
-            //     type === 'I0'
-            //       ? 'verify_image_path'
-            //       : type === 'legal_represent_file_path'
-            //       ? 'legal_represent_file_path'
-            //       : type === 'corp_biz_file_path'
-            //       ? 'corp_biz_file_path'
-            //       : type,
-            //   value: response.data.results[0].image,
-            //   formindex,
-            // });
-            // dispatch(
-            //   changeField({
-            //     form: "creditorInfoForm",
-            //     key:
-            //       type === "I0"
-            //         ? "verify_image_path"
-            //         : type === "legal_represent_file_path"
-            //         ? "legal_represent_file_path"
-            //         : type === "corp_biz_file_path"
-            //         ? "corp_biz_file_path"
-            //         : "",
-            //     value: response.data.results[0].image,
-            //     formindex
-            //   })
-            // );
           }
         })
         .catch(function (err) {
@@ -160,6 +145,21 @@ const PopularLocationContainer = ({ match, location }) => {
   useEffect(() => {
     formDataToUpload && console.log('==980', formDataToUpload.getAll('image'));
   }, [formDataToUpload]);
+
+  useEffect(() => {
+    const desc1 = res_add || error_add ? '추가' : '변경';
+    if (res_add || res_update) {
+      myToast(`로케이션 정보를 ${desc1}하였습니다.`);
+      history.push('/firstavenue/popularlocations-page');
+    }
+    if ((error_add, error_update, error_list)) {
+      myToast(
+        `로케이션 정보 ${desc1} 실패! 다시 시도해주세요. ErrorCode: PS0000`,
+      );
+    }
+  }, [res_add, res_update, error_add, error_update, error_list]);
+
+  useEffect(() => {}, [error_add, error_update, error_list]);
   return (
     <PopularLocation
       history={history}
