@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import BasicDropzone from '../../../components/BasicDropzone/BasicDropzone';
 import {
   CCard,
@@ -13,8 +12,7 @@ import CIcon from '@coreui/icons-react';
 import { ContentsFormGroup } from '../../../admin/components/common/FormGroups';
 
 const PopularLocation = (props) => {
-  const { targetItem, form, onSubmit, formDataToUpload } = props;
-  const dispatch = useDispatch();
+  const { form, onSubmit, formDataToUpload } = props;
 
   console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
   console.log('==7980', form);
@@ -23,7 +21,6 @@ const PopularLocation = (props) => {
     (formDataToUpload &&
       formDataToUpload.getAll('image').some((file) => file.path)) ||
     (form && Object.values(form).every((x) => x !== null && x !== ''));
-  //   return <PopularLocationsTable {...props} />;
 
   return (
     <CCard>

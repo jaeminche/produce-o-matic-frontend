@@ -53,13 +53,6 @@ const PopularLocationContainer = ({ match, location }) => {
   const onChange = useCallback((e) => {
     const { value, name } = e.target;
     setPopularLocationForm({ ...popularLocationForm, [name]: value });
-    // dispatch(
-    //   changeField({
-    //     form: `${modifyType}${activeText[activeTab]}`,
-    //     key: name,
-    //     value,
-    //   }),
-    // );
   });
 
   const setToggle = (e) => {
