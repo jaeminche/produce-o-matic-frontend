@@ -62,7 +62,7 @@ const BasicDropzone = (props) => {
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
         <p className="buttonLabel">
-          {thumbnail ? '썸네일이미지 변경하려면 클릭' : '첨부하기'}
+          {thumbnail ? '썸네일이미지 변경하려면 클릭' : '썸네일이미지 첨부하기'}
         </p>
       </div>
       <p className="desc">{desc}</p>

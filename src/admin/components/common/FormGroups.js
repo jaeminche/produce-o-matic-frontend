@@ -481,16 +481,17 @@ const ContentsFormGroup = (props) => {
   const filename = thumbnail && thumbnail.originalname;
   return (
     <StyledFormGroups>
-      <CFormGroup row>
-        <CCol md="3">
-          <CLabel htmlFor="text-input">{`썸네일이미지`}</CLabel>
-        </CCol>
-        <CCol xs="12" md={'9'}>
-          <img src={location} alt={originalname} style={{ width: '60%' }} />
-          {filename && <CFormText>{filename}</CFormText>}
-        </CCol>
-      </CFormGroup>
-
+      {filename && (
+        <CFormGroup row>
+          <CCol md="3">
+            <CLabel htmlFor="text-input">{`썸네일이미지`}</CLabel>
+          </CCol>
+          <CCol xs="12" md={'9'}>
+            <img src={location} alt={originalname} style={{ width: '60%' }} />
+            <CFormText>{filename}</CFormText>
+          </CCol>
+        </CFormGroup>
+      )}
       <TextInputFormGroup
         defaultValue={title}
         form={form}

@@ -18,7 +18,16 @@ const PopularLocationContainer = ({ match, location }) => {
     location.pathname === '/firstavenue/popularlocations-page/add';
   const { id } = !isAddPage && match.params;
 
-  const [popularLocationForm, setPopularLocationForm] = useState(null);
+  const [popularLocationForm, setPopularLocationForm] = useState({
+    title: '',
+    subtitle: '',
+    text: '',
+    youtubePath: '',
+    toggleDisplay: true,
+    toggleDisplayOnMain: true,
+    name: '',
+    thumbnail: null,
+  });
   const [formDataToUpload, setFormDataToUpload] = useState('');
   const [fileUploadDone, setFileUploadDone] = useState(false);
 
@@ -45,9 +54,11 @@ const PopularLocationContainer = ({ match, location }) => {
     locations.filter((item) => item._id === id)[0];
 
   useEffect(() => {
-    !locations
-      ? dispatch(listPopularLocations())
-      : setPopularLocationForm(targetItem);
+    if (!locations) {
+      dispatch(listPopularLocations());
+    } else {
+      targetItem && setPopularLocationForm(targetItem);
+    }
   }, [dispatch, locations]);
 
   const onChange = useCallback((e) => {
