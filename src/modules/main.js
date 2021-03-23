@@ -10,10 +10,10 @@ export const openHamburgerside = () => ({
 export const closeHamburgerside = () => ({
   type: CLOSE_HAMBURGERSIDE,
 });
-export const toggleAdminSide = () => ({
+export const toggleAdminSide = ({ data }) => ({
   type: TOGGLE_ADMINSIDE,
+  data: data,
 });
-
 const initialState = {
   isHamburgersideOpen: false,
   isBackgroundBlur: false,
@@ -41,7 +41,7 @@ const main = handleActions(
     [TOGGLE_ADMINSIDE]: (state, payload) => {
       return {
         ...state,
-        sidebarShow: payload,
+        sidebarShow: payload.data,
       };
     },
   },

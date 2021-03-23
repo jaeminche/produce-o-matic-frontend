@@ -25,23 +25,26 @@ import {
 } from './index';
 
 import { LOGO1ROW } from '../../assets';
+import { toggleAdminSide } from '../../modules/main';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const sidebarShow = useSelector((state) => state.sidebarShow);
+  const { sidebarShow } = useSelector(({ main }) => ({
+    sidebarShow: main.sidebarShow,
+  }));
 
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow)
       ? false
       : 'responsive';
-    dispatch({ type: 'toggleAdminSide', sidebarShow: val });
+    dispatch(toggleAdminSide({ data: val }));
   };
 
   const toggleSidebarMobile = () => {
     const val = [false, 'responsive'].includes(sidebarShow)
       ? true
       : 'responsive';
-    dispatch({ type: 'toggleAdminSide', sidebarShow: val });
+    dispatch(toggleAdminSide({ data: val }));
   };
 
   return (
