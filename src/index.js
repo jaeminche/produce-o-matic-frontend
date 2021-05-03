@@ -20,18 +20,22 @@ import { icons } from './admin/assets/icons';
 
 /**
  * APP TITLE: PRODUCE-O-MATIC (FRONT-END)
- * DEVELOPMENT CYCLE: 2020.10.14 ~
+ * DEVELOPMENT CYCLE: 2020.10.14 ~ 2021.05.03
  * DEVELOPER: JAE MIN CHOI
  * DEV'S EMAIL: JAEMINCHE@GMAIL.COM
  */
 
 const sagaMiddleware = createSagaMiddleware();
-const logger = createLogger();
-const middleware = [sagaMiddleware, logger];
+const middlewares = [sagaMiddleware];
+
+if (process.env.NODE_ENV === `development`) {
+  const logger = createLogger();
+  middlewares.push(logger);
+}
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(...middleware)),
+  composeWithDevTools(applyMiddleware(...middlewares)),
 );
 
 function loadUser() {
