@@ -126,18 +126,20 @@ const BudgetOMaticContainer = ({ history, location }) => {
     if (CURRENCYSET /* && CURRENCYSET.success*/) {
       let { rates } = CURRENCYSET;
       console.log('==923', CURRENCYSET);
-      if (!rates['EUR']) rates = { ...rates, EUR: 1 }; // provide EUR's rate, for exchangeratesapi.io doesn't provide the base currency rate.
-      const userSelectedCurrencyRate = rates[currency];
-      const base = rates['KRW'];
-      let tempCurrencyRates = {
-        KRW: 1,
-        USD: 1 / (rates['USD'] / base),
-        EUR: 1 / (rates['EUR'] / base),
-        CNY: 1 / (rates['CNY'] / base),
-      };
-      tempCurrencyRates[currency] = 1 / (userSelectedCurrencyRate / base);
-      console.log('===234', userSelectedCurrencyRate, tempCurrencyRates);
-      setCurrencyRates(tempCurrencyRates);
+      if (rates) {
+        if (!rates['EUR']) rates = { ...rates, EUR: 1 }; // provide EUR's rate, for exchangeratesapi.io doesn't provide the base currency rate.
+        const userSelectedCurrencyRate = rates[currency];
+        const base = rates['KRW'];
+        let tempCurrencyRates = {
+          KRW: 1,
+          USD: 1 / (rates['USD'] / base),
+          EUR: 1 / (rates['EUR'] / base),
+          CNY: 1 / (rates['CNY'] / base),
+        };
+        tempCurrencyRates[currency] = 1 / (userSelectedCurrencyRate / base);
+        console.log('===234', userSelectedCurrencyRate, tempCurrencyRates);
+        setCurrencyRates(tempCurrencyRates);
+      }
     }
   }, [CURRENCYSET, currency]);
 
