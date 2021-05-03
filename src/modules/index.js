@@ -8,6 +8,8 @@ import itemsGroups, { itemsGroupsSaga } from './itemsGroups';
 import budgetResult, { budgetResultSaga } from './budgetResult';
 import budgetResults, { budgetResultsSaga } from './budgetResults';
 import admin, { adminSaga } from './admin';
+import fileUpload, { fileUploadSaga } from './fileUpload';
+import popularLocations, { popularLocationsSaga } from './popularLocations';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
@@ -23,6 +25,8 @@ const rootReducer = combineReducers({
   budgetResults,
   thirdPartyApis,
   admin,
+  fileUpload,
+  popularLocations,
   write,
   post,
   posts,
@@ -37,6 +41,8 @@ export function* rootSaga() {
     budgetResultsSaga(),
     thirdParyApisSaga(),
     adminSaga(),
+    fileUploadSaga(),
+    popularLocationsSaga(),
     writeSaga(),
     postSaga(),
     postsSaga(),

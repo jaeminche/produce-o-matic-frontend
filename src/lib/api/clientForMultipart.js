@@ -7,14 +7,23 @@ const isProduction = env === 'production';
 const host = isProduction ? 'https://api.produceomatic.com/' : null;
 // const host = 'http://13.124.187.20/';
 
-const option = isProduction && {
-  baseURL: `${host}`,
-  withCredentials: true,
-};
+const option = isProduction
+  ? {
+      baseURL: `${host}`,
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  : {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
 
-const clientForExtenalApi = isProduction ? axios.create() : axios.create();
+const clientForMultipart = axios.create(option);
 
-// clientForExtenalApi.intercepter.response.use(
+// clientForMultipart.intercepter.response.use(
 //   (response) => {
 //     console.log('response=====', response && response);
 //     return response;
@@ -24,9 +33,9 @@ const clientForExtenalApi = isProduction ? axios.create() : axios.create();
 //   },
 // );
 
-clientForExtenalApi.interceptors.request.use(
+clientForMultipart.interceptors.request.use(
   function (config) {
-    console.log('clientForExtenalApi.인터셉터.request config', config);
+    console.log('clientForMultipart.인터셉터.request config', config);
     return config;
   },
   function (error) {
@@ -35,9 +44,9 @@ clientForExtenalApi.interceptors.request.use(
   },
 );
 
-/** clientForExtenalApi.defaults.baseURL = 'https://';
+/** clientForMultipart.defaults.baseURL = 'https://';
 
-clientForExtenalApi.defaults.headers.common['Authorization'] = 'Bearer ';
+clientForMultipart.defaults.headers.common['Authorization'] = 'Bearer ';
 
 axios.intercepter.response.use(
   (response) => {
@@ -50,4 +59,4 @@ axios.intercepter.response.use(
 
 */
 
-export default clientForExtenalApi;
+export default clientForMultipart;

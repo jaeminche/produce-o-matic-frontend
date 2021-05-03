@@ -63,7 +63,7 @@ const initialState = {
   usersLocationError: null,
   copyContractResult: null,
   copyContractResultError: null,
-  currencySet: null,
+  currencyset: null,
   currencySetError: null,
 };
 
@@ -102,10 +102,10 @@ const thirdPartyApis = handleActions(
       ...state,
       copyContractResultError: error,
     }),
-    [GET_CURRENCYSET_SUCCESS]: (state, { payload: currencySet }) => {
+    [GET_CURRENCYSET_SUCCESS]: (state, { payload: currencyset }) => {
       return {
         ...state,
-        currencySet,
+        currencyset,
       };
     },
     [GET_CURRENCYSET_FAILURE]: (state, { payload: error }) => ({

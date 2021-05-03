@@ -18,6 +18,7 @@ export const postCopyContractSample = ({ fileId }) =>
 
 export const getCurrencySet = ({ apikey }) =>
   clientForExternalApi.get(
-    // `http://data.fixer.io/api/latest?access_key=${apikey}`,
-    `https://api.exchangeratesapi.io/latest`,
+    // * exchangeratespai.io 호출 오류(apikey필수)로 fixer.io로 돌아감 2021.05.03
+    `http://data.fixer.io/api/latest?access_key=${apikey}`,
+    // `https://api.exchangeratesapi.io/latest`,
   );

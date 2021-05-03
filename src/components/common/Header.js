@@ -91,7 +91,7 @@ const Header = ({
   activeSubMenu /*, user, onLogout*/,
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  console.log('액티브메뉴', activeMenu);
+  // console.log('액티브메뉴', activeMenu);
   return (
     <HeaderBlock isFixed={isFixed}>
       <Wrapper>

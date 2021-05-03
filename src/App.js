@@ -84,8 +84,8 @@ const App = () => {
         path={['/posttest/@:username', '/posttest']}
         exact
       />
-      <ScrollToTopRoute component={LoginPage} path="/posttest/login" />
-      <ScrollToTopRoute component={SignupPage} path="/posttest/signup" />
+      {/* <ScrollToTopRoute component={LoginPage} path="/posttest/login" /> */}
+      {/* <ScrollToTopRoute component={SignupPage} path="/posttest/signup" /> */}
       <ScrollToTopRoute component={WritePage} path="/posttest/write" />
       <ScrollToTopRoute
         component={PostPage}
@@ -101,11 +101,8 @@ const App = () => {
         render={(props) => <TheLayout {...props} />}
       />
       <ScrollToTopRoute component={LoginPage} path="/firstavenue/login" />
+      {/* <ScrollToTopRoute component={SignupPage} path="/firstavenue/signup" /> */}
 
-      {/* <Route component={LoginPage} path="/firstavenue/login" />
-      <Route component={SignupPage} path="/firstavenue/signup" />
-      <Route component={WritePage} path="/firstavenue/write" />
-      <Route component={PostPage} path="/firstavenue/@:username/:postId" /> */}
       {/* ----- admin pages ends ----- */}
 
       <ScrollToTopRoute

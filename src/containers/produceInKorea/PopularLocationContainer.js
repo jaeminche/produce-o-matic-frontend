@@ -1,44 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { withRouter } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { uiData } from '../../lib/constants/summaryInKorea';
 import PopularLocation from '../../components/produceInKorea/PopularLocation';
-import SAMPLEYOUTUBES from '../../lib/constants/sampleYoutubes';
+import { listPopularLocations } from '../../modules/popularLocations';
 
 const PopularLocationContainer = ({ location, match, history }) => {
+  const { popularLocations, error, loading } = useSelector(
+    ({ popularLocations, loading, user }) => ({
+      popularLocations: popularLocations.popularLocations,
+      error: popularLocations.error,
+      loading: loading['popularLocations/LIST_POPULARLOCATIONS'],
+    }),
+  );
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  const [data, setData] = useState(false);
   const { pathname } = location;
-  console.log('history', history);
   const { id } = match.params;
 
-  const _uiData = dataRouter(pathname);
-
-  function dataRouter(path) {
-    switch (path) {
-      case '/produce-in-korea':
-        return uiData['summaryInKorea'];
-      case '/produce-o-manual':
-        return uiData['summaryOManual'];
-      case '/produce-o-matic':
-        return uiData['summaryOMatic'];
-      case '/produce-o-people':
-        return uiData['summaryOPeople'];
-      default:
-    }
-  }
+  const [data, setData] = useState(
+    popularLocations &&
+      popularLocations.filter((location) => location._id === id)[0],
+  );
 
   useEffect(() => {
-    // GET url
-    id && setData(SAMPLEYOUTUBES[id - 1]);
-  }, [id]);
+    if (!popularLocations) {
+      dispatch(listPopularLocations());
+    } else {
+      !data &&
+        setData(popularLocations.filter((location) => location._id === id)[0]);
+    }
+  }, [popularLocations]);
 
   useEffect(() => {
     if (data && !data.toggleDisplay)
       history.push('/produce-in-korea/popular-locations');
   }, [data]);
 
-  return <PopularLocation data={data} history={history} isMobile={isMobile} />;
+  return (
+    <PopularLocation
+      data={data && data}
+      history={history}
+      isMobile={isMobile}
+    />
+  );
 };
 
 export default withRouter(PopularLocationContainer);

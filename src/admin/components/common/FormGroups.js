@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { CCol, CFormGroup, CFormText, CInput, CLabel } from '@coreui/react';
+import {
+  CCol,
+  CFormGroup,
+  CFormText,
+  CInput,
+  CLabel,
+  CCard,
+  CCardBody,
+  CSwitch,
+} from '@coreui/react';
 import Select from 'react-select';
 import styled from 'styled-components/macro';
 import { SpacerInRow } from '../../reusable';
@@ -43,11 +52,11 @@ const NameInputFormGroup = ({
 }) => {
   const desc =
     tabTitle === 'Item'
-      ? '예)production assistant, assistant director, etc...'
+      ? '예) production assistant, assistant director, etc...'
       : tabTitle === 'Group'
-      ? '예)production department, camera department, etc...'
+      ? '예) production department, camera department, etc...'
       : tabTitle === 'Category'
-      ? '예)labor, equipments, etc...'
+      ? '예) labor, equipments, etc...'
       : '';
   return (
     <CFormGroup
@@ -83,11 +92,19 @@ const TextInputFormGroup = ({
 }) => {
   const desc =
     type === 'unit'
-      ? '예)day, month week,, etc...'
+      ? '예) day, month week,, etc...'
       : type === 'remark'
-      ? '예)this rate is subject to change, etc...'
+      ? '예) this rate is subject to change, etc...'
       : type === 'rate'
-      ? '예)100000 - 콤마없이 숫자만 입력'
+      ? '예) 100000 - 콤마없이 숫자만 입력'
+      : type === 'title'
+      ? '예) Taekwondowon, a versatile location for film and TV'
+      : type === 'subtitle'
+      ? '예) Discover the charms of Muju Taekwondowon a special filming location of South Korea'
+      : type === 'text'
+      ? '예) TaeKwondowon is ...(디테일 페이지에 들어갈 설명)'
+      : type === 'youtubePath'
+      ? '예) https://www.youtube.com/embed/joiGm8xre04'
       : '';
 
   return (
@@ -107,6 +124,56 @@ const TextInputFormGroup = ({
           id={type}
           name={type}
           placeholder={`${type}을 입력해주세요`}
+          required={type === 'remark' ? false : 'required'}
+          type={
+            type === 'youtubePath' ? 'url' : type === 'rate' ? 'number' : 'text'
+          }
+        />
+        {!updateBtnClicked && <CFormText>{desc}</CFormText>}
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const SwitchInputFormGroup = ({
+  updateBtnClicked,
+  defaultValue,
+  toggle,
+  type,
+  tabTitle,
+  setToggle,
+}) => {
+  const desc = '';
+  console.log('==401', toggle);
+  return (
+    <CFormGroup
+      row={!updateBtnClicked}
+      style={updateBtnClicked ? { width: `${width[type]}` } : null}
+    >
+      {!updateBtnClicked && (
+        <CCol md="3">
+          <CLabel htmlFor="text-input">
+            {type === 'toggleDisplay'
+              ? 'Popular Locations 페이지에 표시 여부'
+              : type === 'toggleDisplayOnMain'
+              ? '메인 페이지에 표시 여부'
+              : ''}
+          </CLabel>
+        </CCol>
+      )}
+      <CCol xs="12" md={!updateBtnClicked ? '9' : null}>
+        <CSwitch
+          className={'mx-1'}
+          shape={'pill'}
+          color={'info'}
+          labelOn={'\u2713'}
+          labelOff={'\u2715'}
+          defaultChecked
+          checked={toggle}
+          onChange={setToggle}
+          id={type}
+          name={type}
+          required
         />
         {!updateBtnClicked && <CFormText>{desc}</CFormText>}
       </CCol>
@@ -147,9 +214,7 @@ const TagsSelectFormGroup = ({
           name={'tags'}
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'tags', isMulti: true })}
-          placeholder={
-            '사용자가 Type Of Production을 선택했을 때 디폴트로 표시되게 하고 싶은 것을 선택하세요.'
-          }
+          placeholder={'디폴트 Type Of Production 설정'}
         />
       </CCol>
     </CFormGroup>
@@ -188,6 +253,7 @@ const CategorySelectFormGroup = ({
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'category' })}
           placeholder={'어느 카테고리의 그룹을 추가하실 건가요?'}
+          required
         />
       </CCol>
     </CFormGroup>
@@ -233,6 +299,7 @@ const GroupsCodesSelectFormGroup = ({
             handleOnSelect({ e, key: 'groupsCodes', isMulti: true })
           }
           placeholder={'신규 카테고리에 속할 그룹 코드를 모두 선택해주세요'}
+          required
         />
       </CCol>
     </CFormGroup>
@@ -267,7 +334,49 @@ const GroupCodeSelectFormGroup = ({
           options={options}
           onChange={(e) => handleOnSelect({ e, key: 'selectedGroup' })}
           placeholder={'어느 그룹의 아이템을 추가하실 건가요?'}
+          required
         />
+      </CCol>
+    </CFormGroup>
+  );
+};
+
+const NameTypeSelectFormGroup = ({
+  defaultValue,
+  form,
+  type,
+  handleOnSelect,
+}) => {
+  const options = [
+    {
+      value: 'PopularLocations',
+      label: 'PopularLocations',
+    },
+    {
+      value: 'LocationIncentive',
+      label: 'LocationIncentive',
+    },
+  ];
+  const desc =
+    'p.locations를 선택하면 Main 페이지 상단 슬라이드에, l.incentive를 선택하면 Main 페이지 하단 슬라이드에 표시됩니다.\n 페이지에 표시 않을지라도 설정 필수.';
+  return (
+    <CFormGroup row>
+      <CCol md="3">
+        <CLabel htmlFor="text-input">{`타입 설정`}</CLabel>
+      </CCol>
+      <CCol xs="12" md={'9'}>
+        <Select
+          options={options}
+          defaultValue={
+            defaultValue && { label: defaultValue, value: defaultValue }
+          }
+          // defaultValue={form && { label: form[key], value: form[key] }}
+          // value={form && key && form[key]}
+          onChange={(e) => handleOnSelect({ e, key: type })}
+          placeholder={defaultValue || '타입 설정'}
+          required
+        />
+        <CFormText>{desc}</CFormText>
       </CCol>
     </CFormGroup>
   );
@@ -324,6 +433,7 @@ const CodeInputFormGroupForGroupTab = ({
           placeholder={
             '사용가능한 그룹 코드들 중, 카테고리/그룹을 고려하여 하나를 선택'
           }
+          required
         />
       </CCol>
     </CFormGroup>
@@ -358,12 +468,88 @@ const CodeInputFormGroupForItemTab = ({
           options={availItemsCodes && options}
           onChange={(e) => handleOnSelect({ e, key: 'code' })}
           placeholder={'사용가능한 아이템 코드들 중, 하나를 선택'}
+          required
         />{' '}
       </CCol>
     </CFormGroup>
   );
 };
 
+const ContentsFormGroup = (props) => {
+  console.log('==202', props);
+  const { targetItem, form, onChange, setToggle, handleOnSelect } = props;
+  const {
+    title,
+    subtitle,
+    text,
+    name,
+    youtubePath,
+    thumbnail,
+    toggleDisplay,
+    toggleDisplayOnMain,
+  } = { ...targetItem };
+  const { location, originalname, _id } = { ...thumbnail };
+  const filename = thumbnail && thumbnail.originalname;
+  return (
+    <StyledFormGroups>
+      {filename && (
+        <CFormGroup row>
+          <CCol md="3">
+            <CLabel htmlFor="text-input">{`썸네일이미지`}</CLabel>
+          </CCol>
+          <CCol xs="12" md={'9'}>
+            <img src={location} alt={originalname} style={{ width: '60%' }} />
+            <CFormText>{filename}</CFormText>
+          </CCol>
+        </CFormGroup>
+      )}
+      <TextInputFormGroup
+        defaultValue={title}
+        form={form}
+        type={'title'}
+        onChange={onChange}
+      />
+      <TextInputFormGroup
+        defaultValue={subtitle}
+        form={form}
+        type={'subtitle'}
+        onChange={onChange}
+      />
+      <TextInputFormGroup
+        defaultValue={text}
+        form={form}
+        type={'text'}
+        onChange={onChange}
+      />
+      <TextInputFormGroup
+        defaultValue={youtubePath}
+        form={form}
+        type={'youtubePath'}
+        onChange={onChange}
+      />
+      <SwitchInputFormGroup
+        defaultValue={toggleDisplay}
+        toggle={form && form.toggleDisplay}
+        form={form}
+        type={'toggleDisplay'}
+        setToggle={setToggle}
+      />
+      <SwitchInputFormGroup
+        defaultValue={toggleDisplayOnMain}
+        toggle={form && form.toggleDisplayOnMain}
+        form={form}
+        type={'toggleDisplayOnMain'}
+        setToggle={setToggle}
+      />
+      <NameTypeSelectFormGroup
+        defaultValue={name}
+        form={form}
+        type={'name'}
+        handleOnSelect={handleOnSelect}
+      />
+    </StyledFormGroups>
+  );
+};
 const GetOneFormGroup = (props) => {
   const { target, updateGroupTarget, ...rest } = props;
   const { code, name, category } = updateGroupTarget;
@@ -391,6 +577,13 @@ const FormGroups = ({
   handleOnSelect,
   form,
 }) => {
+  /**
+   * * activeTab 설정
+   * 0: 템플릿 관리 > 카테고리
+   * 1: 템플릿 관리 > 그룹
+   * 2: 템플릿 관리 > 아이템
+   * 위의 조건에 따라 0, 또는 1, 2로 들어온다
+   */
   const { code, name, unit, rate, remark, tags } = { ...updateItemTarget };
   const updateBtnClicked = modifyType === 'update';
 
@@ -496,4 +689,11 @@ const FormGroups = ({
   return setGroups[activeTab];
 };
 
-export { maxWidth, minWidth, width, GetOneFormGroup, FormGroups };
+export {
+  maxWidth,
+  minWidth,
+  width,
+  ContentsFormGroup,
+  GetOneFormGroup,
+  FormGroups,
+};
