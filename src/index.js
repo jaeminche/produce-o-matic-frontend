@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from './modules';
 import { tempSetUser, check } from './modules/user';
@@ -28,11 +28,11 @@ const store = createStore(
 );
 
 function loadUser() {
-  console.log('로드유저');
+  // console.log('로드유저');
   try {
     const user = sessionStorage.getItem('user');
     if (!user) return;
-    console.log('세션스토리지', user);
+    // console.log('세션스토리지', user);
     store.dispatch(tempSetUser(user));
     store.dispatch(check());
   } catch (e) {
