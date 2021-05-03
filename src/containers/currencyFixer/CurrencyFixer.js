@@ -14,7 +14,7 @@ const CurrencyFixer = ({ history, children }) => {
     usersLocationError,
     loading,
   } = useSelector(({ thirdPartyApis, loading }) => ({
-    CURRENCYSET: thirdPartyApis.currencySet,
+    CURRENCYSET: thirdPartyApis.currencyset,
     currencySetError: thirdPartyApis.currencySetError,
     USERSLOCATION: thirdPartyApis.usersLocation,
     usersLocationError: thirdPartyApis.usersLocationError,
@@ -35,7 +35,7 @@ const CurrencyFixer = ({ history, children }) => {
   }, []);
 
   return (
-    <div currencySet={CURRENCYSET} loading={loading}>
+    <div currencyset={CURRENCYSET} loading={loading}>
       {children}
     </div>
   );

@@ -38,7 +38,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
   } = useSelector(({ thirdPartyApis, itemsGroups, budgetResult, loading }) => ({
     IP: thirdPartyApis.ip,
     USERSLOCATION: thirdPartyApis.usersLocation,
-    CURRENCYSET: thirdPartyApis.currencySet,
+    CURRENCYSET: thirdPartyApis.currencyset,
     currencySetError: thirdPartyApis.currencySetError,
     ipError: thirdPartyApis.ipError,
     usersLocationError: thirdPartyApis.usersLocationError,
@@ -125,6 +125,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
     // ? if currency rates data are retrieved and the user specifies a currency, we update our 5 currencies rates set.
     if (CURRENCYSET /* && CURRENCYSET.success*/) {
       let { rates } = CURRENCYSET;
+      console.log('==923', CURRENCYSET);
       if (!rates['EUR']) rates = { ...rates, EUR: 1 }; // provide EUR's rate, for exchangeratesapi.io doesn't provide the base currency rate.
       const userSelectedCurrencyRate = rates[currency];
       const base = rates['KRW'];
