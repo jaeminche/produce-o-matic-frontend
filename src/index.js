@@ -18,6 +18,13 @@ import { createLogger } from 'redux-logger';
 import { HelmetProvider } from 'react-helmet-async';
 import { icons } from './admin/assets/icons';
 
+/**
+ * APP TITLE: PRODUCE-O-MATIC (FRONT-END)
+ * DEVELOPMENT CYCLE: 2020.10.14 ~
+ * DEVELOPER: JAE MIN CHOI
+ * DEV'S EMAIL: JAEMINCHE@GMAIL.COM
+ */
+
 const sagaMiddleware = createSagaMiddleware();
 const logger = createLogger();
 const middleware = [sagaMiddleware, logger];
