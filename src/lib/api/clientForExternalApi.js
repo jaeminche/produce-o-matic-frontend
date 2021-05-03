@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const env = process.env.NODE_ENV || 'development';
-console.log('env', env);
+// console.log('env', env);
 const isProduction = env === 'production';
 
 const host = isProduction ? 'https://api.produceomatic.com/' : null;
