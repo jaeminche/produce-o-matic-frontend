@@ -49,30 +49,676 @@ import {
   GENERALK_FOOD,
 } from '../../assets';
 import WeatherWidget from '../../components/weather/WeatherWidget';
+import IframedVideo from '../../components/common/IframedVideo';
 
 const uiData = {
+  koreaInANutshell: {
+    id: 1,
+    uiType: 'default',
+    parent: 'produce-in-korea',
+    rows: [
+      {
+        id: 1,
+        type: 'sectionTitle',
+        text: 'Time Zone',
+      },
+      {
+        id: 2,
+        type: 'text',
+        text:
+          'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
+      },
+      // {
+      //   id: 3,
+      //   type: 'customComponentsInflexContainer',
+      //   items: [
+      //     {
+      //       id: 1,
+      //       type: 'customComponent',
+      //       desc: 'Korea',
+      //       text: 'Korea',
+      //       customComponent: <WeatherWidget locationLabel={'Seoul'} />,
+      //       // ? specify customcss for it is a particular case for clocks UI
+      //       // customCssForImage: 'time-backgroundimage',
+      //       // customCssForText: 'time-title',
+      //     },
+      //     {
+      //       id: 2,
+      //       type: 'customComponent',
+      //       desc: 'Current Location',
+      //       text: 'Current Location',
+      //       customComponent: (
+      //         <WeatherWidget locationLabel={'Current Location'} />
+      //       ),
+
+      //       // ? specify customcss for it is a particular case for clocks UI
+      //       // customCssForImage: 'time-backgroundimage',
+      //       // customCssForText: 'time-title',
+      //     },
+      //   ],
+      // },
+      {
+        id: 4,
+        type: 'flexContainerResponsive',
+        itemsLiHasMinWidth: true,
+        items: [
+          {
+            id: 1,
+            type: 'imageWithTextInside',
+            path: TIME_KOREA,
+            desc: 'Seoul',
+            text: 'Seoul',
+            // ? specify customcss for it is a particular case for clocks UI
+            customCssForImage: 'time-backgroundimage',
+            customCssForText: 'time-title',
+            customComponent: <WeatherWidget locationLabel={'Seoul'} />,
+          },
+          {
+            id: 2,
+            type: 'imageWithTextInside',
+            path: TIME_YOUR,
+            desc: 'Current Location',
+            text: 'Current Location',
+            asyncText: true,
+            // ? specify customcss for it is a particular case for clocks UI
+            customCssForImage: 'time-backgroundimage',
+            customCssForText: 'time-title',
+            customComponent: (
+              <WeatherWidget locationLabel={'Current Location'} />
+            ),
+          },
+        ],
+      },
+      {
+        id: 4,
+        type: 'sectionTitle',
+        text: 'Weather',
+      },
+      {
+        id: 5,
+        type: 'flexContainerResponsive',
+        items: [
+          { id: 2, type: 'image', path: GENERALK_WEATHER, desc: 'weather' },
+          {
+            id: 1,
+            type: 'text',
+            text:
+              'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
+            classNames: 'text',
+          },
+        ],
+      },
+      {
+        id: 6,
+        type: 'sectionTitle',
+        text: 'Language',
+      },
+      {
+        id: 7,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.`,
+            classNames: 'text',
+          },
+          { id: 2, type: 'image', path: GENERALK_LANGUAGE, desc: 'language' },
+        ],
+      },
+      {
+        id: 8,
+        type: 'text',
+        text:
+          'For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.',
+        classNames: 'text',
+      },
+      {
+        id: 1,
+        type: 'sectionTitle',
+        text: 'Currency & Money Exchange',
+      },
+      {
+        id: 2,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `The Korean currency is called Won. Coins range from 10 to 500 KRW, while bills range from 1,000 to 50,000 KRW.
+
+            As of 24th Aug 2020, 1 KRW = 0.00084 USD or 1 USD = 1187,47 KRW.`,
+            classNames: 'text',
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: GENERALK_CURRENCY,
+            desc: 'Currency & Money Exchange',
+          },
+        ],
+      },
+      {
+        id: 2,
+        type: 'text',
+        text: `South Korea’s major banks offer currency exchange: Kookmin, Woori, Shinhan, etc. Currency exchange offices with good exchange rates can also be found in Seoul districts Itaewon and Myeongdong.`,
+        classNames: 'text',
+      },
+      {
+        id: 3,
+        type: 'sectionTitle',
+        text: 'Banking & Payment',
+      },
+      {
+        id: 4,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'image',
+            path: GENERALK_BANKINGPAYMENT01,
+            desc: 'banking & payment',
+          },
+          {
+            id: 2,
+            type: 'text',
+            text: `Banks are open in Seoul from 9:00am to 4:00pm, Monday to Friday. At Incheon International Airport they are open daily from 6:00am to 9:00pm. Don’t be surprised if you’re unable to draw money from an ATM between 11:30pm and midnight on a Sunday - for many ATMs this half-hour time slot is their maintenance time.`,
+            classNames: 'text',
+          },
+        ],
+      },
+      {
+        id: 2,
+        type: 'text',
+        text: `In South Korea it is very common to pay by credit card and many individuals also use Samsung Pay and Zero Pay. Micropayments can be made in convenience stores, taxis and at subway stations.`,
+        classNames: 'text',
+      },
+    ],
+  },
+  securityHealthFood: {
+    id: 2,
+    uiType: 'default',
+    parent: 'produce-in-korea',
+    rows: [
+      {
+        id: 1,
+        type: 'sectionTitle',
+        text: 'Visa',
+      },
+      {
+        id: 2,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `A valid passport is required to enter the Republic of Korea (ROK). Nationals of non-visa waiver countries need to apply for visas at a Korean embassy or consulate before entering South Korea. A visa is not required for nationals of visa waiver or visa-free countries who wish to enter the country for tourism purposes only. You can find more detailed information on the <a href='https://www.visa.go.kr/'>government website</a>.
+          `,
+            classNames: 'text',
+          },
+          { id: 2, type: 'image', path: GENERALK_VISA, desc: 'visa' },
+        ],
+      },
+      {
+        id: 3,
+        type: 'sectionTitle',
+        text: 'Health',
+      },
+      {
+        id: 4,
+        type: 'flexContainerResponsive',
+        items: [
+          { id: 1, type: 'image', path: GENERALK_HEALTH, desc: 'health' },
+          {
+            id: 2,
+            type: 'text',
+            text: `The CDC (Centers for Disease Control and Prevention) and WHO (World Health Organization) recommend the following vaccinations for travellers to South Korea:
+          Hepatitis A
+          Hepatitis B
+          Japanese Encephalitis
+          Rabies`,
+            classNames: 'text',
+          },
+        ],
+      },
+      {
+        id: 4,
+        type: 'text',
+        classNames: 'text',
+        text:
+          'Currently the COVID-19 situation is well managed and under control. South Korea introduced what is considered one of the best-organised epidemic control programs in the world. It is for this reason that the country’s daily virus cases remain in the mere dozens. As Netflix has pointed out, Korea is one of the few countries worldwide that is able to safely produce movies and TV series right now.',
+      },
+      {
+        id: 5,
+        type: 'sectionTitle',
+        text: 'Security',
+      },
+      {
+        id: 6,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `South Korea is considered one of the safest countries in the world when it comes to crimes, including pickpocketing. It’s better to be safe than sorry, but it may reassure you to know that in cafes and restaurants many individuals leave their bags, notebooks and even cellphones to reserve a seat or when they use the restroom, because theft is so rare.`,
+            classNames: 'text',
+          },
+          { id: 2, type: 'image', path: GENERALK_SECURITY, desc: 'security' },
+        ],
+      },
+      {
+        id: 7,
+        type: 'text',
+        classNames: 'text',
+        text: `Guns and drugs are illegal in Korea and it is a rarity to see any kind of violence from the public or the police.
+
+        Although the relations between North and South Korea is often a hotly contested topic in the media, South Koreans themselves rarely worry about an actual attack. In the 70 years since the North and South were divided as a consequence of the Korean War, there has never been a major attack or conflict between the two.`,
+      },
+      {
+        id: 8,
+        type: 'sectionTitle',
+        text: 'Emergency numbers',
+      },
+      {
+        id: 9,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'image',
+            path: GENERALK_EMERGENCYNUMBERS01,
+            desc: 'emergency numbers',
+          },
+          {
+            id: 2,
+            type: 'text',
+            text: `To call an ambulance or the fire department, dial 119. For the police, it’s 112. In case of a medical emergency, calling 1339 will connect to Seoul’s medical information centre aimed specifically at foreigners.`,
+            classNames: 'text',
+          },
+        ],
+      },
+      {
+        id: 10,
+        type: 'text',
+        classNames: 'text',
+        text: `111 is the number to call for the National Intelligence Service, 1330 for the Tourism and Translation Service, and 122 for the coast guard.
+         
+        Another useful number to be aware of is 120, <a href='https://www.120dasan.or.kr/static/lang/lang1.html'>Dasan Call Center</a>. It is a helpline offering general information on living and tourism in Seoul.`,
+      },
+      {
+        id: 1,
+        type: 'sectionTitle',
+        text: ' ',
+      },
+      {
+        id: 1,
+        type: 'text',
+        text: `Korean food culture is diverse and marked by innovation. Many cafes will serve the latest drink that everyone is talking about, while restaurants serve their own specialties that quickly become trendy spots, attracting Seoul’s novelty food seekers.
+
+          In contrast to this, there are everyday affordable eateries such as Kimbab Cheonguk or Bonjuk and Bibimbap Cafe, as well as more traditional restaurants with a range of different banchan (side dishes). Some restaurants even specialise in Buddhist temple food, a great place to find vegan food.
+          
+          Tap water is drinkable, but for convenience it’s the norm to use filter machines. You’ll find filtered water available for free in most restaurants, cafes, libraries, etc. Restrooms are safe and free to use everywhere and most importantly, they’re ubiquitous. They can be found in restaurants, cafes, public buildings and at every subway station.`,
+        classNames: 'text',
+      },
+      {
+        id: 2,
+        type: 'sectionTitle',
+        text: 'Vegetarian, vegan and halal food',
+      },
+
+      {
+        id: 3,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `Many Korean dishes and meals are centred around vegetables, but sometimes it can be hard to find dishes that are 100% vegetarian or vegan (meat or seafood may be used as soup stock and in some vegetable side dishes). 
+
+            A great source for vegan- and vegetarian-friendly dining options in Seoul is <a href='https://www.happycow.net/asia/south_korea/seoul/'>Happycow</a>. Be sure to check it out.
+            
+            Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea.`,
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: GENERALK_FOOD,
+            desc: 'Korean dishes',
+          },
+        ],
+      },
+      {
+        id: 2,
+        type: 'text',
+        text: `These are certified under four categories:
+        Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
+        Self-certified as halal
+        Muslim-friendly restaurants with a halal menu
+        Pork-free
+        
+        The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
+        classNames: 'text',
+      },
+      {
+        id: 5,
+        type: 'sectionTitle',
+        text: 'Delivery apps',
+      },
+      {
+        id: 6,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `Korea is one of the most advanced countries when it comes to restaurant food deliveries. It doesn’t matter whether you are in a park, at the river or in an office building - the food will be delivered to wherever you are. This is particularly convenient for production crews, as there is no need to rely solely on catering services.
+        
+          Baedal Minjok/Baemin (<a href='https://apps.apple.com/us/app/%EB%B0%B0%EB%8B%AC%EC%9D%98%EB%AF%BC%EC%A1%B1/id378084485'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.sampleapp&hl=en_US'>Android</a>) and Yogiyo (<a href='https://apps.apple.com/us/app/id543831532'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.fineapp.yogiyo&hl=en_US'>Android</a>) are the two biggest and most popular food delivery apps. Both operate 24/7, with each store having its own business hours. Daily changing coupons, an ETA, and a real-time food tracking system make these delivery apps very convenient to use.`,
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: YOGIYO_BAEMIN,
+            desc: 'Baemin',
+          },
+        ],
+      },
+    ],
+  },
+  transportCommunication: {
+    id: 3,
+    uiType: 'default',
+    parent: 'produce-in-korea',
+    rows: [
+      {
+        id: 1,
+        type: 'sectionTitle',
+        text: 'Maps',
+      },
+      {
+        id: 1,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `To get around in the capital and elsewhere, a well-functioning map is essential. Since Google Maps hasn’t legally been allowed to map South Korea in many years, it’s not a viable option. Instead, make sure to download the app Naver Map (iOS or Android) for accurate directions and locations.
+          
+            Popular places of interest can easily be found on Naver Map when typing in English, but often there won’t be any English results for restaurants or cafes.`,
+            classNames: 'text',
+          },
+          { id: 2, type: 'image', path: NAVERMAP, desc: 'Naver Map' },
+        ],
+      },
+      {
+        id: 2,
+        type: 'text',
+        text: `If the spot is listed on Google, the roundabout way is to copy the Korean name from there and paste it into Naver Map in order to find the location.
+            
+        You can download the most up-to-date subway map on the Seoul Metro website. It’s available in Korean, English, Chinese and Japanese.`,
+        classNames: 'text',
+      },
+      // { id: 3, type: 'image', path: NAVERMAP, desc: 'maps' },
+      // {
+      //   id: 2,
+      //   type: 'flexContainerResponsive',
+      //   items: [
+      //     {
+      //       id: 1,
+      //       type: 'image',
+      //       url: 'https://apps.apple.com/kr/app/id311867728',
+      //       path: NAVERMAP,
+      //       desc: 'maps',
+
+      //     },
+      //   ],
+      //   classNames: 'flex-container-responsive width80percent',
+      // },
+      {
+        id: 4,
+        type: 'sectionTitle',
+        text: 'T-Money Card',
+      },
+      {
+        id: 5,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `It’s most cost-effective to use a T-Money card when using public transportation such as the subway, bus or taxi. It is contactless and reloadable and can also be used for purchases at convenience stores, cafes and fast food outlets such as McDonald’s.
+        
+            T-Money can be purchased at convenience stores or subway stations (price: KRW 2,500), but all reloads must be paid for with cash. T-Money can be shared between two people on Seoul public buses, but not on the subway.
+            `,
+            classNames: 'text',
+          },
+          { id: 2, type: 'image', path: TMONEY01, desc: 'T-Money' },
+        ],
+      },
+
+      {
+        id: 7,
+        type: 'sectionTitle',
+        text: 'Subway & Bus Fares',
+      },
+      {
+        id: 5,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `Adults pay 1,250 won per subway ride within a radius of 10km. An additional 100 won is charged for every 5km. A bus ride with a Blue Bus (mainline bus) or Green Bus (branch bus) will cost 1,200 won or 1,300 won per adult.
+        
+            You can find more detailed information regarding public transportation in Seoul on the <a href='http://english.seoul.go.kr/life-information/transportation-information/public-transportation/2-subway/'>Seoul Metropolitan Government website</a> and the <a href='https://english.visitkorea.or.kr/enu/TRP/TRP_MAIN.jsp'>Korea Tourism Organization website</a>.`,
+            classNames: 'text',
+          },
+          { id: 2, type: 'image', path: GENERALK_SUBWAY, desc: 'subway' },
+        ],
+      },
+      {
+        id: 10,
+        type: 'sectionTitle',
+        text: 'Kakao T',
+      },
+      {
+        id: 5,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `Kakao T (<a href='https://apps.apple.com/us/app/kakao-t/id981110422'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.kakao.taxi&hl=en_US'>Android</a>) is the Korean equivalent of UBER or LYFT and is widely used to call a taxi, especially during night time. `,
+            classNames: 'text',
+          },
+          { id: 2, type: 'image', path: KAKAOT, desc: 'Kakao T' },
+        ],
+      },
+      {
+        id: 13,
+        type: 'sectionTitle',
+        text: 'KTX',
+      },
+      {
+        id: 14,
+        type: 'text',
+        text: `The Korail Train eXpress travels at a speed of 305km per hour and connects South Korea’s major cities. In Seoul, there are four KTX train stations: Seoul Station, Yongsan Station, Cheongnyangni Station, and Yeongdeungpo Station.
+        `,
+      },
+      {
+        id: 15,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'image',
+            path: MAP_KTX,
+            desc: 'KTX map',
+          },
+          {
+            id: 2,
+            type: 'text',
+            text: `Reservations can be made online, at the ticket counters in stations, via travel agents, or through automatic ticketing machines. 
+
+            The passenger’s reservation number and passport are required to pick up tickets at a Korail ticketing counter before departure. For more information and to book your ticket, visit the <a href='https://www.ktxtrains.com'>KTX website</a>`,
+          },
+        ],
+      },
+      {
+        id: 16,
+        type: 'sectionTitle',
+        text: 'Quick-service',
+      },
+      {
+        id: 17,
+        type: 'text',
+        text: `Quick-service is a quick delivery system available in Korea’s urban areas that can be very useful for a film production crew. Anything from documents to packages to food can be delivered via motorcycle at lightning speed from point A to point B for around 20-40 US dollars. You’ll often hear crew members say “let’s use Quick” to get things delivered.
+        `,
+      },
+      {
+        id: 1,
+        type: 'sectionTitle',
+        text: 'SIM card',
+      },
+      {
+        id: 2,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `4G LTE is available in almost every part of the country.
+
+            Prior to arrival in South Korea, it’s important to check:
+            Your phone is unlocked 
+            Your device supports GSM network frequencies`,
+            classNames: 'text',
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: GENERALK_TELESIMCARD,
+            desc: 'simcard',
+          },
+        ],
+      },
+      {
+        id: 3,
+        type: 'text',
+        text: `It’s easy and convenient to buy a SIM card online before arriving in Korea, but they can also be purchased at Incheon Airport, at major convenience stores such as GS25, CU and Seven Eleven, and at outlets run by Korean mobile service providers KT, SKT, and LG U+.
+        
+        Purchasing a universal type USIM Card will ensure it’s compatible with all types of phones. There are many payment plans available, from unlimited data for a certain amount of days, without the option to make or receive calls, to all-inclusive monthly plans. Travel shop <a href='https://blog.trazy.com/survival-tip-all-about-sim-card-prepaid-sim-card-for-foreigners/'>Trazy</a> provides more information.`,
+      },
+      {
+        id: 3,
+        type: 'sectionTitle',
+        text: 'WiFi egg',
+      },
+      {
+        id: 4,
+        type: 'flexContainerResponsive',
+        items: [
+          { id: 2, type: 'image', path: GENERALK_WIFIEGG, desc: 'wifiegg' },
+          {
+            id: 1,
+            type: 'text',
+            text: `An alternative to getting a SIM card is renting a WiFi egg or WiFi router. If all you need is access to the internet without making phone calls or sending text messages, then a WiFi egg is a hassle-free option.`,
+            classNames: 'text',
+          },
+        ],
+      },
+      {
+        id: 2,
+        type: 'text',
+        text: `It also means that other crew members can connect to the WiFi with their phones, iPads and laptops, without incurring an additional charge.`,
+        classNames: 'text',
+      },
+      {
+        id: 5,
+        type: 'sectionTitle',
+        text: 'Mobile rental',
+      },
+      {
+        id: 6,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 1,
+            type: 'text',
+            text: `If you prefer to rent a mobile phone, this service is offered by major telecom companies such as LG, SK, and KT in the arrivals lobby at Incheon and Gimpo International Airports. Your passport and a credit card are required upon pick-up and the rental phone must be returned to the same counter from which it was rented.`,
+            classNames: 'text',
+          },
+          {
+            id: 2,
+            type: 'image',
+            path: GENERALK_TELEKTRENTAL,
+            desc: 'mobile rental',
+          },
+        ],
+      },
+      {
+        id: 7,
+        type: 'sectionTitle',
+        text: 'WiFi access',
+      },
+      {
+        id: 8,
+        type: 'flexContainerResponsive',
+        items: [
+          {
+            id: 2,
+            type: 'image',
+            path: GENERALK_WIFIACCESS,
+            desc: 'wifi access',
+          },
+          {
+            id: 1,
+            type: 'text',
+            text: `Internet access is nearly omnipresent in Seoul. There are almost 10,000 free WiFi hotspots in the capital alone. You’ll find these at many restaurants and cafes, at airports, hotels and tourist information centres, at public facilities such as subway and railway stations, and on the high-speed KTX trains as well.`,
+            classNames: 'text',
+          },
+        ],
+      },
+      {
+        id: 2,
+        type: 'text',
+        text: `Libraries, hospitals, universities, tourists spots, and even taxis offer complimentary WiFi access. Sometimes you’ll have to ask for the password (bimil beonho 비밀 번호) or log in to their system.`,
+        classNames: 'text',
+      },
+    ],
+  },
   locationIncentives: {
     id: 1,
     uiType: 'default', // 'default' or 'withTabs'(as in general knowledge page)
     parent: 'produce-in-korea',
     rows: [
       { id: 1, type: 'title', text: 'Location Incentive' },
-      // TODO: 영상 게시 예정
-      // {
-      //   id: 2,
-      //   type: 'image',
-      //   path: GYEONGBOKGUNG03,
-      //   desc: 'Gyeuongokgung palace',
-      // },
+      {
+        id: 2,
+        type: 'text',
+        text: `South Korea today welcomes filmmakers and TV producers from overseas more than ever before. Encouraged by the current success of Korean films and TV series, South Korea is now attracting foreign productions of all budgets and sizes from high profiled studio films to Youtube virals and documentaries. Besides the popular images of the vibrant country, a large pool of well-trained production laborers and advanced technologies and infrastructure that the country can offer, what makes South Korea an increasingly popular destination for filming is the highly beneficial location incentive programs and the production support system. You can save a lot by filming in South Korea and this is partly why you can see an increasing number of movies filmed in the country like Avengers: Age of Ultron (2015), Black Panther (2018) and TV series like Sense 8 (2016).`,
+      },
       {
         id: 3,
+        type: 'customComponent',
+        classNames: 'margin-tb',
+        customComponent: (
+          // <IframedVideo
+          //   title={'Seoul Film Commission & Korean Film Commissions'}
+          //   url={'https://www.youtube.com/embed/G5AQGM22Xa8'}
+          // />
+          <></>
+        ),
+      },
+      {
+        id: 4,
         type: 'text',
         text: ` Apart from the uniquely beautiful locations that will make your film look different, there are many more reasons why you must consider South Korea as your next filming destination. One of the reasons is the economic one. You can save a lot by filming in South Korea and this is partly why you see South Korea more often in movies like Avengers: Age of Ultron (2015) and Black Panther (2018).  
     The KOFIC Location Incentive program, launched in 2011 by Korean Film Council (KOFIC), covers a part of the expenses of "foreign feature films, television series and documentaries" shot in South Korea. KOFIC grants up to 30% cash rebate on “foreign audio-visual works production expenditure incurred for goods and services in Korea”. The grant amount is subject to change depending on the numbers of days taken to shoot the film and the remaining grant program budget as of the date of application. (from Korea Film Council)
     `,
       },
       {
-        id: 4,
+        id: 5,
         type: 'flexContainerResponsive',
         items: [
           {
@@ -90,7 +736,7 @@ const uiData = {
         ],
       },
       {
-        id: 5,
+        id: 6,
         type: 'text',
         text: ` Besides commercial feature films with high budget, documentary and indie feature films can also enjoy South Korea’s location incentive program because the required amount of local spending is a lot less than existing incentive programs of neighboring countries in Asia such as Japan, Taiwan, the Philippines and Thailand. Compared to Japan’s pilot incentive program (1.8M), Thailand (1.4M), Taiwan (1M) or the Philippines (157K), KOFIC’s location incentive requires only USD 44K and it makes South Korea pretty much the only country that support non commercial feature films of small medium sizes with location incentive. There are a few requirements you must meet in order to access the program. You must have minimum shooting days of 3 days and spend 50 million KRW (approx. USD 44K) or more locally in South Korea. You also need to have a registered local producer partner on board to be able to apply for it. 
 
@@ -100,699 +746,6 @@ const uiData = {
       },
       // { id: 6, type: 'image', path: GYEONGBOKGUNG },
     ],
-  },
-  generalKnowledge: {
-    id: 2,
-    uiType: 'withTabs',
-    parent: 'produce-in-korea',
-    rows: [
-      { id: 1, type: 'title', text: 'General Knowledge' },
-      {
-        id: 2,
-        type: 'tabs',
-        tabs: [
-          {
-            id: 1,
-            name: 'Korea',
-            path: '/produce-in-korea/general-knowledge/korea',
-            tabRowsKeys: ['Timezone', 'Weather', 'Language'],
-          },
-          {
-            id: 2,
-            name: 'Security & Health',
-            path: '/produce-in-korea/general-knowledge/security-health',
-            tabRowsKeys: ['Visa', 'Health', 'Security', 'Emergency Numbers'],
-          },
-          {
-            id: 3,
-            name: 'Money',
-            path: '/produce-in-korea/general-knowledge/money',
-            tabRowsKeys: ['Currency & Money Exchange', 'Banking & Payment'],
-          },
-          {
-            id: 4,
-            name: 'Transportation',
-            path: '/produce-in-korea/general-knowledge/transportation',
-            tabRowsKeys: [
-              'Maps',
-              'T-Money Card',
-              'Subway & Bus Fares',
-              'Kakao T',
-              'KTX',
-              'Quick-service',
-            ],
-          },
-          {
-            id: 5,
-            name: 'Food',
-            path: '/produce-in-korea/general-knowledge/food',
-            tabRowsKeys: [
-              'default',
-              'Vegetarian, Vegan and Halal Food',
-              'Delivery Apps',
-            ],
-          },
-          {
-            id: 6,
-            name: 'Telecommunication',
-            path: '/produce-in-korea/general-knowledge/telecommunication',
-            tabRowsKeys: [
-              'SIM Card',
-              'WiFi Egg',
-              'Mobile Rental',
-              'WiFi Access',
-            ],
-          },
-        ],
-      },
-    ],
-    tabRows: {
-      korea: [
-        {
-          id: 1,
-          type: 'sectionTitle',
-          text: 'Time Zone',
-        },
-        {
-          id: 2,
-          type: 'text',
-          text:
-            'Korean Standard Time (ST) is General Meridian Time +9 (GMT+9). It does not switch to daylight saving time (DST) during the summer.',
-        },
-        // {
-        //   id: 3,
-        //   type: 'customComponentsInflexContainer',
-        //   items: [
-        //     {
-        //       id: 1,
-        //       type: 'customComponent',
-        //       desc: 'Korea',
-        //       text: 'Korea',
-        //       customComponent: <WeatherWidget locationLabel={'Seoul'} />,
-        //       // ? specify customcss for it is a particular case for clocks UI
-        //       // customCssForImage: 'time-backgroundimage',
-        //       // customCssForText: 'time-title',
-        //     },
-        //     {
-        //       id: 2,
-        //       type: 'customComponent',
-        //       desc: 'Where You Are',
-        //       text: 'Where You Are',
-        //       customComponent: (
-        //         <WeatherWidget locationLabel={'Where You Are'} />
-        //       ),
-
-        //       // ? specify customcss for it is a particular case for clocks UI
-        //       // customCssForImage: 'time-backgroundimage',
-        //       // customCssForText: 'time-title',
-        //     },
-        //   ],
-        // },
-        {
-          id: 4,
-          type: 'flexContainerResponsive',
-          itemsLiHasMinWidth: true,
-          items: [
-            {
-              id: 1,
-              type: 'imageWithTextInside',
-              path: TIME_KOREA,
-              desc: 'Seoul',
-              text: 'Seoul',
-              // ? specify customcss for it is a particular case for clocks UI
-              customCssForImage: 'time-backgroundimage',
-              customCssForText: 'time-title',
-              customComponent: <WeatherWidget locationLabel={'Seoul'} />,
-            },
-            {
-              id: 2,
-              type: 'imageWithTextInside',
-              path: TIME_YOUR,
-              desc: 'Where You Are',
-              text: 'Where You Are',
-              // ? specify customcss for it is a particular case for clocks UI
-              customCssForImage: 'time-backgroundimage',
-              customCssForText: 'time-title',
-              customComponent: (
-                <WeatherWidget locationLabel={'Where You Are'} />
-              ),
-            },
-          ],
-        },
-        {
-          id: 4,
-          type: 'sectionTitle',
-          text: 'Weather',
-        },
-        {
-          id: 5,
-          type: 'flexContainerResponsive',
-          items: [
-            { id: 2, type: 'image', path: GENERALK_WEATHER, desc: 'weather' },
-            {
-              id: 1,
-              type: 'text',
-              text:
-                'S.Korea has four distinct seasons. Of these, spring and autumn are considered more comfortable. Summers are hot and humid, with temperatures of between 25 and 35 degrees Celsius. The rainy season is usually between July and August. The winter season’s average temperature varies from between 0 to -10 degrees Celsius.',
-              classNames: 'text',
-            },
-          ],
-        },
-        {
-          id: 6,
-          type: 'sectionTitle',
-          text: 'Language',
-        },
-        {
-          id: 7,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `The Korean language uses the Hangeul writing system, an alphabet created by King Sejong the Great in 1443. But the Seoul subway, street signs and product descriptions in major department stores also use English in Romanized letters.`,
-              classNames: 'text',
-            },
-            { id: 2, type: 'image', path: GENERALK_LANGUAGE, desc: 'language' },
-          ],
-        },
-        {
-          id: 8,
-          type: 'text',
-          text:
-            'For more efficient communication on film sets, it is highly recommended to hire key crew who have a good command of English. They can help with communication between other crew members whose English skills may be lacking.',
-          classNames: 'text',
-        },
-      ],
-      'security-health': [
-        {
-          id: 1,
-          type: 'sectionTitle',
-          text: 'Visa',
-        },
-        {
-          id: 2,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `A valid passport is required to enter the Republic of Korea (ROK). Nationals of non-visa waiver countries need to apply for visas at a Korean embassy or consulate before entering South Korea. A visa is not required for nationals of visa waiver or visa-free countries who wish to enter the country for tourism purposes only. You can find more detailed information on the <a href='https://www.visa.go.kr/'>government website</a>.
-            `,
-              classNames: 'text',
-            },
-            { id: 2, type: 'image', path: GENERALK_VISA, desc: 'visa' },
-          ],
-        },
-        {
-          id: 3,
-          type: 'sectionTitle',
-          text: 'Health',
-        },
-        {
-          id: 4,
-          type: 'flexContainerResponsive',
-          items: [
-            { id: 1, type: 'image', path: GENERALK_HEALTH, desc: 'health' },
-            {
-              id: 2,
-              type: 'text',
-              text: `The CDC (Centers for Disease Control and Prevention) and WHO (World Health Organization) recommend the following vaccinations for travellers to South Korea:
-            Hepatitis A
-            Hepatitis B
-            Japanese Encephalitis
-            Rabies`,
-              classNames: 'text',
-            },
-          ],
-        },
-        {
-          id: 4,
-          type: 'text',
-          classNames: 'text',
-          text:
-            'Currently the COVID-19 situation is well managed and under control. South Korea introduced what is considered one of the best-organised epidemic control programs in the world. It is for this reason that the country’s daily virus cases remain in the mere dozens. As Netflix has pointed out, Korea is one of the few countries worldwide that is able to safely produce movies and TV series right now.',
-        },
-        {
-          id: 5,
-          type: 'sectionTitle',
-          text: 'Security',
-        },
-        {
-          id: 6,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `South Korea is considered one of the safest countries in the world when it comes to crimes, including pickpocketing. It’s better to be safe than sorry, but it may reassure you to know that in cafes and restaurants many individuals leave their bags, notebooks and even cellphones to reserve a seat or when they use the restroom, because theft is so rare.`,
-              classNames: 'text',
-            },
-            { id: 2, type: 'image', path: GENERALK_SECURITY, desc: 'security' },
-          ],
-        },
-        {
-          id: 7,
-          type: 'text',
-          classNames: 'text',
-          text: `Guns and drugs are illegal in Korea and it is a rarity to see any kind of violence from the public or the police.
-
-          Although the relations between North and South Korea is often a hotly contested topic in the media, South Koreans themselves rarely worry about an actual attack. In the 70 years since the North and South were divided as a consequence of the Korean War, there has never been a major attack or conflict between the two.`,
-        },
-        {
-          id: 8,
-          type: 'sectionTitle',
-          text: 'Emergency numbers',
-        },
-        {
-          id: 9,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'image',
-              path: GENERALK_EMERGENCYNUMBERS01,
-              desc: 'emergency numbers',
-            },
-            {
-              id: 2,
-              type: 'text',
-              text: `To call an ambulance or the fire department, dial 119. For the police, it’s 112. In case of a medical emergency, calling 1339 will connect to Seoul’s medical information centre aimed specifically at foreigners.`,
-              classNames: 'text',
-            },
-          ],
-        },
-        {
-          id: 10,
-          type: 'text',
-          classNames: 'text',
-          text: `111 is the number to call for the National Intelligence Service, 1330 for the Tourism and Translation Service, and 122 for the coast guard.
-           
-          Another useful number to be aware of is 120, <a href='https://www.120dasan.or.kr/static/lang/lang1.html'>Dasan Call Center</a>. It is a helpline offering general information on living and tourism in Seoul.`,
-        },
-      ],
-      money: [
-        {
-          id: 1,
-          type: 'sectionTitle',
-          text: 'Currency & Money Exchange',
-        },
-        {
-          id: 2,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `The Korean currency is called Won. Coins range from 10 to 500 KRW, while bills range from 1,000 to 50,000 KRW.
- 
-              As of 24th Aug 2020, 1 KRW = 0.00084 USD or 1 USD = 1187,47 KRW.`,
-              classNames: 'text',
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: GENERALK_CURRENCY,
-              desc: 'Currency & Money Exchange',
-            },
-          ],
-        },
-        {
-          id: 2,
-          type: 'text',
-          text: `South Korea’s major banks offer currency exchange: Kookmin, Woori, Shinhan, etc. Currency exchange offices with good exchange rates can also be found in Seoul districts Itaewon and Myeongdong.`,
-          classNames: 'text',
-        },
-        {
-          id: 3,
-          type: 'sectionTitle',
-          text: 'Banking & Payment',
-        },
-        {
-          id: 4,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'image',
-              path: GENERALK_BANKINGPAYMENT01,
-              desc: 'banking & payment',
-            },
-            {
-              id: 2,
-              type: 'text',
-              text: `Banks are open in Seoul from 9:00am to 4:00pm, Monday to Friday. At Incheon International Airport they are open daily from 6:00am to 9:00pm. Don’t be surprised if you’re unable to draw money from an ATM between 11:30pm and midnight on a Sunday - for many ATMs this half-hour time slot is their maintenance time.`,
-              classNames: 'text',
-            },
-          ],
-        },
-        {
-          id: 2,
-          type: 'text',
-          text: `In South Korea it is very common to pay by credit card and many individuals also use Samsung Pay and Zero Pay. Micropayments can be made in convenience stores, taxis and at subway stations.`,
-          classNames: 'text',
-        },
-      ],
-      transportation: [
-        {
-          id: 1,
-          type: 'sectionTitle',
-          text: 'Maps',
-        },
-        {
-          id: 1,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `To get around in the capital and elsewhere, a well-functioning map is essential. Since Google Maps hasn’t legally been allowed to map South Korea in many years, it’s not a viable option. Instead, make sure to download the app Naver Map (iOS or Android) for accurate directions and locations.
-            
-              Popular places of interest can easily be found on Naver Map when typing in English, but often there won’t be any English results for restaurants or cafes.`,
-              classNames: 'text',
-            },
-            { id: 2, type: 'image', path: NAVERMAP, desc: 'Naver Map' },
-          ],
-        },
-        {
-          id: 2,
-          type: 'text',
-          text: `If the spot is listed on Google, the roundabout way is to copy the Korean name from there and paste it into Naver Map in order to find the location.
-              
-          You can download the most up-to-date subway map on the Seoul Metro website. It’s available in Korean, English, Chinese and Japanese.`,
-          classNames: 'text',
-        },
-        // { id: 3, type: 'image', path: NAVERMAP, desc: 'maps' },
-        // {
-        //   id: 2,
-        //   type: 'flexContainerResponsive',
-        //   items: [
-        //     {
-        //       id: 1,
-        //       type: 'image',
-        //       url: 'https://apps.apple.com/kr/app/id311867728',
-        //       path: NAVERMAP,
-        //       desc: 'maps',
-
-        //     },
-        //   ],
-        //   classNames: 'flex-container-responsive width80percent',
-        // },
-        {
-          id: 4,
-          type: 'sectionTitle',
-          text: 'T-Money Card',
-        },
-        {
-          id: 5,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `It’s most cost-effective to use a T-Money card when using public transportation such as the subway, bus or taxi. It is contactless and reloadable and can also be used for purchases at convenience stores, cafes and fast food outlets such as McDonald’s.
-          
-              T-Money can be purchased at convenience stores or subway stations (price: KRW 2,500), but all reloads must be paid for with cash. T-Money can be shared between two people on Seoul public buses, but not on the subway.
-              `,
-              classNames: 'text',
-            },
-            { id: 2, type: 'image', path: TMONEY01, desc: 'T-Money' },
-          ],
-        },
-
-        {
-          id: 7,
-          type: 'sectionTitle',
-          text: 'Subway & Bus Fares',
-        },
-        {
-          id: 5,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `Adults pay 1,250 won per subway ride within a radius of 10km. An additional 100 won is charged for every 5km. A bus ride with a Blue Bus (mainline bus) or Green Bus (branch bus) will cost 1,200 won or 1,300 won per adult.
-          
-              You can find more detailed information regarding public transportation in Seoul on the <a href='http://english.seoul.go.kr/life-information/transportation-information/public-transportation/2-subway/'>Seoul Metropolitan Government website</a> and the <a href='https://english.visitkorea.or.kr/enu/TRP/TRP_MAIN.jsp'>Korea Tourism Organization website</a>.`,
-              classNames: 'text',
-            },
-            { id: 2, type: 'image', path: GENERALK_SUBWAY, desc: 'subway' },
-          ],
-        },
-        {
-          id: 10,
-          type: 'sectionTitle',
-          text: 'Kakao T',
-        },
-        {
-          id: 5,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `Kakao T (<a href='https://apps.apple.com/us/app/kakao-t/id981110422'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.kakao.taxi&hl=en_US'>Android</a>) is the Korean equivalent of UBER or LYFT and is widely used to call a taxi, especially during night time. `,
-              classNames: 'text',
-            },
-            { id: 2, type: 'image', path: KAKAOT, desc: 'Kakao T' },
-          ],
-        },
-        {
-          id: 13,
-          type: 'sectionTitle',
-          text: 'KTX',
-        },
-        {
-          id: 14,
-          type: 'text',
-          text: `The Korail Train eXpress travels at a speed of 305km per hour and connects South Korea’s major cities. In Seoul, there are four KTX train stations: Seoul Station, Yongsan Station, Cheongnyangni Station, and Yeongdeungpo Station.
-          `,
-        },
-        {
-          id: 15,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'image',
-              path: MAP_KTX,
-              desc: 'KTX map',
-            },
-            {
-              id: 2,
-              type: 'text',
-              text: `Reservations can be made online, at the ticket counters in stations, via travel agents, or through automatic ticketing machines. 
-
-              The passenger’s reservation number and passport are required to pick up tickets at a Korail ticketing counter before departure. For more information and to book your ticket, visit the <a href='https://www.ktxtrains.com'>KTX website</a>`,
-            },
-          ],
-        },
-        {
-          id: 16,
-          type: 'sectionTitle',
-          text: 'Quick-service',
-        },
-        {
-          id: 17,
-          type: 'text',
-          text: `Quick-service is a quick delivery system available in Korea’s urban areas that can be very useful for a film production crew. Anything from documents to packages to food can be delivered via motorcycle at lightning speed from point A to point B for around 20-40 US dollars. You’ll often hear crew members say “let’s use Quick” to get things delivered.
-          `,
-        },
-      ],
-      food: [
-        {
-          id: 1,
-          type: 'sectionTitle',
-          text: ' ',
-        },
-        {
-          id: 1,
-          type: 'text',
-          text: `Korean food culture is diverse and marked by innovation. Many cafes will serve the latest drink that everyone is talking about, while restaurants serve their own specialties that quickly become trendy spots, attracting Seoul’s novelty food seekers.
-
-            In contrast to this, there are everyday affordable eateries such as Kimbab Cheonguk or Bonjuk and Bibimbap Cafe, as well as more traditional restaurants with a range of different banchan (side dishes). Some restaurants even specialise in Buddhist temple food, a great place to find vegan food.
-            
-            Tap water is drinkable, but for convenience it’s the norm to use filter machines. You’ll find filtered water available for free in most restaurants, cafes, libraries, etc. Restrooms are safe and free to use everywhere and most importantly, they’re ubiquitous. They can be found in restaurants, cafes, public buildings and at every subway station.`,
-          classNames: 'text',
-        },
-        {
-          id: 2,
-          type: 'sectionTitle',
-          text: 'Vegetarian, vegan and halal food',
-        },
-
-        {
-          id: 3,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `Many Korean dishes and meals are centred around vegetables, but sometimes it can be hard to find dishes that are 100% vegetarian or vegan (meat or seafood may be used as soup stock and in some vegetable side dishes). 
-
-              A great source for vegan- and vegetarian-friendly dining options in Seoul is <a href='https://www.happycow.net/asia/south_korea/seoul/'>Happycow</a>. Be sure to check it out.
-              
-              Halal-certified restaurants and eateries with halal menus are increasing steadily in number, with more than 250 already offering halal food in South Korea.`,
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: GENERALK_FOOD,
-              desc: 'Korean dishes',
-            },
-          ],
-        },
-        {
-          id: 2,
-          type: 'text',
-          text: `These are certified under four categories:
-          Officially certified as halal by the Korean Muslim Federation (KMF), which is recognized by Jabatan Kemajuan Islam Malaysia (JAKIM)
-          Self-certified as halal
-          Muslim-friendly restaurants with a halal menu
-          Pork-free
-          
-          The so-called Muslim street in Seoul’s Itaewon district is the best spot to visit for a range of halal food choices in close proximity. Itaewon is also the go-to place for many other international foods, from Mexican and Italian to Thai food.`,
-          classNames: 'text',
-        },
-        {
-          id: 5,
-          type: 'sectionTitle',
-          text: 'Delivery apps',
-        },
-        {
-          id: 6,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `Korea is one of the most advanced countries when it comes to restaurant food deliveries. It doesn’t matter whether you are in a park, at the river or in an office building - the food will be delivered to wherever you are. This is particularly convenient for production crews, as there is no need to rely solely on catering services.
-          
-            Baedal Minjok/Baemin (<a href='https://apps.apple.com/us/app/%EB%B0%B0%EB%8B%AC%EC%9D%98%EB%AF%BC%EC%A1%B1/id378084485'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.sampleapp&hl=en_US'>Android</a>) and Yogiyo (<a href='https://apps.apple.com/us/app/id543831532'>iOS</a> and <a href='https://play.google.com/store/apps/details?id=com.fineapp.yogiyo&hl=en_US'>Android</a>) are the two biggest and most popular food delivery apps. Both operate 24/7, with each store having its own business hours. Daily changing coupons, an ETA, and a real-time food tracking system make these delivery apps very convenient to use.`,
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: YOGIYO_BAEMIN,
-              desc: 'Baemin',
-            },
-          ],
-        },
-      ],
-      telecommunication: [
-        {
-          id: 1,
-          type: 'sectionTitle',
-          text: 'SIM card',
-        },
-        {
-          id: 2,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `4G LTE is available in almost every part of the country.
-
-              Prior to arrival in South Korea, it’s important to check:
-              Your phone is unlocked 
-              Your device supports GSM network frequencies`,
-              classNames: 'text',
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: GENERALK_TELESIMCARD,
-              desc: 'simcard',
-            },
-          ],
-        },
-        {
-          id: 3,
-          type: 'text',
-          text: `It’s easy and convenient to buy a SIM card online before arriving in Korea, but they can also be purchased at Incheon Airport, at major convenience stores such as GS25, CU and Seven Eleven, and at outlets run by Korean mobile service providers KT, SKT, and LG U+.
-          
-          Purchasing a universal type USIM Card will ensure it’s compatible with all types of phones. There are many payment plans available, from unlimited data for a certain amount of days, without the option to make or receive calls, to all-inclusive monthly plans. Travel shop <a href='https://blog.trazy.com/survival-tip-all-about-sim-card-prepaid-sim-card-for-foreigners/'>Trazy</a> provides more information.`,
-        },
-        {
-          id: 3,
-          type: 'sectionTitle',
-          text: 'WiFi egg',
-        },
-        {
-          id: 4,
-          type: 'flexContainerResponsive',
-          items: [
-            { id: 2, type: 'image', path: GENERALK_WIFIEGG, desc: 'wifiegg' },
-            {
-              id: 1,
-              type: 'text',
-              text: `An alternative to getting a SIM card is renting a WiFi egg or WiFi router. If all you need is access to the internet without making phone calls or sending text messages, then a WiFi egg is a hassle-free option.`,
-              classNames: 'text',
-            },
-          ],
-        },
-        {
-          id: 2,
-          type: 'text',
-          text: `It also means that other crew members can connect to the WiFi with their phones, iPads and laptops, without incurring an additional charge.`,
-          classNames: 'text',
-        },
-        {
-          id: 5,
-          type: 'sectionTitle',
-          text: 'Mobile rental',
-        },
-        {
-          id: 6,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 1,
-              type: 'text',
-              text: `If you prefer to rent a mobile phone, this service is offered by major telecom companies such as LG, SK, and KT in the arrivals lobby at Incheon and Gimpo International Airports. Your passport and a credit card are required upon pick-up and the rental phone must be returned to the same counter from which it was rented.`,
-              classNames: 'text',
-            },
-            {
-              id: 2,
-              type: 'image',
-              path: GENERALK_TELEKTRENTAL,
-              desc: 'mobile rental',
-            },
-          ],
-        },
-        {
-          id: 7,
-          type: 'sectionTitle',
-          text: 'WiFi access',
-        },
-        {
-          id: 8,
-          type: 'flexContainerResponsive',
-          items: [
-            {
-              id: 2,
-              type: 'image',
-              path: GENERALK_WIFIACCESS,
-              desc: 'wifi access',
-            },
-            {
-              id: 1,
-              type: 'text',
-              text: `Internet access is nearly omnipresent in Seoul. There are almost 10,000 free WiFi hotspots in the capital alone. You’ll find these at many restaurants and cafes, at airports, hotels and tourist information centres, at public facilities such as subway and railway stations, and on the high-speed KTX trains as well.`,
-              classNames: 'text',
-            },
-          ],
-        },
-        {
-          id: 2,
-          type: 'text',
-          text: `Libraries, hospitals, universities, tourists spots, and even taxis offer complimentary WiFi access. Sometimes you’ll have to ask for the password (bimil beonho 비밀 번호) or log in to their system.`,
-          classNames: 'text',
-        },
-      ],
-    },
   },
   permit: {
     id: 3,
@@ -858,28 +811,15 @@ const uiData = {
     rows: [
       { id: 1, type: 'title', text: 'Contract' },
       {
-        id: 7,
-        type: 'flexContainerResponsive',
-        items: [
-          { id: 2, type: 'image', path: CONTRACT01, desc: 'contract' },
-          {
-            id: 1,
-            type: 'text',
-            text: `Long before Bong Joonho’s Parasite winning the Oscars, South Korea’s film industry has long been known outside the world for its unique community culture, work ethics and high quality but also for the notorious excessive overtime on the other hand.`,
-            classNames: 'text',
-          },
-        ],
-      },
-      {
-        id: 3,
+        id: 2,
         type: 'text',
-        text: `Korean film crews are generally motivated and hard working people with a sense of pride. Since the introduction of the Labor Standard Act in 2012 that states weekly work hours and overtime regulations, the industry players have worked hard together to settle it down and now most employers in the industry commonly practice it. The hourly minimum wage of 2020 is confirmed at 8,590 KRW (USD 7.10) and the work hours are limited to 52 hours per week. Global movement of #Metoo campaign had a great influence on Korea’s film industry and made critical changes in the culture as well as in the system. It is now a compulsory condition to take an education session on sexual harassment for any project that receives grants or supports from Korea Film Council and other regional film funds including KOFIC’s location incentive program.
+        text: `Despite the short history of the standard labor contract which was created and released in 2011, the standard labor contract is now being widely practiced in Korea’s film industry. Although it may not yet be compulsory for foreign productions to apply the rules, knowing the local industry standard can only be beneficial when hiring local production crews is necessary. 
 
-        Download sample contracts here:
-
-        Local producer / fixer
-        Drone operator
-        Sound mixer`,
+        The standard labor contract details some of the most important conditions for working in film and video production such as work hours, wage, overtime rules, insurance and credit. According to the standard rules, a film crew must not work longer than 52 hours a week.
+        
+        One of the easiest ways to earn trust from local crews and build a strong production team is to sign proper labor contract with them. As we understand the importance of team building and therefore of signing professional contracts, we have created sample labor contracts to be used for international productions.
+        
+        Feel free to download and modify any of the sample contracts above based on your needs and don’t hesitate to contact us if you need any further advice or consultancies on issues regarding your (future) production in South Korea.`,
         classNames: 'text',
       },
     ],
@@ -1051,12 +991,12 @@ const uiData = {
       },
     ],
   },
-  contact_us: {
+  contact: {
     id: 7,
     uiType: 'default',
     parent: 'produce-o-people',
     rows: [
-      { id: 1, type: 'title', text: 'Contact Us' },
+      { id: 1, type: 'title', text: 'Contact' },
       {
         id: 2,
         type: 'image',

@@ -11,7 +11,7 @@ const StyledSelect = styled.select`
   height: 30px;
   border: 1px solid ${palette.budgetomatic.border[1]};
   border-radius: 5px;
-  padding: 5px;
+  padding: 0 5px;
   font-size: ${(props) => (props.isMobile ? '12px' : '17px')};
   text-align-last: ${(props) => (props.textLeft ? 'left' : 'center')};
 

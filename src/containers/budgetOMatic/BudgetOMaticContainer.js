@@ -4,55 +4,161 @@ import { withRouter, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import BudgetOMatic from '../../components/budgetOMatic/BudgetOMatic';
 import {
-  BUDGETOMATIC_UIDATA,
-  _INITIAL_CODES_SET,
-} from '../../lib/constants/sampleBudgetomaticData';
-import {
   OPTIONS,
   moveItemBeforeAnotherInArr,
   defaultCurrencyRates,
 } from '../../lib/constants/budgetomatic';
+import { getUsersLocation } from '../../modules/thirdPartyApis';
 import { listItemsGroups } from '../../modules/itemsGroups';
 import { postBudgetResult } from '../../modules/budgetResult';
-import { myDataSetsTemplate } from '../../lib/constants/budgetomatic';
 import produce from 'immer';
 import { v1 } from 'uuid';
+import CurrencyFixer from '../currencyFixer/CurrencyFixer';
+import { getGrandTotal } from '../../lib/helper/calculation';
+import { myToast } from '../../lib/util/myToast';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const BudgetOMaticContainer = ({ location }) => {
+const BudgetOMaticContainer = ({ history, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
-  const { DATASETS, RES, error, loading } = useSelector(
-    ({ itemsGroups, budgetResult, loading }) => ({
-      DATASETS: itemsGroups.dataSets,
-      RES: budgetResult.res,
-      error: itemsGroups.error,
-      loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
-    }),
-  );
+  const {
+    IP,
+    USERSLOCATION,
+    CURRENCYSET,
+    ipError,
+    currencySetError,
+    usersLocationError,
+
+    DATASETS,
+    RES,
+    error,
+    loading,
+  } = useSelector(({ thirdPartyApis, itemsGroups, budgetResult, loading }) => ({
+    IP: thirdPartyApis.ip,
+    USERSLOCATION: thirdPartyApis.usersLocation,
+    CURRENCYSET: thirdPartyApis.currencyset,
+    currencySetError: thirdPartyApis.currencySetError,
+    ipError: thirdPartyApis.ipError,
+    usersLocationError: thirdPartyApis.usersLocationError,
+
+    DATASETS: itemsGroups.dataSets,
+    RES: budgetResult.res,
+    error: itemsGroups.error,
+    loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
+  }));
 
   // ? 1. request dataSetInstance data and full dataset
   const [myDataSets, setMyDataSets] = useState('');
   const [dataSetInstance, setDataSetInstance] = useState('');
+  const [countForDataChange, setCountForDataChange] = useState(1);
   const [typeOfProduction, setTypeOfProduction] = useState('DO');
   const [daysOfShooting, setDaysOfShooting] = useState(1);
   const [currency, setCurrency] = useState('KRW');
-  const [currencyRate, setCurrencyRate] = useState(
-    defaultCurrencyRates[currency],
-  );
-  const [isSavedSuccess, setIsSavedSuccess] = useState(RES);
+  const [currencyRates, setCurrencyRates] = useState(defaultCurrencyRates);
+  const [currencyRate, setCurrencyRate] = useState(currencyRates[currency]);
+  const [addedOptions, setAddedOptions] = useState(OPTIONS);
+  // const [categoryTotals, setCategoryTotals] = useState(null);
+  // const [grandTotal, setGrandTotal] = useState(null);
 
-  const history = useHistory();
+  // const history = useHistory();
+
+  // * MAJOR FEATURES
+  // * 1. on page load, get any saved data in localStorage, and ask user if she/he wants to load the data
+  // * 2. automatic save on any dataSetInstance change (currently not saving type of production, days of shooting, currency)
+  // * 3. initialize button
+  useEffect(() => {
+    try {
+      const _dataSetInstance = localStorage.getItem('_dataSetInstance');
+      // ? Do not show confirm message modal : 1. when user clicks '< Back' button in Calculation Result Page, 2. when user is from any other page but has recently checked out Calculation Result Page already
+      const prevPath = location.state && location.state.from;
+      if (RES || (prevPath && prevPath.includes('budget-o-matic/result'))) {
+        _dataSetInstance && setDataSetInstance(JSON.parse(_dataSetInstance));
+      } else {
+        // ? Show confirm-alert modal: only when user has not recently checked out Calculation Result page, or user has no RES data.
+        if (_dataSetInstance) {
+          confirmAlert({
+            title: 'Saved data found!',
+            message:
+              'We found a saved data in your system. Would you like to load it?',
+            buttons: [
+              {
+                label: 'Yes!',
+                onClick: () => {
+                  setDataSetInstance(JSON.parse(_dataSetInstance));
+                },
+              },
+              {
+                label: "No, I'd like to start from the scratch.",
+                onClick: () => {},
+              },
+            ],
+            childrenElement: () => <div />,
+            closeOnEscape: true,
+            closeOnClickOutside: true,
+            willUnmount: () => {},
+            afterClose: () => {},
+            onClickOutside: () => {},
+            onKeypressEscape: () => {},
+          });
+        }
+      }
+    } catch (e) {
+      console.log('localStorage is not working');
+    }
+  }, []);
 
   useEffect(() => {
-    // ? 1. API request for all data
+    if (USERSLOCATION && OPTIONS) {
+      const usersCurrencyCode = USERSLOCATION.currency;
+      if (!OPTIONS.currency.includes(usersCurrencyCode)) {
+        const tempOptions = JSON.parse(JSON.stringify(OPTIONS));
+        tempOptions.currency.push(usersCurrencyCode);
+        setAddedOptions(tempOptions);
+        console.log('hahahahah');
+      }
+    }
+  }, [USERSLOCATION]);
+
+  useEffect(() => {
+    // ? if currency rates data are retrieved and the user specifies a currency, we update our 5 currencies rates set.
+    if (CURRENCYSET /* && CURRENCYSET.success*/) {
+      let { rates } = CURRENCYSET;
+      console.log('==923', CURRENCYSET);
+      if (rates) {
+        if (!rates['EUR']) rates = { ...rates, EUR: 1 }; // provide EUR's rate, for exchangeratesapi.io doesn't provide the base currency rate.
+        const userSelectedCurrencyRate = rates[currency];
+        const base = rates['KRW'];
+        let tempCurrencyRates = {
+          KRW: 1,
+          USD: 1 / (rates['USD'] / base),
+          EUR: 1 / (rates['EUR'] / base),
+          CNY: 1 / (rates['CNY'] / base),
+        };
+        tempCurrencyRates[currency] = 1 / (userSelectedCurrencyRate / base);
+        console.log('===234', userSelectedCurrencyRate, tempCurrencyRates);
+        setCurrencyRates(tempCurrencyRates);
+      }
+    }
+  }, [CURRENCYSET, currency]);
+
+  useEffect(() => {
+    // ? 1. API request for all template data
     dispatch(listItemsGroups());
   }, []);
 
   useEffect(() => {
     // ? 2. transform DATASETS into myDataSets (cascading dictionary format)
     if (DATASETS) {
-      const tempMyDataSets = JSON.parse(JSON.stringify(myDataSetsTemplate));
+      // 모든 그룹 정보에서 카테고리 값 (유니크한)을 하나씩만 가져와서 dictionary 포맷으로 재배열한다
+      const uniqueValues = [
+        ...new Set(DATASETS.map((group) => group.category)),
+      ];
+      const tempMyDataSets = {};
+      for (const value of uniqueValues) {
+        tempMyDataSets[value] = [];
+      }
       for (const GROUP of DATASETS) {
         tempMyDataSets[GROUP.category].push(GROUP);
       }
@@ -61,16 +167,24 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [DATASETS]);
 
   useEffect(() => {
-    if (currency) {
-      setCurrencyRate(defaultCurrencyRates[currency]);
+    // ? 특정된 환 & 환율 설정 : 초기 환율정보세트가 세팅되거나 사용자가 환율을 새로 특정할 때마다.
+    if (currencyRates) {
+      // setCurrencyRate(defaultCurrencyRates[currency]);
+      setCurrencyRate(currencyRates[currency]);
     }
-  }, [currency]);
+  }, [currencyRates]);
+
+  // useEffect(() => {
+  //   if (currencyRate) {
+  //     console.log('==235', currencyRate);
+  //   }
+  // }, [currencyRate]);
 
   // ? 3. create 'checked' attributes FOR both GROUP and BUDGETITEM, and make an INSTANCE out of the original datasets retrieved
   // * update dataSetInstance 1/3
-  const initializeDataSetInstance = () => {
-    console.log('update type: 1. 초기화');
-    const tempDataSet = dataSetInstance || myDataSets;
+  const initializeDataSetInstance = ({ totalReset }) => {
+    // * when totalReset is true, get (initial) myDataSets instead of dataSetInstance being used
+    const tempDataSet = totalReset ? myDataSets : dataSetInstance || myDataSets;
 
     const defaultAmnt = 1;
     const baseState = { ...tempDataSet };
@@ -81,7 +195,7 @@ const BudgetOMaticContainer = ({ location }) => {
           group.options = [];
           for (let budgetItem of group.budgetItems) {
             budgetItem.checked = budgetItem.tags.includes(typeOfProduction);
-            // todo: if there's data, leave it, but may change
+            // ? if there's data, leave it, but may change
             if (!budgetItem.amnt) budgetItem.amnt = defaultAmnt;
             if (!budgetItem.days) budgetItem.days = daysOfShooting;
 
@@ -121,7 +235,7 @@ const BudgetOMaticContainer = ({ location }) => {
   };
   useEffect(() => {
     if (myDataSets && typeOfProduction) {
-      initializeDataSetInstance();
+      initializeDataSetInstance({ totalReset: false });
     }
   }, [myDataSets, typeOfProduction]);
 
@@ -165,7 +279,21 @@ const BudgetOMaticContainer = ({ location }) => {
   }, [daysOfShooting]);
 
   useEffect(() => {
-    !!dataSetInstance && console.log('데이터 세팅됨: ', dataSetInstance);
+    if (!!dataSetInstance) {
+      setCountForDataChange(countForDataChange + 1);
+      try {
+        localStorage.setItem(
+          '_dataSetInstance',
+          JSON.stringify(dataSetInstance),
+        );
+        countForDataChange % 5 === 0 && myToast('saving...');
+      } catch (e) {
+        console.log('LocalStorage is not working!');
+        myToast(
+          'LocalStorage is not working! We could not save your data in your local storage.',
+        );
+      }
+    }
   }, [dataSetInstance]);
 
   // * update dataSetInstance 2/3
@@ -370,6 +498,7 @@ const BudgetOMaticContainer = ({ location }) => {
       }
       totals.push({ [key]: categorytotal });
     }
+    console.log('==229', totals);
     return totals;
   };
 
@@ -378,17 +507,28 @@ const BudgetOMaticContainer = ({ location }) => {
     console.log('onsubmit', e, e.target);
     //==결과 페이지 가는 과정
     // budgetomatic 페이지 컨펌 누르면>
+    const _categoryTotals = getCategoryTotals();
+    const _grandTotal = getGrandTotal(_categoryTotals);
+    // setCategoryTotals(_categoryTotals);
+    // setGrandTotal(_grandTotal);
     // 1. 데이터 post  >
-    dispatch(postBudgetResult({ uuid: v1(), result: dataSetInstance }));
+    console.log('==305', history);
+
+    dispatch(
+      postBudgetResult({
+        uuid: v1(),
+        result: dataSetInstance,
+        categoryTotals: _categoryTotals,
+        grandTotal: _grandTotal,
+        currency,
+        currencyRate,
+      }),
+    );
     // 2. backend: db 저장 > 성공이면 > 아이디 반환 >
   };
 
   useEffect(() => {
-    RES && setIsSavedSuccess(true);
-  }, [RES]);
-
-  useEffect(() => {
-    if (isSavedSuccess) {
+    if (RES) {
       // 3. 아이디를 받아서 스토어에 저장. 있으면!! >
       // 4. 결과 페이지로 이동.
 
@@ -397,36 +537,36 @@ const BudgetOMaticContainer = ({ location }) => {
       // 6. 결과 페이지는 스토어에 아이디가 있으면>
       // 7. 결과 테이블 표시
       // const id = v1(); // TODO:
+      console.log('==306', location);
+      // if () {
       const { uuid } = RES;
-      history.push(`/produce-o-matic/budget-o-matic/result/${uuid}`, {
-        data: dataSetInstance,
-        categoryTotals: getCategoryTotals(),
-        currency,
-        currencyRate,
-      });
+      history.push(`/produce-o-matic/budget-o-matic/result/${uuid}`);
+      // }
     }
-  }, [isSavedSuccess]);
+  }, [RES]);
 
   return (
-    <BudgetOMatic
-      typeOfProduction={typeOfProduction}
-      daysOfShooting={daysOfShooting}
-      currency={currency}
-      currencyRate={currencyRate}
-      OPTIONS={OPTIONS}
-      dataSetInstance={dataSetInstance}
-      onChangeTypeOfProduction={onChangeTypeOfProduction}
-      onChangeDaysOfShooting={onChangeDaysOfShooting}
-      onChangeCurrency={onChangeCurrency}
-      onChangeToggleGroup={onChangeToggleGroup}
-      onChangeSelect={onChangeSelect}
-      onChangeReplace={onChangeReplace}
-      onClickRemove={onClickRemove}
-      onClickAdd={onClickAdd}
-      onSubmit={onSubmit}
-      uiData={BUDGETOMATIC_UIDATA}
-      isMobile={isMobile}
-    />
+    <CurrencyFixer>
+      <BudgetOMatic
+        typeOfProduction={typeOfProduction}
+        daysOfShooting={daysOfShooting}
+        currency={currency}
+        currencyRate={currencyRate}
+        OPTIONS={addedOptions}
+        dataSetInstance={dataSetInstance}
+        initializeDataSetInstance={initializeDataSetInstance}
+        onChangeTypeOfProduction={onChangeTypeOfProduction}
+        onChangeDaysOfShooting={onChangeDaysOfShooting}
+        onChangeCurrency={onChangeCurrency}
+        onChangeToggleGroup={onChangeToggleGroup}
+        onChangeSelect={onChangeSelect}
+        onChangeReplace={onChangeReplace}
+        onClickRemove={onClickRemove}
+        onClickAdd={onClickAdd}
+        onSubmit={onSubmit}
+        isMobile={isMobile}
+      />
+    </CurrencyFixer>
   );
 };
 

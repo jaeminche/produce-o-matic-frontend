@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 function formatTime({ date, koreatime }) {
   const offset = 9;
   let hour = koreatime ? date.getUTCHours() + offset : date.getHours();
@@ -53,4 +55,38 @@ const formatCurrency = ({
   return currency !== 'KRW' ? result.substring(0, result.length - 3) : result;
 };
 
-export { formatTime, toLowerCase, removeSpaceAndUnderbar, formatCurrency };
+const formatBudgetResults = ({ data }) =>
+  data.map((item) => {
+    const dateFormat = 'YYYY-MM-DD HH:mm:ss';
+    const { createdAt } = item;
+    const date = moment.utc(createdAt).format(dateFormat);
+    const stillUtc = moment.utc(date).toDate();
+    const local = moment(stillUtc).local().format(dateFormat);
+    return {
+      ...item,
+      createdAt_local: local,
+      createdAt_utc: date,
+    };
+  });
+
+// const formatBudgetResults = ({ data }) =>
+//   data.map((item) => {
+//     return {
+//       ...item,
+//       createdAt:
+//         item.createdAt +
+//         formatTime({
+//           displayDate: true,
+//           date: new Date(item.createdAt),
+//           koreatime: true,
+//         }),
+//     };
+//   });
+
+export {
+  formatTime,
+  toLowerCase,
+  removeSpaceAndUnderbar,
+  formatCurrency,
+  formatBudgetResults,
+};

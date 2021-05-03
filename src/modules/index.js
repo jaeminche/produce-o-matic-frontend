@@ -6,9 +6,14 @@ import loading from './loading';
 import user, { userSaga } from './user';
 import itemsGroups, { itemsGroupsSaga } from './itemsGroups';
 import budgetResult, { budgetResultSaga } from './budgetResult';
+import budgetResults, { budgetResultsSaga } from './budgetResults';
+import admin, { adminSaga } from './admin';
+import fileUpload, { fileUploadSaga } from './fileUpload';
+import popularLocations, { popularLocationsSaga } from './popularLocations';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
+import thirdPartyApis, { thirdParyApisSaga } from './thirdPartyApis';
 
 const rootReducer = combineReducers({
   main,
@@ -17,6 +22,11 @@ const rootReducer = combineReducers({
   user,
   itemsGroups,
   budgetResult,
+  budgetResults,
+  thirdPartyApis,
+  admin,
+  fileUpload,
+  popularLocations,
   write,
   post,
   posts,
@@ -28,6 +38,11 @@ export function* rootSaga() {
     userSaga(),
     itemsGroupsSaga(),
     budgetResultSaga(),
+    budgetResultsSaga(),
+    thirdParyApisSaga(),
+    adminSaga(),
+    fileUploadSaga(),
+    popularLocationsSaga(),
     writeSaga(),
     postSaga(),
     postsSaga(),

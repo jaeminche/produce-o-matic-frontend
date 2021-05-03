@@ -12,11 +12,12 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
-const TheHeaderDropdown = () => {
+const TheHeaderDropdown = ({ username }) => {
   const dispatch = useDispatch();
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
+        <div>{username}님, </div>
         <div className="c-avatar">
           <CIcon
             name="cil-smile"

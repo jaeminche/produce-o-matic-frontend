@@ -19,19 +19,19 @@ import CIcon from '@coreui/icons-react';
 import navigation from './_nav';
 
 import { LOGO1ROW } from '../../assets';
+import { toggleAdminSide } from '../../modules/main';
 
 const TheSidebar = () => {
   const dispatch = useDispatch();
-  const show = useSelector((state) => state.sidebarShow);
-
+  const { show } = useSelector(({ main }) => ({
+    show: main.sidebarShow,
+  }));
   return (
     <CSidebar
       show={show}
-      onShowChange={(val) =>
-        dispatch({ type: 'toggleAdminSide', sidebarShow: val })
-      }
+      onShowChange={(val) => dispatch(toggleAdminSide({ data: val }))}
     >
-      <CSidebarBrand className="d-md-down-none" to="/">
+      <CSidebarBrand className="d-md-down-none" to="/firstavenue">
         <CImg
           src={LOGO1ROW}
           className="c-sidebar-brand-full"

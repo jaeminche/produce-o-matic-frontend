@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useHistory } from 'react-router-dom';
 import ScrollToTopRoute from './components/common/ScrollToTopRoute';
 
 import PostsListPage from './pages/PostsListPage';
@@ -14,10 +14,12 @@ import SummaryInKoreaPage from './pages/SummaryInKoreaPage';
 import SummaryOManualPage from './pages/SummaryOManualPage';
 import SummaryOMaticPage from './pages/SummaryOMaticPage';
 import SummaryOPeoplePage from './pages/SummaryOPeoplePage';
+import KoreaInANutshellPage from './pages/KoreaInANutshellPage';
 import PopularLocationsPage from './pages/PopularLocationsPage';
 import PopularLocationPage from './pages/PopularLocationPage';
+import SecurityHealthFoodPage from './pages/SecurityHealthFoodPage';
+import TransportCommunicationPage from './pages/TransportCommunicationPage';
 import LocationIncentivesPage from './pages/LocationIncentivesPage';
-import GeneralKnowledgePage from './pages/GeneralKnowledgePage';
 import PermitPage from './pages/PermitPage';
 import ContractPage from './pages/ContractPage';
 import InsurancePage from './pages/InsurancePage';
@@ -29,10 +31,10 @@ import AccountOMaticPage from './pages/AccountOMaticPage';
 import OurVisionPage from './pages/OurVisionPage';
 import PeopleOfTheMonthPage from './pages/PeopleOfTheMonthPage';
 import BeOurPeoplePage from './pages/BeOurPeoplePage';
-import ContactUsPage from './pages/ContactUsPage';
+import ContactPage from './pages/ContactPage';
 
 import { Helmet } from 'react-helmet-async';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, Slide } from 'react-toastify';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -51,6 +53,13 @@ const Page404 = React.lazy(() => import('./admin/views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./admin/views/pages/page500/Page500'));
 
 const App = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    if (history.location.pathname === '/produce-in-korea/location-incentives')
+      history.push('/produce-o-manual/location-incentives');
+  }, []);
+
   return (
     <React.Suspense fallback={loading}>
       <Background />
@@ -58,6 +67,7 @@ const App = () => {
         <title>PRODUCE-O-MATIC</title>
       </Helmet>
       <ToastContainer
+        transition={Slide}
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -74,8 +84,8 @@ const App = () => {
         path={['/posttest/@:username', '/posttest']}
         exact
       />
-      <ScrollToTopRoute component={LoginPage} path="/posttest/login" />
-      <ScrollToTopRoute component={SignupPage} path="/posttest/signup" />
+      {/* <ScrollToTopRoute component={LoginPage} path="/posttest/login" /> */}
+      {/* <ScrollToTopRoute component={SignupPage} path="/posttest/signup" /> */}
       <ScrollToTopRoute component={WritePage} path="/posttest/write" />
       <ScrollToTopRoute
         component={PostPage}
@@ -91,14 +101,10 @@ const App = () => {
         render={(props) => <TheLayout {...props} />}
       />
       <ScrollToTopRoute component={LoginPage} path="/firstavenue/login" />
+      {/* <ScrollToTopRoute component={SignupPage} path="/firstavenue/signup" /> */}
 
-      {/* <Route component={LoginPage} path="/firstavenue/login" />
-      <Route component={SignupPage} path="/firstavenue/signup" />
-      <Route component={WritePage} path="/firstavenue/write" />
-      <Route component={PostPage} path="/firstavenue/@:username/:postId" /> */}
       {/* ----- admin pages ends ----- */}
 
-      <ScrollToTopRoute component={MainPage} exact path="/" />
       <ScrollToTopRoute
         component={SummaryInKoreaPage}
         exact
@@ -119,6 +125,12 @@ const App = () => {
         exact
         path="/produce-o-people"
       />
+
+      <ScrollToTopRoute
+        component={KoreaInANutshellPage}
+        exact
+        path="/produce-in-korea/korea-in-a-nutshell"
+      />
       <ScrollToTopRoute
         component={PopularLocationsPage}
         exact
@@ -130,13 +142,19 @@ const App = () => {
         path="/produce-in-korea/popular-locations/:id"
       />
       <ScrollToTopRoute
-        component={LocationIncentivesPage}
+        component={SecurityHealthFoodPage}
         exact
-        path="/produce-in-korea/location-incentives"
+        path="/produce-in-korea/security-health-food"
       />
       <ScrollToTopRoute
-        component={GeneralKnowledgePage}
-        path="/produce-in-korea/general-knowledge/:active_tab?"
+        component={TransportCommunicationPage}
+        exact
+        path="/produce-in-korea/transport-communication"
+      />
+      <ScrollToTopRoute
+        component={LocationIncentivesPage}
+        exact
+        path="/produce-o-manual/location-incentives"
       />
       <ScrollToTopRoute
         component={PermitPage}
@@ -159,14 +177,14 @@ const App = () => {
         path="/produce-o-manual/rental"
       />
       <ScrollToTopRoute
-        component={BudgetOMaticPage}
-        exact
-        path="/produce-o-matic/budget-o-matic"
-      />
-      <ScrollToTopRoute
         component={BudgetResultPage}
         exact
         path="/produce-o-matic/budget-o-matic/result/:id"
+      />
+      <ScrollToTopRoute
+        component={BudgetOMaticPage}
+        exact
+        path="/produce-o-matic/budget-o-matic"
       />
       <ScrollToTopRoute
         component={ProduceOMaticPage}
@@ -194,9 +212,9 @@ const App = () => {
         path="/produce-o-people/be-our-people"
       />
       <ScrollToTopRoute
-        component={ContactUsPage}
+        component={ContactPage}
         exact
-        path="/produce-o-people/contact-us"
+        path="/produce-o-people/contact"
       />
 
       <ScrollToTopRoute
@@ -223,6 +241,7 @@ const App = () => {
         name="Page 500"
         render={(props) => <Page500 {...props} />}
       />
+      <ScrollToTopRoute exact component={MainPage} path="/" />
     </React.Suspense>
   );
 };

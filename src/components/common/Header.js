@@ -59,6 +59,9 @@ const Wrapper = styled(Responsive)`
   }
   .menuitem {
     color: rgba(165, 165, 165, 1);
+    a {
+      color: rgba(165, 165, 165, 1);
+    }
     font-size: 14px;
     margin-right: 15px;
   }
@@ -88,7 +91,7 @@ const Header = ({
   activeSubMenu /*, user, onLogout*/,
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-
+  // console.log('액티브메뉴', activeMenu);
   return (
     <HeaderBlock isFixed={isFixed}>
       <Wrapper>
@@ -109,7 +112,7 @@ const Header = ({
               <Link
                 to={menu.path}
                 className={
-                  menu.path.includes(activeMenu)
+                  activeMenu && menu.path.includes(activeMenu)
                     ? 'isActive menuitem'
                     : 'menuitem'
                 }

@@ -5,12 +5,15 @@ import createRequestSaga, {
 import * as budgetResultsAPI from '../lib/api/budgetResults';
 import { takeLatest } from 'redux-saga/effects';
 
+const INITIALIZE = 'budgetResults/INITIALIZE'; // 모든 내용 초기화
+
 const [
   POST_BUDGETRESULT,
   POST_BUDGETRESULT_SUCCESS,
   POST_BUDGETRESULT_FAILURE,
 ] = createRequestActionTypes('budgetResults/POST_BUDGETRESULT');
 
+export const initialize = createAction(INITIALIZE);
 export const postBudgetResult = createAction(POST_BUDGETRESULT);
 
 const postBudgetResultSaga = createRequestSaga(
@@ -28,6 +31,7 @@ const initialState = {
 
 const budgetResults = handleActions(
   {
+    [INITIALIZE]: (state) => initialState,
     [POST_BUDGETRESULT_SUCCESS]: (
       state,
       // ! 여기할 차례

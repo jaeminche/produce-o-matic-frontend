@@ -3,7 +3,7 @@ import Responsive from '../../components/common/Responsive';
 import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
-import { PageTitle } from '../common/SmallComponents';
+// import { PageTitle } from '../common/SmallComponents';
 import Select from '../common/Select';
 import { XMARK, PLUSMARK } from '../../assets';
 import { ConfirmButton } from '../../components/common/Button';
@@ -148,6 +148,7 @@ const StyledTable = styled.div`
   .checkbox-item {
     display: inline-block;
     cursor: pointer;
+    margin-bottom: 0;
   }
   i {
     flex: 1 0 auto;
@@ -244,6 +245,38 @@ const ButtonStyledCheckbox = styled.span`
   }
 `;
 
+const InitializeButton = (props) => {
+  const { isMobile, initializeDataSetInstance } = props;
+  return (
+    <StyledTable isMobile={isMobile} style={{ border: '0', minHeight: '40px' }}>
+      <ButtonStyledCheckbox
+        className="vertically-center"
+        style={{
+          width: '170px',
+          float: 'right',
+          border: '1px solid darkslategray',
+        }}
+      >
+        <label htmlFor={'Reset Data'} className="checkbox-item">
+          <input
+            type="checkbox"
+            id={'Reset Data'}
+            name={'Reset Data'}
+            value={'Reset Data'}
+            className="checkbox"
+            onChange={() => initializeDataSetInstance({ totalReset: true })}
+          />
+          Reset Data
+        </label>
+      </ButtonStyledCheckbox>
+
+      {[...Array(10).keys()].map((i, key) => (
+        <i aria-hidden={true} key={key} />
+      ))}
+    </StyledTable>
+  );
+};
+
 const formatType = {
   DO: 'Documentary',
   IN: 'Indie Feature',
@@ -262,7 +295,6 @@ const Controller1 = (props) => {
     onChangeTypeOfProduction,
     onChangeDaysOfShooting,
     onChangeCurrency,
-    uiData,
     isMobile,
   } = props;
 
@@ -343,7 +375,7 @@ const Controller2 = (props) => {
     <StyledTable isMobile={isMobile}>
       <div
         className="row-container solo-container wrap-evenly"
-        style={{ minHeight: '76px' }}
+        style={{ minHeight: '67px' }}
       >
         {D.map((group, key) => (
           <ButtonStyledCheckbox
@@ -617,13 +649,13 @@ const BudgetOMatic = (props) => {
         <IntroText isMobile={isMobile} />
         <div className="spacer" />
         <Controller1 {...props} />
-
+        <InitializeButton {...props} />
         <Calculator {...props} />
 
         <ConfirmButton onClick={onSubmit} bigGray>
           Get Result
         </ConfirmButton>
-        <Spacer width="1px" />
+        <Spacer height="1px" />
       </Wrapper>
     </BudgetOMaticBlock>
   );

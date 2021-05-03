@@ -7,6 +7,7 @@ import styled from 'styled-components/macro';
 import ReactHtmlParser from 'react-html-parser';
 import palette from '../../lib/styles/palette';
 import { useParams } from 'react-router-dom';
+// import maxmind, { CityResponse } from 'maxmind';
 
 const ContentsBlock = styled.div`
   height: auto;
@@ -16,7 +17,7 @@ const SubHeaderTabBlock = styled.nav`
   position: sticky;
   top: 44px; // header's height
   z-index: 10;
-  ${(props) => props.isMobile && `margin-top: 30px`};
+  margin-top: -60px;
   /* padding-bottom: 20px; */
   text-align: center;
   height: 48px; //header's height
@@ -84,6 +85,7 @@ const Wrapper = styled(Responsive)`
     line-height: 46px;
     letter-spacing: 0em;
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 25px;
   }
   .text {
@@ -237,7 +239,15 @@ const Wrapper = styled(Responsive)`
 `;
 
 const FlexContainerResponsive = (props) => {
-  const { items, times, key, classNames, style, itemsLiHasMinWidth } = props;
+  const {
+    items,
+    times,
+    cityName,
+    key,
+    classNames,
+    style,
+    itemsLiHasMinWidth,
+  } = props;
   // console.log('스타일', style);
   const customcss = times ? 'time-numbers' : null;
   return (
@@ -275,7 +285,9 @@ const FlexContainerResponsive = (props) => {
                   />
                   <div className={'vertical-center'}>
                     <>
-                      <div>{item.text}</div>
+                      <div>
+                        {item.asyncText && cityName ? cityName : item.text}
+                      </div>
                       <div className={customcss}>
                         {times &&
                           times.length > 0 &&
@@ -286,7 +298,9 @@ const FlexContainerResponsive = (props) => {
                 </div>
               )}
 
-              {item.customComponent && item.customComponent}
+              {item.customComponent &&
+                item.customComponent.url &&
+                item.customComponent}
             </>
           ) : (
             <div key={key} className={item.classNames || 'text'} style={style}>
@@ -348,8 +362,18 @@ const Tabs = (props) => {
 };
 
 const DrawRowComponent = (props) => {
-  const { row, key, isMobile, times } = props;
-  const { type, path, text, desc, items, tabs, classNames, style } = row;
+  const { row, key, isMobile, times, cityName } = props;
+  const {
+    type,
+    path,
+    text,
+    desc,
+    items,
+    tabs,
+    classNames,
+    style,
+    customComponent,
+  } = row;
 
   // console.log('rows');
   const ui = {
@@ -376,6 +400,7 @@ const DrawRowComponent = (props) => {
         items={items}
         key={key}
         times={times}
+        cityName={cityName}
         classNames={classNames}
         style={style}
       />
@@ -407,28 +432,31 @@ const DrawRowComponent = (props) => {
         {text}
       </h3>
     ),
+    customComponent: (
+      <div className={classNames || null}>
+        {customComponent && customComponent}
+      </div>
+    ),
   };
 
   return ui[type];
 };
 
 const Contents = (props) => {
-  const { rows, isMobile, tabRows = false, times = false } = props;
+  const { rows, isMobile, times = false, cityName = false } = props;
+
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>
         {rows.map((row, key) => (
-          <DrawRowComponent row={row} key={key} isMobile={isMobile} />
+          <DrawRowComponent
+            row={row}
+            key={key}
+            isMobile={isMobile}
+            times={times}
+            cityName={cityName}
+          />
         ))}
-        {tabRows &&
-          tabRows.map((row, key) => (
-            <DrawRowComponent
-              row={row}
-              key={key}
-              isMobile={isMobile}
-              times={times}
-            />
-          ))}
       </Wrapper>
     </ContentsBlock>
   );

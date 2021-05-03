@@ -16,10 +16,11 @@ const PopularLocationsPageBlock = styled.div`
 `;
 
 const PopularLocationsPage = () => {
+  const pagekey = 'popularLocations';
   return (
     <PopularLocationsPageBlock>
       <Helmet>
-        <title>PopularLocations_PRODUCE-O-MATIC</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={0} />

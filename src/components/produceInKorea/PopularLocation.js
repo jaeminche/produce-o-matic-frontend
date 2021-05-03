@@ -4,6 +4,7 @@ import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import { CenteredButton } from '../../components/common/Button';
 import palette from '../../lib/styles/palette';
+import IframedVideo from '../common/IframedVideo';
 
 const PopularLocationBlock = styled.div`
   height: auto;
@@ -35,54 +36,17 @@ const Wrapper = styled(Responsive)`
     /* margin-top: 80px; */
     margin-bottom: 40px;
   }
-  .video_wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    /* Aspect Ratio / Padding-Bottom
-        1:1 / 100%
-        16:9 / 56.25%
-        4:3 / 75%
-        3:2 / 66.66&
-        8:5 / 62.5%
-     */
-  }
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const PopularLocation = ({ data, history, isMobile }) => {
-  const { title, url, text } = data;
+  const { title, youtubePath, text } = { ...data };
 
   return (
     <PopularLocationBlock>
       <Wrapper isMobile={isMobile}>
         {title && <h1 className="title margin-tb">{title}</h1>}
-        {url && (
-          <div className="video_wrapper">
-            {/* <iframe
-              title={title}
-              width="100%"
-              height="100%"
-              src={url}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe> */}
-            <iframe
-              title={title}
-              width="100%"
-              height="100%"
-              src={url}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
+        {youtubePath && (
+          <IframedVideo title={title && title} url={youtubePath} />
         )}
         {text && <p className="text">{text}</p>}
 

@@ -22,7 +22,8 @@ const socialMedia = [
     id: 1,
     name: 'Youtube',
     icon: YOUTUBE_ICON,
-    path: 'https://www.youtube.com',
+    path:
+      'https://www.youtube.com/channel/UC118oCP9Fo9L4VTJtFIVBHw?feature=emb_ch_name_ex',
   },
   {
     id: 1,
@@ -41,48 +42,58 @@ const terms = [
 const menus = [
   {
     id: 1,
-    text: 'Korea',
+    text: 'Film In Korea',
     path: '/produce-in-korea',
     submenus: [
       {
         id: 1,
+        text: 'Korea In A Nutshell',
+        path: `/produce-in-korea/korea-in-a-nutshell`,
+      },
+      {
+        id: 2,
         text: 'Popular Locations',
         path: `/produce-in-korea/popular-locations`,
       },
       {
-        id: 2,
-        text: 'Location Incentive',
-        path: `/produce-in-korea/location-incentives`,
+        id: 3,
+        text: 'Security & Health & Food',
+        path: `/produce-in-korea/security-health-food`,
       },
       {
-        id: 3,
-        text: 'General Knowledge',
-        path: `/produce-in-korea/general-knowledge/korea`,
+        id: 4,
+        text: 'Transport & Communication',
+        path: `/produce-in-korea/transport-communication`,
       },
     ],
   },
   {
     id: 2,
-    text: 'Manual',
+    text: 'Production Handbook',
     path: '/produce-o-manual',
     submenus: [
       {
         id: 1,
+        text: 'Location Incentive',
+        path: `/produce-o-manual/location-incentives`,
+      },
+      {
+        id: 2,
         text: 'Permit',
         path: `/produce-o-manual/permit`,
       },
       {
-        id: 2,
+        id: 3,
         text: 'Contract',
         path: '/produce-o-manual/contract',
       },
       {
-        id: 3,
+        id: 4,
         text: 'Insurance',
         path: '/produce-o-manual/insurance',
       },
       {
-        id: 4,
+        id: 5,
         text: 'Rental',
         path: '/produce-o-manual/rental',
       },
@@ -112,7 +123,7 @@ const menus = [
   },
   {
     id: 4,
-    text: 'People',
+    text: 'About Us',
     path: '/produce-o-people',
     submenus: [
       {
@@ -132,8 +143,8 @@ const menus = [
       // },
       {
         id: 4,
-        text: 'Contact Us',
-        path: '/produce-o-people/contact-us',
+        text: 'Contact',
+        path: '/produce-o-people/contact',
       },
     ],
   },

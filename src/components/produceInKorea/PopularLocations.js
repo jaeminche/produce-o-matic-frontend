@@ -86,15 +86,16 @@ const ImgLinkBlock = styled.div`
 `;
 
 const ImageBlock = ({ data, history, isMobile }) => {
-  const { contentId, title, subtitle, thumbnail, baseUrl } = data;
-  const handleClick = () => history.push(`${baseUrl}/${contentId}`);
+  const { _id, title, subtitle, thumbnail, baseUrl } = data;
+  const thumbnailPath = thumbnail.location;
+  const handleClick = () => history.push(`${baseUrl}/${_id}`);
   const shortenStr = (str) => {
     const upto = isMobile ? 50 : 60;
     return `${str.slice(0, upto)}...`;
   };
   return (
     <ImgLinkBlock onClick={() => handleClick()} isMobile={isMobile}>
-      <img src={thumbnail} alt="click to go to the page" />
+      <img src={thumbnailPath} alt="click to go to the page" />
       <div className="textbox">
         <div className="textbox-title">{title}</div>
         <div>{shortenStr(subtitle)}</div>
@@ -103,12 +104,13 @@ const ImageBlock = ({ data, history, isMobile }) => {
   );
 };
 
-const PopularLocations = ({ data, history, isMobile }) => {
-  const { title, titleImage, cards } = data;
+const PopularLocations = ({ locations, history, isMobile }) => {
+  // const { locations } = data;
+  console.log('==001', locations);
   return (
     <PopularLocationsBlock>
       <Wrapper isMobile={isMobile}>
-        {isMobile && <div className="title">{title}</div>}
+        {/* {isMobile && <div className="title">{title}</div>} */}
         {/* <img src={titleImage} alt={`${title} image`} className="title-image" /> */}
         {!isMobile && <Spacer />}
         <Masonry
@@ -116,14 +118,19 @@ const PopularLocations = ({ data, history, isMobile }) => {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {cards.map((card, key) => (
-            <ImageBlock
-              isMobile={isMobile}
-              data={card}
-              history={history}
-              key={key}
-            />
-          ))}
+          {locations &&
+            locations.length > 0 &&
+            locations.map(
+              (card, key) =>
+                card.toggleDisplay && (
+                  <ImageBlock
+                    isMobile={isMobile}
+                    data={card}
+                    history={history}
+                    key={key}
+                  />
+                ),
+            )}
         </Masonry>
       </Wrapper>
     </PopularLocationsBlock>

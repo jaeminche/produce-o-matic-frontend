@@ -9,25 +9,25 @@ import FooterContainer from '../containers/common/FooterContainer';
 import styled from 'styled-components/macro';
 import palette from '../lib/styles/palette';
 
-const GeneralKnowledgePageBlock = styled.div`
+const SecurityHealthFoodPageBlock = styled.div`
   background: ${palette.background[0]};
   color: white;
 `;
 
-const GeneralKnowledgePage = () => {
-  const pagekey = 'generalKnowledge';
+const SecurityHealthFoodPage = () => {
+  const pagekey = 'securityHealthFood';
   return (
-    <GeneralKnowledgePageBlock>
+    <SecurityHealthFoodPageBlock>
       <Helmet>
-        <title>{pagekey}</title>
+        <title>PRODUCE-O-MATIC_{pagekey}</title>
       </Helmet>
       <HeaderContainer />
       <SubHeaderContainer menuIndex={0} />
       <ContentsContainer pagekey={pagekey} />
       <IntroTextContainer />
       <FooterContainer />
-    </GeneralKnowledgePageBlock>
+    </SecurityHealthFoodPageBlock>
   );
 };
 
-export default GeneralKnowledgePage;
+export default SecurityHealthFoodPage;

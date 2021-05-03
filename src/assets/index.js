@@ -70,6 +70,9 @@ const TMONEY = require('./tmoney.png');
 const NAVERMAP = require('./navermap.png');
 const GENERALK_SUBWAY = require('./gksubway.jpg');
 const GENERALK_FOOD = require('./gkfood.jpg');
+const THUMBNAIL_CONTRACT_SOUNDRECORDIST_MIXER = require('./thumbnail_contractsample_soundrecordist_mixer.png');
+const THUMBNAIL_PRODUCTIONSERVICEAGREEMENT = require('./thumbnail_productionServiceAgreement.png');
+const THUMBNAIL_CONTRACT_DRONEOPERATOR = require('./thumbnail_contractsample_droneoperator.png');
 
 export {
   YOGIYO_BAEMIN,
@@ -144,4 +147,7 @@ export {
   PRODUCEOMATIC01,
   PRODUCEOMATIC02,
   PRODUCEOMATIC03,
+  THUMBNAIL_CONTRACT_SOUNDRECORDIST_MIXER,
+  THUMBNAIL_PRODUCTIONSERVICEAGREEMENT,
+  THUMBNAIL_CONTRACT_DRONEOPERATOR,
 };

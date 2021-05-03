@@ -1,32 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { withRouter, useParams, useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { uiData } from '../../lib/constants/uiData';
 import Contents from '../../components/common/Contents';
 import { formatTime } from '../../lib/format';
+import { getUsersLocation } from '../../modules/thirdPartyApis';
 
 const ContentsContainer = ({ pagekey, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  const history = useHistory();
-  const { active_tab } = useParams();
-
-  const isGeneralKnowledge = pagekey === 'generalKnowledge';
-  const shouldActivateClock = isGeneralKnowledge && active_tab === 'korea';
-
-  const DEFAULT_ACTIVE_TAB = 'korea';
+  const dispatch = useDispatch();
   const { pathname } = location;
+  const shouldActivateClock = pathname.includes('korea-in-a-nutshell');
+  const {
+    IP,
+    USERSLOCATION,
+    ipError,
+    usersLocationError,
+    loading,
+  } = useSelector(({ thirdPartyApis, loading }) => ({
+    IP: thirdPartyApis.ip,
+    USERSLOCATION: thirdPartyApis.usersLocation,
+    ipError: thirdPartyApis.ipError,
+    usersLocationError: thirdPartyApis.usersLocationError,
+    loading:
+      loading['thirdPartyApis/GET_IP'] ||
+      loading['thirdPartyApis/GET_USERSLOCATION'],
+  }));
+  // ? set rows for ui data
+  const { rows } = uiData[pagekey];
 
-  // ? set rows for ui data, tabRows as well if any
-  const { rows, tabRows } = uiData[pagekey];
-
-  const _tabRows = tabRows && tabRows[active_tab];
   useEffect(() => {
-    if (isGeneralKnowledge && tabRows && !active_tab) {
-      history.push(`${pathname}/${DEFAULT_ACTIVE_TAB}`);
-    }
+    if (
+      shouldActivateClock &&
+      !USERSLOCATION
+      // || (USERSLOCATION && USERSLOCATION.status !== 'success')
+    )
+      dispatch(getUsersLocation());
   }, []);
 
-  // *** Activate Clock starts
+  // *======= Activate Clock starts =======
   // ! USE MEMO AND CALLBACK FOR TIMER!
   const [time, setTime] = useState(shouldActivateClock ? new Date() : '');
   useEffect(() => {
@@ -37,13 +50,12 @@ const ContentsContainer = ({ pagekey, location }) => {
       };
     }
   }, []);
-  // *** Activate Clock ends
+  // *======= Activate Clock ends =======
 
   return (
     <>
       <Contents
         rows={rows}
-        tabRows={_tabRows}
         isMobile={isMobile}
         times={
           time
@@ -52,6 +64,11 @@ const ContentsContainer = ({ pagekey, location }) => {
                 formatTime({ date: time, koreatime: false }),
               ]
             : null
+        }
+        cityName={
+          USERSLOCATION &&
+          // USERSLOCATION.status === 'success' &&
+          USERSLOCATION.city
         }
       />
     </>

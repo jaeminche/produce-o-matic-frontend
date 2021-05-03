@@ -22,7 +22,7 @@ const ListGroups = React.lazy(() =>
 const Navbars = React.lazy(() => import('./views/base/navbars/Navbars'));
 const Navs = React.lazy(() => import('./views/base/navs/Navs'));
 const Paginations = React.lazy(() =>
-  import('./views/base/paginations/Pagnations'),
+  import('./views/base/paginations/Paginations'),
 );
 const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'));
 const ProgressBar = React.lazy(() =>
@@ -44,6 +44,29 @@ const ButtonGroups = React.lazy(() =>
 const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/charts/Charts'));
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
+const Home = React.lazy(() => import('./views/home/Home'));
+const BudgetResultsView = React.lazy(() =>
+  import('./views/budgetomatic/BudgetResultsView'),
+);
+const BudgetResultView = React.lazy(() =>
+  import('./views/budgetomatic/BudgetResultView'),
+);
+const BudgetOMaticTemplate = React.lazy(() =>
+  import('./views/budgetomatic/BudgetOMaticTemplate'),
+);
+const BudgetOMaticTemplateGroup = React.lazy(() =>
+  import('./views/budgetomatic/BudgetOMaticTemplateGroup'),
+);
+const BudgetOMaticTemplateModify = React.lazy(() =>
+  import('./views/budgetomatic/BudgetOMaticTemplateModify'),
+);
+const PopularLocationsView = React.lazy(() =>
+  import('./views/contents/PopularLocationsView'),
+);
+const PopularLocationView = React.lazy(() =>
+  import('./views/contents/PopularLocationView'),
+);
+
 const CoreUIIcons = React.lazy(() =>
   import('./views/icons/coreui-icons/CoreUIIcons'),
 );
@@ -61,17 +84,37 @@ const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 
 const routes = [
-  { path: '/firstavenue', exact: true, name: 'Home' },
+  { path: '/firstavenue', exact: true, name: 'Home', component: Home },
   { path: '/firstavenue/dashboard', name: 'Dashboard', component: Dashboard },
   {
-    path: '/firstavenue/budgetomatic-page/results-history',
-    name: 'Dashboard',
-    component: Dashboard,
+    path: '/firstavenue/budgetomatic-page/results-list',
+    exact: true,
+    name: 'BudgetResultsView',
+    component: BudgetResultsView,
+  },
+  {
+    path: '/firstavenue/budgetomatic-page/results-list/:id',
+    exact: true,
+    name: 'BudgetResultView',
+    component: BudgetResultView,
   },
   {
     path: '/firstavenue/budgetomatic-page/templates',
-    name: 'Dashboard',
-    component: Dashboard,
+    exact: true,
+    name: 'BudgetOMaticTemplate',
+    component: BudgetOMaticTemplate,
+  },
+  {
+    path: '/firstavenue/budgetomatic-page/templates/:id',
+    exact: true,
+    name: 'BudgetOMaticTemplateGroup',
+    component: BudgetOMaticTemplateGroup,
+  },
+  {
+    path: '/firstavenue/budgetomatic-page/add',
+    exact: true,
+    name: 'BudgetOMaticTemplateModify',
+    component: BudgetOMaticTemplateModify,
   },
   {
     path: '/firstavenue/main-page/banners',
@@ -85,8 +128,21 @@ const routes = [
   },
   {
     path: '/firstavenue/popularlocations-page',
-    name: 'Dashboard',
-    component: Dashboard,
+    exact: true,
+    name: 'PopularLocationsView',
+    component: PopularLocationsView,
+  },
+  {
+    path: '/firstavenue/popularlocations-page/add',
+    exact: true,
+    name: 'PopularLocationView',
+    component: PopularLocationView,
+  },
+  {
+    path: '/firstavenue/popularlocations-page/:id',
+    exact: true,
+    name: 'PopularLocationView',
+    component: PopularLocationView,
   },
   { path: '/firstavenue/people-page', name: 'Dashboard', component: Dashboard },
 

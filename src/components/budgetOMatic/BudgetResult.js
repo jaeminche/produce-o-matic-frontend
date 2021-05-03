@@ -3,10 +3,10 @@ import Responsive from '../../components/common/Responsive';
 import { mq } from '../../lib/util/device';
 import styled from 'styled-components/macro';
 import palette from '../../lib/styles/palette';
-import { ConfirmButton } from '../../components/common/Button';
+import { Button, ConfirmButton } from '../../components/common/Button';
+import { Spacer } from '../../components/common/styledCss';
 import { useTable } from 'react-table';
 import { formatCurrency } from '../../lib/format';
-import { CSVLink, CSVDownload } from 'react-csv';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const BudgetOMaticBlock = styled.div`
@@ -29,7 +29,8 @@ const Wrapper = styled(Responsive)`
   font-family: Lato;
   font-style: normal;
   text-align: center;
-  padding-top: 80pxdiv className= 'spacer' {
+  /* padding-top: 80px; */
+  .spacer {
     padding-top: ${(props) => (props.width ? props.width : '80px')};
   }
   .styled-centered {
@@ -267,7 +268,7 @@ const ResultTables = (props) => {
   const {
     data,
     categoryTotals,
-    grandtotal,
+    grandTotal,
     currency,
     currencyRate,
     isMobile,
@@ -329,7 +330,7 @@ const ResultTables = (props) => {
   return (
     <table id="mytable" style={{ width: '100%' }}>
       {data &&
-        data.hasOwnProperty('labor') &&
+        // data.hasOwnProperty('labor') &&
         Object.entries(data).map(([key, value]) => {
           const categoryname = key;
           const categoryTotal = () => {
@@ -345,7 +346,7 @@ const ResultTables = (props) => {
                 className="category-table"
                 style={{
                   width: '100%',
-                  marginTop: '50px',
+                  marginTop: '21px',
                   border: '1px solid rgb(165, 165, 165)',
                 }}
                 key={key}
@@ -423,11 +424,11 @@ const ResultTables = (props) => {
                           </tfoot>
                         </table>
 
-                        <div className="spacer" />
+                        {/* <div className="spacer" /> */}
                       </table>
                     ),
                 )}
-                <div className="spacer" />
+                {/* <div className="spacer" /> */}
               </ResultTableStyles>
               <table>
                 <tfoot>
@@ -456,7 +457,7 @@ const ResultTables = (props) => {
           >
             <div style={{ padding: '10px 14px' }}>
               {formatCurrency({
-                num: grandtotal,
+                num: grandTotal,
                 currency: 'KRW',
               })}
             </div>
@@ -464,7 +465,7 @@ const ResultTables = (props) => {
               <div style={{ padding: '10px 14px' }}>
                 {` (
                   ${formatCurrency({
-                    num: grandtotal,
+                    num: grandTotal,
                     currency,
                     currencyRate,
                   })}
@@ -490,7 +491,7 @@ const ResultTables = (props) => {
             <span>Claim your reimbursement of </span>
             <span className="incentive-number">
               {formatCurrency({
-                num: grandtotal,
+                num: grandTotal,
                 currency,
                 currencyRate,
                 incentiveRate: 0.3,
@@ -505,34 +506,40 @@ const ResultTables = (props) => {
 };
 
 const BudgetResult = (props) => {
-  const { isMobile, categoryTotals } = props;
-  const getGrandtotal = () => {
-    let sum = 0;
-    for (const item of categoryTotals) {
-      console.log('aaaa', item);
-      for (const key in item) {
-        console.log('8888', item[key]);
-        sum = sum + item[key];
-      }
-    }
-    return sum;
-  };
-  const grandtotal = getGrandtotal();
+  const {
+    admin,
+    isMobile,
+    categoryTotals,
+    grandTotal,
+    history,
+    onClickGoBack,
+  } = props;
   return (
     <BudgetOMaticBlock>
       <Wrapper isMobile={isMobile}>
         <StyledPageTitle>Calculation Result</StyledPageTitle>
-
-        <ResultTables {...props} grandtotal={grandtotal} />
+        <Spacer height="70px" />
+        {!admin && (
+          <Button
+            onClick={() => onClickGoBack()}
+            smallBlue
+            style={{ float: 'left' }}
+          >
+            {'< Back'}
+          </Button>
+        )}
+        <ResultTables {...props} grandTotal={grandTotal} />
         <div
           style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
           }}
         >
-          <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
-            Send To Your Email
-          </ConfirmButton>
+          {!admin && (
+            <ConfirmButton style={{ maxWidth: '300px' }} bigGray>
+              Send To Your Email
+            </ConfirmButton>
+          )}
           <div className="styled-centered">
             <ReactHTMLTableToExcel
               id="mytableButton"

@@ -25,23 +25,27 @@ import {
 } from './index';
 
 import { LOGO1ROW } from '../../assets';
+import { toggleAdminSide } from '../../modules/main';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const sidebarShow = useSelector((state) => state.sidebarShow);
+  const { sidebarShow, user } = useSelector(({ main, user }) => ({
+    sidebarShow: main.sidebarShow,
+    user: user.user,
+  }));
 
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow)
       ? false
       : 'responsive';
-    dispatch({ type: 'toggleAdminSide', sidebarShow: val });
+    dispatch(toggleAdminSide({ data: val }));
   };
 
   const toggleSidebarMobile = () => {
     const val = [false, 'responsive'].includes(sidebarShow)
       ? true
       : 'responsive';
-    dispatch({ type: 'toggleAdminSide', sidebarShow: val });
+    dispatch(toggleAdminSide({ data: val }));
   };
 
   return (
@@ -67,13 +71,13 @@ const TheHeader = () => {
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/firstavenue/dashboard">Dashboard</CHeaderNavLink>
+          {/* <CHeaderNavLink to="/firstavenue/dashboard">Dashboard</CHeaderNavLink> */}
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/firstavenue/users">Users</CHeaderNavLink>
+          {/* <CHeaderNavLink to="/firstavenue/users">Users</CHeaderNavLink> */}
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink>Settings</CHeaderNavLink>
+          {/* <CHeaderNavLink>Settings</CHeaderNavLink> */}
         </CHeaderNavItem>
       </CHeaderNav>
 
@@ -81,7 +85,7 @@ const TheHeader = () => {
         {/* <TheHeaderDropdownNotif />
         <TheHeaderDropdownTasks />
         <TheHeaderDropdownMssg /> */}
-        <TheHeaderDropdown />
+        <TheHeaderDropdown username={user.username} />
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">
@@ -93,7 +97,7 @@ const TheHeader = () => {
           <CLink className="c-subheader-nav-link" href="#">
             <CIcon name="cil-speech" alt="Settings" />
           </CLink>
-          <CLink
+          {/* <CLink
             className="c-subheader-nav-link"
             aria-current="page"
             to="/firstavenue/dashboard"
@@ -104,7 +108,7 @@ const TheHeader = () => {
           <CLink className="c-subheader-nav-link" href="#">
             <CIcon name="cil-settings" alt="Settings" />
             &nbsp;Settings
-          </CLink>
+          </CLink> */}
         </div>
       </CSubheader>
     </CHeader>

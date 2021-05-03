@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import Responsive from '../common/Responsive';
@@ -6,6 +7,9 @@ import { Button } from '../common/Button';
 import palette from '../../lib/styles/palette';
 import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
+import Dropzone from 'react-dropzone';
+import BasicDropzone from '../../components/BasicDropzone/BasicDropzone';
+import { postFileUpload } from '../../modules/fileUpload';
 
 const PostsListBlock = styled(Responsive)`
   margin-top: 3rem;
@@ -58,6 +62,30 @@ const PostItem = ({ post }) => {
   );
 };
 
+const TestSpace = () => {
+  const dispatch = useDispatch();
+  return (
+    <div style={{ background: 'white' }}>
+      <BasicDropzone />
+      <Dropzone
+        onDrop={(acceptedFiles) => {
+          console.log(acceptedFiles);
+          return dispatch(postFileUpload({ acceptedFiles }));
+        }}
+      >
+        {({ getRootProps, getInputProps }) => (
+          <section>
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop some files here, or click to select files</p>
+            </div>
+          </section>
+        )}
+      </Dropzone>
+    </div>
+  );
+};
+
 const PostsList = ({ posts, loading, error, showWriteButton }) => {
   // 에러 발생 시
   if (error) {
@@ -83,6 +111,7 @@ const PostsList = ({ posts, loading, error, showWriteButton }) => {
           {posts.map((post) => (
             <PostItem post={post} key={post._id} />
           ))}
+          <TestSpace />
         </div>
       )}
     </PostsListBlock>

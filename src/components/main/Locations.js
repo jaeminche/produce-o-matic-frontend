@@ -73,25 +73,30 @@ const ImgBlock = styled.div`
   }
   .title {
     ${mq({
-      fontSize: ['28px', '34px', , '46px', , , ,],
-    })}
+      fontSize: ['28px', '28px', , '38px', , , ,],
+    })};
   }
   .subtitle {
     ${mq({
-      fontSize: ['12px', '14px', , '18px', , '24px', ,],
-    })}
+      fontSize: ['12px', '14px', , '21px', , , ,],
+    })};
+  }
+  .text-shadow {
+    text-shadow: 0 0 1px #444444, 0 0 2px #444444, 0 0 3px #444444,
+      0 0 4px #444444, 0 0 7px #444444, 0 0 10px #444444, 0 0 13px #444444,
+      0 0 18px #444444;
   }
 `;
 
 const ImagesBlock = (props) => {
-  const { key, title, imgpath, subtitle, url } = props;
-  console.log('-s-s', url, imgpath);
+  const { key, title, imgpath, subtitle, url, history } = props;
+  // console.log('-s-s', url, imgpath);
   return (
-    <ImgBlock key={key}>
+    <ImgBlock key={key} onClick={() => history.push(url)}>
       <a href={url}>
         <img src={imgpath} alt="click to watch Youtube" />
         <div className="textbox">
-          <div className="title">{title}</div>
+          <div className="title text-shadow">{title}</div>
           <div className="subtitle">{subtitle}</div>
         </div>
       </a>
@@ -107,8 +112,7 @@ const CustomSlide = (props) => {
   );
 };
 
-const Locations = ({ items }) => {
-  console.log('아이템', items);
+const Locations = ({ items, history }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -140,10 +144,11 @@ const Locations = ({ items }) => {
           {items.map((item, key) => (
             <CustomSlide
               key={key}
-              imgpath={item.imgpath}
+              imgpath={item.thumbnail.location}
               title={item.title}
               subtitle={item.subtitle}
-              url={item.url}
+              url={`${item.baseUrl}/${item._id}`}
+              history={history}
             />
           ))}
         </Slider>

@@ -18,12 +18,12 @@ const MainPage = () => {
   return (
     <MainPageBlock>
       <Helmet>
-        <title>Main_PRODUCE-O-MATIC</title>
+        <title>Produce-O-Matic</title>
       </Helmet>
       {/* possible props: Spacer, reverse-color */}
       <HeaderContainer />
-      <LocationsContainer type="youtube" />
-      <LocationsContainer type="blog" />
+      <LocationsContainer />
+      {/* <LocationsContainer type="locationIncentive" /> */}
       <IntroTextContainer />
       <ThumbnailsContainer />
       <FooterContainer />

@@ -21,7 +21,7 @@ const Wrapper = styled(Responsive)`
 `;
 
 const IntroText = ({ text }) => {
-  console.log('text', text);
+  // console.log('text', text);
   return (
     <IntroTextBlock>
       <Wrapper>
