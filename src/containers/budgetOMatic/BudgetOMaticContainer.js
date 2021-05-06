@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { withRouter, useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import BudgetOMatic from '../../components/budgetOMatic/BudgetOMatic';
 import {
@@ -8,7 +8,7 @@ import {
   moveItemBeforeAnotherInArr,
   defaultCurrencyRates,
 } from '../../lib/constants/budgetomatic';
-import { getUsersLocation } from '../../modules/thirdPartyApis';
+// import { getUsersLocation } from '../../modules/thirdPartyApis';
 import { listItemsGroups } from '../../modules/itemsGroups';
 import { postBudgetResult } from '../../modules/budgetResult';
 import produce from 'immer';
@@ -23,31 +23,21 @@ const BudgetOMaticContainer = ({ history, location }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
-  const {
-    IP,
-    USERSLOCATION,
-    CURRENCYSET,
-    ipError,
-    currencySetError,
-    usersLocationError,
+  const { USERSLOCATION, CURRENCYSET, DATASETS, RES } = useSelector(
+    ({ thirdPartyApis, itemsGroups, budgetResult, loading }) => ({
+      IP: thirdPartyApis.ip,
+      USERSLOCATION: thirdPartyApis.usersLocation,
+      CURRENCYSET: thirdPartyApis.currencyset,
+      currencySetError: thirdPartyApis.currencySetError,
+      ipError: thirdPartyApis.ipError,
+      usersLocationError: thirdPartyApis.usersLocationError,
 
-    DATASETS,
-    RES,
-    error,
-    loading,
-  } = useSelector(({ thirdPartyApis, itemsGroups, budgetResult, loading }) => ({
-    IP: thirdPartyApis.ip,
-    USERSLOCATION: thirdPartyApis.usersLocation,
-    CURRENCYSET: thirdPartyApis.currencyset,
-    currencySetError: thirdPartyApis.currencySetError,
-    ipError: thirdPartyApis.ipError,
-    usersLocationError: thirdPartyApis.usersLocationError,
-
-    DATASETS: itemsGroups.dataSets,
-    RES: budgetResult.res,
-    error: itemsGroups.error,
-    loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
-  }));
+      DATASETS: itemsGroups.dataSets,
+      RES: budgetResult.res,
+      error: itemsGroups.error,
+      loading: loading['itemsGroups/LIST_ITEMSGROUPS'],
+    }),
+  );
 
   // ? 1. request dataSetInstance data and full dataset
   const [myDataSets, setMyDataSets] = useState('');
