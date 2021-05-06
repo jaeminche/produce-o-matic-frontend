@@ -27,8 +27,8 @@ const client = isProduction ? axios.create(option) : axios.create();
 client.interceptors.request.use(
   function (config) {
     if (process.env.NODE_ENV === `development`)
-      console.log('client.인터셉터.request config', config);
-    return config;
+      // console.log('client.인터셉터.request config', config);
+      return config;
   },
   function (error) {
     // Do something with request error

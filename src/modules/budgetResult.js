@@ -37,7 +37,7 @@ const budgetResults = handleActions(
       // ! 여기할 차례
       { payload: result },
     ) => {
-      console.log('===100', result);
+      // console.log('===100', result);
       return {
         ...state,
         res: result,

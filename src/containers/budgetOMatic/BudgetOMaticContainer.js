@@ -116,7 +116,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
         const tempOptions = JSON.parse(JSON.stringify(OPTIONS));
         tempOptions.currency.push(usersCurrencyCode);
         setAddedOptions(tempOptions);
-        console.log('hahahahah');
+        // console.log('hahahahah');
       }
     }
   }, [USERSLOCATION]);
@@ -125,7 +125,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
     // ? if currency rates data are retrieved and the user specifies a currency, we update our 5 currencies rates set.
     if (CURRENCYSET /* && CURRENCYSET.success*/) {
       let { rates } = CURRENCYSET;
-      console.log('==923', CURRENCYSET);
+      // console.log('==923', CURRENCYSET);
       if (rates) {
         if (!rates['EUR']) rates = { ...rates, EUR: 1 }; // provide EUR's rate, for exchangeratesapi.io doesn't provide the base currency rate.
         const userSelectedCurrencyRate = rates[currency];
@@ -137,7 +137,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
           CNY: 1 / (rates['CNY'] / base),
         };
         tempCurrencyRates[currency] = 1 / (userSelectedCurrencyRate / base);
-        console.log('===234', userSelectedCurrencyRate, tempCurrencyRates);
+        // console.log('===234', userSelectedCurrencyRate, tempCurrencyRates);
         setCurrencyRates(tempCurrencyRates);
       }
     }
@@ -298,7 +298,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
 
   // * update dataSetInstance 2/3
   const toggleGroupInDataSetInstance = ({ code, toggleCheck }) => {
-    console.log('update type: 2. 토글 그룹');
+    // console.log('update type: 2. 토글 그룹');
     const baseState = { ...dataSetInstance };
     const nextState = produce(baseState, (draftState) => {
       // draftState[name][idx][key] = value;
@@ -343,15 +343,15 @@ const BudgetOMaticContainer = ({ history, location }) => {
   };
 
   const onChangeTypeOfProduction = (e) => {
-    console.log('onchange', e.target.value);
+    // console.log('onchange', e.target.value);
     setTypeOfProduction(e.target.value);
   };
   const onChangeDaysOfShooting = (e) => {
-    console.log('onchange', e.target.value);
+    // console.log('onchange', e.target.value);
     setDaysOfShooting(e.target.value);
   };
   const onChangeCurrency = (e) => {
-    console.log('onchange', e.target.value);
+    // console.log('onchange', e.target.value);
     setCurrency(e.target.value);
   };
 
@@ -362,9 +362,8 @@ const BudgetOMaticContainer = ({ history, location }) => {
     willReplaceItem = false, // true, to prevent auto sort
     targetBudgetItemIdx = false,
   }) => {
-    console.log('update type: 3. 아이템 수정');
-    (willReplaceItem || targetBudgetItemIdx) &&
-      console.log('update type: 3.5 아이템 수정 후 소팅 무효');
+    // console.log('update type: 3. 아이템 수정');
+    // (willReplaceItem || targetBudgetItemIdx) && console.log('update type: 3.5 아이템 수정 후 소팅 무효');
 
     const [targetGroupCd, targetBudgetItemCd, targetAttr] = name;
     const { newItemCode, amnt, days } = willReplaceItem;
@@ -372,7 +371,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
       (willReplaceItem && parseInt(willReplaceItem.oldIdx)) ||
       (targetBudgetItemIdx && parseInt(targetBudgetItemIdx));
     let newIdx;
-    console.log('윌리블레이', newItemCode, amnt, days);
+    // console.log('윌리블레이', newItemCode, amnt, days);
 
     const baseState = { ...dataSetInstance };
     const nextState = produce(baseState, (draftState) => {
@@ -474,13 +473,13 @@ const BudgetOMaticContainer = ({ history, location }) => {
   };
 
   const onClickAdd = ({ targetGroupCd, targetBudgetItemCdAndIdx }) => {
-    console.log('==21', targetBudgetItemCdAndIdx);
+    // console.log('==21', targetBudgetItemCdAndIdx);
 
     const {
       targetBudgetItemCd,
       targetBudgetItemIdx,
     } = targetBudgetItemCdAndIdx;
-    console.log(targetBudgetItemCd, targetBudgetItemIdx);
+    // console.log(targetBudgetItemCd, targetBudgetItemIdx);
     updateItemInDataSetInstance({
       name: [targetGroupCd, targetBudgetItemCd, 'checked'],
       value: true,
@@ -498,13 +497,13 @@ const BudgetOMaticContainer = ({ history, location }) => {
       }
       totals.push({ [key]: categorytotal });
     }
-    console.log('==229', totals);
+    // console.log('==229', totals);
     return totals;
   };
 
   const onSubmit = (e) => {
     // e.preventDefault();
-    console.log('onsubmit', e, e.target);
+    // console.log('onsubmit', e, e.target);
     //==결과 페이지 가는 과정
     // budgetomatic 페이지 컨펌 누르면>
     const _categoryTotals = getCategoryTotals();
@@ -512,7 +511,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
     // setCategoryTotals(_categoryTotals);
     // setGrandTotal(_grandTotal);
     // 1. 데이터 post  >
-    console.log('==305', history);
+    // console.log('==305', history);
 
     dispatch(
       postBudgetResult({
@@ -537,7 +536,7 @@ const BudgetOMaticContainer = ({ history, location }) => {
       // 6. 결과 페이지는 스토어에 아이디가 있으면>
       // 7. 결과 테이블 표시
       // const id = v1(); // TODO:
-      console.log('==306', location);
+      // console.log('==306', location);
       // if () {
       const { uuid } = RES;
       history.push(`/produce-o-matic/budget-o-matic/result/${uuid}`);

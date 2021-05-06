@@ -106,7 +106,7 @@ const ImageBlock = ({ data, history, isMobile }) => {
 
 const PopularLocations = ({ locations, history, isMobile }) => {
   // const { locations } = data;
-  console.log('==001', locations);
+  // console.log('==001', locations);
   return (
     <PopularLocationsBlock>
       <Wrapper isMobile={isMobile}>

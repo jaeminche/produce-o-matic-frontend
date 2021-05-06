@@ -53,7 +53,7 @@ const LoginForm = ({ history }) => {
     if (user) {
       dispatch(initializeForm('auth')); // ? you need this line to prevent the following: when user click 'yes' to log out user's login in order to log in admin user, the same page persists sometimes. You don't need auth anyway, when you already have user.
       history.push('/firstavenue');
-      console.log('user이 있고 sessionStorage에 저장 직전');
+      // console.log('user이 있고 sessionStorage에 저장 직전');
       try {
         sessionStorage.setItem('user', JSON.stringify(user));
       } catch (e) {

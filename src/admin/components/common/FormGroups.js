@@ -144,7 +144,7 @@ const SwitchInputFormGroup = ({
   setToggle,
 }) => {
   const desc = '';
-  console.log('==401', toggle);
+  // console.log('==401', toggle);
   return (
     <CFormGroup
       row={!updateBtnClicked}
@@ -227,7 +227,7 @@ const CategorySelectFormGroup = ({
   categoriesList,
   handleOnSelect,
 }) => {
-  console.log('==933', categoriesList);
+  // console.log('==933', categoriesList);
   const options =
     categoriesList &&
     categoriesList.length > 0 &&
@@ -389,7 +389,7 @@ const CodeInputFormGroupForGroupTab = ({
   filteredCategory,
   handleOnSelect,
 }) => {
-  console.log('==1, filteredCategory', filteredCategory);
+  // console.log('==1, filteredCategory', filteredCategory);
   // console.log('==990 filteredCategory', filteredCategory);
   const groupsCodes = filteredCategory && filteredCategory.groupsCodes;
 
@@ -476,7 +476,7 @@ const CodeInputFormGroupForItemTab = ({
 };
 
 const ContentsFormGroup = (props) => {
-  console.log('==202', props);
+  // console.log('==202', props);
   const { targetItem, form, onChange, setToggle, handleOnSelect } = props;
   const {
     title,

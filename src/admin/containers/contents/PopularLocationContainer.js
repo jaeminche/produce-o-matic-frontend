@@ -93,7 +93,7 @@ const PopularLocationContainer = ({ match, location }) => {
       clientForMultipart
         .post('/api/fileUpload', formDataToUpload)
         .then(function (response) {
-          console.log('==999.0', response);
+          // console.log('==999.0', response);
           if (response.status === 200 && response.data) {
             if (response.data.status === 400 && response.data.errmsg) {
               myToast(
@@ -133,7 +133,7 @@ const PopularLocationContainer = ({ match, location }) => {
         })
         .catch(function (err) {
           myToast(`서버와의 통신 중에 오류 발생 : ${err.message}`);
-          console.log('---401.1', err);
+          // console.log('---401.1', err);
           // if (err.status === 401) {
           //   //   refreshAndSetJwtAndLoginType();
           // }
@@ -144,7 +144,7 @@ const PopularLocationContainer = ({ match, location }) => {
   };
 
   useEffect(() => {
-    console.log('==300', popularLocationForm);
+    // console.log('==300', popularLocationForm);
   }, [popularLocationForm]);
   useEffect(() => {
     formDataToUpload && console.log('==980', formDataToUpload.getAll('image'));

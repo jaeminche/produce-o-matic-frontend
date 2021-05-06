@@ -273,7 +273,7 @@ const ResultTables = (props) => {
     currencyRate,
     isMobile,
   } = props;
-  console.log('====레이', data, currency, currencyRate);
+  // console.log('====레이', data, currency, currencyRate);
   const columns = React.useMemo(
     () => [
       {

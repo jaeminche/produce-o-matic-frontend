@@ -36,8 +36,8 @@ const clientForMultipart = axios.create(option);
 clientForMultipart.interceptors.request.use(
   function (config) {
     if (process.env.NODE_ENV === `development`)
-      console.log('clientForMultipart.인터셉터.request config', config);
-    return config;
+      // console.log('clientForMultipart.인터셉터.request config', config);
+      return config;
   },
   function (error) {
     // Do something with request error
