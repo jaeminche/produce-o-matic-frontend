@@ -16,8 +16,8 @@ const StyledPageTitle = styled.h1`
 `;
 
 const PageTitle = (props) => {
-  const { text, key, isMobile } = props;
-  // TODO: 나중에 수정
+  const { text, keyvalue, isMobile } = props;
+  // * 기획 변경(2-depth menu 추가)으로 PageTitle은 당분간 없음.
   return true ? (
     <></>
   ) : (
@@ -25,7 +25,7 @@ const PageTitle = (props) => {
       minusmargin={isMobile && text === 'General Knowledge'}
       className="title"
       isMobile={isMobile}
-      key={key}
+      key={keyvalue}
     >
       {text}
     </StyledPageTitle>
