@@ -35,7 +35,7 @@ const CurrencyFixer = ({ history, children }) => {
   }, []);
 
   return (
-    <div currencyset={CURRENCYSET} loading={loading}>
+    <div currencyset={CURRENCYSET} loading={loading ? 1 : 0}>
       {children}
     </div>
   );
