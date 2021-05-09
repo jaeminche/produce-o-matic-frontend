@@ -9,10 +9,10 @@
 ## 🚩 Table of Contents
 
 - [Built With...](#-built-with)
-- [Why Produce-O-Matic?](#-why-toast-ui-editor)
+- [Why Produce-O-Matic?](#-why-produce-o-matic)
 - [Browser Support](#-browser-support)
 - [Setting Up the Project](#-setting-up-the-project)
-- [Developed by Jae M. Choi](#-developed-by-jae-m.-choi)
+- [Developed by Jae M. Choi](#-developed-by-jae-m-choi)
 - [License](#-license)
 
 ## 🔨 Built With...
