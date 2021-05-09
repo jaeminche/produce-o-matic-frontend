@@ -313,29 +313,6 @@ const FlexContainerResponsive = (props) => {
   );
 };
 
-// const CustomComponentsInflexContainer = (props) => {
-//   const { items, key, classNames, style } = props;
-//   return (
-//     <ul
-//       key={key}
-//       className={classNames ? classNames : 'flex-container-responsive'}
-//     >
-//       {items.map((item, key) => (
-//         <li
-//           key={key}
-//           className={
-//             item.type === 'imageWithTextInside'
-//               ? 'flex-item-responsive positionRelative'
-//               : 'flex-item-responsive'
-//           }
-//         >
-//           {item.customComponent && item.customComponent}
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// };
-
 const Tabs = (props) => {
   const { tabs, isMobile, keyvalue } = props;
   const { active_tab } = useParams();
@@ -405,14 +382,6 @@ const DrawRowComponent = (props) => {
         style={style}
       />
     ),
-    // customComponentsInflexContainer: (
-    //   <CustomComponentsInflexContainer
-    //     items={items}
-    //     keyvalue={keyvalue}
-    //     classNames={classNames}
-    //     style={style}
-    //   />
-    // ),
     text: (
       <div key={keyvalue} className={classNames || 'text'} style={style}>
         {ReactHtmlParser(text)}
