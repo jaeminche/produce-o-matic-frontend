@@ -10,6 +10,7 @@
 
 - [Built With...](#-built-with)
 - [Why Produce-O-Matic?](#-why-produce-o-matic)
+- [Features](#-features)
 - [Browser Support](#-browser-support)
 - [Setting Up the Project](#-setting-up-the-project)
 - [Developed by Jae M. Choi](#-developed-by-jae-m-choi)
@@ -144,6 +145,21 @@ Contents being managed are :
 - List of Budget-O-Matic results that users submitted.
 - Budget-O-Matic Templates to be displayed on its page.
 - Images and youtube urls and their toggle buttons for display on the Main page.
+
+## 🎨 Features
+
+(Front-end)
+
+- Authentication (signup & login)
+- File uploads
+- User inputs
+- Async API calls including third party APIs
+
+(Backend - to be opensourced)
+
+- RESTful APIs
+- Web-scraping local rental rates
+- AWS configuration (ec2, s3, cloudfront, ELB)
 
 ## 🌏 Browser Support
 
