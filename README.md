@@ -1,4 +1,4 @@
-# ![TOAST UI Editor](https://user-images.githubusercontent.com/26568425/117560702-fed22780-b0ca-11eb-9f76-705e4321eb5a.png)
+# [<img src="https://user-images.githubusercontent.com/26568425/117560702-fed22780-b0ca-11eb-9f76-705e4321eb5a.png" />](https://www.produceomatic.com)
 
 > This web app will help you automatize planning and budgeting your film production in South Korea!
 
@@ -42,7 +42,7 @@ Produce-O-Matic is a (single-page / responsive) web application for film makers 
 
 ### 1. Budget-O-Matic, a fast and easy budget calculator with customizable templates made by our local producing expert.
 
-![budgetomatic](https://user-images.githubusercontent.com/26568425/117536683-7191c300-b037-11eb-8cf6-a5060f855319.gif)
+[<img src="https://user-images.githubusercontent.com/26568425/117536683-7191c300-b037-11eb-8cf6-a5060f855319.gif " />](https://www.produceomatic.com/produce-o-matic/budget-o-matic)
 
 Following features are supported:
 
@@ -76,7 +76,8 @@ const uiRowsData = [
 ```
 
 - **then,** they will turn into a horizontally-flexed row with image and text boxes as below :
-  ![markdown](https://user-images.githubusercontent.com/26568425/117577966-1939ee80-b127-11eb-805c-84055ec21619.png)
+
+[<img src="https://user-images.githubusercontent.com/26568425/117577966-1939ee80-b127-11eb-805c-84055ec21619.png" />](https://www.produceomatic.com/produce-in-korea/korea-in-a-nutshell)
 
 - through the component under the hood below:
 
