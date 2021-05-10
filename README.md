@@ -22,7 +22,7 @@
 - [Redux](https://redux.js.org/) v4.0.5
 - Redux-saga v1.1.3
 - styled-components v5.2.0
-- axios v0.20.0
+- axios v0.21.1
 - facepaint v1.2.1
 - react-html-table-to-excel 2.0.0
 - react-dropzone v11.3.1
@@ -47,15 +47,15 @@ Produce-O-Matic is a (single-page / responsive) web application for film makers 
 Following features are supported:
 
 - **Do It Yourself**
-- **Auto-detect user's location to set the default currency**
-- **Auto save in user's local storage**
-- **Download budget calculation result in Excel format**
+- **Auto-detect user's location** to set the default currency
+- **Auto save** in user's local storage
+- **Download** budget calculation result in Excel format
 - **Get subtotals as you go**
-- **Get real-time averaged rental rates through web-scraping local rental shops' websites** (I'm working on it.)
+- Get real-time averaged rental rates through **web-scraping** local rental shops' websites (I'm working on it.)
 
 ### 2. Data-Driven Programming does the VIEW for you
 
-- **Just make an array set of of data as follows:**
+- **Simply make an array set of of data as follows:**
 
 ```
 const uiRowsData = [
@@ -159,7 +159,7 @@ Contents being managed are :
 (Backend - to be opensourced)
 
 - RESTful APIs
-- Web-scraping local rental rates
+- Web-scraping modules that returns averaged value for local rental rates
 - AWS configuration (ec2, s3, cloudfront, ELB)
 
 ## 🌏 Browser Support
