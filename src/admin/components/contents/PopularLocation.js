@@ -16,7 +16,7 @@ import isURL from 'validator/lib/isURL';
 const PopularLocation = (props) => {
   const { isAddPage, form, onSubmit, formDataToUpload } = props;
 
-  console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
+  // console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
 
   const validateForm = () => {
     const validateFileFormInsteadOfThumbnail = () => {

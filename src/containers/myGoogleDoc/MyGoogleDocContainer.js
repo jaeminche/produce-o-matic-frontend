@@ -137,8 +137,9 @@ const MyGoogleDocContainer = ({ history }) => {
       <Wrapper>
         <div className="section-title">Contract Sample Download</div>
         <RowWrap>
-          {SAMPLES.map((sample) => (
+          {SAMPLES.map((sample, index) => (
             <MyCard
+              key={index.toString()}
               title={sample.title}
               imgUrl={sample.imgUrl}
               redirectTo={sample.redirectTo}

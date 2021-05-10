@@ -86,20 +86,20 @@ const temp2 = [
 const LocationsContainer = (props) => {
   const { history } = props;
   const dispatch = useDispatch();
-  const { locations, error, loading } = useSelector(
+  const { _locations, error, loading } = useSelector(
     ({ popularLocations, loading, user }) => ({
-      locations: popularLocations.popularLocations,
+      _locations: popularLocations.popularLocations,
       error: popularLocations.error,
       loading: loading['popularLocations/LIST_POPULARLOCATIONS'],
     }),
   );
 
   const popularLocations =
-    locations &&
-    locations.filter((location) => location.name === 'PopularLocations');
+    _locations &&
+    _locations.filter((location) => location.name === 'PopularLocations');
   const locationIncentives =
-    locations &&
-    locations.filter((location) => location.name === 'LocationIncentive');
+    _locations &&
+    _locations.filter((location) => location.name === 'LocationIncentive');
 
   useEffect(() => {
     // const param =
@@ -111,7 +111,7 @@ const LocationsContainer = (props) => {
     //     ? { toggleDisplay: true, name: 'locationIncentive' }
     //     : null;
     dispatch(listPopularLocations({ toggleDisplayOnMain: true }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

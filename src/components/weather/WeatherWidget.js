@@ -5,7 +5,7 @@ const { REACT_APP_WEATHER_APIKEY } = process.env;
 
 const MyReactWeather = (props) => {
   const { usersLatAndLong, locationLabel } = props;
-  console.log('===777', usersLatAndLong);
+  // console.log('===777', usersLatAndLong);
   const { data, isLoading, errorMessage } = useOpenWeather({
     key: REACT_APP_WEATHER_APIKEY,
     lat: usersLatAndLong[0],
@@ -35,7 +35,7 @@ const WeatherWidget = (props) => {
   };
   function getLocation() {
     if (navigator.geolocation) {
-      console.log('==882', navigator, navigator.geolocation);
+      // console.log('==882', navigator, navigator.geolocation);
       navigator.geolocation.getCurrentPosition(showPosition);
     } else {
       return 'Geolocation is not supported by this browser.';
@@ -43,7 +43,7 @@ const WeatherWidget = (props) => {
   }
 
   function showPosition(position) {
-    console.log('===883', position);
+    // console.log('===883', position);
     setUsersLatAndLong([
       JSON.stringify(position.coords.latitude),
       JSON.stringify(position.coords.longitude),

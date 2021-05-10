@@ -69,7 +69,7 @@ const TestSpace = () => {
       <BasicDropzone />
       <Dropzone
         onDrop={(acceptedFiles) => {
-          console.log(acceptedFiles);
+          // console.log(acceptedFiles);
           return dispatch(postFileUpload({ acceptedFiles }));
         }}
       >

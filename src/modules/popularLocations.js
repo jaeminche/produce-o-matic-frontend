@@ -95,7 +95,7 @@ const popularLocations = handleActions(
       error_update: null,
     }),
     [POST_POPULARLOCATION_SUCCESS]: (state, { payload: result }) => {
-      console.log('===100', result);
+      // console.log('===100', result);
       return {
         ...state,
         error_list: null,

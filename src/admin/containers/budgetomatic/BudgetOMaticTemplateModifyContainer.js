@@ -150,7 +150,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
       } else if (activeTab === 1) {
         const { code, name, category, _id } = formUpdateGroup;
         const id = _id;
-        console.log('==661', id);
+        // console.log('==661', id);
         dispatch(updateGroup({ id, code, name, category }));
       } else if (activeTab === 0) {
         const { name, groupsCodes } = formUpdateCategory;
@@ -160,7 +160,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
   };
 
   useEffect(() => {
-    console.log('==299', activeTab);
+    // console.log('==299', activeTab);
     if (modifyType === 'add') {
       // * 페이지 초기 로드나, add 페이지에서 사용자가 activeTab을 선택할 때마다 모든 폼 초기화
       dispatch(initializeForm('addCategory'));
@@ -216,7 +216,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
   useEffect(() => {
     // * 아이템 update를 클릭했을 때, 기존값을 초기값으로 설정
     if (updateItemTarget) {
-      console.log('==123', updateItemTarget);
+      // console.log('==123', updateItemTarget);
       for (const [key, value] of Object.entries(updateItemTarget)) {
         dispatch(
           changeField({
@@ -227,7 +227,7 @@ const BudgetOMaticTemplateModifyContainer = (props) => {
         );
       }
     } else if (activeGroup) {
-      console.log('==124', activeGroup);
+      // console.log('==124', activeGroup);
       for (const [key, value] of Object.entries(activeGroup)) {
         dispatch(
           changeField({

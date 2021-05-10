@@ -243,7 +243,7 @@ const FlexContainerResponsive = (props) => {
     items,
     times,
     cityName,
-    key,
+    keyvalue,
     classNames,
     style,
     itemsLiHasMinWidth,
@@ -252,7 +252,7 @@ const FlexContainerResponsive = (props) => {
   const customcss = times ? 'time-numbers' : null;
   return (
     <ul
-      key={key}
+      key={keyvalue}
       className={classNames ? classNames : 'flex-container-responsive'}
     >
       {items.map((item, key) => (
@@ -303,7 +303,7 @@ const FlexContainerResponsive = (props) => {
                 item.customComponent}
             </>
           ) : (
-            <div key={key} className={item.classNames || 'text'} style={style}>
+            <div className={item.classNames || 'text'} style={style}>
               {ReactHtmlParser(item.text)}
             </div>
           )}
@@ -313,39 +313,16 @@ const FlexContainerResponsive = (props) => {
   );
 };
 
-// const CustomComponentsInflexContainer = (props) => {
-//   const { items, key, classNames, style } = props;
-//   return (
-//     <ul
-//       key={key}
-//       className={classNames ? classNames : 'flex-container-responsive'}
-//     >
-//       {items.map((item, key) => (
-//         <li
-//           key={key}
-//           className={
-//             item.type === 'imageWithTextInside'
-//               ? 'flex-item-responsive positionRelative'
-//               : 'flex-item-responsive'
-//           }
-//         >
-//           {item.customComponent && item.customComponent}
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// };
-
 const Tabs = (props) => {
-  const { tabs, isMobile, key } = props;
+  const { tabs, isMobile, keyvalue } = props;
   const { active_tab } = useParams();
   return (
-    <SubHeaderTabBlock key={key} isMobile={isMobile}>
+    <SubHeaderTabBlock key={keyvalue} isMobile={isMobile}>
       <SubHeaderTabWrapper isMobile={isMobile}>
         <ul className="tab-bar">
           {tabs.map((tab, key) => (
             <li
-              key={key}
+              key={keyvalue}
               className={
                 tab.path.split('/')[3].includes(active_tab)
                   ? 'isActive'
@@ -362,7 +339,7 @@ const Tabs = (props) => {
 };
 
 const DrawRowComponent = (props) => {
-  const { row, key, isMobile, times, cityName } = props;
+  const { row, keyvalue, isMobile, times, cityName } = props;
   const {
     type,
     path,
@@ -380,7 +357,7 @@ const DrawRowComponent = (props) => {
     title: (
       <PageTitle
         text={text}
-        key={key}
+        keyvalue={keyvalue}
         isMobile={isMobile}
         className={classNames}
         style={style}
@@ -392,29 +369,21 @@ const DrawRowComponent = (props) => {
         className={classNames || 'margin-tb'}
         style={style}
         alt={desc}
-        key={key}
+        key={keyvalue}
       />
     ),
     flexContainerResponsive: (
       <FlexContainerResponsive
         items={items}
-        key={key}
+        keyvalue={keyvalue}
         times={times}
         cityName={cityName}
         classNames={classNames}
         style={style}
       />
     ),
-    // customComponentsInflexContainer: (
-    //   <CustomComponentsInflexContainer
-    //     items={items}
-    //     key={key}
-    //     classNames={classNames}
-    //     style={style}
-    //   />
-    // ),
     text: (
-      <div key={key} className={classNames || 'text'} style={style}>
+      <div key={keyvalue} className={classNames || 'text'} style={style}>
         {ReactHtmlParser(text)}
       </div>
     ),
@@ -422,18 +391,22 @@ const DrawRowComponent = (props) => {
       <Tabs
         isMobile={isMobile}
         tabs={tabs}
-        key={key}
+        keyvalue={keyvalue}
         classNames={classNames}
         style={style}
       />
     ),
     sectionTitle: (
-      <h3 className={classNames || 'section-title'} style={style} key={key}>
+      <h3
+        className={classNames || 'section-title'}
+        style={style}
+        key={keyvalue}
+      >
         {text}
       </h3>
     ),
     customComponent: (
-      <div className={classNames || null}>
+      <div className={classNames || null} key={keyvalue}>
         {customComponent && customComponent}
       </div>
     ),
@@ -444,14 +417,14 @@ const DrawRowComponent = (props) => {
 
 const Contents = (props) => {
   const { rows, isMobile, times = false, cityName = false } = props;
-
   return (
     <ContentsBlock>
       <Wrapper isMobile={isMobile}>
-        {rows.map((row, key) => (
+        {rows.map((row, index) => (
           <DrawRowComponent
             row={row}
-            key={key}
+            key={row.id}
+            keyvalue={row.id}
             isMobile={isMobile}
             times={times}
             cityName={cityName}

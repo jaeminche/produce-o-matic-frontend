@@ -33,7 +33,7 @@ const fileUpload = handleActions(
   {
     [INITIALIZE]: (state) => initialState,
     [POST_FILEUPLOAD_SUCCESS]: (state, { payload: result }) => {
-      console.log('===100', result);
+      // console.log('===100', result);
       return {
         ...state,
         res: result,

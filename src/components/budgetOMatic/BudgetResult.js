@@ -273,7 +273,7 @@ const ResultTables = (props) => {
     currencyRate,
     isMobile,
   } = props;
-  console.log('====레이', data, currency, currencyRate);
+  // console.log('====레이', data, currency, currencyRate);
   const columns = React.useMemo(
     () => [
       {
@@ -341,7 +341,7 @@ const ResultTables = (props) => {
             }
           };
           return categoryTotal() ? (
-            <>
+            <div key={key}>
               <ResultTableStyles
                 className="category-table"
                 style={{
@@ -349,7 +349,6 @@ const ResultTables = (props) => {
                   marginTop: '21px',
                   border: '1px solid rgb(165, 165, 165)',
                 }}
-                key={key}
                 isMobile={isMobile}
               >
                 <thead style={{ width: '100%' }}>
@@ -437,7 +436,7 @@ const ResultTables = (props) => {
                   </tr>
                 </tfoot>
               </table>
-            </>
+            </div>
           ) : null;
         })}
       <FooterRow isMobile={isMobile}>

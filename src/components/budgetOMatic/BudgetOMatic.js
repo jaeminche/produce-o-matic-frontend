@@ -577,10 +577,10 @@ const Calculator = (props) => {
                         <div
                           className="plus-parent"
                           onClick={() => {
-                            console.log('온클릭');
+                            // console.log('온클릭');
                             const getFirstUncheckedItem = function (group) {
                               const items = group.budgetItems;
-                              console.log('==20-', items);
+                              // console.log('==20-', items);
 
                               for (let i = 0; i < items.length; i++) {
                                 if (!items[i].checked)

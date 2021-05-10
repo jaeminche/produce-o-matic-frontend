@@ -2,7 +2,7 @@ import qs from 'qs';
 import client from './client';
 
 export const writePost = ({ title, body, tags }) => {
-  console.log('client: ', client, title);
+  // console.log('client: ', client, title);
   return client.post('/api/posts', { title, body, tags });
 };
 

@@ -35,7 +35,7 @@ const PopularLocationsContainer = ({ location, history }) => {
   );
 
   useEffect(() => {
-    console.log('==8880');
+    // console.log('==8880');
     dispatch(
       listPopularLocations({ toggleDisplay: true, name: 'PopularLocations' }),
     );

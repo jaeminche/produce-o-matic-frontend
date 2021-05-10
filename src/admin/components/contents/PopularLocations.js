@@ -8,14 +8,14 @@ const PopularLocations = (props) => {
   const { onSubmit, formDataToUpload } = props;
   const dispatch = useDispatch();
 
-  console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
+  // console.log('==7979', formDataToUpload && formDataToUpload.getAll('image'));
   const formDataReady =
     formDataToUpload &&
     formDataToUpload.getAll('image').some((file) => file.path);
   //   return <PopularLocationsTable {...props} />;
 
   useEffect(() => {
-    console.log('==8880');
+    // console.log('==8880');
     dispatch(listPopularLocations());
   }, []);
 

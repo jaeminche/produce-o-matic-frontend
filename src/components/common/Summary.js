@@ -94,7 +94,7 @@ const Summary = ({ uiData, isMobile }) => {
     <SummaryBlock>
       <Wrapper isMobile={isMobile}>
         {/* {isMobile && title && <h1 className="title">{title}</h1>} */}
-        {text && <p className="text">{ReactHtmlParser(text)}</p>}
+        {text && <div className="text">{ReactHtmlParser(text)}</div>}
         {/* {title && (
           <img src={titleImage} alt={title} className="title-image margin-tb" />
         )} */}
@@ -112,7 +112,7 @@ const Summary = ({ uiData, isMobile }) => {
                   >
                     <img src={item.image} alt={item.desc} />
                   </div>
-                  <p className="flex-item">{ReactHtmlParser(item.text)}</p>
+                  <div className="flex-item">{ReactHtmlParser(item.text)}</div>
                 </li>
               ))}
             </ul>

@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from './modules';
 import { tempSetUser, check } from './modules/user';
@@ -18,14 +18,28 @@ import { createLogger } from 'redux-logger';
 import { HelmetProvider } from 'react-helmet-async';
 import { icons } from './admin/assets/icons';
 
-const sagaMiddleware = createSagaMiddleware();
-const logger = createLogger();
-const middleware = [sagaMiddleware, logger];
+/**
+ * APP TITLE: PRODUCE-O-MATIC (FRONT-END)
+ * DEVELOPMENT CYCLE: 2020.10.14 ~ 2021.05.03
+ * DEVELOPER: JAE MIN CHOI
+ * DEV'S EMAIL: JAEMINCHE@GMAIL.COM
+ */
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(...middleware)),
-);
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware];
+
+if (process.env.NODE_ENV === 'development') {
+  const logger = createLogger();
+  middlewares.push(logger);
+}
+
+const store =
+  process.env.NODE_ENV === 'development'
+    ? createStore(
+        rootReducer,
+        composeWithDevTools(applyMiddleware(...middlewares)),
+      )
+    : createStore(rootReducer, applyMiddleware(...middlewares));
 
 function loadUser() {
   // console.log('로드유저');

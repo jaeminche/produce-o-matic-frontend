@@ -76,7 +76,7 @@ const BudgetOMaticTemplateContainer = () => {
 
   // *=== MODIFY ITEMS ===
   const toggleUpdateItem = (groupCode, index) => {
-    console.log('==1929', activeGroup);
+    // console.log('==1929', activeGroup);
     if (activeGroup && activeGroup.open) toggleUpdateGroup(activeGroup);
     setActiveItem({ groupCode, key: index, open: !activeItem.open });
   };

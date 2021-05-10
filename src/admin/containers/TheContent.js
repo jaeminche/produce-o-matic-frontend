@@ -34,7 +34,6 @@ const TheContent = () => {
                 )
               );
             })}
-            {/* <Redirect from="/firstavenue" to="/firstavenue/dashboard" /> */}
           </Switch>
         </Suspense>
       </CContainer>
